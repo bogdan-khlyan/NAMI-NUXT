@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import categories from "~/components/categories/categories.store";
+import products from "~/components/products/products.store";
+
 Vue.use(Vuex)
 
 export const state = () => ({
-  host: process.env.VUE_APP_BACKEND_HOST,
+  host: 'http://localhost:8000',//process.env.VUE_APP_BACKEND_HOST,
   isMenu: false,
   isShowCart: false,
   isShowLoginModal: false,
@@ -25,4 +28,4 @@ export const mutations = {
   setWindowWidth(state, width) { state.windowWidth = width }
 }
 
-// export const modules = { products, category, cart }
+export const modules = { categories, products }
