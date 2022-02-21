@@ -74,24 +74,21 @@ export default {
       } else return true
     }
   },
-  data () {
-    return { }
-  },
   methods: {
     clickLogo: function () {
-      // if (this.$route.name !== 'main') this.$router.push('/')
-      // else this.$scrollTo('#banner', 800, { offset: -70 })
+      if (this.$route.name !== 'index') this.$router.push('/')
+      else this.$scrollTo('#banner', 800, { offset: -70 })
     },
     clickMenu: function () {
-      // if (this.$route.name !== 'main') {
-      //   if (this.$route.name === 'product') {
-      //     this.$router.push('/')
-      //   } else {
-      //     this.$router.push('/')
-      //     setTimeout(() =>
-      //         this.$scrollTo('#menu', 0, { offset: -70 }), 300)
-      //   }
-      // } else this.$scrollTo('#menu', 500, { offset: -70 })
+      if (this.$route.name !== 'index') {
+        if (this.$route.name === 'product') {
+          this.$router.push('/')
+        } else {
+          this.$router.push('/')
+          setTimeout(() =>
+              this.$scrollTo('#menu', 0, { offset: -70 }), 300)
+        }
+      } else this.$scrollTo('#menu', 500, { offset: -70 })
     }
   },
 }
