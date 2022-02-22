@@ -1,51 +1,49 @@
 <template>
-  <base-wrapper>
-    <div class="default-page-wrapper">
-      <div class="default-page">
-        <h1>акции</h1>
-        <div class="default-page__content">
-          <div class="stocks">
-            <stock
-              class="stocks__item"
-              :circle="20"
-              :image="require('@/assets/images/stocks/image1.png')"
-              title="акция выходного дня"
-              description="При заказе от 1500 ₽ в подарок бутылка белого вина или 1 л сока"/>
-            <stock
-              class="stocks__item"
-              :circle="10"
-              circle-pos="bottom-left"
-              :image="require('@/assets/images/stocks/image2.png')"
-              title="скидка на самовывоз"
-              description="Скидка на любой заказ 10 %. Нужно только прийти и забрать"/>
-            <stock
-              class="stocks__item"
-              :circle="15"
-              circle-pos="top-right"
-              :image="require('@/assets/images/stocks/image3.png')"
-              title="акция буднего дня"
-              description="С понедельника по четверг с 11:00 до 16:00 скидка 15 % на любой заказ"/>
-            <stock
-              class="stocks__item"
-              :circle="20"
-              circle-pos="top-right"
-              :image="require('@/assets/images/stocks/image4.png')"
-              title="скидка именинника"
-              description="Скидка 20 % в ваш День Рождения"/>
-          </div>
+  <div class="default-page-wrapper">
+    <div class="default-page">
+      <h1>акции</h1>
+      <div class="default-page__content">
+        <div class="stocks">
+          <stock
+            class="stocks__item"
+            :circle="20"
+            :image="require('@/assets/images/stocks/image1.png')"
+            title="акция выходного дня"
+            description="При заказе от 1500 ₽ в подарок бутылка белого вина или 1 л сока"/>
+          <stock
+            class="stocks__item"
+            :circle="10"
+            circle-pos="bottom-left"
+            :image="require('@/assets/images/stocks/image2.png')"
+            title="скидка на самовывоз"
+            description="Скидка на любой заказ 10 %. Нужно только прийти и забрать"/>
+          <stock
+            class="stocks__item"
+            :circle="15"
+            circle-pos="top-right"
+            :image="require('@/assets/images/stocks/image3.png')"
+            title="акция буднего дня"
+            description="С понедельника по четверг с 11:00 до 16:00 скидка 15 % на любой заказ"/>
+          <stock
+            class="stocks__item"
+            :circle="20"
+            circle-pos="top-right"
+            :image="require('@/assets/images/stocks/image4.png')"
+            title="скидка именинника"
+            description="Скидка 20 % в ваш День Рождения"/>
         </div>
       </div>
     </div>
-  </base-wrapper>
+  </div>
 </template>
 
 <script>
-import BaseWrapper from "~/components/common/baseWrapper/BaseWrapper";
 import Stock from "~/components/stocks/Stock";
 
 export default {
   name: 'Stocks',
-  components: { BaseWrapper, Stock }
+  components: { Stock },
+  layout: 'base'
 }
 </script>
 

@@ -5,7 +5,7 @@
     </div>
     <div class="logo">
       <img v-if="windowWidth > 420"
-           :src="show ? require('@/assets/images/logo/logo-for-dark.png') : require('@/assets/images/logo/logo-horiz.png')"
+           :src="show ? require('assets/images/logo/logo-for-dark.png') : require('assets/images/logo/logo-horiz.png')"
            alt="">
     </div>
     <div v-if="windowWidth > 600" class="phone">
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import CartHeaderButton from "@/components/common/baseWrapper/header/components/CartHeaderButton";
+import CartHeaderButton from "@/components/common/header/components/CartHeaderButton";
 
 export default {
   name: 'mobile',

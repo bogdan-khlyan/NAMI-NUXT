@@ -59,7 +59,7 @@
 
 <script>
 // import CartHeaderButton from "@/components/utils/CartHeaderButton";
-import CartHeaderButton from "@/components/common/baseWrapper/header/components/CartHeaderButton";
+import CartHeaderButton from "@/components/common/header/components/CartHeaderButton";
 
 export default {
   name: 'desktop',

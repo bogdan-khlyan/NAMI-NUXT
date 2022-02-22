@@ -1,25 +1,23 @@
 <template>
-  <base-wrapper>
-    <div class="default-page-wrapper">
-      <div class="default-page">
-        <h1>контакты</h1>
-        <div class="default-page__content">
-          <info/>
-          <widgets/>
-        </div>
+  <div class="default-page-wrapper">
+    <div class="default-page">
+      <h1>контакты</h1>
+      <div class="default-page__content">
+        <info/>
+        <widgets/>
       </div>
     </div>
-  </base-wrapper>
+  </div>
 </template>
 
 <script>
-import BaseWrapper from "~/components/common/baseWrapper/BaseWrapper";
 import Info from "~/components/contacts/Info";
 import Widgets from "~/components/contacts/Widgets";
 
 export default {
   name: 'Contacts',
-  components: { BaseWrapper, Info, Widgets },
+  components: { Info, Widgets },
+  layout: 'base'
 }
 </script>
 
