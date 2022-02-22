@@ -13,7 +13,7 @@ export const state = () => ({
   isShowLoginModal: false,
   isShowHeaderCollapse: false,
   windowScroll: false,
-  windowWidth: 1920
+  windowWidth: null
 })
 
 export const mutations = {
