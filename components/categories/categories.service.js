@@ -7,7 +7,6 @@ class CategoriesService {
   async getList(context) {
     try {
       const data = await this.#repository.getList()
-      console.log(data)
       context.$store.commit('setListCategories', data)
       return data
     } catch (error) {
