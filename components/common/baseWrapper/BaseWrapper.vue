@@ -5,17 +5,20 @@
       <slot/>
       <app-footer/>
     </div>
+
+    <cart/>
   </div>
 </template>
 
 <script>
 import AppHeader from "~/components/common/baseWrapper/header/AppHeader";
 import AppFooter from "~/components/common/baseWrapper/footer/AppFooter";
+import Cart from "@/components/cart/Cart";
 import {productService} from "@/components/products/products.service";
 
 export default {
   name: 'main-wrapper',
-  components: { AppHeader, AppFooter },
+  components: { AppHeader, AppFooter, Cart },
   created() {
     productService.getAll(this)
   },
