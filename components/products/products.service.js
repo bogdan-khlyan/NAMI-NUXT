@@ -6,6 +6,9 @@ class ProductsService {
   #repository = new ProductsRepository()
 
   async getAll(context) {
+    if (context.$store.state.categories.list.length > 0) {
+      return
+    }
     try {
       const categories = await categoryService.getList(context)
       const promises = []
