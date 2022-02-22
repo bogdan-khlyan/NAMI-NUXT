@@ -31,15 +31,9 @@ export default {
     windowScroll () { return this.$store.state.windowScroll },
     windowWidth() { return this.$store.state.windowWidth }
   },
-  mounted() {
-    window.addEventListener('scroll', this.scroll)
-    this.scroll()
-  },
-  beforeDestroy() { window.removeEventListener('scroll', this.scroll) },
-  methods: {
-    scroll: function () {
-      this.$store.commit('setWindowScroll', pageYOffset) // TODO move to app.vue ?
-      if (pageYOffset > this.$refs.banner.offsetHeight - 188) {
+  watch: {
+    windowScroll(windowScroll) {
+      if (windowScroll > this.$refs.banner.offsetHeight - 188) {
         if (!this.isMenu) this.$store.commit('setIsMenu', true)
       } else if (this.isMenu) this.$store.commit('setIsMenu', false)
     }

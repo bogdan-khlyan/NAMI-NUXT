@@ -6,7 +6,7 @@
           <img src="@/assets/images/logo/logo.png" alt="" ref="logoImg">
         </div>
         <div class="header__nav--menu">
-          <div @click="clickMenu" class="header__nav--menu--item" :class="{'active': $route.name === 'main' && isMenu}">
+          <div @click="clickMenu" class="header__nav--menu--item" :class="{'active': $route.name === 'index' && isMenu}">
             <a>
               <span>Меню</span>
             </a>
@@ -68,7 +68,7 @@ export default {
     windowWidth() { return this.$store.state.windowWidth },
     windowScroll () { return this.$store.state.windowScroll },
     show () {
-      if (this.$route.name === 'main') {
+      if (this.$route.name === 'index') {
         if (this.windowWidth <= 1250) return true
         else return this.windowScroll !== 0
       } else return true
