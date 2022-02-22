@@ -33,13 +33,14 @@
       </div>
       <div @click="stopPropagation" class="btn">
         <button v-if="count < 1" @click="toCard" class="product__btn-to-cart">В корзину</button>
-<!--        <plus-minus class="plus-minus-btn" v-else :id="data._id"/>-->
+        <plus-minus class="plus-minus-btn" v-else :id="data._id"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
 // import AppIcon from '@/components/utils/AppIcon'
 // import Like from '@/components/utils/Like'
 // import PlusMinus from '@/components/ui/buttons/PlusMinus'
@@ -47,6 +48,7 @@
 export default {
   name: 'home',
   // components: {AppIcon, Like, PlusMinus},
+  components: { PlusMinus },
   props: {
     data: {type: Object}
   },
@@ -69,9 +71,9 @@ export default {
       }
     },
     count() {
-      // if (this.$store.state.cart.list.find(item => item._id === this.data._id))
-      //   return this.$store.state.cart.list.find(item => item._id === this.data._id).count
-      // else return 0
+      if (this.$store.state.orders.list.find(item => item._id === this.data._id))
+        return this.$store.state.orders.list.find(item => item._id === this.data._id).count
+      else return 0
       return 0
     }
   },

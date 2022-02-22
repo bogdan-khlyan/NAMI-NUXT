@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import categories from "~/components/categories/categories.store";
 import products from "~/components/products/products.store";
+import orders from "@/components/orders/orders.store";
 
 Vue.use(Vuex)
 
@@ -46,4 +47,4 @@ export const mutations = {
   }
 }
 
-export const modules = { categories, products }
+export const modules = { categories, products, orders }

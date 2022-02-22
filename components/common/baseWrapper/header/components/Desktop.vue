@@ -42,7 +42,7 @@
           </a>
         </div>
         <div class="header__nav--cart">
-<!--          <cart-header-button class="btn" />-->
+          <cart-header-button class="btn" />
         </div>
         <div class="header__nav--profile">
           <el-tooltip class="item" effect="dark" placement="top">
@@ -59,10 +59,11 @@
 
 <script>
 // import CartHeaderButton from "@/components/utils/CartHeaderButton";
+import CartHeaderButton from "@/components/common/baseWrapper/header/components/CartHeaderButton";
 
 export default {
   name: 'desktop',
-  // components: { CartHeaderButton },
+  components: { CartHeaderButton },
   computed: {
     isMenu () { return this.$store.state.isMenu },
     windowWidth() { return this.$store.state.windowWidth },
