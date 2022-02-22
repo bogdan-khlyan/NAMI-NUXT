@@ -1,15 +1,15 @@
 <template>
   <div class="cart-wrapper">
     <el-drawer
-        :visible="isShowCart"
-        @close="close"
-        :with-header="false">
+      :visible="isShowCart"
+      @close="close"
+      :with-header="false">
       <div class="content">
-<!--        <mobile-header v-if="windowWidth < 640"/>-->
+        <mobile-header v-if="windowWidth < 640"/>
         <scroll ref="scroll">
           <transition name="fade" mode="out-in">
-            <index v-if="mode === 'INDEX'" @changeMode="changeMode" />
-<!--            <order v-else-if="mode === 'ORDER'" @changeMode="changeMode" />-->
+            <index v-if="mode === 'INDEX'" @changeMode="changeMode"/>
+            <!--            <order v-else-if="mode === 'ORDER'" @changeMode="changeMode" />-->
           </transition>
         </scroll>
       </div>
@@ -20,13 +20,18 @@
 <script>
 import Index from "@/components/cart/components";
 import Scroll from "@/components/common/Scroll";
+import MobileHeader from "@/components/cart/common/MolileHeader";
 
 export default {
   name: 'cart',
-  components: { Index, Scroll },
+  components: {Index, Scroll, MobileHeader},
   computed: {
-    isShowCart() { return this.$store.state.isShowCart },
-    windowWidth () { return this.$store.state.windowWidth }
+    isShowCart() {
+      return this.$store.state.isShowCart
+    },
+    windowWidth() {
+      return this.$store.state.windowWidth
+    }
   },
   data() {
     return {
@@ -66,8 +71,9 @@ export default {
 .cart-wrapper .content .ps {
   height: 100vh;
 }
+
 .cart-wrapper .el-drawer {
-  width: 600px!important;
+  width: 600px !important;
 
   @media screen and (max-width: 640px) {
     width: 100% !important;
