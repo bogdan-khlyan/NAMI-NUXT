@@ -11,10 +11,14 @@
 <script>
 import AppHeader from "~/components/common/baseWrapper/header/AppHeader";
 import AppFooter from "~/components/common/baseWrapper/footer/AppFooter";
+import {productService} from "@/components/products/products.service";
 
 export default {
   name: 'main-wrapper',
   components: { AppHeader, AppFooter },
+  created() {
+    productService.getAll(this)
+  },
   mounted() {
     window.addEventListener('resize', this.resize)
     this.resize()
