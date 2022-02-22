@@ -1,6 +1,6 @@
 <template>
   <div class="banner-bottom">
-<!--    <btn-to-menu v-scroll-to="{ el: '#menu', offset: -70 }" />-->
+    <btn-to-menu v-scroll-to="{ el: '#menu', offset: -70 }" />
     <a class="banner-bottom--social"
        href="https://vk.com/namisushidn"
        target="_blank"
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-// import BtnToMenu from "@/components/utils/BtnToMenu";
+import BtnToMenu from "@/components/home/banner/components/BtnToMenu";
 
 export default {
   name: 'banner-bottom',
-  // components: { BtnToMenu },
+  components: { BtnToMenu },
   computed: {
     windowWidth() {
       return this.$store.state.windowWidth
