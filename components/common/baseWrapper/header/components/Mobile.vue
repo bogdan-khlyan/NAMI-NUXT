@@ -17,17 +17,17 @@
       </a>
     </div>
     <div class="cart">
-<!--      <cart-header-button class="btn" />-->
+      <cart-header-button class="btn" />
     </div>
   </header>
 </template>
 
 <script>
-// import CartHeaderButton from '@/components/utils/CartHeaderButton'
+import CartHeaderButton from "@/components/common/baseWrapper/header/components/CartHeaderButton";
 
 export default {
   name: 'mobile',
-  // components: { CartHeaderButton },
+  components: { CartHeaderButton },
   props: {
     alwaysBg: {
       type: Boolean,
@@ -41,9 +41,7 @@ export default {
     return {
       show: true
     }
-  },
-  methods: {
-  },
+  }
 }
 </script>
 
