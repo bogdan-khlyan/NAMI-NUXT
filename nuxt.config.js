@@ -1,14 +1,21 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nami-nuxt',
+    title: 'NamiSushi | Доставка японской еды в Донецке и Макеевке',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description', name: 'description',
+        content: 'NamiSushi - доставка японской еды в Донецке и Макеевке. Доставка еды - суши, роллов и другой вкусной еды.'
+      },
+      { name: 'og:title', content: 'NamiSushi | Доставка японской еды в Донецке и Макеевке' },
+      { name: 'og:description', content: 'NamiSushi - доставка японской еды в Донецке и Макеевке. Доставка еды - суши, роллов и другой вкусной еды.' },
+      { name: 'og:image', content: 'https://namisushi.dn.ua/thumbnail.jpg' },
+      { name: 'og:url', content: 'https://namisushi.dn.ua' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
