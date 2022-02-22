@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import FooterNav from "~/components/common/baseWrapper/footer/FooterNav";
-import FooterLogo from "~/components/common/baseWrapper/footer/FooterLogo";
-import FooterPhone from "~/components/common/baseWrapper/footer/FooterPhone";
-import FooterSocials from "~/components/common/baseWrapper/footer/FooterSocials";
+import FooterNav from "@/components/common/footer/FooterNav";
+import FooterLogo from "@/components/common/footer/FooterLogo";
+import FooterPhone from "@/components/common/footer/FooterPhone";
+import FooterSocials from "@/components/common/footer/FooterSocials";
 
 export default {
   name: 'app-footer',

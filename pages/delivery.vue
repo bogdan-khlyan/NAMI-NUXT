@@ -1,37 +1,35 @@
 <template>
-  <base-wrapper>
-    <div class="delivery-wrapper">
-      <div class="delivery">
-        <h1>Доставка</h1>
-        <div class="delivery__content">
-          <div class="delivery__list">
-            <h2>
-              <div class="img-wrapper">
-                <base-svg :src="require('@/assets/images/icons/bag.svg')"/>
-              </div>
-              <span>как получить заказ</span>
-            </h2>
-            <div class="delivery__list--item">Минимальный  заказ для доставки - 500 ₽</div>
-            <div class="delivery__list--item">Стоимость доставки 1 км - 15 ₽</div>
-            <div class="delivery__list--item">Вы можете сами забрать заказ из ресторана со скидкой 10%</div>
-            <div class="delivery__list--item">Доставка осуществляется с 11:00 до 20:30</div>
-          </div>
-          <div class="delivery__content--image">
-            <img src="@/assets/images/delivery/image.png" alt="">
-          </div>
+  <div class="delivery-wrapper">
+    <div class="delivery">
+      <h1>Доставка</h1>
+      <div class="delivery__content">
+        <div class="delivery__list">
+          <h2>
+            <div class="img-wrapper">
+              <base-svg :src="require('@/assets/images/icons/bag.svg')"/>
+            </div>
+            <span>как получить заказ</span>
+          </h2>
+          <div class="delivery__list--item">Минимальный  заказ для доставки - 500 ₽</div>
+          <div class="delivery__list--item">Стоимость доставки 1 км - 15 ₽</div>
+          <div class="delivery__list--item">Вы можете сами забрать заказ из ресторана со скидкой 10%</div>
+          <div class="delivery__list--item">Доставка осуществляется с 11:00 до 20:30</div>
+        </div>
+        <div class="delivery__content--image">
+          <img src="@/assets/images/delivery/image.png" alt="">
         </div>
       </div>
     </div>
-  </base-wrapper>
+  </div>
 </template>
 
 <script>
-import BaseWrapper from "~/components/common/baseWrapper/BaseWrapper";
 import BaseSvg from "~/components/common/BaseSvg";
 
 export default {
   name: 'Delivery',
-  components: { BaseWrapper, BaseSvg }
+  components: { BaseSvg },
+  layout: 'base'
 }
 </script>
 

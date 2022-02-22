@@ -1,23 +1,22 @@
 <template>
-  <div class="main-wrapper">
+  <div class="base-layout">
     <app-header/>
-    <div class="main-wrapper__content">
-      <slot/>
+    <div class="base-layout__content">
+      <nuxt/>
       <app-footer/>
     </div>
-
     <cart/>
   </div>
 </template>
 
 <script>
-import AppHeader from "~/components/common/baseWrapper/header/AppHeader";
-import AppFooter from "~/components/common/baseWrapper/footer/AppFooter";
+import AppHeader from "@/components/common/header/AppHeader";
+import AppFooter from "@/components/common/footer/AppFooter";
 import Cart from "@/components/cart/Cart";
 import {productService} from "@/components/products/products.service";
 
 export default {
-  name: 'main-wrapper',
+  name: 'base-layout',
   components: { AppHeader, AppFooter, Cart },
   created() {
     productService.getAll(this)
@@ -45,7 +44,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.main-wrapper {
+.base-layout {
   position: relative;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -56,7 +55,7 @@ export default {
   padding: 0;
   overflow-x: hidden;
 
-  .main-wrapper__content {
+  &__content {
     width: 100%;
     min-height: 100vh;
     background-image: url('@/assets/images/menu-bg.png');
