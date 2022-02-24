@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Product from "@/components/cart/components/product/Product";
+import Product from "@/components/cart/index/product/Product";
 
 export default {
   name: 'cart',

@@ -22,7 +22,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: 'https://vk.com/js/api/openapi.js?169', type: 'text/javascript' }
+      { src: 'https://vk.com/js/api/openapi.js?169', type: 'text/javascript' },
+      { src: 'https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=8de247b8-c5f2-40b2-8a90-09fb4bdac04b', type: 'text/javascript' }
     ]
   },
 
@@ -35,7 +36,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/element-ui',
-    '@/plugins/scroll-to'
+    '@/plugins/scroll-to',
+    '@/plugins/mask'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
