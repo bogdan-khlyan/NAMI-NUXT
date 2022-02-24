@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import Desktop from "@/components/cart/components/product/Desktop";
-import Mobile from "@/components/cart/components/product/Mobile";
+import Desktop from "@/components/cart/index/product/Desktop";
+import Mobile from "@/components/cart/index/product/Mobile";
 
 export default {
   name: 'cart-product',
