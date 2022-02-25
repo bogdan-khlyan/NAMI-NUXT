@@ -23,6 +23,7 @@
     "webpack": "^4.46.0"
   },
   "devDependencies": {
+    "@types/yandex-maps": "^2.1.20",
     "express": "^4.17.3",
     "http-proxy-middleware": "^2.0.3",
     "sass": "^1.49.8",
