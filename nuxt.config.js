@@ -37,7 +37,8 @@ export default {
     '@/plugins/element-ui',
     '@/plugins/scroll-to',
     '@/plugins/mask',
-    { src: '~/plugins/yandex-map.js',  mode: 'client' }
+    { src: '~/plugins/yandex-map.js',  mode: 'client' },
+    { src: '@/plugins/route', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
