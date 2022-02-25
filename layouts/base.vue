@@ -2,7 +2,9 @@
   <div class="base-layout">
     <app-header/>
     <div class="base-layout__content">
-      <nuxt/>
+      <transition name="el-fade-in-linear" mode="out-in">
+        <nuxt/>
+      </transition>
       <app-footer/>
     </div>
     <cart/>
