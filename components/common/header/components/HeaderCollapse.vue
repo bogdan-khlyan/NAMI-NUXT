@@ -11,20 +11,20 @@
             <i class="el-icon-close"></i>
           </div>
 
-          <img class="header-collapse__content--header-img" src="images/img-burger-menu.png" alt="">
+          <img class="header-collapse__content--header-img" src="@/assets/images/img-burger-menu.png" alt="">
 
           <div class="header-collapse__content-menu">
-            <router-link
+            <nuxt-link
                 to="/"
                 class="header-collapse__content-menu--item"
-                :class="{'active': $route.name === 'main'}"
+                :class="{'active': $route.name === 'index'}"
                 @click.native="close">
               <div class="icon">
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M15.0062 7.94116C13.3646 7.94116 11.9812 9.06763 11.5884 10.5882H18.4239C18.0312 9.06763 16.6477 7.94116 15.0062 7.94116Z" fill="white" fill-opacity="0.65"/><path d="M3.5293 0V30H26.4705V0H3.5293ZM14.1175 25.5882H7.05871V23.8235H14.1175V25.5882ZM14.1175 21.1765H7.05871V19.4118H14.1175V21.1765ZM22.9411 25.5882H17.6469V23.8235H22.9411V25.5882ZM22.9411 21.1765H17.6469V19.4118H22.9411V21.1765ZM22.9411 16.7647H7.05871V15H22.9411V16.7647ZM22.0587 12.3529H20.294H9.70577H7.94106V10.5882H9.77971C10.1527 8.37465 11.9039 6.62341 14.1175 6.25041V4.41176H15.8822V6.25041C18.0958 6.62341 19.8471 8.37465 20.2201 10.5882H22.0587V12.3529Z" fill="white" fill-opacity="0.65"/></g><defs><clipPath id="clip0"><rect width="30" height="30" fill="white"/></clipPath></defs></svg>
               </div>
               <div class="text">Меню</div>
-            </router-link>
-            <router-link
+            </nuxt-link>
+            <nuxt-link
                 to="/delivery"
                 class="header-collapse__content-menu--item"
                 :class="{'active': $route.name === 'delivery'}"
@@ -33,8 +33,8 @@
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M20.15 2.41099L6.53625 9.38099L1.125 6.71849L14.4988 0.114741C14.7988 -0.0377588 15.1588 -0.0377588 15.4738 0.114741L20.15 2.41099Z" fill="white" fill-opacity="0.6"/><path d="M28.8598 6.7188L15.0073 13.5813L9.81982 11.025L9.06982 10.6438L22.6986 3.67505L23.4486 4.05505L28.8598 6.7188Z" fill="white" fill-opacity="0.6"/><path d="M13.8975 15.5588L13.8825 30L0.615 23.0763C0.24 22.8788 0 22.4825 0 22.0563V8.69629L5.6225 11.4663V16.3363C5.6225 16.96 6.1325 17.4775 6.7475 17.4775C7.3625 17.4775 7.8725 16.96 7.8725 16.3363V12.5925L8.6225 12.9575L13.8975 15.5588Z" fill="white" fill-opacity="0.6"/><path d="M29.9848 8.71124L16.1473 15.5437L16.1323 29.985L29.9998 22.7437L29.9848 8.71124Z" fill="white" fill-opacity="0.6"/></g><defs><clipPath id="clip0"><rect width="30" height="30" fill="white"/></clipPath></defs></svg>
               </div>
               <div class="text">Доставка</div>
-            </router-link>
-            <router-link
+            </nuxt-link>
+            <nuxt-link
                 to="/stocks"
                 class="header-collapse__content-menu--item"
                 :class="{'active': $route.name === 'stocks'}"
@@ -43,7 +43,7 @@
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.8477 17.6367C23.3627 17.6367 22.9688 18.0307 22.9688 18.5156C22.9688 19.0005 23.3627 19.3945 23.8477 19.3945C24.3326 19.3945 24.7266 19.0005 24.7266 18.5156C24.7266 18.0307 24.3326 17.6367 23.8477 17.6367Z" fill="white" fill-opacity="0.65"/><path d="M29.1211 5.33203H8.86201V7.96875C8.86201 8.45455 8.46891 8.84766 7.98311 8.84766C7.4973 8.84766 7.1042 8.45455 7.1042 7.96875V5.33203H0.878906C0.393105 5.33203 0 5.72514 0 6.21094V11.4844C0 11.9702 0.393105 12.3633 0.878906 12.3633C2.33285 12.3633 3.51562 13.5461 3.51562 15C3.51562 16.4539 2.33285 17.6367 0.878906 17.6367C0.393105 17.6367 0 18.0298 0 18.5156V23.7891C0 24.2749 0.393105 24.668 0.878906 24.668H7.03125V22.0312C7.03125 21.5454 7.42436 21.1523 7.91016 21.1523C8.39596 21.1523 8.78906 21.5454 8.78906 22.0312V24.668H29.1211C29.6069 24.668 30 24.2749 30 23.7891V6.21094C30 5.72514 29.6069 5.33203 29.1211 5.33203ZM8.78906 18.5156C8.78906 19.0014 8.39596 19.3945 7.91016 19.3945C7.42436 19.3945 7.03125 19.0014 7.03125 18.5156V16.7578C7.03125 16.272 7.42436 15.8789 7.91016 15.8789C8.39596 15.8789 8.78906 16.272 8.78906 16.7578V18.5156ZM8.78906 13.2422C8.78906 13.728 8.39596 14.1211 7.91016 14.1211C7.42436 14.1211 7.03125 13.728 7.03125 13.2422V11.4844C7.03125 10.9986 7.42436 10.6055 7.91016 10.6055C8.39596 10.6055 8.78906 10.9986 8.78906 11.4844V13.2422ZM14.1797 11.4844C14.1797 10.0304 15.3625 8.84766 16.8164 8.84766C18.2704 8.84766 19.4531 10.0304 19.4531 11.4844C19.4531 12.9383 18.2704 14.1211 16.8164 14.1211C15.3625 14.1211 14.1797 12.9383 14.1797 11.4844ZM16.3289 21.0047C15.9247 20.7352 15.8156 20.1902 16.0852 19.7859L23.1164 9.239C23.3851 8.83477 23.9301 8.7266 24.3352 8.99525C24.7395 9.26479 24.8485 9.80977 24.579 10.2141L17.5477 20.7609C17.2826 21.1592 16.7396 21.2769 16.3289 21.0047ZM23.8477 21.1523C22.3937 21.1523 21.2109 19.9696 21.2109 18.5156C21.2109 17.0617 22.3937 15.8789 23.8477 15.8789C25.3016 15.8789 26.4844 17.0617 26.4844 18.5156C26.4844 19.9696 25.3016 21.1523 23.8477 21.1523Z" fill="white" fill-opacity="0.65"/><path d="M16.8164 10.6055C16.3315 10.6055 15.9375 10.9995 15.9375 11.4844C15.9375 11.9693 16.3315 12.3633 16.8164 12.3633C17.3013 12.3633 17.6953 11.9693 17.6953 11.4844C17.6953 10.9995 17.3013 10.6055 16.8164 10.6055Z" fill="white" fill-opacity="0.65"/></svg>
               </div>
               <div class="text">Акции</div>
-            </router-link>
+            </nuxt-link>
             <el-tooltip class="item" effect="dark" placement="bottom">
               <div slot="content">Временно недоступно</div>
               <div class="header-collapse__content-menu--item">
@@ -53,7 +53,7 @@
                 <div class="text">Отзывы</div>
               </div>
             </el-tooltip>
-            <router-link
+            <nuxt-link
                 to="/contacts"
                 class="header-collapse__content-menu--item"
                 :class="{'active': $route.name === 'contacts'}"
@@ -62,7 +62,7 @@
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.8678 18.7898C15.5844 18.9669 15.2656 19.0378 14.9823 19.0378C14.6989 19.0378 14.3802 18.9669 14.0968 18.7898L0 10.183V21.6234C0 24.0673 1.98347 26.0508 4.42739 26.0508H25.5726C28.0165 26.0508 30 24.0673 30 21.6234V10.183L15.8678 18.7898Z" fill="white" fill-opacity="0.65"/><path d="M25.5725 3.94922H4.42732C2.33759 3.94922 0.566631 5.43682 0.141602 7.42029L15.0176 16.4876L29.8582 7.42029C29.4332 5.43682 27.6623 3.94922 25.5725 3.94922Z" fill="white" fill-opacity="0.65"/></svg>
               </div>
               <div class="text">Контакты</div>
-            </router-link>
+            </nuxt-link>
           </div>
 
         </div>
@@ -76,10 +76,8 @@ export default {
   name: 'header-collapse',
   components: { },
   computed: {
-    isShowHeaderCollapse() { return this.$store.state.isShowHeaderCollapse }
-  },
-  data() {
-    return {
+    isShowHeaderCollapse() {
+      return this.$store.state.isShowHeaderCollapse
     }
   },
   methods: {

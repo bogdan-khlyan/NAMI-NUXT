@@ -7,7 +7,7 @@ class ProductsService {
 
   async getAll(context) {
     if (context.$store.state.categories.list.length > 0) {
-      return
+      return Promise.resolve()
     }
     try {
       const categories = await categoryService.getList(context)

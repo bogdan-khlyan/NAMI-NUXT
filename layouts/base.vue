@@ -8,8 +8,10 @@
         </transition>
         <app-footer/>
       </div>
-      <cart/>
     </div>
+
+    <cart/>
+    <header-collapse/>
 
     <transition name="el-fade-in-linear">
       <body-loading v-if="loading" @done="loadingDone"/>
@@ -21,11 +23,12 @@
 import AppHeader from "~/components/common/header/AppHeader";
 import AppFooter from "~/components/common/footer/AppFooter";
 import Cart from "~/components/cart/Cart";
+import HeaderCollapse from "@/components/common/header/components/HeaderCollapse";
 import BodyLoading from "~/components/BodyLoading";
 
 export default {
   name: 'base-layout',
-  components: { AppHeader, AppFooter, Cart, BodyLoading },
+  components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderCollapse },
   data() {
     return {
       loading: true
