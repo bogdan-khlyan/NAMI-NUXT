@@ -9,7 +9,6 @@ Vue.use(Vuex)
 
 export const state = () => ({
   page: 'index',
-  host: 'http://localhost:8000',//process.env.VUE_APP_BACKEND_HOST,
   isMenu: false,
   isShowCart: false,
   isShowLoginModal: false,

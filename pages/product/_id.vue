@@ -4,7 +4,7 @@
       <div class="product__media">
         <h1>{{product.title}}</h1>
         <div class="product__media--image">
-          <img class="image" :src="host + product.images[0]" alt="">
+          <img class="image" :src="product.images[0]" alt="">
           <img class="bg" src="@/assets/images/product/bg.png" alt="">
         </div>
       </div>
@@ -36,9 +36,6 @@ export default {
   components: { PlusMinus },
   layout: 'base',
   computed: {
-    host() {
-      return this.$store.state.host
-    },
     productId() {
       return this.$route.params.id
     },
