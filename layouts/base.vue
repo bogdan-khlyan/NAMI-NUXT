@@ -1,22 +1,18 @@
 <template>
-  <div>
-    <transition name="el-fade-in-linear">
-      <body-loading
-        v-show="loading"
-        @done="loadingDone"/>
-    </transition>
-    <transition name="el-fade-in-linear">
-      <div v-show="!loading"
-           class="base-layout">
-        <app-header/>
-        <div class="base-layout__content">
-          <transition name="el-fade-in-linear" mode="out-in">
-            <nuxt/>
-          </transition>
-          <app-footer/>
-        </div>
-        <cart/>
+  <div class="base-layout-wrapper">
+    <div class="base-layout">
+      <app-header/>
+      <div class="base-layout__content">
+        <transition name="el-fade-in-linear" mode="out-in">
+          <nuxt/>
+        </transition>
+        <app-footer/>
       </div>
+      <cart/>
+    </div>
+
+    <transition name="el-fade-in-linear">
+      <body-loading v-if="loading" @done="loadingDone"/>
     </transition>
   </div>
 </template>
