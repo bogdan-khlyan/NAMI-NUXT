@@ -37,6 +37,7 @@ export default {
     '~/plugins/element-ui',
     '~/plugins/scroll-to',
     '~/plugins/mask',
+    '~/plugins/perfect-scrollbar.js',
     { src: '~/plugins/yandex-map.js',  mode: 'client' },
     { src: '~/plugins/route', mode: 'client' }
   ],
