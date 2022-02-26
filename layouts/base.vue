@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import AppHeader from "@/components/common/header/AppHeader";
-import AppFooter from "@/components/common/footer/AppFooter";
-import Cart from "@/components/cart/Cart";
-import BodyLoading from "@/components/BodyLoading";
+import AppHeader from "~/components/common/header/AppHeader";
+import AppFooter from "~/components/common/footer/AppFooter";
+import Cart from "~/components/cart/Cart";
+import BodyLoading from "~/components/BodyLoading";
 
 export default {
   name: 'base-layout',

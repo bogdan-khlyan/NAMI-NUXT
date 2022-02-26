@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import {productService} from "@/components/products/products.service";
+import {productService} from "~/components/products/products.service";
 
 export default {
   name: 'body-loading',

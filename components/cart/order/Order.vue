@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import DeliveryMethod from "@/components/cart/order/deliveryMethod/DeliveryMethod";
-import OrderForm from "@/components/cart/order/orderForm/OrderForm";
-import ConfirmOrder from "@/components/cart/order/confirmOrder/ConfirmOrder";
-import {ordersService} from "@/components/orders/orders.service";
+import DeliveryMethod from "~/components/cart/order/deliveryMethod/DeliveryMethod";
+import OrderForm from "~/components/cart/order/orderForm/OrderForm";
+import ConfirmOrder from "~/components/cart/order/confirmOrder/ConfirmOrder";
+import {ordersService} from "~/components/orders/orders.service";
 
 export default {
   name: 'cart',
