@@ -1,13 +1,23 @@
 <template>
-  <div class="base-layout">
-    <app-header/>
-    <div class="base-layout__content">
-      <transition name="el-fade-in-linear" mode="out-in">
-        <nuxt/>
-      </transition>
-      <app-footer/>
-    </div>
-    <cart/>
+  <div>
+    <transition name="el-fade-in-linear">
+      <body-loading
+        v-show="loading"
+        @done="loadingDone"/>
+    </transition>
+    <transition name="el-fade-in-linear">
+      <div v-show="!loading"
+           class="base-layout">
+        <app-header/>
+        <div class="base-layout__content">
+          <transition name="el-fade-in-linear" mode="out-in">
+            <nuxt/>
+          </transition>
+          <app-footer/>
+        </div>
+        <cart/>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -15,13 +25,15 @@
 import AppHeader from "@/components/common/header/AppHeader";
 import AppFooter from "@/components/common/footer/AppFooter";
 import Cart from "@/components/cart/Cart";
-import {productService} from "@/components/products/products.service";
+import BodyLoading from "@/components/BodyLoading";
 
 export default {
   name: 'base-layout',
-  components: { AppHeader, AppFooter, Cart },
-  created() {
-    productService.getAll(this)
+  components: { AppHeader, AppFooter, Cart, BodyLoading },
+  data() {
+    return {
+      loading: true
+    }
   },
   mounted() {
     window.addEventListener('resize', this.resize)
@@ -35,6 +47,9 @@ export default {
     window.removeEventListener('resize', this.scroll)
   },
   methods: {
+    loadingDone() {
+      this.loading = false
+    },
     resize() {
       this.$store.commit('setWindowWidth', document.documentElement.clientWidth)
     },
