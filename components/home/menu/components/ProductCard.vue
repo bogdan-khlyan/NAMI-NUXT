@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="product__slider">
-      <img :src="host + data.images[0]" alt="">
+      <img :src="data.images[0]" alt="">
       <!--      <el-carousel :autoplay="false" arrow="never">-->
       <!--        <el-carousel-item class="product__slider&#45;&#45;item" v-for="image in data.images" :key="image + Math.random()">-->
       <!--          <img :src="'https://namisushi.ru' + image" alt="">-->
@@ -53,9 +53,6 @@ export default {
     data: {type: Object}
   },
   computed: {
-    host() {
-      return this.$store.state.host
-    },
     styles() {
       if (this.data.title.length > 14) {
         return 'font-size: 16px;line-height: 18px;'
