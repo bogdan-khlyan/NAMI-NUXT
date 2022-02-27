@@ -47,6 +47,13 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    ['@nuxtjs/google-fonts', {
+      families: {
+        Neucha: true,
+        Kalam: true,
+        Ubuntu: true
+      }
+    }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
