@@ -1,6 +1,8 @@
 {
   "name": "nami-nuxt",
+  "author": "Bogdan Khlyan (Hlyan) es.bogdan.hlyan@gmail.com",
   "version": "1.0.0",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "nuxt",
