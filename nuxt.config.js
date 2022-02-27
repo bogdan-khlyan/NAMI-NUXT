@@ -29,15 +29,17 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    '@/assets/scss/_style.scss'
+    '~/assets/scss/_style.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/element-ui',
-    '@/plugins/scroll-to',
-    '@/plugins/mask',
-    { src: '~/plugins/yandex-map.js',  mode: 'client' }
+    '~/plugins/element-ui',
+    '~/plugins/scroll-to',
+    '~/plugins/mask',
+    '~/plugins/perfect-scrollbar.js',
+    { src: '~/plugins/yandex-map.js',  mode: 'client' },
+    { src: '~/plugins/route', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,6 +47,13 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    ['@nuxtjs/google-fonts', {
+      families: {
+        Neucha: true,
+        Kalam: true,
+        Ubuntu: true
+      }
+    }]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

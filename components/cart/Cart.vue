@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import Index from "@/components/cart/index";
-import Order from "@/components/cart/order/Order";
-import Scroll from "@/components/common/Scroll";
-import MobileHeader from "@/components/cart/common/MolileHeader";
+import Index from "~/components/cart/index/Index";
+import Order from "~/components/cart/order/Order";
+import Scroll from "~/components/common/Scroll";
+import MobileHeader from "~/components/cart/common/MolileHeader";
 
 export default {
   name: 'cart',

@@ -3,13 +3,12 @@ import Vuex from 'vuex'
 
 import categories from "~/components/categories/categories.store";
 import products from "~/components/products/products.store";
-import orders from "@/components/orders/orders.store";
+import orders from "~/components/orders/orders.store";
 
 Vue.use(Vuex)
 
 export const state = () => ({
   page: 'index',
-  host: 'http://localhost:8000',//process.env.VUE_APP_BACKEND_HOST,
   isMenu: false,
   isShowCart: false,
   isShowLoginModal: false,
