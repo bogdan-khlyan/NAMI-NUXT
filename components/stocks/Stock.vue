@@ -72,6 +72,10 @@ export default {
     top: unset!important;
     bottom: -35px;
   }
+  @media screen and (max-width: 400px) {
+    left: -15px;
+    bottom: -20px;
+  }
 }
 .stock {
   position: relative;
@@ -96,6 +100,22 @@ export default {
     max-width: 120px;
     min-width: 120px;
     height: 120px;
+  }
+  @media screen and (max-width: 400px) {
+    max-width: 100px;
+    max-height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    width: 100px;
+    height: 100px;
+  }
+  @media screen and (max-width: 400px) {
+    max-width: 90px;
+    max-height: 90px;
+    min-width: 90px;
+    min-height: 90px;
+    width: 90px;
+    height: 90px;
   }
 
   .stock__circle {
@@ -167,6 +187,14 @@ export default {
         font-size: 24px;
         line-height: 28px;
       }
+      @media screen and (max-width: 480px) {
+        font-size: 20px;
+        line-height: 24px;
+      }
+      @media screen and (max-width: 420px) {
+        font-size: 18px;
+        line-height: 20px;
+      }
     }
 
   }
@@ -186,6 +214,14 @@ export default {
     @media screen and (max-width: 500px) {
       width: 100px;
       height: 100px;
+    }
+    @media screen and (max-width: 400px) {
+      width: 80px;
+      height: 80px;
+    }
+    @media screen and (max-width: 400px) {
+      width: 70px;
+      height: 70px;
     }
   }
 
@@ -208,6 +244,12 @@ export default {
     text-transform: uppercase;
 
     color: #000000;
+
+    @media screen and (max-width: 420px) {
+      font-size: 16px;
+      line-height: 18px;
+    }
+
   }
 
   > span {
@@ -225,6 +267,14 @@ export default {
     letter-spacing: 0.03em;
 
     color: #424242;
+
+    @media screen and (max-width: 500px) {
+      margin-top: 10px;
+    }
+    @media screen and (max-width: 420px) {
+      font-size: 14px;
+    }
+
   }
 
 }
