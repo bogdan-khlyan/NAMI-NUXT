@@ -60,6 +60,9 @@ export default {
       margin-top: 150px;
       @media screen and (max-width: 1100px) { margin-top: unset; }
     }
+    @media screen and (max-width: 500px) {
+      align-items: center;
+    }
   }
 
 }
