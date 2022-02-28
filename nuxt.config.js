@@ -51,7 +51,7 @@ export default {
       families: {
         Neucha: true,
         Kalam: true,
-        Ubuntu: true
+        Ubuntu: [300, 500, 600]
       }
     }]
   ],
