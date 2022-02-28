@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="header__nav--phone">
-          <a :href="`tel:+380717009791}`" style="text-decoration: none">
+          <a href="tel:+380717009791" style="text-decoration: none">
             <span class="icon"><img src="@/assets/images/icons/phone-black.svg" alt=""></span>
             <span style="padding-left: 60px">+38 071 700 97 91</span>
           </a>
