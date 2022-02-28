@@ -12,7 +12,10 @@ import AppMenu from "~/components/home/menu/AppMenu";
 export default {
   name: 'IndexPage',
   components: { Banner, AppMenu },
-  layout: 'base'
+  layout: 'base',
+  beforeDestroy() {
+    this.$store.commit('setIsMenu', false)
+  }
 }
 </script>
 
