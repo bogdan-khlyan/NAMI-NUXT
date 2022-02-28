@@ -58,7 +58,6 @@
 </template>
 
 <script>
-// import CartHeaderButton from "@/components/utils/CartHeaderButton";
 import CartHeaderButton from "@/components/common/header/components/CartHeaderButton";
 
 export default {
@@ -77,8 +76,13 @@ export default {
   },
   methods: {
     clickLogo: function () {
-      if (this.$route.name !== 'index') this.$router.push('/')
-      else this.$scrollTo('#banner', 800, { offset: -70 })
+      if (this.$route.name !== 'index') {
+        this.$router.push('/')
+      } else if (this.isMenu) {
+        this.$scrollTo('#banner', 800, { offset: -70 })
+      } else {
+        this.$scrollTo('#menu', 500, { offset: -70 })
+      }
     },
     clickMenu: function () {
       if (this.$route.name !== 'index') {
@@ -89,7 +93,9 @@ export default {
           setTimeout(() =>
               this.$scrollTo('#menu', 0, { offset: -70 }), 300)
         }
-      } else this.$scrollTo('#menu', 500, { offset: -70 })
+      } else {
+        this.$scrollTo('#menu', 500, { offset: -70 })
+      }
     }
   },
 }
