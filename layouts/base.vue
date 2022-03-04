@@ -1,5 +1,8 @@
 <template>
   <div class="base-layout-wrapper">
+    <transition name="el-fade-in-linear">
+      <body-loading v-if="true" @done="loadingDone"/>
+    </transition>
     <div class="base-layout">
       <app-header/>
       <div class="base-layout__content">
@@ -12,10 +15,6 @@
 
     <cart/>
     <header-collapse/>
-
-    <transition name="el-fade-in-linear">
-      <body-loading v-if="loading" @done="loadingDone"/>
-    </transition>
   </div>
 </template>
 
@@ -24,7 +23,7 @@ import AppHeader from "~/components/common/header/AppHeader";
 import AppFooter from "~/components/common/footer/AppFooter";
 import Cart from "~/components/cart/Cart";
 import HeaderCollapse from "@/components/common/header/components/HeaderCollapse";
-import BodyLoading from "~/components/BodyLoading";
+import BodyLoading from "@/components/bodyLoading/BodyLoading";
 
 export default {
   name: 'base-layout',
