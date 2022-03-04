@@ -1,0 +1,36 @@
+.base-success-notification {
+  padding: 10px;
+
+  width: 300px;
+  height: 70px;
+  background-color: #F0F9EB;
+
+  h2 {
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    color: #2C2C2C;
+  }
+
+  .el-notification__content {
+    margin: 0;
+    > p {
+      font-family: Ubuntu, sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      color: #2C2C2C;
+    }
+  }
+
+  .el-notification__closeBtn {
+    top: 10px;
+    right: 10px;
+  }
+
+}

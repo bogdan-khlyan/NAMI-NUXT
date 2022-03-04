@@ -9,7 +9,6 @@ const mutations = {
     state.phoneNumber = phoneNumber
   },
   pushProductToCart(state, productId) { // id or object ?
-    console.log(productId)
     state.list.push({_id: productId, count: 1})
   },
   removeProductFromCartByIndex(state, index) {
