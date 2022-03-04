@@ -33,7 +33,7 @@ export default {
   async mounted() {
     await this.promise
     setTimeout(() =>
-        this.$emit('done'), 100)
+        this.$emit('done'), 500)
   }
 }
 </script>
