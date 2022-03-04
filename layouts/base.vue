@@ -1,7 +1,7 @@
 <template>
   <div class="base-layout-wrapper">
     <transition name="el-fade-in-linear">
-      <body-loading v-if="true" @done="loadingDone"/>
+      <body-loading v-if="loading" @done="loadingDone"/>
     </transition>
     <div class="base-layout">
       <app-header/>
