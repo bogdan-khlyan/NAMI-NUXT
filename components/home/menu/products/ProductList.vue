@@ -1,8 +1,9 @@
 <template>
   <div class="product-list">
-    <product-card v-for="product in products" :key="product._id"
-             :id="`product-card-${product._id}`"
-             :data="product"/>
+    <product-card
+      v-for="product in products" :key="product._id"
+      :id="`product-card-${product._id}`"
+      :data="product"/>
     <div v-if="products.length === 0" class="product-list__empty">
       <span>Пусто</span>
     </div>
@@ -10,7 +11,7 @@
 </template>
 
 <script>
-import ProductCard from "~/components/home/menu/components/ProductCard";
+import ProductCard from "~/components/home/menu/products/ProductCard";
 
 export default {
   name: 'product-list',
