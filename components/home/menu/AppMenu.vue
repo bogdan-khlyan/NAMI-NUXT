@@ -1,56 +1,49 @@
 <template>
   <div class="menu">
     <h2>МЕНЮ</h2>
-    <div v-loading="loading" style="max-width: 1250px;margin: 50px auto;min-height: 300px">
-      <el-tabs v-model="activeTab">
-        <el-tab-pane v-for="item in categories" :label="item.title" :name="item._id" :key="item._id">
-          <product-list :categoryId="item._id"/>
-        </el-tab-pane>
-      </el-tabs>
+
+    <div class="menu__categories">
+      <categories
+        v-model="selectedCategoryId"/>
     </div>
+
+    <transition name="el-fade-in-linear">
+      <div v-if="!refresh" class="menu__products">
+        <product-list
+          :category-id="selectedCategoryId"/>
+      </div>
+    </transition>
+
   </div>
 </template>
 
 <script>
-import ProductList from "~/components/home/menu/components/ProductList";
-import {categoryService} from "~/components/categories/categories.service";
+import ProductList from "~/components/home/menu/products/ProductList";
+import Categories from "@/components/home/menu/categoties/Categories";
 
 export default {
   name: 'app-menu',
-  components: { ProductList },
+  components: { ProductList, Categories },
   computed: {
-    categories () {
-      return this.$store.state.categories.list
-    },
     scrollTo() {
       return this.$route.query.scrollTo
     },
   },
-  watch: {
-    categories: {
-      handler: function (data) {
-        if(this.activeTab === '0') {
-          this.activeTab = data[0]._id
-          this.loading = false
-        }
-      },
-      deep: true
-    }
-  },
   data() {
     return {
-      loading: true,
-      activeTab: '0'
+      refresh: false,
+      selectedCategoryId: null
+    }
+  },
+  watch: {
+    selectedCategoryId() {
+      this.refresh = true
+      this.$nextTick(() => this.refresh = false)
     }
   },
   mounted() {
-    categoryService.getList(this)
-    if (this.categories.length !== 0 && this.activeTab === '0') {
-      this.activeTab = this.categories[0]._id
-      this.loading = false
-    }
     if (this.scrollTo) {
-      this.activeTab = this.$route.query.categoryId
+      this.selectedCategoryId = this.$route.query.categoryId
       this.$nextTick(() => {
         this.$scrollTo(`#product-card-${this.scrollTo}`, 300, { offset: -100 })
         this.$router.push({ query: null })
@@ -63,6 +56,7 @@ export default {
 <style scoped lang="scss">
 .menu {
   padding-bottom: 1px;
+  min-height: 600px;
 
   > h2 {
     padding-top: 60px;
@@ -104,6 +98,15 @@ export default {
       background: #312525;
     }
 
+  }
+
+  &__categories {
+    margin-top: 30px;
+  }
+
+  &__products {
+    margin-top: 30px;
+    margin-bottom: 60px;
   }
 
 }
