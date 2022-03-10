@@ -6,6 +6,7 @@ const state = () => ({
 
 const mutations = {
   setPhoneNumber(state, phoneNumber) {
+    localStorage.setItem('last-phone-number', phoneNumber)
     state.phoneNumber = phoneNumber
   },
   pushProductToCart(state, productId) { // id or object ?
