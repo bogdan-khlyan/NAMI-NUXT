@@ -42,7 +42,6 @@ export default {
       }
     },
     selectCategory(category) {
-      console.log(category)
       this.selectedCategory = category
       this.$emit('change', category._id)
     }
