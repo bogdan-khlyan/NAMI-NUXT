@@ -11,6 +11,7 @@ export default {
   methods: {
     imgToSvg: function () {
       const img = this.$refs.image
+      if (!img) return
 
       const imgClass = img.className
       const imgURL = img.src
