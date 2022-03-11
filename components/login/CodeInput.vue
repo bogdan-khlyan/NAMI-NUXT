@@ -10,32 +10,57 @@
              :uid="index"
              ref="input">
     </span>
+    <span class="code-input__new-code"
+          :class="{ disabled: isNewCodeDisabled }"
+          @click="newCode">
+      <base-svg
+        :src="require('@/assets/images/icons/arrow-circle.svg')"/>
+      <span class="text">Отправить код еще раз</span>
+      <span v-if="time > 0" class="time">({{timeHuman}})</span>
+    </span>
   </label>
 </template>
 
 <script>
+import BaseSvg from "@/components/common/BaseSvg";
+
 export default {
   name: 'phone-input',
+  components: { BaseSvg },
+  computed: {
+    timeHuman() {
+      const minutes = Math.trunc(this.time / 60)
+      const seconds = this.time - (minutes * 60)
+      return `0${minutes}:` + (seconds >= 10 ? seconds : `0${seconds}`)
+    },
+    isNewCodeDisabled() {
+      return this.time > 0
+    }
+  },
   data() {
     return {
+      time: 0,
+      interval: null,
       code: ['', '', '', '', '', '']
     }
   },
-  // watch: {
-  //   code: {
-      // handler() {
-        // console.log('watch')
-        // console.log(this.$refs.input1)
-        // this.$refs.input1.focus()
-      // },
-      // deep: true
-    // }
-  // },
+  mounted() {
+    this.newCode()
+  },
   methods: {
+    newCode() {
+      if (this.time > 0) {
+        return
+      }
+      this.time = 10
+      this.interval = setInterval(() => {
+        --this.time
+        if (this.time <= 0) {
+          clearInterval(this.interval)
+        }
+      }, 1000)
+    },
     input(index) {
-      // console.log(value, index)
-      // console.log(this.$refs.input)
-      // console.log(this.$refs.input[index + 1])
       if (index !== 5 && this.code[index])
         this.$refs.input[index + 1].focus()
     },
@@ -54,6 +79,7 @@ export default {
 .code-input {
   &__label {
     display: block;
+    margin-bottom: 4px;
     width: 100%;
 
     font-family: Ubuntu, sans-serif;
@@ -87,6 +113,12 @@ export default {
       box-sizing: border-box;
       border-radius: 4px;
 
+      transition: 200ms;
+
+      &:focus {
+        border-color: #7695CC;
+      }
+
       &::placeholder {
         font-family: Ubuntu, sans-serif;
         font-style: normal;
@@ -97,6 +129,57 @@ export default {
         color: #D4D9E6;
       }
     }
+  }
+
+  &__new-code {
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    height: 40px;
+
+    cursor: pointer;
+
+    &.disabled {
+      cursor: no-drop;
+      > .text {
+        color: #D4D9E6;
+      }
+    }
+
+    > .text {
+      margin-left: 10px;
+      margin-right: 12px;
+
+      font-family: Ubuntu, sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 24px;
+      color: #212121;
+    }
+    > .time {
+      font-family: Ubuntu, sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 24px;
+      color: #384673;
+    }
+  }
+
+}
+</style>
+
+<style lang="scss">
+.code-input__new-code {
+  &.disabled {
+    svg path {
+      fill: #D4D9E6;
+    }
+  }
+  svg path {
+    fill: #212121;
   }
 }
 </style>
