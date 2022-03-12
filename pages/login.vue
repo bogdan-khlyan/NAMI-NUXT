@@ -6,6 +6,7 @@
 
       <form class="login__form"
             @submit.prevent="submit">
+
         <div class="login__form--phone">
           <phone-input
             v-model="phone"
@@ -15,7 +16,7 @@
 
         <transition name="el-fade-in-linear">
           <div v-if="isShowCodeInput" class="login__form--code">
-            <code-input/>
+            <register-or-repeat-password-form/>
           </div>
         </transition>
 
@@ -42,20 +43,19 @@ import { required, maxLength, minLength } from "vuelidate/lib/validators";
 import { validationMixin } from "vuelidate";
 
 import phoneInput from "@/components/login/PhoneInput";
-import CodeInput from "@/components/login/CodeInput";
+import RegisterOrRepeatPasswordForm from "@/components/login/RegisterOrRepeatPasswordForm";
 import PasswordInput from "@/components/login/PasswordInput";
 
 export default {
   name: 'login',
   layout: 'base',
   mixins: [validationMixin],
-  components: {phoneInput, CodeInput, PasswordInput},
+  components: {phoneInput, RegisterOrRepeatPasswordForm, PasswordInput},
   computed: {
     isPasswordAuth() {
       return this.type === 'auth-password'
     },
     isShowCodeInput() {
-      console.log(this.type === 'pending-code' || this.type === 'register' || this.type === 'reset-password')
       return this.type === 'pending-code' || this.type === 'register' || this.type === 'reset-password'
     }
   },
@@ -64,7 +64,9 @@ export default {
       loading: false,
 
       phone: null,
-      type: 'pending-phone', // 'auth-password' / 'pending-code' / 'register' / 'reset-password'
+      code: null,
+
+      type: 'pending-phone', // 'auth-password' / 'register' / 'reset-password'
     }
   },
   methods: {
@@ -78,7 +80,7 @@ export default {
         this.loading = true
         setTimeout(() => { // TODO запрос на бэк, если номер уже был зареган, просим пароль
           // this.type = 'auth-password'
-          this.type = 'pending-code' // если номера еще не было, отсылаем смс с кодом
+          this.type = 'register' // если номера еще не было, отсылаем смс с кодом
 
           this.loading = false
         }, 1000)

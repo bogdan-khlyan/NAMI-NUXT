@@ -1,6 +1,6 @@
 <template>
   <label class="password-input">
-    <span class="password-input__label">Пароль</span>
+    <span class="password-input__label">{{ label }}</span>
     <span class="password-input__input">
       <input :type="visible ? 'text' : 'password'"
              :placeholder="placeholder">
@@ -18,6 +18,7 @@
 export default {
   name: 'password-input',
   props: {
+    label: { type: String, default: 'Пароль' },
     placeholder: { type: String, default: null }
   },
   data() {
