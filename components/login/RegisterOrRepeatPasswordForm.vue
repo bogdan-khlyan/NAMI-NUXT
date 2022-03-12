@@ -4,17 +4,22 @@
       <code-input
         v-model="code"
         :error="$v.code"
+        :loading="loading"
         @input="submitCode"/>
     </div>
     <div class="register-form__password">
       <password-input
         v-model="password"
+        :error="$v.code"
+        :loading="loading"
         placeholder="Введите пароль"/>
     </div>
     <div class="register-form__password">
       <password-input
         v-model="password"
         label="Повторите пароль"
+        :error="$v.code"
+        :loading="loading"
         placeholder="Введите пароль"/>
     </div>
   </form>
@@ -32,6 +37,8 @@ export default {
   components: { CodeInput, PasswordInput },
   data() {
     return {
+      loading: false,
+
       code: null,
       password: null,
       confirmPassword: null
