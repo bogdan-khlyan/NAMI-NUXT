@@ -113,8 +113,8 @@ export default {
       if (!this.$v.phone.$error) {
         this.loading = true
         setTimeout(() => { // TODO запрос на бэк, если номер уже был зареган, просим пароль
-          // this.type = 'auth-password'
-          this.type = 'register' // если номера еще не было, отсылаем смс с кодом
+          this.type = 'auth-password'
+          // this.type = 'register' // если номера еще не было, отсылаем смс с кодом
 
           this.loading = false
         }, 3000)

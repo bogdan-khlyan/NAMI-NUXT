@@ -41,11 +41,18 @@
             <span style="padding-left: 60px">+38 071 700 97 91</span>
           </a>
         </div>
+        <div class="header__nav--history">
+          <circle-button/>
+        </div>
         <div class="header__nav--cart">
           <cart-header-button class="btn" />
         </div>
         <div class="header__nav--profile">
-          <el-tooltip class="item" effect="dark" placement="top">
+          <base-user-avatar
+            v-if="true"
+            avatar="asfkj&q2323&3232%$@NJajFanasf&7ss"
+            :size="42"/>
+          <el-tooltip v-else class="item" effect="dark" placement="top">
             <div slot="content">
               К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
             </div>
@@ -58,11 +65,13 @@
 </template>
 
 <script>
+import CircleButton from "@/components/common/header/components/CircleButton";
 import CartHeaderButton from "@/components/common/header/components/CartHeaderButton";
+import BaseUserAvatar from "@/components/common/header/components/BaseUserAvatar";
 
 export default {
   name: 'desktop',
-  components: { CartHeaderButton },
+  components: { CartHeaderButton, BaseUserAvatar, CircleButton },
   computed: {
     isMenu () { return this.$store.state.isMenu },
     windowWidth() { return this.$store.state.windowWidth },
@@ -299,13 +308,20 @@ export default {
       }
     }
 
+    &--history {
+      margin-left: 12px;
+      margin-right: 12px;
+    }
+
     &--cart {
       position: relative;
-      margin-left: 20px;
-      margin-right: 30px;
+      margin-left: 12px;
+      margin-right: 12px;
     }
 
     &--profile {
+      margin-left: 12px;
+
       position: relative;
       padding-top: 7.5px;
       padding-bottom: 7.5px;
