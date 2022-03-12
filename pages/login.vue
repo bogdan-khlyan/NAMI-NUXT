@@ -11,6 +11,8 @@
           <phone-input
             v-model="phone"
             :error="$v.phone"
+            :loading="loadingPhone"
+            :is-done="type !== 'pending-phone'"
             @input="$v.phone.$reset()"/>
         </div>
 
@@ -21,15 +23,24 @@
         </transition>
 
         <transition name="el-fade-in-linear">
-          <div v-if="isPasswordAuth" class="login__form--password">
+          <div v-if="isPasswordAuth"
+               class="login__form--password">
             <password-input
-              placeholder="Введите пароль"/>
+              v-model="password"
+              placeholder="Введите пароль"
+              :error="$v.password"
+              :loading="loading"
+              @input="$v.password.$reset()"/>
           </div>
         </transition>
 
-        <button v-loading="loading"
+        <button
                 class="login__form--btn-submit">
-          <span>Продолжить</span>
+          <transition name="el-fade-in-linear" mode="out-in">
+            <img v-if="loading"
+                 src="@/assets/images/spinner.svg" alt="">
+            <span v-else>Продолжить</span>
+          </transition>
         </button>
 
       </form>
@@ -45,18 +56,25 @@ import { validationMixin } from "vuelidate";
 import phoneInput from "@/components/login/PhoneInput";
 import RegisterOrRepeatPasswordForm from "@/components/login/RegisterOrRepeatPasswordForm";
 import PasswordInput from "@/components/login/PasswordInput";
+import BaseSvg from "@/components/common/BaseSvg";
 
 export default {
   name: 'login',
   layout: 'base',
   mixins: [validationMixin],
-  components: {phoneInput, RegisterOrRepeatPasswordForm, PasswordInput},
+  components: {phoneInput, RegisterOrRepeatPasswordForm, PasswordInput, BaseSvg},
   computed: {
     isPasswordAuth() {
       return this.type === 'auth-password'
     },
     isShowCodeInput() {
       return this.type === 'pending-code' || this.type === 'register' || this.type === 'reset-password'
+    },
+    loadingPhone() {
+      return this.type === 'pending-phone' && this.loading
+    },
+    loadingPassword() {
+      return this.type === 'auth-password' && this.loading
     }
   },
   data() {
@@ -66,13 +84,29 @@ export default {
       phone: null,
       code: null,
 
+      password: null,
+
       type: 'pending-phone', // 'auth-password' / 'register' / 'reset-password'
     }
   },
   methods: {
     submit() {
-      if (this.type === 'pending-phone')
+      if (this.type === 'pending-phone') {
         this.submitPhone()
+      }
+      if (this.type === 'auth-password') {
+        this.auth()
+      }
+    },
+    auth() {
+      this.$v.password.$touch()
+      if (!this.$v.password.$error) {
+        this.loading = true
+        setTimeout(() => {
+          this.loading = false
+          this.$router.push('/')
+        }, 3000)
+      }
     },
     submitPhone() {
       this.$v.phone.$touch()
@@ -83,7 +117,7 @@ export default {
           this.type = 'register' // если номера еще не было, отсылаем смс с кодом
 
           this.loading = false
-        }, 1000)
+        }, 3000)
       }
     }
   },
@@ -91,6 +125,11 @@ export default {
     phone: {
       maxLength: maxLength(20),
       minLength: minLength(20),
+      required
+    },
+    password: {
+      maxLength: maxLength(128),
+      minLength: minLength(6),
       required
     }
   }

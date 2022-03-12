@@ -9,11 +9,19 @@
                v-model="number"
                v-mask="'###-##-##'"
                placeholder="___-__-__"
+               :disabled="isDone"
                @focus="isFocus = true"
                @blur="isFocus = false"
                @input="input">
       </span>
-      <span class="phone-input__content--icon" :key="isDone">
+      <span v-if="loading"
+            class="phone-input__content--icon">
+        <img style="width: 22px;height: 22px"
+             src="@/assets/images/spinner.gif" alt="">
+      </span>
+      <span v-else
+            class="phone-input__content--icon"
+            :key="isDone">
         <base-svg
           :src="isDone ? require('@/assets/images/icons/icon-check2.svg') : require('@/assets/images/icons/icon-check.svg')"/>
       </span>
@@ -30,7 +38,9 @@ export default {
   model: { prop: 'value', event: 'input' },
   props: {
     value: { type: String, default: null },
-    error: { type: Object, default: null }
+    error: { type: Object, default: null },
+    isDone: { type: Boolean, default: false },
+    loading: { type: Boolean, default: false }
   },
   data() {
     return {
@@ -39,9 +49,9 @@ export default {
     }
   },
   computed: {
-    isDone() {
-      return this.number && this.number.length === 9
-    }
+    // isDone() {
+    //   return this.number && this.number.length === 9
+    // }
   },
   methods: {
     input($event) {
