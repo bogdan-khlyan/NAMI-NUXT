@@ -1,11 +1,12 @@
 <template>
-  <label class="code-input">
+  <label class="code-input"
+         :class="[{ error: error.$error }]">
     <span class="code-input__label">Код из смс</span>
     <span class="code-input__content"
           @keydown="keyDown">
       <input v-for="(item, index) in code"
              v-model="code[index]"
-             type="text" maxlength="1" placeholder="_"
+             type="text" maxlength="2" placeholder="_"
              @input="input(index)"
              :uid="index"
              ref="input">
@@ -26,6 +27,10 @@ import BaseSvg from "@/components/common/BaseSvg";
 
 export default {
   name: 'phone-input',
+  props: {
+    value: { type: String, default: null },
+    error: { type: Object, default: null }
+  },
   components: { BaseSvg },
   computed: {
     timeHuman() {
@@ -61,14 +66,23 @@ export default {
       }, 1000)
     },
     input(index) {
-      if (index !== 5 && this.code[index])
+      if (index !== 5 && this.code[index]) {
+        if (this.code[index].length === 2) {
+          this.code[index + 1] = this.code[index][1]
+          this.code[index] = this.code[index][0]
+        }
         this.$refs.input[index + 1].focus()
+      }
+      if (index === 5 && this.code[index].length === 2) {
+        this.code[index] = this.code[index][1]
+      }
+      this.$emit('input', this.code.join(''))
     },
     keyDown($event) {
       if ($event.key === 'Backspace') {
         const index = +$event.target.getAttribute('uid')
         if (index !== 0)
-          this.$refs.input[index - 1].focus()
+          setTimeout(() => this.$refs.input[index - 1].focus(), 100)
       }
     }
   }
@@ -165,6 +179,13 @@ export default {
       font-size: 16px;
       line-height: 24px;
       color: #384673;
+    }
+  }
+
+  &.error {
+    input {
+      border-color: #FFD8D8;
+      background: #FFF5F5;
     }
   }
 
