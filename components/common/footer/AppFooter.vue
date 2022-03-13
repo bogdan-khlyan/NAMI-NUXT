@@ -35,6 +35,9 @@ export default {
   padding-right: 50px;
 
   height: 210px;
+
+  z-index: 99;
+
   @media screen and (max-width: 1800px) { height: 160px; }
   @media screen and (max-width: 1500px) { height: 150px; }
   @media screen and (max-width: 1100px) { height: 86px; }
