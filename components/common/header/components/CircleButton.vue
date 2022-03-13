@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    to="/history"
+    to="/profile/orders"
     class="circle-button">
     <img src="@/assets/images/icons/icon-orders.svg" alt="">
   </nuxt-link>

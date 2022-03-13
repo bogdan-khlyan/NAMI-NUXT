@@ -10,6 +10,12 @@
           <nuxt/>
         </transition>
         <app-footer/>
+
+        <transition name="el-fade-in-linear" mode="out-in">
+          <img v-if="weaveBg"
+               class="bg-waves"
+               src="@/assets/images/bg-waves.svg" alt="">
+        </transition>
       </div>
     </div>
 
@@ -28,6 +34,15 @@ import BodyLoading from "@/components/bodyLoading/BodyLoading";
 export default {
   name: 'base-layout',
   components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderCollapse },
+  computed: {
+    route() {
+      return this.$route.name
+    },
+    weaveBg() {
+      const routes = ['profile', 'profile-address', 'profile-orders']
+      return routes.indexOf(this.route) !== -1
+    }
+  },
   data() {
     return {
       loading: true
@@ -71,15 +86,28 @@ export default {
   overflow-x: hidden;
 
   &__content {
+    position: relative;
+
     width: 100%;
     min-height: 100vh;
-    background-image: url('@/assets/images/menu-bg.png');
-    background-size: 100% auto;
+    //background-image: url('@/assets/images/menu-bg.png');
+    //background-size: 100% auto;
 
     overflow-y: hidden;
     overflow-x: hidden;
 
     @media screen and (max-width: 1400px) { background-image: none; }
+
+    .bg-waves {
+      position: absolute;
+      left: 0;
+      bottom: 150px;
+      z-index: -1;
+
+      width: 100vw;
+
+      object-fit: contain;
+    }
 
   }
 
