@@ -9,3 +9,5 @@ export class ProductsRepository {
   }
 
 }
+
+export default null

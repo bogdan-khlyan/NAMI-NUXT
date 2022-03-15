@@ -21,3 +21,4 @@ class OrdersService {
 }
 
 export const ordersService = new OrdersService()
+export default null

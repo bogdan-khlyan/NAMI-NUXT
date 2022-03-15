@@ -13,7 +13,7 @@ import {yandexMap, ymapMarker, loadYmap} from "vue-yandex-maps";
 import AddressNotFound from "@/components/cart/order/orderForm/map/AddressNotFound";
 
 export default {
-  name: 'map',
+  name: 'ymap',
   components: { AddressNotFound, yandexMap, ymapMarker },
   model: { prop: 'deliveryCost', event: 'input' },
   props: {

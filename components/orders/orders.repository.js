@@ -8,3 +8,5 @@ export class OrdersRepository {
     }
 
 }
+
+export default null

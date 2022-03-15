@@ -39,3 +39,4 @@ class ProductsService {
 }
 
 export const productService = new ProductsService()
+export default null
