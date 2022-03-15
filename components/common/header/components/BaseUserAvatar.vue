@@ -32,6 +32,6 @@ export default {
   border: 1px solid #062D4E;
   border-radius: 50%;
 
-  //box-shadow: 9px 5px 37px rgb(0 0 0 / 63%);
+  background-color: #FFFFFF;
 }
 </style>
