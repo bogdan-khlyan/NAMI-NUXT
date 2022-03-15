@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import ProductList from "~/components/home/menu/products/ProductList";
-import Categories from "@/components/home/menu/categoties/Categories";
+import ProductList from "~/components/indexPage/menu/products/ProductList";
+import Categories from "@/components/indexPage/menu/categoties/Categories";
 
 export default {
   name: 'app-menu',

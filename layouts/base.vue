@@ -29,7 +29,7 @@ import AppHeader from "~/components/common/header/AppHeader";
 import AppFooter from "~/components/common/footer/AppFooter";
 import Cart from "~/components/cart/Cart";
 import HeaderCollapse from "@/components/common/header/mobile/HeaderCollapse";
-import BodyLoading from "@/components/bodyLoading/BodyLoading";
+import BodyLoading from "@/components/common/bodyLoading/BodyLoading";
 
 export default {
   name: 'base-layout',

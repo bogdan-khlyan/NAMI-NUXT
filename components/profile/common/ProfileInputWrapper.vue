@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import BaseInput from "@/components/common/BaseInput";
-import BaseSubmitButton from "@/components/common/BaseSubmitButton";
+import BaseInput from "@/components/common/ui/inputs/BaseInput";
+import BaseSubmitButton from "@/components/common/ui/buttons/BaseSubmitButton";
 
 export default {
   name: 'profile-input-wrapper',

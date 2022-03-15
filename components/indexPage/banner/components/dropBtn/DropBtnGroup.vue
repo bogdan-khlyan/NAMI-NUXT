@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import DropBtn from "~/components/home/banner/components/dropBtn/DropBtn";
+import DropBtn from "~/components/indexPage/banner/components/dropBtn/DropBtn";
 
 export default {
   name: 'drop-btn-group',

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import PasswordInput from "@/components/login/PasswordInput";
+import PasswordInput from "@/components/loginPage/PasswordInput";
 
 export default {
   name: 'set-password-form',

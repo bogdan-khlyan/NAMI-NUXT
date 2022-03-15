@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Spinner from "@/components/bodyLoading/Spinner";
+import Spinner from "@/components/common/bodyLoading/Spinner";
 import {productService} from "@/components/products/products.service";
 
 export default {
