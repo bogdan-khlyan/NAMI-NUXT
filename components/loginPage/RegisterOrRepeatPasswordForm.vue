@@ -26,9 +26,9 @@
 </template>
 
 <script>
-import CodeInput from "@/components/login/CodeInput";
+import CodeInput from "@/components/loginPage/CodeInput";
 import { validationMixin } from "vuelidate";
-import PasswordInput from "@/components/login/PasswordInput";
+import PasswordInput from "@/components/loginPage/PasswordInput";
 import {maxLength, minLength, required} from "vuelidate/lib/validators";
 
 export default {

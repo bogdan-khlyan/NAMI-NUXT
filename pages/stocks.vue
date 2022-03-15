@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import Stock from "~/components/stocks/Stock";
+import Stock from "~/components/stocksPage/Stock";
 
 export default {
   name: 'Stocks',

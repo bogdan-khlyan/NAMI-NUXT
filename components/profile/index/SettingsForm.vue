@@ -46,7 +46,7 @@
 
 <script>
 import ProfileInputWrapper from "@/components/profile/common/ProfileInputWrapper";
-import BaseInput from "@/components/common/BaseInput";
+import BaseInput from "@/components/common/ui/inputs/BaseInput";
 
 export default {
   name: 'settings-form',

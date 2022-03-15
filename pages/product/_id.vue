@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import ProductMedia from "@/components/productPage/ProductMedia";
-import ProductIngredients from "@/components/productPage/ProductIngredients";
+import ProductMedia from "@/components/products/productPage/ProductMedia";
+import ProductIngredients from "@/components/products/productPage/ProductIngredients";
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
 
 export default {

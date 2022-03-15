@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import BannerBottom from "~/components/home/banner/components/BannerBottom";
-import BannerImage from "~/components/home/banner/components/BannerImage";
-import BannerLogo from "~/components/home/banner/components/BannerLogo";
-import DropBtnGroup from "~/components/home/banner/components/dropBtn/DropBtnGroup";
+import BannerBottom from "~/components/indexPage/banner/components/BannerBottom";
+import BannerImage from "~/components/indexPage/banner/components/BannerImage";
+import BannerLogo from "~/components/indexPage/banner/components/BannerLogo";
+import DropBtnGroup from "~/components/indexPage/banner/components/dropBtn/DropBtnGroup";
 
 export default {
   name: 'banner',
