@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import CartHeaderButton from "@/components/common/header/components/CartHeaderButton";
+import CartHeaderButton from "@/components/common/header/common/CartHeaderButton";
 
 export default {
   name: 'mobile',

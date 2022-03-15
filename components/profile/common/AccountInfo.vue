@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import BaseUserAvatar from "@/components/common/header/components/BaseUserAvatar";
+import BaseUserAvatar from "@/components/common/BaseUserAvatar";
 
 export default {
   name: 'account-info',

@@ -28,7 +28,7 @@
 import AppHeader from "~/components/common/header/AppHeader";
 import AppFooter from "~/components/common/footer/AppFooter";
 import Cart from "~/components/cart/Cart";
-import HeaderCollapse from "@/components/common/header/components/HeaderCollapse";
+import HeaderCollapse from "@/components/common/header/mobile/HeaderCollapse";
 import BodyLoading from "@/components/bodyLoading/BodyLoading";
 
 export default {

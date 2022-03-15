@@ -32,8 +32,8 @@
 </template>
 
 <script>
-// import PlusMinus from '@/components/ui/buttons/PlusMinus'
-// import Like from '@/components/utils/Like'
+// import PlusMinus from '@/common/ui/buttons/PlusMinus'
+// import Like from '@/common/utils/Like'
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
 
 export default {

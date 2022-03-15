@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import Desktop from "@/components/common/header/components/Desktop";
-import Mobile from "@/components/common/header/components/Mobile";
+import Desktop from "@/components/common/header/desktop/Desktop";
+import Mobile from "@/components/common/header/mobile/Mobile";
 
 export default {
   name: 'app-header',
