@@ -18,3 +18,4 @@ class CategoriesService {
 }
 
 export const categoryService = new CategoriesService()
+export default null

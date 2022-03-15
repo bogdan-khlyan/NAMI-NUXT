@@ -8,3 +8,5 @@ export class CategoriesRepository {
     }
 
 }
+
+export default null
