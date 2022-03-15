@@ -8,7 +8,6 @@
       <edit-avatar/>
     </div>
 
-
     <div class="profile-info__content">
       <settings-form/>
     </div>
@@ -16,16 +15,13 @@
 </template>
 
 <script>
-import PageTitle from "@/components/profile/PageTitle";
-import EditAvatar from "@/components/profile/EditAvatar";
-import ProfileInputWrapper from "@/components/profile/ProfileInputWrapper";
-import BaseInput from "@/components/common/BaseInput";
-
-import SettingsForm from "@/components/profile/SettingsForm";
+import PageTitle from "@/components/profile/common/PageTitle";
+import EditAvatar from "@/components/profile/index/EditAvatar";
+import SettingsForm from "@/components/profile/index/SettingsForm";
 
 export default {
   name: 'profile-index',
-  components: { PageTitle, EditAvatar, ProfileInputWrapper, BaseInput, SettingsForm }
+  components: { PageTitle, EditAvatar, SettingsForm }
 }
 </script>
 
