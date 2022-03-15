@@ -42,7 +42,7 @@ export default {
     { src: '~/plugins/route', mode: 'client' }
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
+  // Auto import common: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

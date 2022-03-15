@@ -6,17 +6,21 @@
           <img src="@/assets/images/logo/logo.png" alt="" ref="logoImg">
         </div>
         <div class="header__nav--menu">
-          <div @click="clickMenu" class="header__nav--menu--item" :class="{'active': $route.name === 'index' && isMenu}">
+          <div class="header__nav--menu--item"
+               :class="{'active': $route.name === 'index' && isMenu}"
+               @click="clickMenu">
             <a>
               <span>Меню</span>
             </a>
           </div>
-          <div class="header__nav--menu--item" :class="{'active': $route.name === 'delivery'}">
+          <div class="header__nav--menu--item"
+               :class="{'active': $route.name === 'delivery'}">
             <router-link to="/delivery">
               <span>Доставка</span>
             </router-link>
           </div>
-          <div class="header__nav--menu--item" :class="{'active': $route.name === 'stocks'}">
+          <div class="header__nav--menu--item"
+               :class="{'active': $route.name === 'stocks'}">
             <router-link to="/stocks">
               <span>Акции</span>
             </router-link>
@@ -29,7 +33,8 @@
               </a>
             </el-tooltip>
           </div>
-          <div class="header__nav--menu--item" :class="{'active': $route.name === 'contacts'}">
+          <div class="header__nav--menu--item"
+               :class="{'active': $route.name === 'contacts'}">
             <router-link to="/contacts">
               <span>Контакты</span>
             </router-link>
@@ -41,36 +46,45 @@
             <span style="padding-left: 60px">+38 071 700 97 91</span>
           </a>
         </div>
-        <div class="header__nav--history">
-          <circle-button/>
-        </div>
-        <div class="header__nav--cart">
-          <cart-header-button class="btn" />
-        </div>
-        <nuxt-link v-if="true"
-                   class="header__nav--avatar"
-                   to="/profile">
-          <base-user-avatar
-            avatar="asfkj&q2323&3232%$@NJajFanasf&7ss"
-            :size="42"/>
-        </nuxt-link>
-        <div v-else class="header__nav--profile">
-          <el-tooltip class="item" effect="dark" placement="top">
-            <div slot="content">
-              К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
-            </div>
-            <button class="login">Войти</button>
-          </el-tooltip>
-        </div>
+
+
+        <template v-if="false">
+          <div class="header__nav--history">
+            <circle-button/>
+          </div>
+          <div class="header__nav--cart">
+            <cart-header-button class="btn"/>
+          </div>
+          <nuxt-link class="header__nav--avatar"
+                     to="/profile">
+            <base-user-avatar
+              avatar="asfkj&q2323&3232%$@NJajFanasf&7ss"
+              :size="42"/>
+          </nuxt-link>
+        </template>
+        <template v-else>
+          <div class="header__nav--cart">
+            <cart-header-button class="btn"/>
+          </div>
+          <div class="header__nav--profile">
+            <el-tooltip class="item" effect="dark" placement="top">
+              <div slot="content">
+                К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
+              </div>
+              <button class="login">Войти</button>
+            </el-tooltip>
+          </div>
+        </template>
+
       </nav>
     </div>
   </header>
 </template>
 
 <script>
-import CircleButton from "@/components/common/header/components/CircleButton";
-import CartHeaderButton from "@/components/common/header/components/CartHeaderButton";
-import BaseUserAvatar from "@/components/common/header/components/BaseUserAvatar";
+import CircleButton from "@/components/common/header/common/CircleButton";
+import CartHeaderButton from "@/components/common/header/common/CartHeaderButton";
+import BaseUserAvatar from "@/components/common/BaseUserAvatar";
 
 export default {
   name: 'desktop',

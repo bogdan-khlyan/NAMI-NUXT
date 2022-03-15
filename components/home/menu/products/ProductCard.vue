@@ -41,13 +41,13 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
-// import AppIcon from '@/components/utils/AppIcon'
-// import Like from '@/components/utils/Like'
-// import PlusMinus from '@/components/ui/buttons/PlusMinus'
+// import AppIcon from '@/common/utils/AppIcon'
+// import Like from '@/common/utils/Like'
+// import PlusMinus from '@/common/ui/buttons/PlusMinus'
 
 export default {
   name: 'home',
-  // components: {AppIcon, Like, PlusMinus},
+  // common: {AppIcon, Like, PlusMinus},
   components: { PlusMinus },
   props: {
     data: {type: Object}

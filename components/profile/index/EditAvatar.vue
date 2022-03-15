@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import BaseUserAvatar from "@/components/common/header/components/BaseUserAvatar";
+import BaseUserAvatar from "@/components/common/BaseUserAvatar";
 import BaseSvg from "@/components/common/BaseSvg";
 import { v4 as uuid } from 'uuid';
 
