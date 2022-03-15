@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import PageTitle from "@/components/profile/PageTitle";
+import PageTitle from "@/components/profile/common/PageTitle";
 
 export default {
   name: 'address',
