@@ -47,12 +47,15 @@
         <div class="header__nav--cart">
           <cart-header-button class="btn" />
         </div>
-        <div class="header__nav--profile">
+        <nuxt-link v-if="true"
+                   class="header__nav--avatar"
+                   to="/profile">
           <base-user-avatar
-            v-if="true"
             avatar="asfkj&q2323&3232%$@NJajFanasf&7ss"
             :size="42"/>
-          <el-tooltip v-else class="item" effect="dark" placement="top">
+        </nuxt-link>
+        <div v-else class="header__nav--profile">
+          <el-tooltip class="item" effect="dark" placement="top">
             <div slot="content">
               К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
             </div>
@@ -317,6 +320,14 @@ export default {
       position: relative;
       margin-left: 12px;
       margin-right: 12px;
+    }
+
+    &--avatar {
+      margin-left: 12px;
+      border-radius: 50%;
+      box-shadow: 9px 5px 37px rgba(0, 0, 0, 0.63);
+
+      cursor: pointer;
     }
 
     &--profile {
