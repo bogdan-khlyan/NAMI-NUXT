@@ -37,7 +37,7 @@ export default {
       return this.$route.params.id
     },
     product() {
-      return this.$store.state.products.list
+      return this.$store.state.menu.products
         .find(product => product._id === this.productId)
     },
     count() {

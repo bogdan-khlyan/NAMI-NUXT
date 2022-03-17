@@ -4,13 +4,13 @@
 
     <div class="menu__categories">
       <categories
-        v-model="selectedCategoryId"/>
+        v-model="selectedCategory"/>
     </div>
 
     <transition name="el-fade-in-linear">
       <div v-if="!refresh" class="menu__products">
         <product-list
-          :category-id="selectedCategoryId"/>
+          :category="selectedCategory"/>
       </div>
     </transition>
 
@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       refresh: false,
-      selectedCategoryId: null
+      selectedCategory: null
     }
   },
   watch: {
@@ -41,15 +41,15 @@ export default {
       this.$nextTick(() => this.refresh = false)
     }
   },
-  mounted() {
-    if (this.scrollTo) {
-      this.selectedCategoryId = this.$route.query.categoryId
-      this.$nextTick(() => {
-        this.$scrollTo(`#product-card-${this.scrollTo}`, 300, { offset: -100 })
-        this.$router.push({ query: null })
-      })
-    }
-  }
+  // mounted() {
+    // if (this.scrollTo) {
+      // this.selectedCategory = this.$route.query.categoryId
+      // this.$nextTick(() => {
+      //   this.$scrollTo(`#product-card-${this.scrollTo}`, 300, { offset: -100 })
+      //   this.$router.push({ query: null })
+      // })
+    // }
+  // }
 }
 </script>
 
