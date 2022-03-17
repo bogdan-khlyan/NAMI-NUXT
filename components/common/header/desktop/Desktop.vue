@@ -47,8 +47,8 @@
           </a>
         </div>
 
-
-        <template v-if="false">
+        {{isLoggedIn}}
+        <template v-if="isLoggedIn">
           <div class="header__nav--history">
             <circle-button/>
           </div>
@@ -71,7 +71,7 @@
               <div slot="content">
                 К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
               </div>
-              <button class="login">Войти</button>
+              <button class="login" @click="$router.push('/login')">Войти</button>
             </el-tooltip>
           </div>
         </template>
@@ -90,6 +90,10 @@ export default {
   name: 'desktop',
   components: { CartHeaderButton, BaseUserAvatar, CircleButton },
   computed: {
+    isLoggedIn () {
+      console.log(this.$store.state.userInstance)
+      return this.$store.state.userInstance.isLoggedIn
+    },
     isMenu () { return this.$store.state.isMenu },
     windowWidth() { return this.$store.state.windowWidth },
     windowScroll () { return this.$store.state.windowScroll },
