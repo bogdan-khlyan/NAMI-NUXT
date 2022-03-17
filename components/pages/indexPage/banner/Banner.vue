@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import BannerBottom from "~/components/indexPage/banner/components/BannerBottom";
-import BannerImage from "~/components/indexPage/banner/components/BannerImage";
-import BannerLogo from "~/components/indexPage/banner/components/BannerLogo";
-import DropBtnGroup from "~/components/indexPage/banner/components/dropBtn/DropBtnGroup";
+import BannerBottom from "@/components/pages/indexPage/banner/components/BannerBottom";
+import BannerImage from "@/components/pages/indexPage/banner/components/BannerImage";
+import BannerLogo from "@/components/pages/indexPage/banner/components/BannerLogo";
+import DropBtnGroup from "@/components/pages/indexPage/banner/components/dropBtn/DropBtnGroup";
 
 export default {
   name: 'banner',
@@ -50,7 +50,7 @@ $dfh: calc(100vh - 240px);
   padding-right: 30px;
   box-sizing: border-box;
 
-  background: url(../../../assets/images/main/banner/banner-bg.png);
+  background: url(../../../../assets/images/main/banner/banner-bg.png);
   background-size: 100% 100%;
 
   &__btns {

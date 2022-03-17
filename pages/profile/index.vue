@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import PageTitle from "@/components/profile/common/PageTitle";
-import EditAvatar from "@/components/profile/index/EditAvatar";
-import SettingsForm from "@/components/profile/index/SettingsForm";
+import PageTitle from "@/components/pages/profilePage/common/PageTitle";
+import EditAvatar from "@/components/pages/profilePage/index/EditAvatar";
+import SettingsForm from "@/components/pages/profilePage/index/SettingsForm";
 
 export default {
   name: 'profile-index',

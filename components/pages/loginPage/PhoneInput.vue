@@ -23,7 +23,7 @@
             class="phone-input__content--icon"
             :key="isDone">
         <base-svg
-          :src="isDone ? require('@/assets/images/icons/icon-check2.svg') : require('@/assets/images/icons/icon-check.svg')"/>
+          :src="isDone ? require('assets/images/icons/icon-check2.svg') : require('assets/images/icons/icon-check.svg')"/>
       </span>
     </span>
   </label>

@@ -1,4 +1,4 @@
-import {CategoriesRepository} from "~/components/categories/categories.repository";
+import {CategoriesRepository} from "@/api/categories/categories.repository";
 
 class CategoriesService {
 

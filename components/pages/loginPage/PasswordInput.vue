@@ -17,9 +17,9 @@
       <span class="eye"
             @click="visible = !visible">
         <base-svg v-if="visible"
-                  :src="require('@/assets/images/icons/password-visible.svg')"/>
+                  :src="require('assets/images/icons/password-visible.svg')"/>
         <base-svg v-else
-                  :src="require('@/assets/images/icons/password-invisible.svg')"/>
+                  :src="require('assets/images/icons/password-invisible.svg')"/>
       </span>
     </span>
   </label>

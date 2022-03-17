@@ -1,4 +1,4 @@
-import {UserInstanceRepository} from "@/components/userInstance/user-instance.repository";
+import {UserInstanceRepository} from "@/api/userInstance/user-instance.repository";
 
 export class UserInstanceService {
 

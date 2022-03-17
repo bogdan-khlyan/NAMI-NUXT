@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import AccountInfo from "@/components/profile/common/AccountInfo";
-import ProfileNavigation from "@/components/profile/common/ProfileNavigation";
+import AccountInfo from "@/components/pages/profilePage/common/AccountInfo";
+import ProfileNavigation from "@/components/pages/profilePage/common/ProfileNavigation";
 
 export default {
   name: 'profile',

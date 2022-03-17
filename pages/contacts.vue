@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Info from "~/components/contactsPage/Info";
-import Widgets from "~/components/contactsPage/Widgets";
+import Info from "~/components/pages/contactsPage/Info";
+import Widgets from "~/components/pages/contactsPage/Widgets";
 
 export default {
   name: 'Contacts',
