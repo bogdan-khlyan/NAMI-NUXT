@@ -47,7 +47,6 @@
           </a>
         </div>
 
-        {{isLoggedIn}}
         <template v-if="isLoggedIn">
           <div class="header__nav--history">
             <circle-button/>

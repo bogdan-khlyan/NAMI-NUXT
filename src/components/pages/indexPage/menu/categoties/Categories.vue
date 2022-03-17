@@ -15,7 +15,7 @@ export default {
   name: 'categories',
   model: { prop: 'value', event: 'change' },
   props: {
-    value: { type: String, default: null }
+    value: { type: Object, default: null }
   },
   data() {
     return {
@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     categories () {
-      return this.$store.state.categories.list
+      return this.$store.state.menu.categories
     }
   },
   watch: {
@@ -42,9 +42,8 @@ export default {
       }
     },
     selectCategory(category) {
-      console.log(category)
       this.selectedCategory = category
-      this.$emit('change', category._id)
+      this.$emit('change', category)
     }
   }
 }

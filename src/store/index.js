@@ -1,15 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-import categories from "@/api/categories/categories.store";
-import products from "@/api/products/products.store";
 import orders from "@/api/orders/orders.store";
 import userInstance from "@/api/userInstance/user-instance.store";
+import menu from "@/api/menu/menu.store";
 
 Vue.use(Vuex)
 
 export const state = () => ({
-  page: 'index',
   isMenu: false,
   isShowCart: false,
   isShowLoginModal: false,
@@ -19,9 +17,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  updatePage(state, pageName) {
-    state.page = pageName;
-  },
   setIsMenu (state, data) {
     state.isMenu = data
   },
@@ -51,4 +46,4 @@ export const mutations = {
   }
 }
 
-export const modules = { categories, products, orders, userInstance }
+export const modules = { orders, userInstance, menu }

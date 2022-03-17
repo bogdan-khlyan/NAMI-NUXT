@@ -17,12 +17,17 @@ export default {
   name: 'product-list',
   components: { ProductCard },
   props: {
-    categoryId: { type: String }
+    category: { type: Object }
   },
   computed: {
     products () {
-      return this.$store.state.products.list
-          .filter(item => item.categoryId === this.categoryId)
+      if (this.category) {
+        const ids = this.category.productIds
+        return this.$store.state.menu.products.filter(item => ids.indexOf(item._id) !== -1)
+      }
+      return []
+      // return this.$store.state.menu.products
+      //     .filter(item => item.categoryId === this.categoryId)
     }
   }
 }

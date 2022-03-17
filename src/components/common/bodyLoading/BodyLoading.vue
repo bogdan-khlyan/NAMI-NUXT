@@ -17,21 +17,12 @@
 
 <script>
 import Spinner from "@/components/common/bodyLoading/Spinner";
-import {productService} from "@/api/products/products.service";
 
 export default {
   name: 'body-loading',
   components: { Spinner },
-  data() {
-    return {
-      promise: null
-    }
-  },
-  created() {
-    this.promise = productService.getAll(this)
-  },
   async mounted() {
-    await this.promise
+    await this.$menu.getMenu()
     setTimeout(() =>
         this.$emit('done'), 500)
   }

@@ -40,7 +40,7 @@ export default {
       return this.$store.state.orders.list
     },
     products() {
-      return this.$store.state.products.list.filter(item => {
+      return this.$store.state.menu.products.filter(item => {
         if(this.cartProducts.find(cartItem => item._id === cartItem._id))
           return item
       })
@@ -51,7 +51,7 @@ export default {
     },
     costAll () {
       let cost = 0
-      this.$store.state.products.list.forEach(item => {
+      this.$store.state.menu.products.forEach(item => {
         let cartItem = this.cartProducts.find(cartItem => item._id === cartItem._id)
         if(cartItem)
           cost += cartItem.count * item.cost
