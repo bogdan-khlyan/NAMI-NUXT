@@ -39,7 +39,8 @@ export default {
     '~/plugins/mask',
     '~/plugins/perfect-scrollbar.js',
     { src: '~/plugins/yandex-map.js',  mode: 'client' },
-    { src: '~/plugins/route', mode: 'client' }
+    { src: '~/plugins/main.js', mode: 'client' },
+    { src: '~/plugins/api-services.js', mode: 'client' }
   ],
 
   // Auto import common: https://go.nuxtjs.dev/config-components

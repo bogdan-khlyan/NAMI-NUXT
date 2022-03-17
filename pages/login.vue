@@ -103,8 +103,8 @@ export default {
       if (!this.$v.password.$error) {
         this.loading = true
         setTimeout(() => {
-          this.loading = false
-          this.$router.push('/')
+          this.$userInstance.signIn()
+            .finally(() => this.loading = false)
         }, 3000)
       }
     },

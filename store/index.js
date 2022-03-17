@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import categories from "~/components/categories/categories.store";
-import products from "~/components/products/products.store";
-import orders from "~/components/orders/orders.store";
+import categories from "@/components/categories/categories.store";
+import products from "@/components/products/products.store";
+import orders from "@/components/orders/orders.store";
+import userInstance from "@/components/userInstance/user-instance.store";
 
 Vue.use(Vuex)
 
@@ -50,4 +51,4 @@ export const mutations = {
   }
 }
 
-export const modules = { categories, products, orders }
+export const modules = { categories, products, orders, userInstance }
