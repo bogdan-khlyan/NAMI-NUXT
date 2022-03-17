@@ -14,9 +14,17 @@ export class MenuService {
   async getMenu() {
     const menu = await this.#repository.getMenu()
 
-    this.#store.commit('menu.setMenu', menu)
+    const result = {
+      ...menu,
+      products: menu.products.map(product => ({
+        ...product,
+        images: product.images.map(image => '/image/product/' + image)
+      }))
+    }
 
-    return menu
+    this.#store.commit('menu.setMenu', result)
+
+    return result
   }
 
 }

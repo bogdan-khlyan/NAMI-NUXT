@@ -3,7 +3,7 @@
     <product-card
       v-for="product in products" :key="product._id"
       :id="`product-card-${product._id}`"
-      :data="product"/>
+      :product="product"/>
     <div v-if="products.length === 0" class="product-list__empty">
       <span>Пусто</span>
     </div>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ProductCard from "@/components/pages/indexPage/menu/products/ProductCard";
+import ProductCard from "@/components/pages/indexPage/menu/products/productCard/ProductCard";
 
 export default {
   name: 'product-list',
@@ -26,8 +26,6 @@ export default {
         return this.$store.state.menu.products.filter(item => ids.indexOf(item._id) !== -1)
       }
       return []
-      // return this.$store.state.menu.products
-      //     .filter(item => item.categoryId === this.categoryId)
     }
   }
 }

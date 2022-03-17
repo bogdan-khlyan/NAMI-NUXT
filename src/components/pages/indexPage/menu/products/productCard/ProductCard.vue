@@ -1,39 +1,34 @@
 <template>
   <div class="product"
        :class="count > 0 ? 'product_active' : ''"
-       @click="$router.push(`/product/${data._id}`)">
-<!--    <like v-if="false" class="product__like"/>-->
-    <div v-if="false" class="product__icons">
-      <div v-for="item in data.tags" :key="item.text + Math.random()" class="product__icons--item">
-<!--        <app-icon :tooltipText="item.text" :type="item.type"/>-->
-      </div>
-    </div>
+       @click="$router.push(`/product/${product._id}`)">
     <div class="product__slider">
-      <img :src="data.images[0]" alt="">
-      <!--      <el-carousel :autoplay="false" arrow="never">-->
-      <!--        <el-carousel-item class="product__slider&#45;&#45;item" v-for="image in data.images" :key="image + Math.random()">-->
-      <!--          <img :src="'https://namisushi.ru' + image" alt="">-->
-      <!--        </el-carousel-item>-->
-      <!--      </el-carousel>-->
+      <img :src="product.images[0]" alt="">
     </div>
-    <div class="product__content">
-      <a class="product__content--name">
-        <span :style="styles">{{ data.title }}</span>
-        <i>{{ data.weight }}г</i>
-      </a>
-      <div class="product__content--info">
+    <div class="product__content"
+         :style="contentStyles">
+      <div class="product__content--name">
+        <span :style="titleStyles">{{ product.title }}</span>
+        <i>{{ weight }}г</i>
+      </div>
+      <div v-if="product.type === 'SINGLE'"
+           class="product__content--info">
         <div>
-          <span class="description">{{ data.ingredients.join(', ') }}</span>
+          <span class="description">{{ product.ingredients.join(', ') }}</span>
         </div>
       </div>
+      <variant-product-content
+        v-else
+        v-model="selectedVariant"
+        :product="product"/>
     </div>
     <div class="product__footer">
       <div class="price">
-        <span>{{ data.cost }}₽</span>
+        <span>{{ cost }}₽</span>
       </div>
       <div @click="stopPropagation" class="btn">
         <button v-if="count < 1" @click="toCard" class="product__btn-to-cart">В корзину</button>
-        <plus-minus class="plus-minus-btn" v-else :id="data._id"/>
+        <plus-minus class="plus-minus-btn" v-else :id="product._id"/>
       </div>
     </div>
   </div>
@@ -41,43 +36,68 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
-// import AppIcon from '@/common/utils/AppIcon'
-// import Like from '@/common/utils/Like'
-// import PlusMinus from '@/common/ui/buttons/PlusMinus'
+import VariantProductContent from "@/components/pages/indexPage/menu/products/productCard/variant/SelectVariant";
 
 export default {
   name: 'home',
-  // common: {AppIcon, Like, PlusMinus},
-  components: { PlusMinus },
+  components: { PlusMinus, VariantProductContent },
   props: {
-    data: {type: Object}
+    product: {type: Object}
   },
   computed: {
-    styles() {
-      if (this.data.title.length > 14) {
+    weight() {
+      if (this.product.type === 'SINGLE') {
+        return this.product.weight
+      } else if (this.selectedVariant) {
+        return this.selectedVariant.weight
+      }
+      return 0
+    },
+    cost() {
+      if (this.product.type === 'SINGLE') {
+        return this.product.cost
+      } else if (this.selectedVariant) {
+        return this.selectedVariant.cost
+      }
+      return 0
+    },
+    contentStyles() {
+      if (this.product.type === 'VARIANT') {
+        return 'min-height: 160px'
+      }
+      return null
+    },
+    titleStyles() {
+      if (this.product.title.length > 14) {
         return 'font-size: 16px;line-height: 18px;'
       } else {
         return ''
       }
     },
     description() {
-      if (this.data.description.length > 75) {
-        return this.data.description.slice(0, 75) + '...'
+      if (this.product.description.length > 75) {
+        return this.product.description.slice(0, 75) + '...'
       } else {
-        return this.data.description
+        return this.product.description
       }
     },
     count() {
-      if (this.$store.state.orders.list.find(item => item._id === this.data._id))
-        return this.$store.state.orders.list.find(item => item._id === this.data._id).count
-      else return 0
-      return 0
+      if (this.$store.state.orders.list.find(item => item._id === this.product._id)) {
+        return this.$store.state.orders.list.find(item => item._id === this.product._id).count
+      } else {
+        return 0
+      }
+    }
+  },
+  data() {
+    return {
+      selectedVariant: null
     }
   },
   methods: {
     toCard: function () {
       // this.$metrika.reachGoal('add-product-to-card')
-      this.$store.commit('pushProductToCart', this.data._id)
+      this.$store.commit('pushProductToCart', this.product._id)
     },
     stopPropagation: function ($event) {
       $event.stopPropagation()
@@ -412,6 +432,35 @@ export default {
 
   &:hover {
     background-color: transparent;
+  }
+
+}
+
+.product_active {
+  .select-variant__label > span {
+    color: #FFFFFF;
+  }
+
+  .select-variant__variants--item {
+    border-color: #FFFFFF;
+    background-color: #312525!important;
+    > svg path {
+      fill: #FFFFFF;
+    }
+    &:hover {
+      border-color: #ececec;
+      background-color: #FFFFFF!important;
+      > svg path {
+        fill: #312525;
+      }
+    }
+    &.active {
+      border-color: #ececec;
+      background-color: #FFFFFF!important;
+      > svg path {
+        fill: #312525;
+      }
+    }
   }
 
 }
