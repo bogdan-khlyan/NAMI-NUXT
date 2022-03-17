@@ -43,6 +43,8 @@ export default {
     { src: '~/plugins/api-services.js', mode: 'client' }
   ],
 
+  srcDir: 'src/',
+
   // Auto import common: https://go.nuxtjs.dev/config-components
   components: true,
 
