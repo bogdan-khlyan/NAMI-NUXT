@@ -9,4 +9,4 @@ export class OrdersRepository {
 
 }
 
-export default null
+export default {}

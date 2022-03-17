@@ -12,7 +12,6 @@
 import DeliveryMethod from "@/components/cart/order/deliveryMethod/DeliveryMethod";
 import OrderForm from "@/components/cart/order/orderForm/OrderForm";
 import ConfirmOrder from "@/components/cart/order/confirmOrder/ConfirmOrder";
-import {ordersService} from "@/api/orders/orders.service";
 
 export default {
   name: 'cart-order',
@@ -56,7 +55,7 @@ export default {
         if (tmp.username.length === 0)
           delete tmp.username
         this.loading = true
-        ordersService.createOrder(tmp)
+        this.$orders.createOrder(tmp)
             .then(() => {
               this.$store.commit('hideCart')
               this.$store.commit('clearCartProducts')

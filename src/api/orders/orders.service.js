@@ -1,9 +1,16 @@
 import Notification from "element-ui/packages/notification/src/main";
 import {OrdersRepository} from "@/api/orders/orders.repository";
 
-class OrdersService {
+export class OrdersService {
 
+  #store = null
+  #router = null
   #repository = new OrdersRepository()
+
+  constructor(app) {
+    this.#store = app.store
+    this.#router = app.router
+  }
 
   async createOrder(requestData) {
     try {
@@ -20,5 +27,4 @@ class OrdersService {
 
 }
 
-export const ordersService = new OrdersService()
 export default null
