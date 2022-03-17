@@ -1,5 +1,5 @@
 import Notification from "element-ui/packages/notification/src/main";
-import {OrdersRepository} from "~/components/orders/orders.repository";
+import {OrdersRepository} from "@/api/orders/orders.repository";
 
 class OrdersService {
 

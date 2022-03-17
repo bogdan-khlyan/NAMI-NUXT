@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import categories from "@/components/categories/categories.store";
-import products from "@/components/products/products.store";
-import orders from "@/components/orders/orders.store";
-import userInstance from "@/components/userInstance/user-instance.store";
+import categories from "@/api/categories/categories.store";
+import products from "@/api/products/products.store";
+import orders from "@/api/orders/orders.store";
+import userInstance from "@/api/userInstance/user-instance.store";
 
 Vue.use(Vuex)
 

@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import ProfileInputWrapper from "@/components/profile/common/ProfileInputWrapper";
+import ProfileInputWrapper from "@/components/pages/profilePage/common/ProfileInputWrapper";
 import BaseInput from "@/components/common/ui/inputs/BaseInput";
 
 export default {

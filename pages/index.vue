@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Banner from "~/components/indexPage/banner/Banner";
-import AppMenu from "~/components/indexPage/menu/AppMenu";
+import Banner from "~/components/pages/indexPage/banner/Banner";
+import AppMenu from "~/components/pages/indexPage/menu/AppMenu";
 
 export default {
   name: 'IndexPage',

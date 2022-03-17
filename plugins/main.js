@@ -1,4 +1,4 @@
-import {initUserInstanceState} from "@/components/userInstance/user-instance.store";
+import {initUserInstanceState} from "@/api/userInstance/user-instance.store";
 
 function initStore(app) {
   initUserInstanceState(app)

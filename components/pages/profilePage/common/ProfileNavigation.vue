@@ -3,19 +3,19 @@
     <nuxt-link to="/profile/orders"
                class="profile-navigation__item">
       <base-svg
-        :src="require('@/assets/images/icons/icon-orders.svg')"/>
+        :src="require('assets/images/icons/icon-orders.svg')"/>
       <span>Мои заказы</span>
     </nuxt-link>
     <nuxt-link to="/profile/address"
                class="profile-navigation__item">
       <base-svg
-        :src="require('@/assets/images/icons/icon-home.svg')"/>
+        :src="require('assets/images/icons/icon-home.svg')"/>
       <span>Мои адреса</span>
     </nuxt-link>
     <nuxt-link to="/profile"
                class="profile-navigation__item">
       <base-svg
-        :src="require('@/assets/images/icons/icon-user.svg')"/>
+        :src="require('assets/images/icons/icon-user.svg')"/>
       <span>Личные данные</span>
     </nuxt-link>
   </nav>

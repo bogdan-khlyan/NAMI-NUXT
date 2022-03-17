@@ -39,7 +39,7 @@ export default {
       return this.$route.name
     },
     weaveBg() {
-      const routes = ['profile', 'profile-address', 'profile-orders']
+      const routes = ['profile', 'profilePage-address', 'profilePage-orders']
       return routes.indexOf(this.route) !== -1
     }
   },

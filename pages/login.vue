@@ -53,9 +53,9 @@
 import { required, maxLength, minLength } from "vuelidate/lib/validators";
 import { validationMixin } from "vuelidate";
 
-import phoneInput from "@/components/loginPage/PhoneInput";
-import RegisterOrRepeatPasswordForm from "@/components/loginPage/RegisterOrRepeatPasswordForm";
-import PasswordInput from "@/components/loginPage/PasswordInput";
+import phoneInput from "@/components/pages/loginPage/PhoneInput";
+import RegisterOrRepeatPasswordForm from "@/components/pages/loginPage/RegisterOrRepeatPasswordForm";
+import PasswordInput from "@/components/pages/loginPage/PasswordInput";
 import BaseSvg from "@/components/common/BaseSvg";
 
 export default {

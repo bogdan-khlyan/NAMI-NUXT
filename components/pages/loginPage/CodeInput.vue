@@ -15,7 +15,7 @@
           :class="{ disabled: isNewCodeDisabled }"
           @click="newCode">
       <base-svg
-        :src="require('@/assets/images/icons/arrow-circle.svg')"/>
+        :src="require('assets/images/icons/arrow-circle.svg')"/>
       <span class="text">Отправить код еще раз</span>
       <span v-if="time > 0" class="time">({{timeHuman}})</span>
     </span>

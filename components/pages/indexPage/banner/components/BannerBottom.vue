@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import BtnToMenu from "@/components/indexPage/banner/components/BtnToMenu";
+import BtnToMenu from "@/components/pages/indexPage/banner/components/BtnToMenu";
 
 export default {
   name: 'banner-bottom',

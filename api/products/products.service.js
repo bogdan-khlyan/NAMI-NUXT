@@ -1,5 +1,5 @@
-import {ProductsRepository} from "~/components/products/products.repository";
-import {categoryService} from "~/components/categories/categories.service";
+import {ProductsRepository} from "@/api/products/products.repository";
+import {categoryService} from "@/api/categories/categories.service";
 
 class ProductsService {
 
