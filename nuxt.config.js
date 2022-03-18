@@ -39,10 +39,13 @@ export default {
     '~/plugins/mask',
     '~/plugins/perfect-scrollbar.js',
     { src: '~/plugins/yandex-map.js',  mode: 'client' },
-    { src: '~/plugins/route', mode: 'client' }
+    { src: '~/plugins/main.js', mode: 'client' },
+    { src: '~/plugins/api-services.js', mode: 'client' }
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
+  srcDir: 'src/',
+
+  // Auto import common: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -51,7 +54,7 @@ export default {
       families: {
         Neucha: true,
         Kalam: true,
-        Ubuntu: true
+        Ubuntu: [300, 400, 500, 600]
       }
     }]
   ],
