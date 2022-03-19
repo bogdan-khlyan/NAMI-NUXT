@@ -1,8 +1,10 @@
 <template>
   <div class="plus-minus" @click="($event) => $emit('click', $event)">
-    <div @click="dec" class="plus-minus__circle">-</div>
+    <div class="plus-minus__circle"
+         @click="dec">-</div>
     <div class="plus-minus__value">{{count}}</div>
-    <div @click="inc" class="plus-minus__circle">+</div>
+    <div class="plus-minus__circle"
+         @click="inc">+</div>
   </div>
 </template>
 
@@ -14,31 +16,40 @@ export default {
     event: 'input'
   },
   props: {
-    id: { type: String },
+    productId: { type: String },
     val: { type: Number }
   },
   computed: {
     count () {
-      if(this.$store.state.orders.list.find(item => item._id === this.id))
-        return this.$store.state.orders.list.find(item => item._id === this.id).count
-      else return 0
+      const item = this.$store.state.cart.products
+        .find(item => item._id === this.productId)
+      return item ? item.count : 0
     }
   },
   watch: {
-    count () { this.$emit('input', this.count) }
+    count () {
+      this.$emit('input', this.count)
+    }
   },
   data() {
     return { }
   },
   mounted () { this.$emit('input', this.count) },
   methods: {
-    inc: function () { this.changeCount(1) },
-    dec: function () { if(this.count > 0) this.changeCount(-1) },
+    inc() {
+      this.changeCount(1)
+    },
+    dec() {
+      if (this.count > 0) {
+        this.changeCount(-1)
+      }
+    },
     changeCount: function (payload) {
-      if(this.count + payload === 0)
-        this.$store.dispatch('removeProductFromCart', this.id)
-      else this.$store.commit('setCountForProductCartById',
-            { _id: this.id, count: this.count + payload })
+      if(this.count + payload === 0) {
+        this.$cart.removeProduct(this.productId)
+      } else {
+        this.$cart.changeProductCount(this.productId, this.count + payload)
+      }
     }
   }
 }

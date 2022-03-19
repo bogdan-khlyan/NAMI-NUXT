@@ -1,9 +1,20 @@
 <template>
   <div class="order" v-loading="loading">
-    <button v-if="windowWidth > 640" @click="$emit('changeMode', 'INDEX')" class="order__btn-back"><i class="el-icon-back"></i></button>
-    <delivery-method v-model="order.delivery" :order="order"/>
-    <order-form v-model="order" ref="orderChapter3" />
-    <confirm-order :delivery="order.delivery" :delivery-cost="order.deliveryCost" @send="createOrder" />
+    <button v-if="windowWidth > 640"
+            class="order__btn-back"
+            @click="$emit('changeMode', 'INDEX')">
+      <i class="el-icon-back"></i>
+    </button>
+    <delivery-method
+      v-model="order.delivery"
+      :order="order"/>
+    <order-form
+      v-model="order"
+      ref="orderChapter3" />
+    <confirm-order
+      :delivery="order.delivery"
+      :delivery-cost="order.deliveryCost"
+      @send="createOrder"/>
     <div style="height: 40px"></div>
   </div>
 </template>

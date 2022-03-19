@@ -1,30 +1,34 @@
 <template>
   <div class="cart-product">
     <div class="cart-product__img">
-      <img :src="data.images[0]" alt="">
+      <img :src="product.images[0]" alt="">
     </div>
     <div class="cart-product__info">
       <div class="cart-product__info--line">
-        <h3 class="cart-product__info--name">{{data.title}}</h3>
+        <h3 class="cart-product__info--name">{{product.title}}</h3>
         <!--        <like class="cart-product__info&#45;&#45;like" />-->
       </div>
       <div class="cart-product__info--description">
-        {{data.description}}
+        {{product.description}}
       </div>
     </div>
     <div class="cart-product__price">
       <div class="cart-product__price--cost">
-        Цена <span>{{ data.cost }} ₽</span>
+        Цена <span>{{ product.cost }} ₽</span>
       </div>
       <div style="margin-top: 10px;margin-bottom: 10px;">
-        <plus-minus-btn v-model="count" :id="data._id" />
+        <plus-minus-btn
+          v-model="count"
+          :product-id="product._id"/>
       </div>
-      <div v-if="count > 1" class="cart-product__price--cost">
-        Сумма <span>{{ count * data.cost }} ₽</span>
+      <div v-if="count > 1"
+           class="cart-product__price--cost">
+        Сумма <span>{{ count * product.cost }} ₽</span>
       </div>
     </div>
     <div class="cart-product__actions">
-      <div class="cart-product__actions--delete" @click="deleteProduct">
+      <div class="cart-product__actions--delete"
+           @click="deleteProduct">
         <img src="@/assets/images/icons/trash.svg" alt="">
       </div>
     </div>
@@ -37,9 +41,7 @@ import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
 export default {
   name: 'desktop',
   props: {
-    data: {
-      type: Object
-    }
+    product: { type: Object }
   },
   components: {
     PlusMinusBtn: PlusMinus
@@ -51,7 +53,7 @@ export default {
   },
   methods: {
     deleteProduct: function () {
-      this.$store.dispatch('removeProductFromCart', this.data._id)
+      this.$store.dispatch('removeProductFromCart', this.product._id)
     },
   }
 }

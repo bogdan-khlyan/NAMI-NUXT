@@ -8,8 +8,12 @@
         <mobile-header v-if="windowWidth < 640"/>
         <scroll ref="scroll">
           <transition name="fade" mode="out-in">
-            <index v-if="mode === 'INDEX'" @changeMode="changeMode"/>
-            <order v-else-if="mode === 'ORDER'" @changeMode="changeMode" />
+            <product-list
+              v-if="mode === 'INDEX'"
+              @changeMode="changeMode"/>
+            <order
+              v-else-if="mode === 'ORDER'"
+              @changeMode="changeMode" />
           </transition>
         </scroll>
       </div>
@@ -18,14 +22,14 @@
 </template>
 
 <script>
-import Index from "@/components/cart/index";
+import ProductList from "@/components/cart/productList/ProductList";
 import Order from "@/components/cart/order/Order";
 import Scroll from "@/components/common/Scroll";
 import MobileHeader from "@/components/cart/common/MolileHeader";
 
 export default {
   name: 'cart',
-  components: {Index, Order, Scroll, MobileHeader},
+  components: {ProductList, Order, Scroll, MobileHeader},
   computed: {
     isShowCart() {
       return this.$store.state.isShowCart

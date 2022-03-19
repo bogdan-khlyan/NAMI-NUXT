@@ -1,7 +1,7 @@
 const state = () => ({
   loading: true,
   phoneNumber: null,
-  list: []
+  list: [],
 })
 
 const mutations = {
