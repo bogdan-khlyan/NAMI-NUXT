@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import orders from "@/api/orders/orders.store";
 import userInstance from "@/api/userInstance/user-instance.store";
 import menu from "@/api/menu/menu.store";
+import cart from "@/api/cart/cart.store";
 
 Vue.use(Vuex)
 
@@ -46,4 +47,4 @@ export const mutations = {
   }
 }
 
-export const modules = { orders, userInstance, menu }
+export const modules = { orders, userInstance, menu, cart }

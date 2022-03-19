@@ -2,8 +2,11 @@
   <div class="cart">
     <h2>корзина</h2>
     <div class="cart__list">
-      <product v-for="product in products" :data="product" :key="product._id" />
-      <div v-if="products.length === 0" class="cart__list--empty">
+      <product
+        v-for="product in cartProducts" :key="product._id"
+        :data="product"/>
+      <div v-if="cartProducts.length === 0"
+           class="cart__list--empty">
         <span>Вы ещё не выбрали ни одного продукта</span>
       </div>
     </div>
@@ -11,46 +14,54 @@
       Общая сумма <span>{{costAll}} ₽</span>
     </div>
     <div class="cart__footer">
-      <button @click="close" class="cart__footer--back">{{windowWidth > 500 ? 'Вернуться к покупкам' : 'Назад'}}</button>
-      <button @click="send" class="cart__footer--submit" :class="{'disabled': cartProducts.length === 0}">Оформить заказ</button>
+      <button class="cart__footer--back"
+              @click="close">
+        {{windowWidth > 500 ? 'Вернуться к покупкам' : 'Назад'}}
+      </button>
+      <button class="cart__footer--submit"
+              :class="{'disabled': cartProducts.length === 0}"
+              @click="send">Оформить заказ</button>
     </div>
   </div>
 </template>
 
 <script>
-import Product from "@/components/cart/index/product/Product";
+import Product from "@/components/cart/productList/productCard/ProductCard";
 
 export default {
   name: 'cart-index',
   components: { Product },
   computed: {
-    windowWidth() { return this.$store.state.windowWidth },
-    isShowCart() { return this.$store.state.isShowCart },
-    cartProducts() { return this.$store.state.orders.list },
-    products() {
-      return this.$store.state.menu.products.filter(item => {
-        if(this.cartProducts.find(cartItem => item._id === cartItem._id))
-          return item
-      })
+    windowWidth() {
+      return this.$store.state.windowWidth
+    },
+    isShowCart() {
+      return this.$store.state.isShowCart
+    },
+    cartProducts() {
+      return this.$store.state.cart.products
     },
     costAll () {
       let cost = 0
       this.$store.state.menu.products.forEach(item => {
         let cartItem = this.cartProducts.find(cartItem => item._id === cartItem._id)
-        if(cartItem)
+        if(cartItem) {
           cost += cartItem.count * item.cost
+        }
       })
       return cost
     }
   },
   methods: {
-    send: function () {
+    send() {
       if (this.cartProducts.length !== 0) {
         // this.$metrika.reachGoal('making-an-order')
         this.$emit('changeMode', 'ORDER')
       }
     },
-    close: function () { this.$store.commit('hideCart') },
+    close() {
+      this.$store.commit('hideCart')
+    },
   }
 }
 </script>

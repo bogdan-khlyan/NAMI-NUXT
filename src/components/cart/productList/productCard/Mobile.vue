@@ -2,13 +2,13 @@
   <div class="product">
     <div class="product__content">
       <div class="product__images">
-        <img :src="data.images[0]" alt="">
+        <img :src="product.images[0]" alt="">
       </div>
       <div class="product__info">
         <div>
-          <h3>{{ data.title }}</h3>
+          <h3>{{ product.title }}</h3>
           <div class="product__info-description">
-            {{ data.description }}
+            {{ product.description }}
           </div>
         </div>
       </div>
@@ -17,10 +17,10 @@
     <div class="product__separator"></div>
 
     <div class="product__content" style="padding-top: 5px">
-      <plus-minus v-model="count" :id="data._id" />
+      <plus-minus v-model="count" :id="product._id" />
 
       <div class="product__cost">
-        {{ count * data.cost }} ₽
+        {{ count * product.cost }} ₽
       </div>
     </div>
 
@@ -34,7 +34,7 @@ export default {
   name: 'mobile',
   components: { PlusMinus },
   props: {
-    data: { type: Object }
+    product: { type: Object }
   },
   data () {
     return {

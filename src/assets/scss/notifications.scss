@@ -2,8 +2,12 @@
   padding: 10px;
 
   width: 300px;
-  height: 70px;
+  min-height: 70px;
   background-color: #F0F9EB;
+
+  @media screen and (max-width: 340px) {
+    width: calc(100vw - 32px);
+  }
 
   h2 {
     font-family: Ubuntu, sans-serif;
@@ -12,6 +16,7 @@
     font-size: 14px;
     line-height: 24px;
     letter-spacing: 0.01em;
+    text-align: left;
     color: #2C2C2C;
   }
 
@@ -24,6 +29,7 @@
       font-size: 14px;
       line-height: 24px;
       letter-spacing: 0.01em;
+      text-align: left;
       color: #2C2C2C;
     }
   }

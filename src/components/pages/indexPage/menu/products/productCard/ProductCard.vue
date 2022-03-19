@@ -27,8 +27,14 @@
         <span>{{ cost }}₽</span>
       </div>
       <div @click="stopPropagation" class="btn">
-        <button v-if="count < 1" @click="toCard" class="product__btn-to-cart">В корзину</button>
-        <plus-minus class="plus-minus-btn" v-else :id="product._id"/>
+        <button
+          v-if="count < 1"
+          class="product__btn-to-cart"
+          @click="toCard">В корзину</button>
+        <plus-minus
+          v-else
+          class="plus-minus-btn"
+          :product-id="product._id"/>
       </div>
     </div>
   </div>
@@ -82,8 +88,10 @@ export default {
       }
     },
     count() {
-      if (this.$store.state.orders.list.find(item => item._id === this.product._id)) {
-        return this.$store.state.orders.list.find(item => item._id === this.product._id).count
+      const product = this.$store.state.cart.products
+        .find(item => item._id === this.product._id)
+      if (product) {
+        return product.count
       } else {
         return 0
       }
@@ -97,7 +105,11 @@ export default {
   methods: {
     toCard: function () {
       // this.$metrika.reachGoal('add-product-to-card')
-      this.$store.commit('pushProductToCart', this.product._id)
+      // this.$store.commit('pushProductToCart', this.product._id)
+      this.$cart.addProduct({
+        ...this.product,
+        selectedVariant: this.selectedVariant
+      })
     },
     stopPropagation: function ($event) {
       $event.stopPropagation()
