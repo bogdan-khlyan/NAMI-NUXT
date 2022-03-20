@@ -17,10 +17,11 @@
           <span class="description">{{ product.ingredients.join(', ') }}</span>
         </div>
       </div>
-      <variant-product-content
+      <select-variant
         v-else
-        v-model="selectedVariant"
-        :product="product"/>
+        label="Выберите начинку"
+        :product="product"
+        @change="changeVariant"/>
     </div>
     <div class="product__footer">
       <div class="price">
@@ -42,11 +43,11 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
-import VariantProductContent from "@/components/pages/indexPage/menu/products/productCard/variant/SelectVariant";
+import SelectVariant from "@/components/common/SelectVariant";
 
 export default {
   name: 'home',
-  components: { PlusMinus, VariantProductContent },
+  components: { PlusMinus, SelectVariant },
   props: {
     product: {type: Object}
   },
@@ -62,7 +63,11 @@ export default {
     cost() {
       if (this.product.type === 'SINGLE') {
         return this.product.cost
-      } else if (this.selectedVariant) {
+      }
+      if (this.cartProduct?.selectedVariant) {
+        return this.cartProduct.selectedVariant.cost
+      }
+      if (this.selectedVariant) {
         return this.selectedVariant.cost
       }
       return 0
@@ -87,11 +92,13 @@ export default {
         return this.product.description
       }
     },
-    count() {
-      const product = this.$store.state.cart.products
+    cartProduct() {
+      return this.$store.state.cart.products
         .find(item => item._id === this.product._id)
-      if (product) {
-        return product.count
+    },
+    count() {
+      if (this.cartProduct) {
+        return this.cartProduct.count
       } else {
         return 0
       }
@@ -103,7 +110,10 @@ export default {
     }
   },
   methods: {
-    toCard: function () {
+    changeVariant(variant) {
+      this.selectedVariant = variant
+    },
+    toCard() {
       // this.$metrika.reachGoal('add-product-to-card')
       // this.$store.commit('pushProductToCart', this.product._id)
       this.$cart.addProduct({
@@ -111,7 +121,7 @@ export default {
         selectedVariant: this.selectedVariant
       })
     },
-    stopPropagation: function ($event) {
+    stopPropagation($event) {
       $event.stopPropagation()
     }
   }

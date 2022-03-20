@@ -1,5 +1,6 @@
 <template>
-  <div class="cart-header-btn" @click="$store.commit('showCart')">
+  <div class="cart-header-btn"
+       @click="showCart">
     <img src="@/assets/images/icons/cart.svg" alt="">
     <div class="cart-header-btn__count">{{count}}</div>
   </div>
@@ -11,8 +12,13 @@ export default {
   computed: {
     count () {
       let count = 0
-      this.$store.state.orders.list.forEach(item => count += item.count)
+      this.$store.state.cart.products.forEach(item => count += item.count)
       return count
+    }
+  },
+  methods: {
+    showCart() {
+      this.$cart.showCart()
     }
   }
 }

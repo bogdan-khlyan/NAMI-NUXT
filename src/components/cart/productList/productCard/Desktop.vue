@@ -1,34 +1,35 @@
 <template>
-  <div class="cart-product">
-    <div class="cart-product__img">
+  <div class="product-card-desktop">
+    <div class="product-card-desktop__img">
       <img :src="product.images[0]" alt="">
     </div>
-    <div class="cart-product__info">
-      <div class="cart-product__info--line">
-        <h3 class="cart-product__info--name">{{product.title}}</h3>
-        <!--        <like class="cart-product__info&#45;&#45;like" />-->
+    <div class="product-card-desktop__info">
+      <div class="product-card-desktop__info--name">
+        <h3 :style="titleStyles">{{product.title}}</h3>
       </div>
-      <div class="cart-product__info--description">
-        {{product.description}}
+      <div class="product-card-desktop__info--description">
+        <span v-if="product.type === 'SINGLE'">{{product.description}}</span>
+        <select-variant
+          v-else
+          :product="product"/>
       </div>
     </div>
-    <div class="cart-product__price">
-      <div class="cart-product__price--cost">
-        Цена <span>{{ product.cost }} ₽</span>
+    <div class="product-card-desktop__price">
+      <div class="product-card-desktop__price--cost">
+        Цена <span>{{ cost }}₽</span>
       </div>
-      <div style="margin-top: 10px;margin-bottom: 10px;">
-        <plus-minus-btn
-          v-model="count"
+      <div class="product-card-desktop__price--button">
+        <plus-minus
           :product-id="product._id"/>
       </div>
       <div v-if="count > 1"
-           class="cart-product__price--cost">
-        Сумма <span>{{ count * product.cost }} ₽</span>
+           class="product-card-desktop__price--cost">
+        Сумма <span>{{ costAll }}₽</span>
       </div>
     </div>
-    <div class="cart-product__actions">
-      <div class="cart-product__actions--delete"
-           @click="deleteProduct">
+    <div class="product-card-desktop__actions">
+      <div class="product-card-desktop__actions--delete"
+           @click="removeProduct">
         <img src="@/assets/images/icons/trash.svg" alt="">
       </div>
     </div>
@@ -37,30 +38,31 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
+import SelectVariant from "@/components/common/SelectVariant";
+import {productCardMixin} from "@/components/cart/productList/productCard/product-card.mixin";
 
 export default {
   name: 'desktop',
+  components: { PlusMinus, SelectVariant },
+  mixins: [productCardMixin],
   props: {
     product: { type: Object }
   },
-  components: {
-    PlusMinusBtn: PlusMinus
-  },
-  data () {
-    return {
-      count: 1
-    }
-  },
   methods: {
-    deleteProduct: function () {
-      this.$store.dispatch('removeProductFromCart', this.product._id)
-    },
+    removeProduct() {
+      this.$cart.removeProduct(this.product._id)
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.cart-product {
+.product-card-desktop {
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  display: flex;
+
   width: 100%;
   height: 140px;
   box-sizing: border-box;
@@ -73,7 +75,12 @@ export default {
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
 
-  display: flex;
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &__img {
     width: max-content;
@@ -86,51 +93,44 @@ export default {
   }
 
   &__info {
-    max-width: 260px;
-    width: 100%;
+    width: 190px;
     margin-left: 20px;
     padding-right: 15px;
-
-    &--line {
-      display: flex;
-    }
 
     &--like {
       margin-left: auto;
     }
 
     &--name {
-      max-width: 220px!important;
-      width: max-content;
-      margin: 0;
-      text-align: left;
+      > h3 {
+        margin: 0;
+        max-width: 220px!important;
+        width: max-content;
 
-      font-family: Neucha, sans-serif;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 25px;
-
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-
-      color: #141414;
+        font-family: Neucha, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: left;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #141414;
+      }
     }
 
     &--description {
-      max-width: 300px;
-
-      height: 60px;
       overflow-y: hidden;
 
-      text-align: left;
+      max-width: 300px;
+      height: 60px;
 
       font-family: Arial, sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 13px;
       line-height: 15px;
-
+      text-align: left;
       color: #717171;
 
     }
@@ -139,8 +139,7 @@ export default {
 
   &__price {
     padding-top: 6px;
-    max-width: 120px;
-    width: 100%;
+    width: 120px;
     margin-left: auto;
 
     &--cost {
@@ -167,6 +166,11 @@ export default {
         color: #141414;
       }
 
+    }
+
+    &--button {
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
 
   }

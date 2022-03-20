@@ -1,10 +1,10 @@
 <template>
   <desktop
     v-if="windowWidth > 550"
-    :product="data"/>
+    :product="product"/>
   <mobile
     v-else
-    :product="data"/>
+    :product="product"/>
 </template>
 
 <script>
@@ -12,10 +12,10 @@ import Desktop from "@/components/cart/productList/productCard/Desktop";
 import Mobile from "@/components/cart/productList/productCard/Mobile";
 
 export default {
-  name: 'cart-product',
+  name: 'product-card',
   components: { Desktop, Mobile },
   props: {
-    data: { type: Object }
+    product: { type: Object }
   },
   computed: {
     windowWidth () {

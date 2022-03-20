@@ -6,9 +6,12 @@
       </div>
       <div class="product__info">
         <div>
-          <h3>{{ product.title }}</h3>
+          <h3 :style="titleStyles">{{ product.title }}</h3>
           <div class="product__info-description">
-            {{ product.description }}
+            <span v-if="product.type === 'SINGLE'">{{ product.description }}</span>
+            <select-variant
+              v-else
+              :product="product"/>
           </div>
         </div>
       </div>
@@ -17,10 +20,11 @@
     <div class="product__separator"></div>
 
     <div class="product__content" style="padding-top: 5px">
-      <plus-minus v-model="count" :id="product._id" />
+      <plus-minus
+        :product-id="product._id"/>
 
       <div class="product__cost">
-        {{ count * product.cost }} ₽
+        {{ costAll }} ₽
       </div>
     </div>
 
@@ -29,19 +33,15 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
+import SelectVariant from "@/components/common/SelectVariant";
+import {productCardMixin} from "@/components/cart/productList/productCard/product-card.mixin";
 
 export default {
   name: 'mobile',
-  components: { PlusMinus },
+  components: { PlusMinus, SelectVariant },
+  mixins: [productCardMixin],
   props: {
     product: { type: Object }
-  },
-  data () {
-    return {
-      count: 1
-    }
-  },
-  methods: {
   }
 }
 </script>
