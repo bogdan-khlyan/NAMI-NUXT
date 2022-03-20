@@ -1,24 +1,24 @@
 <template>
-  <div class="cart">
+  <div class="product-list">
     <h2>корзина</h2>
-    <div class="cart__list">
-      <product
+    <div class="product-list__products">
+      <product-card
         v-for="product in cartProducts" :key="product._id"
-        :data="product"/>
+        :product="product"/>
       <div v-if="cartProducts.length === 0"
-           class="cart__list--empty">
+           class="product-list__products--empty">
         <span>Вы ещё не выбрали ни одного продукта</span>
       </div>
     </div>
-    <div class="cart__cost">
-      Общая сумма <span>{{costAll}} ₽</span>
+    <div class="product-list__cost">
+      Общая сумма <span>{{cost}} ₽</span>
     </div>
-    <div class="cart__footer">
-      <button class="cart__footer--back"
+    <div class="product-list__footer">
+      <button class="product-list__footer--back"
               @click="close">
         {{windowWidth > 500 ? 'Вернуться к покупкам' : 'Назад'}}
       </button>
-      <button class="cart__footer--submit"
+      <button class="product-list__footer--submit"
               :class="{'disabled': cartProducts.length === 0}"
               @click="send">Оформить заказ</button>
     </div>
@@ -26,30 +26,20 @@
 </template>
 
 <script>
-import Product from "@/components/cart/productList/productCard/ProductCard";
+import ProductCard from "@/components/cart/productList/productCard/ProductCard";
 
 export default {
-  name: 'cart-index',
-  components: { Product },
+  name: 'product-list',
+  components: { ProductCard },
   computed: {
     windowWidth() {
       return this.$store.state.windowWidth
     },
-    isShowCart() {
-      return this.$store.state.isShowCart
-    },
     cartProducts() {
       return this.$store.state.cart.products
     },
-    costAll () {
-      let cost = 0
-      this.$store.state.menu.products.forEach(item => {
-        let cartItem = this.cartProducts.find(cartItem => item._id === cartItem._id)
-        if(cartItem) {
-          cost += cartItem.count * item.cost
-        }
-      })
-      return cost
+    cost() {
+      return this.$store.getters['cart.cost']
     }
   },
   methods: {
@@ -60,24 +50,23 @@ export default {
       }
     },
     close() {
-      this.$store.commit('hideCart')
+      this.$cart.hideCart()
     },
   }
 }
 </script>
 
 <style scoped lang="scss">
-.cart {
+.product-list {
+  padding: 40px;
+
   width: 100%;
   height: 100vh;
-
-  padding: 40px;
 
   box-sizing: border-box;
 
   @media screen and (max-width: 640px) {
     padding: 60px 20px 20px 20px;
-    //min-height: calc(100vh - 42px);
   }
 
   > h2 {
@@ -98,17 +87,12 @@ export default {
     }
   }
 
-  &__list {
+  &__products {
     padding-top: 40px;
     min-height: calc(100vh - 350px);
 
     @media screen and (max-width: 640px) {
       padding-top: 10px;
-    }
-
-    > .cart-product {
-      margin-top: 10px;
-      margin-bottom: 10px;
     }
 
     &--empty {
@@ -134,16 +118,13 @@ export default {
     margin-top: 40px;
     margin-bottom: 30px;
 
-    text-align: left;
-
     font-family: Neucha, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
     line-height: 22px;
-
+    text-align: left;
     letter-spacing: 0.05em;
-
     color: #000000;
 
     > span {
@@ -201,26 +182,23 @@ export default {
 
     &--submit {
       padding: 0 20px;
+
       height: 58px;
-
-      border: none;
-
-      cursor: pointer;
-
-      background: #312525;
-      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
 
       font-family: Neucha, sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
       line-height: 20px;
-
       letter-spacing: 0.05em;
-
       color: #FFFFFF;
 
+      background: #312525;
+      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+      border: none;
+
       transition: opacity 300ms;
+      cursor: pointer;
 
       &.disabled {
         cursor: no-drop;

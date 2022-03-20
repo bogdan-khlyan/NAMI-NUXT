@@ -12,15 +12,22 @@ export class CartService {
     this.#router = app.router
   }
 
+  showCart() {
+    this.#store.commit('cart.setIsVisibleCart', true)
+  }
+
+  hideCart() {
+    this.#store.commit('cart.setIsVisibleCart', false)
+  }
+
   addProduct(product) {
     product.count = 1
-    if (product.type === 'VARIANT') {
-      product.cost = product.selectedVariant.cost
-    }
-
     this.#store.commit('cart.addProduct', product)
-
     this.notifyOrderInfo()
+  }
+
+  changeProductVariant(productId, variant) {
+    this.#store.commit('cart.changeProductVariant', { productId, variant })
   }
 
   changeProductCount(productId, count) {
@@ -34,13 +41,8 @@ export class CartService {
   }
 
   notifyOrderInfo(title = 'Товар добавлен в корзину') {
-    let productCount = 0
-    let productsCost = 0
-    this.#store.state.cart.products
-      .forEach(item => {
-        productsCost += item.cost * item.count
-        productCount += item.count
-      })
+    let productCount = this.#store.getters['cart.count']
+    let productsCost = this.#store.getters['cart.cost']
 
     notificationsHelper.success({
       title,

@@ -1,13 +1,20 @@
 <template>
   <div class="mobile-header">
-    <img @click="$store.commit('hideCart')" class="back" src="images/arrow-circle.svg" alt="">
+    <img class="back"
+         src="images/arrow-circle.svg" alt=""
+         @click="hideCart">
     <img class="logo" src="images/logo.png" alt="">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'mobile-header'
+  name: 'mobile-header',
+  methods: {
+    hideCart() {
+      this.$cart.hideCart()
+    }
+  }
 }
 </script>
 

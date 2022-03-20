@@ -1,7 +1,7 @@
 <template>
   <div class="cart-wrapper">
     <el-drawer
-      :visible="isShowCart"
+      :visible="isVisibleCart"
       @close="close"
       :with-header="false">
       <div class="content">
@@ -31,8 +31,8 @@ export default {
   name: 'cart',
   components: {ProductList, Order, Scroll, MobileHeader},
   computed: {
-    isShowCart() {
-      return this.$store.state.isShowCart
+    isVisibleCart() {
+      return this.$store.state.cart.isVisibleCart
     },
     windowWidth() {
       return this.$store.state.windowWidth
@@ -44,7 +44,7 @@ export default {
     }
   },
   watch: {
-    isShowCart() {
+    isVisibleCart() {
       this.$nextTick(() => {
         this.$nextTick(() => {
           this.$refs.scroll.scrollTop()
@@ -58,8 +58,10 @@ export default {
       this.$refs.scroll.scrollTop()
     },
     close: function () {
-      if (this.mode !== 'INDEX') this.changeMode('INDEX')
-      this.$store.commit('hideCart')
+      if (this.mode !== 'INDEX') {
+        this.changeMode('INDEX')
+      }
+      this.$cart.hideCart()
     },
   }
 }

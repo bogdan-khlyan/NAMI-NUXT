@@ -1,8 +1,8 @@
 <template>
   <div class="select-variant"
        @click="($event) => $event.stopPropagation()">
-    <div class="select-variant__label">
-      <span>Выберите начинку</span>
+    <div v-if="label" class="select-variant__label">
+      <span>{{ label }}</span>
     </div>
     <div class="select-variant__variants">
       <div class="select-variant__variants--item"
@@ -17,19 +17,36 @@
 <script>
 export default {
   name: 'select-variant',
-  model: { prop: 'value', event: 'change' },
   props: {
-    value: { type: Object, default: null },
+    label: { type: String, default: null },
     product: { type: Object, default: null }
   },
+  computed: {
+    value() {
+      const item = this.$store.state.cart.products
+        .find(item => item._id === this.product._id)
+      if (item) {
+        return item.selectedVariant
+      } else {
+        return this.selectedVariant
+      }
+    }
+  },
+  data() {
+    return {
+      selectedVariant: null
+    }
+  },
   mounted() {
-    if (this.product?.variants?.[0]) {
+    if (this.product?.variants?.[0] && !this.product?.selectedVariant) {
       this.changeVariant(this.product.variants[0])
     }
   },
   methods: {
     changeVariant(variant) {
       this.$emit('change', variant)
+      this.selectedVariant = variant
+      this.$cart.changeProductVariant(this.product._id, variant)
     }
   }
 }
@@ -72,6 +89,7 @@ export default {
       box-sizing: border-box;
 
       transition: 200ms;
+      cursor: pointer;
 
       &:first-child {
         margin-left: 0;

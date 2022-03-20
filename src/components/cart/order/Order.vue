@@ -68,7 +68,7 @@ export default {
         this.loading = true
         this.$orders.createOrder(tmp)
             .then(() => {
-              this.$store.commit('hideCart')
+              this.$cart.hideCart()
               this.$store.commit('clearCartProducts')
               this.$store.commit('setPhoneNumber', tmp.phone)
               // this.$metrika.reachGoal('create-order')

@@ -10,8 +10,6 @@ Vue.use(Vuex)
 
 export const state = () => ({
   isMenu: false,
-  isShowCart: false,
-  isShowLoginModal: false,
   isShowHeaderCollapse: false,
   windowScroll: false,
   windowWidth: null
@@ -29,18 +27,6 @@ export const mutations = {
   },
   hideHeaderCollapse(state) {
     state.isShowHeaderCollapse = false
-  },
-  showCart(state) {
-    state.isShowCart = true
-  },
-  hideCart(state) {
-    state.isShowCart = false
-  },
-  showLoginModal(state) {
-    state.isShowLoginModal = true
-  },
-  hideLoginModal(state) {
-    state.isShowLoginModal = false
   },
   setWindowWidth(state, width) {
     state.windowWidth = width
