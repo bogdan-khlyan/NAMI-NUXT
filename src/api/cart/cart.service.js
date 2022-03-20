@@ -1,15 +1,16 @@
 import {OrdersRepository} from "@/api/orders/orders.repository";
-import {notificationsHelper} from "@/helpers/notifications.helper";
 
 export class CartService {
 
   #store = null
   #router = null
   #repository = new OrdersRepository()
+  #notify = null
 
-  constructor(app) {
+  constructor(app, notify) {
     this.#store = app.store
     this.#router = app.router
+    this.#notify = notify
   }
 
   showCart() {
@@ -44,7 +45,7 @@ export class CartService {
     let productCount = this.#store.getters['cart.count']
     let productsCost = this.#store.getters['cart.cost']
 
-    notificationsHelper.success({
+    this.#notify.success({
       title,
       message: productCount ?
         `Всего товаров ${productCount} на сумму ${productsCost}₽` :

@@ -32,10 +32,7 @@ export default {
       return this.$store.state.windowWidth
     },
     cartProducts() {
-      return this.$store.state.orders.list.map(item => ({
-        product: item._id,
-        count: item.count
-      }))
+      return this.$store.state.cart.products
     }
   },
   data() {
@@ -48,8 +45,7 @@ export default {
         address: '',
         phone: '',
         username: '',
-        additionalInformation: '',
-        deliveryCalculateManually: false
+        additionalInformation: ''
       }
     }
   },
@@ -57,7 +53,13 @@ export default {
     createOrder: function () {
       if (this.$refs.orderChapter3.validate(true)) {
         let tmp = {
-          products: this.cartProducts,
+          products: this.cartProducts.map(product => ({
+            productId: product._id,
+            variantId: product.selectedVariant?._id,
+            number: 1
+            // ...product,
+
+          })),
           ...this.order
         }
         if (!tmp.deliveryCost && tmp.delivery) tmp.deliveryCalculateManually = true

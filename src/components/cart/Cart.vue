@@ -45,6 +45,8 @@ export default {
   },
   watch: {
     isVisibleCart() {
+      this.$baseNotify.checkOffsetRight()
+      this.$baseNotify.checkOffsetTop()
       this.$nextTick(() => {
         this.$nextTick(() => {
           this.$refs.scroll.scrollTop()
