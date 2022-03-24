@@ -1,18 +1,38 @@
 <template>
   <div class="mobile-header">
-    <img class="back"
-         src="images/arrow-circle.svg" alt=""
-         @click="hideCart">
-    <img class="logo" src="images/logo.png" alt="">
+    <arrow-circle-icon
+      class="mobile-header__arrow-icon"
+      @click.native="hideCart"/>
+    <logo-icon
+      class="mobile-header__logo-icon"
+      :width="windowWidth > 480 ? '100px' : '66px'"
+      :height="windowWidth > 480 ? '50px' : '34px'"
+      @click.native="hideCart"/>
+    <burger-icon
+      class="mobile-header__burger-icon"
+      @click.native="showHeaderCollapse"/>
   </div>
 </template>
 
 <script>
+import LogoIcon from "@/components/common/icons/LogoIcon";
+import ArrowCircleIcon from "@/components/common/icons/ArrowCircleIcon";
+import BurgerIcon from "@/components/common/icons/BurgerIcon";
+
 export default {
   name: 'mobile-header',
+  components: { LogoIcon, ArrowCircleIcon, BurgerIcon },
+  computed: {
+    windowWidth() {
+      return this.$store.state.windowWidth
+    }
+  },
   methods: {
     hideCart() {
       this.$cart.hideCart()
+    },
+    showHeaderCollapse() {
+      this.$store.commit('showHeaderCollapse')
     }
   }
 }
@@ -21,25 +41,45 @@ export default {
 <style scoped lang="scss">
 .mobile-header {
   position: fixed;
+
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+
   width: 100%;
-  height: 42px;
+  height: 60px;
 
   background: #0C334A;
   z-index: 1;
+
+  @media screen and (max-width: 480px) {
+    height: 42px;
+  }
 
   .back {
     margin-left: 20px;
   }
 
-  .logo {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
+  &__arrow-icon {
+    width: 30px;
+    height: 30px;
+    @media screen and (max-width: 480px) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__burger-icon {
+    width: 30px;
+    height: 30px;
+    @media screen and (max-width: 480px) {
+      width: 22px;
+      height: 22px;
+    }
   }
 
 }

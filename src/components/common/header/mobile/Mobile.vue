@@ -1,14 +1,19 @@
 <template>
-  <header class="header__mobile" :class="{'show': show}">
-    <div @click="$store.commit('showHeaderCollapse')" class="burger">
-      <svg width="30" height="20" viewBox="0 0 30 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect y="18" width="30" height="2" fill="#083E60"/><rect y="9" width="30" height="2" fill="#083E60"/><rect width="30" height="2" fill="#083E60"/></svg>
+  <header class="header__mobile show">
+    <div class="burger"
+         @click="$store.commit('showHeaderCollapse')">
+      <burger-icon
+        width="30px"
+        height="30px"/>
     </div>
     <div class="logo">
-      <img v-if="windowWidth > 420"
-           :src="show ? require('@/assets/images/logo/logo-for-dark.png') : require('@/assets/images/logo/logo-horiz.png')"
-           alt="">
+      <logo-icon
+        v-if="windowWidth > 420"
+        width="120px"
+        height="60px"/>
     </div>
-    <div v-if="windowWidth > 600" class="phone">
+    <div v-if="windowWidth > 600"
+         class="phone">
       <a :href="`tel:+380717009791`">
         <div class="circle">
           <img src="@/assets/images/icons/phone-black.svg" alt="">
@@ -24,22 +29,18 @@
 
 <script>
 import CartHeaderButton from "@/components/common/header/common/CartHeaderButton";
+import BurgerIcon from "@/components/common/icons/BurgerIcon";
+import LogoIcon from "@/components/common/icons/LogoIcon";
 
 export default {
-  name: 'mobile',
-  components: { CartHeaderButton },
+  name: 'cart-mobile-header',
+  components: { CartHeaderButton, BurgerIcon, LogoIcon },
   props: {
-    alwaysBg: {
-      type: Boolean,
-      default: false
-    }
+    alwaysBg: { type: Boolean, default: false }
   },
   computed: {
-    windowWidth() { return this.$store.state.windowWidth }
-  },
-  data () {
-    return {
-      show: true
+    windowWidth() {
+      return this.$store.state.windowWidth
     }
   }
 }
