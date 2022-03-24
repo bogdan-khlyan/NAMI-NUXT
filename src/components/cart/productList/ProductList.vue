@@ -66,7 +66,10 @@ export default {
   box-sizing: border-box;
 
   @media screen and (max-width: 640px) {
-    padding: 60px 20px 20px 20px;
+    padding: 80px 20px 20px 20px;
+  }
+  @media screen and (max-width: 480px) {
+    padding-top: 60px;
   }
 
   > h2 {
@@ -82,7 +85,7 @@ export default {
 
     color: #312525;
     @media screen and (max-width: 640px) {
-      font-size: 42px;
+      font-size: 32px;
       line-height: 46px;
     }
   }
@@ -93,6 +96,7 @@ export default {
 
     @media screen and (max-width: 640px) {
       padding-top: 10px;
+      min-height: calc(100vh - 280px);
     }
 
     &--empty {
@@ -103,10 +107,16 @@ export default {
       width: 100%;
       height: calc(100vh - 350px);
 
+      @media screen and (max-width: 640px) {
+        height: calc(100vh - 280px);
+      }
       > span {
         font-family: Neucha, sans-serif;
         font-weight: bold;
         font-size: 22px;
+        @media screen and (max-width: 640px) {
+          font-size: 18px;
+        }
       }
 
 
@@ -126,6 +136,13 @@ export default {
     text-align: left;
     letter-spacing: 0.05em;
     color: #000000;
+
+    @media screen and (max-width: 640px) {
+      margin-top: 20px;
+      margin-bottom: 10px;
+
+      font-size: 18px;
+    }
 
     > span {
       font-family: Neucha, sans-serif;
@@ -174,6 +191,10 @@ export default {
 
       transition: opacity 300ms;
 
+      @media screen and (max-width: 640px) {
+        height: 50px;
+      }
+
       &:hover {
         opacity: 0.8;
       }
@@ -199,6 +220,10 @@ export default {
 
       transition: opacity 300ms;
       cursor: pointer;
+
+      @media screen and (max-width: 640px) {
+        height: 50px;
+      }
 
       &.disabled {
         cursor: no-drop;

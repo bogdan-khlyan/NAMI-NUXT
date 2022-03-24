@@ -281,6 +281,10 @@ export default {
   &__content {
     position: relative;
 
+    > .select-variant {
+      margin-top: 8px;
+    }
+
     @media screen and (max-width: 700px) {
       margin-top: 20px;
       height: 200px;
