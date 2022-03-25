@@ -25,6 +25,12 @@
               <span>Акции</span>
             </router-link>
           </div>
+          <div class="header__nav--menu--item"
+               :class="{'active': $route.name === 'contacts'}">
+            <router-link to="/contacts">
+              <span>Контакты</span>
+            </router-link>
+          </div>
           <div class="header__nav--menu--item">
             <el-tooltip class="item" effect="dark" placement="top">
               <div slot="content">Временно недоступно</div>
@@ -32,12 +38,6 @@
                 <span>Отзывы</span>
               </a>
             </el-tooltip>
-          </div>
-          <div class="header__nav--menu--item"
-               :class="{'active': $route.name === 'contacts'}">
-            <router-link to="/contacts">
-              <span>Контакты</span>
-            </router-link>
           </div>
         </div>
         <div class="header__nav--phone">
