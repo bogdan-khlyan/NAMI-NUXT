@@ -1,6 +1,14 @@
 const state = () => ({
   isVisibleCart: false,
-  products: []
+  products: [],
+  form: {
+    deliveryCost: null,
+    delivery: true,
+    address: '',
+    phone: '',
+    username: '',
+    additionalInformation: ''
+  }
 })
 
 const mutations = {

@@ -5,8 +5,8 @@
       @click.native="hideCart"/>
     <logo-icon
       class="mobile-header__logo-icon"
-      :width="windowWidth > 480 ? '100px' : '66px'"
-      :height="windowWidth > 480 ? '50px' : '34px'"
+      :width="windowWidth > 480 ? '100px' : '80px'"
+      :height="windowWidth > 480 ? '50px' : '40px'"
       @click.native="hideCart"/>
     <burger-icon
       class="mobile-header__burger-icon"
@@ -57,7 +57,7 @@ export default {
   z-index: 1;
 
   @media screen and (max-width: 480px) {
-    height: 42px;
+    height: 50px;
   }
 
   .back {
@@ -68,8 +68,8 @@ export default {
     width: 30px;
     height: 30px;
     @media screen and (max-width: 480px) {
-      width: 20px;
-      height: 20px;
+      width: 26px;
+      height: 26px;
     }
   }
 
@@ -77,8 +77,8 @@ export default {
     width: 30px;
     height: 30px;
     @media screen and (max-width: 480px) {
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
     }
   }
 

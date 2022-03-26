@@ -1,21 +1,40 @@
 <template>
-  <div class="order" v-loading="loading">
+  <div class="order"
+       v-loading="loading">
+
     <button v-if="windowWidth > 640"
             class="order__btn-back"
             @click="$emit('changeMode', 'INDEX')">
       <i class="el-icon-back"></i>
     </button>
-    <delivery-method
-      v-model="order.delivery"
-      :order="order"/>
-    <order-form
-      v-model="order"
-      ref="orderChapter3" />
-    <confirm-order
-      :delivery="order.delivery"
-      :delivery-cost="order.deliveryCost"
-      @send="createOrder"/>
+
+    <div class="order__chapter order__delivery-method">
+      <chapter-label
+        label="Способ доставки"
+        :number="1"/>
+      <delivery-method
+        v-model="order.delivery"
+        :order="order"/>
+    </div>
+    <div class="order__chapter order__form">
+      <chapter-label
+        label="Данные для доставки"
+        :number="2"/>
+      <order-form
+        v-model="order"
+        ref="orderChapter3"/>
+    </div>
+    <div class="order__chapter order__confirm">
+      <confirm-order
+        :delivery="order.delivery"
+        :delivery-cost="order.deliveryCost"
+        @send="createOrder"/>
+    </div>
+
+
     <div style="height: 40px"></div>
+
+
   </div>
 </template>
 
@@ -23,10 +42,11 @@
 import DeliveryMethod from "@/components/cart/order/deliveryMethod/DeliveryMethod";
 import OrderForm from "@/components/cart/order/orderForm/OrderForm";
 import ConfirmOrder from "@/components/cart/order/confirmOrder/ConfirmOrder";
+import ChapterLabel from "@/components/cart/order/common/ChapterLabel";
 
 export default {
   name: 'cart-order',
-  components: { DeliveryMethod, OrderForm, ConfirmOrder },
+  components: { DeliveryMethod, OrderForm, ConfirmOrder, ChapterLabel },
   computed: {
     windowWidth () {
       return this.$store.state.windowWidth
@@ -98,6 +118,15 @@ export default {
   @media screen and (max-width: 640px) {
     padding: 60px 20px 20px 20px;
     //min-height: calc(100vh - 42px);
+  }
+
+  &__chapter {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 16px;
+
+    background-color: #FFFFFF;
+    border-radius: 8px;
   }
 
   > .order__btn-back {
