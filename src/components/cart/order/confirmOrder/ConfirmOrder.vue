@@ -6,12 +6,13 @@
           <div class="one">Стоимость товаров</div><div class="two">{{ cost }} ₽</div>
         </div>
         <div v-if="delivery" class="calc-cost__item">
-          <div class="one">Доставка</div><div class="two">
-          <el-tooltip v-if="!deliveryCost" class="item" effect="dark" content="Введите адрес для расчета стоимости доставки" placement="top">
-            <i class="el-icon-question"></i>
-          </el-tooltip>
-          <span v-else>{{deliveryCost}}</span>
-          ₽</div>
+          <div class="one">Доставка</div>
+          <div class="two">
+            <el-tooltip v-if="!deliveryCost" class="item" effect="dark" content="Введите адрес для расчета стоимости доставки" placement="top">
+              <i class="el-icon-question"></i>₽
+            </el-tooltip>
+            <span v-else>{{deliveryCost}}₽</span>
+          </div>
         </div>
         <i v-if="delivery && deliveryCost" class="line"></i>
         <div v-if="deliveryCost" class="calc-cost__item">
@@ -50,13 +51,7 @@ export default {
       else return Number.parseInt(((this.costAll / 10) * 9).toString())
     },
     costAll () {
-      let cost = 0
-      this.$store.state.menu.products.forEach(item => {
-        let cartItem = this.cartProducts.find(cartItem => item._id === cartItem._id)
-        if(cartItem)
-          cost += cartItem.count * item.cost
-      })
-      return cost
+      return this.$store.getters['cart.cost']
     }
   },
   data() {
@@ -74,11 +69,8 @@ export default {
 
 <style scoped lang="scss">
 .order-chapter4 {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 17px 46px 40px 46px;
-  border-radius: 8px;
-
+  padding-left: 45px;
+  padding-right: 30px;
   background-color: #FFFFFF;
 
   @media screen and (max-width: 480px) {

@@ -1,16 +1,15 @@
 <template>
   <div class="delivery-method">
-    <chapter-label label="Способ доставки" :number="1" />
     <div class="delivery-method__content">
-      <checkbox :class="{'checkbox-disabled': costAll < 500}"
+      <checkbox :class="{'checkbox-disabled': cost < 500}"
                 v-model="check"
                 :show="true"
                 :icon="require('@/assets/images/icons/delivery.svg')"
-                :disabled="costAll < 500"
+                :disabled="cost < 500"
                 @input="emit">
         <div class="label">Курьер</div>
         <div>
-          <span v-if="costAll < 500" class="delivery-disabled">Сумма заказа для доставки курьером должна составлять не менее 500 ₽</span>
+          <span v-if="cost < 500" class="delivery-disabled">Сумма заказа для доставки курьером должна составлять не менее 500 ₽</span>
           <el-tooltip v-else-if="!order.deliveryCost" class="item" effect="dark" content="Введите адрес для расчета стоимости доставки" placement="top">
             <i class="el-icon-question"></i>₽
           </el-tooltip>
@@ -28,16 +27,12 @@
 </template>
 
 <script>
-import ChapterLabel from "@/components/cart/order/common/ChapterLabel";
 import Checkbox from "@/components/cart/order/deliveryMethod/Checkbox";
 
 export default {
   name: 'delivery-method',
-  components: { ChapterLabel, Checkbox },
-  model: {
-    prop: 'data',
-    event: 'input'
-  },
+  components: { Checkbox },
+  model: { prop: 'data', event: 'input' },
   props: {
     data: { type: Boolean },
     order: { type: Object }
@@ -57,18 +52,12 @@ export default {
           return item
       })
     },
-    costAll () {
-      let cost = 0
-      this.$store.state.menu.products.forEach(item => {
-        let cartItem = this.cartProducts.find(cartItem => item._id === cartItem._id)
-        if(cartItem)
-          cost += cartItem.count * item.cost
-      })
-      return cost
+    cost() {
+      return this.$store.getters['cart.cost']
     }
   },
   mounted() {
-    if (this.costAll < 500) {
+    if (this.cost < 500) {
       this.check = false
       this.emit()
     }
@@ -83,13 +72,7 @@ export default {
 
 <style scoped lang="scss">
 .delivery-method {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  height: 140px;
-  background-color: #FFFFFF;
-  border-radius: 8px;
-
-  padding: 17px 46px;
+  padding-left: 45px;
 
   @media screen and (max-width: 480px) {
     padding-left: 20px;
