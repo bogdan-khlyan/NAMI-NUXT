@@ -184,8 +184,12 @@ export default {
 
   &.error {
     input {
+      color: #212121;
       border-color: #FFD8D8;
       background: #FFF5F5;
+      &::placeholder {
+        color: #212121;
+      }
     }
   }
 
