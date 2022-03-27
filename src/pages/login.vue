@@ -37,8 +37,7 @@
           </div>
         </transition>
 
-        <button
-                class="login__form--btn-submit">
+        <button class="login__form--btn-submit">
           <transition name="el-fade-in-linear" mode="out-in">
             <img v-if="loading"
                  src="@/assets/images/spinner.svg" alt="">
@@ -151,11 +150,17 @@ export default {
 .login {
   position: relative;
   padding-top: 130px;
-  min-height: calc(100vh - 130px);
-
 
   display: flex;
   justify-content: center;
+
+  min-height: calc(100vh - 130px);
+  @media screen and (max-width: 1250px) {
+    padding-top: 100px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 80px;
+  }
 
   > .bg {
     position: absolute;
@@ -164,6 +169,9 @@ export default {
     z-index: -1;
 
     width: 100%;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 
   &__content {
@@ -181,6 +189,10 @@ export default {
       letter-spacing: 0.01em;
 
       color: #384673;
+      @media screen and (max-width: 420px) {
+        font-size: 24px;
+        line-height: 32px;
+      }
     }
   }
 
@@ -209,8 +221,11 @@ export default {
       border: none;
 
       cursor: pointer;
-
       transition: 200ms;
+
+      @media screen and (max-width: 420px) {
+        width: calc(100vw - 20px);
+      }
 
       &:hover {
         background: #0e508a;

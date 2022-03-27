@@ -119,6 +119,9 @@ export default {
       border-radius: 4px;
 
       transition: 200ms;
+      @media screen and (max-width: 420px) {
+        width: calc(100vw - 20px);
+      }
 
       &::placeholder {
         font-family: Ubuntu, sans-serif;
