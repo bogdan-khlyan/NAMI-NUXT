@@ -86,7 +86,12 @@ export default {
     .phone-input__content {
       border-color: #FFD8D8;
       background: #FFF5F5;
-      //border: 1px solid #FFD8D8;
+      input {
+        color: #212121;
+        &::placeholder {
+          color: #212121;
+        }
+      }
     }
   }
 
@@ -190,6 +195,13 @@ export default {
 
 <style lang="scss">
 .phone-input {
+  &.error {
+    .phone-input__content--icon {
+      svg path {
+        fill: rgba(33, 33, 33, 0.5) !important;
+      }
+    }
+  }
   .phone-input__content--icon {
     svg path {
       transition: 200ms;
