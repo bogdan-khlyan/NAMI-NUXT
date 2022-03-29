@@ -66,12 +66,13 @@
             <cart-header-button class="btn"/>
           </div>
           <div class="header__nav--profile">
-            <el-tooltip class="item" effect="dark" placement="top">
-              <div slot="content">
-                К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
-              </div>
-              <button class="login" @click="$router.push('/login')">Войти</button>
-            </el-tooltip>
+            <button class="login" @click="$router.push('/login')">Войти</button>
+<!--            <el-tooltip class="item" effect="dark" placement="top">-->
+<!--              <div slot="content">-->
+<!--                К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(-->
+<!--              </div>-->
+<!--              <button class="login" @click="$router.push('/login')">Войти</button>-->
+<!--            </el-tooltip>-->
           </div>
         </template>
 
@@ -376,7 +377,8 @@ export default {
 
         color: #000000;
 
-        cursor: no-drop;
+        //cursor: no-drop;
+        cursor: pointer;
 
       }
     }

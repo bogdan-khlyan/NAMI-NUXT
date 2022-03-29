@@ -62,6 +62,7 @@ export default {
             this.$v.password.$reset()
             this.$v.confirmPassword.$reset()
             this.$router.push('/profile')
+            this.$userInstance.signIn()
             return resolve(true)
           }, 2000)
         } else {
