@@ -3,15 +3,20 @@
     <page-title
       title-icon="orders"
       title="Мои заказы"/>
+
+    <div class="orders__content">
+      <orders-table/>
+    </div>
   </div>
 </template>
 
 <script>
 import PageTitle from "@/components/pages/profilePage/common/PageTitle";
+import OrdersTable from "@/components/pages/profilePage/orders/OrdersTable";
 
 export default {
   name: 'orders',
-  components: { PageTitle }
+  components: { PageTitle, OrdersTable }
 }
 </script>
 
