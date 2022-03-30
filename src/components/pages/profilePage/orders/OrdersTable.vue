@@ -19,13 +19,19 @@
       <template slot-scope="scope">{{ new Date(scope.row.dateOrder*1000).toLocaleDateString() }}</template>
     </el-table-column>
     <el-table-column
-      prop="status"
       label="Статус"
       width="120">
+      <template slot-scope="scope">
+        <div class="orders-table__btn-order-status"
+             :class="`orders-table__btn-order-status--${scope.row.status}`">
+          {{ getStatusName(scope.row.status) }}
+        </div>
+      </template>
     </el-table-column>
     <el-table-column
       label="Сумма"
-    width="100">
+      class-name="amount-column"
+      width="120">
       <template slot-scope="scope">{{ scope.row.amount }} ₽</template>
     </el-table-column>
     <el-table-column width="140">
@@ -81,6 +87,12 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    getStatusName(type){
+      return type==='new'?'Новый': type==='completed' ? 'Завершен' : type==='processing' ?
+        'В обработке': type==='delivered'?'Доставляется': 'Отменен'
+    }
   }
 }
 </script>
@@ -118,14 +130,62 @@ export default {
       background: #D7EAFF;
     }
   }
+  &__btn-order-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
+    font-family: Manrope, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+
+    width: 106px;
+    height: 36px;
+
+    background: #FFF7EB;
+    border-radius: 50px;
+
+    &--new {
+      background: #E4F7FF;
+      color: #1F86F8;
+    }
+    &--completed {
+      background: #E9FFED;
+      color: #31AA27;
+    }
+    &--processing {
+      background: #FFF7EB;
+      color: #FF8B20;
+    }
+    &--delivered {
+      background: #E9FFED;
+      color: #31AA27;
+    }
+    &--cancelled {
+      background: #FFF0F0;
+      color: #F93232;
+    }
+  }
   .el-table {
-    .cell {
-      font-family: Ubuntu, sans-serif;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: 24px;
+    padding: 12px 24px;
+    box-shadow: 10px 10px 10px rgba(209, 222, 227, 0.05), -5px -5px 10px #FAFBFF;
+    border-radius: 4px;
+    margin-top: 16px;
+
+    &__cell {
+      padding: 15px 0;
+      div.cell {
+        font-family: Ubuntu, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 24px;
+        color: #121212;
+      }
     }
     td.number-column {
       div.cell{
@@ -138,12 +198,15 @@ export default {
         width: 24px;
         height: 24px;
         background: #062D4E;
-        margin-left: 24px;
+
         div {
           color: #FFFFFF;
           font-weight: 400;
         }
       }
+    }
+    td.amount-column > .cell{
+      font-weight: 400 !important;
     }
     td.el-table__expand-column {
 
@@ -200,7 +263,7 @@ export default {
             font-style: normal;
             font-weight: 300;
             line-height: 24px;
-            margin-right: 4px;
+            margin-right: 6px;
           }
           &:after {
             content: "\e6e0";
@@ -213,6 +276,25 @@ export default {
 
         }
       }
+    }
+
+    thead {
+      th.el-table__cell.is-leaf {
+        border-color: #062D4E;
+
+        > div.cell {
+          font-family: Manrope, sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 18px;
+          color: #7A7A7A;
+        }
+      }
+    }
+
+    tr:last-child td {
+      border: none;
     }
   }
 
