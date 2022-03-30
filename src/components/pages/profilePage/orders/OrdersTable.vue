@@ -41,51 +41,51 @@
     </el-table-column>
     <el-table-column type="expand" width="130">
       <template slot-scope="scope" style="width: max-content">
-        <div class="orders-table__details">
-          <el-table :data="scope.row.details">
-            <el-table-column width="80">
-              <template slot-scope="scope">
-                <div class="orders-table__product-photo">
-                  <img :src="scope.row.images[0]" alt="">
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="Продукты"
-              width="340px">
-              <template slot-scope="scope">
-                <div class="orders-table__product-title">
-                  {{ scope.row.title }}
-                </div>
-                <div class="orders-table__product-info">
-                     {{ scope.row.ingredients.join(', ') }} <span>({{scope.row.weight}} г)</span>
-                </div>
-              </template>
-            </el-table-column>
-            <el-table-column width="80" label="Кол-во" prop="count"
-                             class-name="product-count"/>
-            <el-table-column
-              class-name="product-amount"
-              label="Сумма">
-              <template slot-scope="scope">{{ scope.row.amount }} ₽</template>
-            </el-table-column>
-          </el-table>
-          <hr>
-          <div class="orders-table__result">
-            <div class="orders-table__result-item">
-              <div>Стоимость товаров</div>
-              <div>{{ scope.row.amountOrder }} ₽</div>
-            </div>
-            <div class="orders-table__result-item">
-              <div>Доставка</div>
-              <div>{{ scope.row.amountDelivery }} ₽</div>
-            </div>
-            <div class="orders-table__result-item">
-              <div>Итого к оплате</div>
-              <div>{{ scope.row.amountOrder + scope.row.amountDelivery }} ₽</div>
+          <div class="orders-table__details">
+            <el-table :data="scope.row.details">
+              <el-table-column width="80">
+                <template slot-scope="scope">
+                  <div class="orders-table__product-photo">
+                    <img :src="scope.row.images[0]" alt="">
+                  </div>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="Продукты"
+                width="340px">
+                <template slot-scope="scope">
+                  <div class="orders-table__product-title">
+                    {{ scope.row.title }}
+                  </div>
+                  <div class="orders-table__product-info">
+                    {{ scope.row.ingredients.join(', ') }} <span>({{scope.row.weight}} г)</span>
+                  </div>
+                </template>
+              </el-table-column>
+              <el-table-column width="80" label="Кол-во" prop="count"
+                               class-name="product-count"/>
+              <el-table-column
+                class-name="product-amount"
+                label="Сумма">
+                <template slot-scope="scope">{{ scope.row.amount }} ₽</template>
+              </el-table-column>
+            </el-table>
+            <hr>
+            <div class="orders-table__result">
+              <div class="orders-table__result-item">
+                <div>Стоимость товаров</div>
+                <div>{{ scope.row.amountOrder }} ₽</div>
+              </div>
+              <div class="orders-table__result-item">
+                <div>Доставка</div>
+                <div>{{ scope.row.amountDelivery }} ₽</div>
+              </div>
+              <div class="orders-table__result-item">
+                <div>Итого к оплате</div>
+                <div>{{ scope.row.amountOrder + scope.row.amountDelivery }} ₽</div>
+              </div>
             </div>
           </div>
-        </div>
       </template>
     </el-table-column>
   </el-table>
@@ -139,14 +139,6 @@ export default {
               count:2,
               amount: 360
             },
-            {
-              title: 'Маки суши с лососем',
-              images: ['/api/product/image/6d171267-da32-4480-ae7c-92e7d7b0e0e4.png'],
-              ingredients: ['Рис', 'лист нори', 'соус', 'лосось'],
-              weight: 125,
-              count:1,
-              amount: 360
-            }
           ]
         },
         {
@@ -443,6 +435,19 @@ export default {
   &__details {
     margin-left: 60px;
     width: max-content;
+    overflow: hidden;
+
+    animation-name: expanded;
+    animation-duration: 1s;
+
+    @keyframes expanded {
+      0%{
+        max-height: 0;
+      }
+      100% {
+        max-height: 1000px;
+      }
+    }
 
     .el-table {
 
