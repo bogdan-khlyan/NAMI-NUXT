@@ -7,12 +7,16 @@
         v-model="selectedCategory"/>
     </div>
 
-    <transition name="el-fade-in-linear">
-      <div v-if="!refresh" class="menu__products">
-        <product-list
-          :category="selectedCategory"/>
-      </div>
-    </transition>
+    <keep-alive>
+      <transition
+        v-if="!refresh"
+        name="el-fade-in-linear">
+        <div class="menu__products">
+          <product-list
+            :category="selectedCategory"/>
+        </div>
+      </transition>
+    </keep-alive>
 
   </div>
 </template>
@@ -23,7 +27,7 @@ import Categories from "@/components/pages/indexPage/menu/categoties/Categories"
 
 export default {
   name: 'app-menu',
-  components: { ProductList, Categories },
+  components: {ProductList, Categories},
   computed: {
     scrollTo() {
       return this.$route.query.scrollTo
@@ -118,6 +122,7 @@ export default {
     max-width: 85vw;
   }
 }
+
 .menu .el-tabs__item {
   font-family: Neucha, sans-serif;
   font-style: normal;
@@ -130,11 +135,11 @@ export default {
   color: #988D8D;
 
   &.is-active {
-    color: #312525!important;
+    color: #312525 !important;
   }
 
   &:hover {
-    color: #312525!important;
+    color: #312525 !important;
   }
 
 }
@@ -163,13 +168,14 @@ export default {
   font-weight: 900;
   color: #000000;
 }
+
 .menu .el-tabs__nav-prev {
   width: 40px;
 }
 
 .el-tabs__nav-wrap {
   &.is-scrollable {
-    padding: 0 40px!important;
+    padding: 0 40px !important;
   }
 }
 </style>
