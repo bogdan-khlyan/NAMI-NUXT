@@ -454,7 +454,6 @@ export default {
         vertical-align: top;
         padding: 8px 0 !important;
         border-bottom: none !important;
-
       }
       td.product-amount {
         .cell {
@@ -475,6 +474,7 @@ export default {
         display: none;
       }
     }
+
     hr{
       height: 1px;
       margin-top: 8px;
@@ -484,7 +484,6 @@ export default {
       border: none;
     }
   }
-
   &__result {
     font-family: Ubuntu, sans-serif;
     font-size: 14px;
@@ -533,6 +532,7 @@ export default {
     img {
       width: 48px;
       height: 48px;
+      object-fit: contain;
     }
   }
   &__product-title {
