@@ -37,6 +37,10 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
 
+  margin: 0 auto;
+
+  max-width: 1500px;
+
   &__empty {
     display: flex;
     justify-content: center;
