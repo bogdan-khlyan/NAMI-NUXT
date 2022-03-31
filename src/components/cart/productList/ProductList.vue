@@ -7,7 +7,10 @@
         :product="product"/>
       <div v-if="cartProducts.length === 0"
            class="product-list__products--empty">
-        <span>Вы ещё не выбрали ни одного продукта</span>
+        <div class="content">
+          <img src="@/assets/images/dino.gif" alt="">
+          <span>Вы ещё не выбрали ни одного продукта</span>
+        </div>
       </div>
     </div>
     <div class="product-list__cost">
@@ -87,6 +90,14 @@ export default {
     @media screen and (max-width: 640px) {
       font-size: 32px;
       line-height: 46px;
+
+      &:after {
+        right: -30px;
+      }
+
+      &:before {
+        left: -30px;
+      }
     }
 
     &:after, &:before {
@@ -100,14 +111,24 @@ export default {
 
       background: #312525;
       border-radius: 50%;
+      @media screen and (max-width: 640px) {
+        width: 6px;
+        height: 6px;
+      }
     }
 
     &:after {
       right: -50px;
+      @media screen and (max-width: 640px) {
+        right: -30px;
+      }
     }
 
     &:before {
       left: -50px;
+      @media screen and (max-width: 640px) {
+        left: -30px
+      }
     }
 
   }
@@ -132,12 +153,34 @@ export default {
       @media screen and (max-width: 640px) {
         height: calc(100vh - 280px);
       }
-      > span {
+      .content {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      img {
+        display: block;
+        width: 300px;
+        object-fit: contain;
+        @media screen and (max-height: 700px) {
+          width: 260px;
+        }
+        @media screen and (max-height: 600px) {
+          display: none;
+        }
+      }
+      span {
+        display: block;
+        width: 100%;
         font-family: Neucha, sans-serif;
         font-weight: bold;
         font-size: 22px;
         @media screen and (max-width: 640px) {
           font-size: 18px;
+        }
+
+        @media screen and (max-height: 800px) {
+          margin-top: -30px;
         }
       }
 
