@@ -28,6 +28,7 @@ export default {
 <style lang="scss" scoped>
 .profile-info {
   height: 100%;
+  min-height: 600px;
 
   &__avatar {
     margin-top: 20px;

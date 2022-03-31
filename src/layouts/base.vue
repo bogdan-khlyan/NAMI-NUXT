@@ -13,9 +13,9 @@
         <app-footer/>
 
         <transition name="el-fade-in-linear" mode="out-in">
-          <bg-waves-icon
-            v-if="weaveBg"
-            class="bg-waves"/>
+          <img v-if="weaveBg"
+               class="bg-waves"
+               src="@/assets/images/bg-waves.svg" alt="">
         </transition>
       </div>
     </div>
@@ -31,11 +31,10 @@ import AppFooter from "@/components/common/footer/AppFooter";
 import Cart from "@/components/cart/Cart";
 import HeaderCollapse from "@/components/common/header/mobile/HeaderCollapse";
 import BodyLoading from "@/components/common/bodyLoading/BodyLoading";
-import BgWavesIcon from "@/components/common/icons/BgWavesIcon";
 
 export default {
   name: 'base-layout',
-  components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderCollapse, BgWavesIcon },
+  components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderCollapse },
   computed: {
     route() {
       return this.$route.name
@@ -51,7 +50,7 @@ export default {
       return false
     },
     weaveBg() {
-      const routes = ['profile', 'profile-address', 'profile-orders']
+      const routes = ['profile', 'profile-address', 'profile-orders', 'product-id']
       return routes.indexOf(this.route) !== -1
     },
     windowWidth() {
@@ -119,7 +118,7 @@ export default {
     .bg-waves {
       position: absolute;
       left: 0;
-      bottom: 110px;
+      bottom: 100px;
       z-index: -1;
 
       width: 100vw;
