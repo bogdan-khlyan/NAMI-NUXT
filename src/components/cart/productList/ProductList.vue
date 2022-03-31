@@ -73,21 +73,43 @@ export default {
   }
 
   > h2 {
-    margin: 0;
+    position: relative;
+    margin: 0 auto;
+    width: max-content;
 
     font-family: Neucha, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 60px;
     line-height: 66px;
-
     text-transform: uppercase;
-
     color: #312525;
     @media screen and (max-width: 640px) {
       font-size: 32px;
       line-height: 46px;
     }
+
+    &:after, &:before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      margin: auto;
+
+      width: 10px;
+      height: 10px;
+
+      background: #312525;
+      border-radius: 50%;
+    }
+
+    &:after {
+      right: -50px;
+    }
+
+    &:before {
+      left: -50px;
+    }
+
   }
 
   &__products {
