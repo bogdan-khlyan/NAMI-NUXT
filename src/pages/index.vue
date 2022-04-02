@@ -13,6 +13,19 @@ export default {
   name: 'IndexPage',
   components: { Banner, AppMenu },
   layout: 'base',
+  // created() {
+    // console.log(this.$route)
+  // },
+  // watch: {
+  //   '$route'(val) {
+  //     console.log(val)
+  //   }
+  // },
+  // computed: {
+  //   route() {
+  //     return this.$route
+  //   }
+  // },
   beforeDestroy() {
     this.$store.commit('setIsMenu', false)
   }

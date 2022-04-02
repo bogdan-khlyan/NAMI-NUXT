@@ -28,6 +28,9 @@ export default {
     }
   },
   watch: {
+    value(value) {
+      this.selectedCategory = value
+    },
     categories() {
       this.selectDefault()
     }

@@ -108,11 +108,13 @@ export default {
     clickLogo: function () {
       if (this.$route.name !== 'index') {
         this.$router.push('/')
-      } else if (this.isMenu) {
-        this.$scrollTo('#banner', 800, { offset: -70 })
-      } else {
-        this.$scrollTo('#menu', 500, { offset: -70 })
+        return
       }
+      if (this.isMenu) {
+        this.$scrollTo('#banner', 800, { offset: -70 })
+        return
+      }
+      this.$scrollTo('#menu', 500, { offset: -70 })
     },
     clickMenu: function () {
       if (this.$route.name !== 'index') {
@@ -123,7 +125,8 @@ export default {
           setTimeout(() =>
               this.$scrollTo('#menu', 0, { offset: -70 }), 300)
         }
-      } else {
+      } else if (!this.$route.query.product) {
+        console.log('$$$')
         this.$scrollTo('#menu', 500, { offset: -70 })
       }
     }

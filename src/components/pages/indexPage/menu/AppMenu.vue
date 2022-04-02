@@ -29,9 +29,15 @@ export default {
   name: 'app-menu',
   components: {ProductList, Categories},
   computed: {
-    scrollTo() {
-      return this.$route.query.scrollTo
+    queryProduct() {
+      return this.$route.query.product
     },
+    categories() {
+      return this.$store.state.menu.categories
+    },
+    // products() {
+    //   return this.$store.state.menu.products
+    // }
   },
   data() {
     return {
@@ -43,8 +49,34 @@ export default {
     selectedCategoryId() {
       this.refresh = true
       this.$nextTick(() => this.refresh = false)
+    },
+    categories() {
+      this.init()
     }
   },
+  mounted() {
+    this.init()
+  },
+  methods: {
+    init() {
+      if (this.queryProduct) {
+        console.log(this.queryProduct)
+        console.log(this.categories)
+
+        const category = this.categories.find(item => item.productIds.indexOf(this.queryProduct) !== -1)
+        console.log(category)
+
+        this.$nextTick(() => {
+          this.selectedCategory = category
+          // setTimeout(() => this.$scrollTo(`#product-card-${this.queryProduct}`), 500)
+          this.$nextTick(() => this.$scrollTo(`#product-card-${this.queryProduct}`, { offset: -100 }))
+        })
+
+      }
+    }
+  }
+  // mounted() {
+  // }
   // mounted() {
     // if (this.scrollTo) {
       // this.selectedCategory = this.$route.query.categoryId

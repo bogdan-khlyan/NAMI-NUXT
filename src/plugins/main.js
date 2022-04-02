@@ -12,4 +12,15 @@ export default ({ app }) => {
     scroll(0, 0)
   })
 
+  app.router.beforeEach((to, from, next) => {
+    if (to.name === 'index' && from.name === 'product-id' && !to.query.product) {
+      next({
+        path: '/',
+        query: { product: from.params.id }
+      })
+      return
+    }
+    next()
+  })
+
 }
