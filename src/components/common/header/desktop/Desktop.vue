@@ -105,7 +105,7 @@ export default {
     }
   },
   methods: {
-    clickLogo: function () {
+    clickLogo() {
       if (this.$route.name !== 'index') {
         this.$router.push('/')
         return
@@ -116,17 +116,17 @@ export default {
       }
       this.$scrollTo('#menu', 500, { offset: -70 })
     },
-    clickMenu: function () {
+    async clickMenu() {
       if (this.$route.name !== 'index') {
         if (this.$route.name === 'product') {
-          this.$router.push('/')
+          await this.$router.push('/')
         } else {
-          this.$router.push('/')
-          setTimeout(() =>
-              this.$scrollTo('#menu', 0, { offset: -70 }), 300)
+          await this.$router.push('/')
+          if (!this.$route.query.product) {
+            this.$scrollTo('#menu', 0, {offset: -70})
+          }
         }
-      } else if (!this.$route.query.product) {
-        console.log('$$$')
+      } else {
         this.$scrollTo('#menu', 500, { offset: -70 })
       }
     }

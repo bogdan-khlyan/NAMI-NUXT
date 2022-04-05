@@ -34,10 +34,7 @@ export default {
     },
     categories() {
       return this.$store.state.menu.categories
-    },
-    // products() {
-    //   return this.$store.state.menu.products
-    // }
+    }
   },
   data() {
     return {
@@ -60,32 +57,17 @@ export default {
   methods: {
     init() {
       if (this.queryProduct) {
-        console.log(this.queryProduct)
-        console.log(this.categories)
-
-        const category = this.categories.find(item => item.productIds.indexOf(this.queryProduct) !== -1)
-        console.log(category)
-
+        const category = this.categories
+          .find(item => item.productIds.indexOf(this.queryProduct) !== -1)
         this.$nextTick(() => {
           this.selectedCategory = category
-          // setTimeout(() => this.$scrollTo(`#product-card-${this.queryProduct}`), 500)
           this.$nextTick(() => this.$scrollTo(`#product-card-${this.queryProduct}`, { offset: -100 }))
+          this.$router.push({ query: { product: undefined } })
         })
 
       }
     }
   }
-  // mounted() {
-  // }
-  // mounted() {
-    // if (this.scrollTo) {
-      // this.selectedCategory = this.$route.query.categoryId
-      // this.$nextTick(() => {
-      //   this.$scrollTo(`#product-card-${this.scrollTo}`, 300, { offset: -100 })
-      //   this.$router.push({ query: null })
-      // })
-    // }
-  // }
 }
 </script>
 
