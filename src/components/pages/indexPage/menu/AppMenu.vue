@@ -62,7 +62,9 @@ export default {
         this.$nextTick(() => {
           this.selectedCategory = category
           this.$nextTick(() => this.$scrollTo(`#product-card-${this.queryProduct}`, { offset: -100 }))
-          this.$router.push({ query: { product: undefined } })
+          setTimeout(() => {
+            this.$router.push({ query: { product: undefined } })
+          }, 300)
         })
 
       }
