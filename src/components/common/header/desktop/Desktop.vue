@@ -122,9 +122,11 @@ export default {
           await this.$router.push('/')
         } else {
           await this.$router.push('/')
-          if (!this.$route.query.product) {
-            this.$scrollTo('#menu', 0, {offset: -70})
-          }
+          setTimeout(() => {
+            if (!this.$route.query.product) {
+              this.$scrollTo('#menu', 200, {offset: -70})
+            }
+          }, 300)
         }
       } else {
         this.$scrollTo('#menu', 500, { offset: -70 })

@@ -14,10 +14,8 @@ export default ({ app }) => {
 
   app.router.beforeEach((to, from, next) => {
     if (to.name === 'index' && from.name === 'product-id' && !to.query.product) {
-      next({
-        path: '/',
-        query: { product: from.params.id }
-      })
+      to.query.product = from.params.id
+      next(to)
     }
     next()
   })
