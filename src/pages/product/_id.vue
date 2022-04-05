@@ -69,11 +69,11 @@ export default {
         .find(item => item._id === this.productId)
     },
     productId() {
-      return this.$route.params.id
+      return this.product._id
     },
     product() {
       return this.$store.state.menu.products
-        .find(product => product._id === this.productId)
+        .find(product => product.$id === this.$route.params.id)
     },
     count() {
       if (this.cartProduct) {
