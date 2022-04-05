@@ -10,7 +10,7 @@
       </el-table-column>
       <el-table-column
         label="Продукты"
-        width="340px">
+        width="370px">
         <template slot-scope="scope">
           <div class="order-table-details__product-title">
             {{ scope.row.title }}
@@ -62,7 +62,7 @@ export default {
 <style lang="scss">
 .order-table-details {
 
-  padding-left: 100px;
+  padding-left: 70px;
   padding-bottom: 34px;
 
   transition: 0.2s;
@@ -111,8 +111,8 @@ export default {
 
   hr {
     height: 1px;
-    margin-top: 8px;
-    margin-bottom: 16px;
+    max-width: 575px;
+    margin: 8px auto 16px 0;
     background: #E8E8E8;
     border-radius: 2px;
     border: none;
@@ -127,7 +127,7 @@ export default {
     text-align: right;
     color: #121212;
 
-    max-width: 570px;
+    max-width: 575px;
     &-item {
       display: flex;
       justify-content: flex-end;
