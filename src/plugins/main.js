@@ -18,7 +18,6 @@ export default ({ app }) => {
         path: '/',
         query: { product: from.params.id }
       })
-      return
     }
     next()
   })
