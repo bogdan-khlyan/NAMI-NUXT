@@ -13,8 +13,10 @@ export default ({ app }) => {
   })
 
   app.router.beforeEach((to, from, next) => {
-    if (to.name === 'index' && from.name === 'product-id' && !to.query.product) {
-      to.query.product = from.params.id
+    if (to.name === 'index' && from.name === 'product-id' && !to.meta.product) {
+      const product = app.store.state.menu.products
+        .find(item => item.$id === from.params.id)
+      to.meta.product = product._id
       next(to)
     }
     next()

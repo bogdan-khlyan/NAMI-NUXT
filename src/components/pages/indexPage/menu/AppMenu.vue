@@ -29,8 +29,8 @@ export default {
   name: 'app-menu',
   components: {ProductList, Categories},
   computed: {
-    queryProduct() {
-      return this.$route.query.product
+    metaProduct() {
+      return this.$route.meta?.product
     },
     categories() {
       return this.$store.state.menu.categories
@@ -56,15 +56,12 @@ export default {
   },
   methods: {
     init() {
-      if (this.queryProduct) {
+      if (this.metaProduct) {
         const category = this.categories
-          .find(item => item.productIds.indexOf(this.queryProduct) !== -1)
+          .find(item => item.productIds.indexOf(this.metaProduct) !== -1)
         this.$nextTick(() => {
           this.selectedCategory = category
-          this.$nextTick(() => this.$scrollTo(`#product-card-${this.queryProduct}`, { offset: -100 }))
-          setTimeout(() => {
-            this.$router.push({ query: { product: undefined } })
-          }, 300)
+          this.$nextTick(() => this.$scrollTo(`#product-card-${this.metaProduct}`, { offset: -100 }))
         })
 
       }
