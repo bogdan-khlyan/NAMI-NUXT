@@ -12,10 +12,17 @@ export const state = () => ({
   isMenu: false,
   isShowHeaderCollapse: false,
   windowScroll: false,
-  windowWidth: null
+  windowWidth: null,
+
+  scrollToProduct: null
 })
 
 export const mutations = {
+  'app.setScrollToProduct' (state, data) {
+    state.scrollToProduct = data
+  },
+
+
   setIsMenu (state, data) {
     state.isMenu = data
   },

@@ -30,7 +30,7 @@ export default {
   components: {ProductList, Categories},
   computed: {
     metaProduct() {
-      return this.$route.meta?.product
+      return this.$store.state.scrollToProduct
     },
     categories() {
       return this.$store.state.menu.categories
@@ -58,12 +58,14 @@ export default {
     init() {
       if (this.metaProduct) {
         const category = this.categories
-          .find(item => item.productIds.indexOf(this.metaProduct) !== -1)
+          .find(item => item.productIds.find(id => id === this.metaProduct))
         this.$nextTick(() => {
           this.selectedCategory = category
           this.$nextTick(() => this.$scrollTo(`#product-card-${this.metaProduct}`, { offset: -100 }))
         })
-
+        setTimeout(() => {
+          this.$store.commit('app.setScrollToProduct', null)
+        }, 300)
       }
     }
   }

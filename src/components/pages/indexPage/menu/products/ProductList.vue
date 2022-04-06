@@ -23,7 +23,8 @@ export default {
     products () {
       if (this.category) {
         const ids = this.category.productIds
-        return this.$store.state.menu.products.filter(item => ids.indexOf(item._id) !== -1)
+        return this.$store.state.menu.products
+          .filter(item => ids.indexOf(item._id) !== -1)
       }
       return []
     }

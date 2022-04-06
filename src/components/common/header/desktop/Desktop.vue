@@ -123,7 +123,7 @@ export default {
         } else {
           await this.$router.push('/')
           setTimeout(() => {
-            if (!this.$route.meta?.product) {
+            if (!this.$store.state.scrollToProduct) {
               this.$scrollTo('#menu', 200, {offset: -70})
             }
           }, 300)

@@ -13,11 +13,10 @@ export default ({ app }) => {
   })
 
   app.router.beforeEach((to, from, next) => {
-    if (to.name === 'index' && from.name === 'product-id' && !to.meta.product) {
+    if (to.name === 'index' && from.name === 'product-id') {
       const product = app.store.state.menu.products
         .find(item => item.$id === from.params.id)
-      to.meta.product = product._id
-      next(to)
+      app.store.commit('app.setScrollToProduct', product._id)
     }
     next()
   })
