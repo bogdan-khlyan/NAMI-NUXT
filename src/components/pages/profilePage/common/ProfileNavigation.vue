@@ -6,7 +6,7 @@
         :src="require('@/assets/images/icons/icon-orders.svg')"/>
       <span>Мои заказы</span>
     </nuxt-link>
-    <nuxt-link to="/profile/address"
+    <nuxt-link to="/profile/addresses"
                class="profile-navigation__item">
       <base-svg
         :src="require('@/assets/images/icons/icon-home.svg')"/>
