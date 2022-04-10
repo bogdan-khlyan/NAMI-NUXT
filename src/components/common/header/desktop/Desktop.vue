@@ -94,7 +94,7 @@ export default {
   components: { CartHeaderButton, BaseUserAvatar, CircleButton },
   computed: {
     enabledRegister() {
-      return true
+      return false
     },
     isLoggedIn () {
       console.log(this.$store.state.userInstance)
