@@ -66,7 +66,9 @@
             <cart-header-button class="btn"/>
           </div>
           <div class="header__nav--profile">
-            <button v-if="enabledRegister" class="login" @click="$router.push('/login')">Войти</button>
+            <button v-if="enabledRegister"
+                    class="login"
+                    @click="$router.push('/login')">Войти</button>
             <el-tooltip v-else class="item" effect="dark" placement="top">
               <div slot="content">
                 К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
@@ -92,7 +94,7 @@ export default {
   components: { CartHeaderButton, BaseUserAvatar, CircleButton },
   computed: {
     enabledRegister() {
-      return !process.env.DISABLED_REGISTER
+      return true
     },
     isLoggedIn () {
       console.log(this.$store.state.userInstance)
