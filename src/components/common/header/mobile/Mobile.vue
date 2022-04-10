@@ -63,6 +63,10 @@ export default {
   padding-left: 30px;
   padding-right: 30px;
 
+  .burger {
+    cursor: pointer;
+  }
+
   &.show {
     border-bottom: none;
 
