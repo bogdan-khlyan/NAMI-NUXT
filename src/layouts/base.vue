@@ -21,7 +21,7 @@
     </div>
 
     <cart/>
-    <header-collapse/>
+    <header-drawer/>
   </div>
 </template>
 
@@ -29,12 +29,12 @@
 import AppHeader from "@/components/common/header/AppHeader";
 import AppFooter from "@/components/common/footer/AppFooter";
 import Cart from "@/components/cart/Cart";
-import HeaderCollapse from "@/components/common/header/mobile/HeaderCollapse";
+import HeaderDrawer from "@/components/common/header/mobile/HeaderDrawer";
 import BodyLoading from "@/components/common/bodyLoading/BodyLoading";
 
 export default {
   name: 'base-layout',
-  components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderCollapse },
+  components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderDrawer },
   computed: {
     route() {
       return this.$route.name
