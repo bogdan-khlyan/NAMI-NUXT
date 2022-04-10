@@ -59,12 +59,12 @@ export default {
 
   &.error {
     input {
-      color: #9a9a9a;
+      color: #212121;
       border-color: #FFD8D8;
       background: #FFF5F5;
 
       &::placeholder {
-        color: #9a9a9a;
+        color: #212121;
       }
     }
   }
@@ -119,6 +119,9 @@ export default {
       border-radius: 4px;
 
       transition: 200ms;
+      @media screen and (max-width: 420px) {
+        width: calc(100vw - 20px);
+      }
 
       &::placeholder {
         font-family: Ubuntu, sans-serif;
@@ -161,8 +164,10 @@ export default {
     }
   }
   &.error {
-    svg path {
-      fill: #9a9a9a!important;
+    .password-input__input {
+      svg path {
+        fill: rgba(33, 33, 33, 0.5) !important;
+      }
     }
   }
 }

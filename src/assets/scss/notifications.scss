@@ -1,36 +1,102 @@
-.base-success-notification {
+.base-notify {
+  position: fixed;
+  top: 0;
+  right: 20px;
+
   padding: 10px;
+  box-sizing: border-box;
+
+  display: flex;
 
   width: 300px;
-  height: 70px;
+  min-height: 68px;
+  height: max-content;
   background-color: #F0F9EB;
 
-  h2 {
-    font-family: Ubuntu, sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0.01em;
-    color: #2C2C2C;
+  border-radius: 2px;
+
+  z-index: 5000;
+
+  transform: translateX(300px);
+  transition: 300ms;
+
+  &__icon {
+    height: max-content;
   }
 
-  .el-notification__content {
-    margin: 0;
-    > p {
+  &__content {
+    margin-left: 12px;
+    height: max-content;
+    > h3 {
+      margin: 0;
       font-family: Ubuntu, sans-serif;
       font-style: normal;
-      font-weight: 300;
+      font-weight: 500;
       font-size: 14px;
       line-height: 24px;
       letter-spacing: 0.01em;
+      text-align: left;
+      color: #2C2C2C;
+    }
+
+    > p {
+      display: block;
+      margin: 0;
+
+      font-family: Ubuntu, sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      text-align: left;
       color: #2C2C2C;
     }
   }
 
-  .el-notification__closeBtn {
-    top: 10px;
-    right: 10px;
-  }
 
 }
+
+//.base-success-notification {
+//  padding: 10px;
+//
+//  width: 300px;
+//  min-height: 70px;
+//  background-color: #F0F9EB;
+//
+//  @media screen and (max-width: 340px) {
+//    width: calc(100vw - 32px);
+//  }
+//
+//  h2 {
+//    font-family: Ubuntu, sans-serif;
+//    font-style: normal;
+//    font-weight: 500;
+//    font-size: 14px;
+//    line-height: 24px;
+//    letter-spacing: 0.01em;
+//    text-align: left;
+//    color: #2C2C2C;
+//  }
+//
+//  .el-notification__content {
+//    margin: 0;
+//    > p {
+//      font-family: Ubuntu, sans-serif;
+//      font-style: normal;
+//      font-weight: 300;
+//      font-size: 14px;
+//      line-height: 24px;
+//      letter-spacing: 0.01em;
+//      text-align: left;
+//      color: #2C2C2C;
+//    }
+//  }
+//
+//  .el-notification__closeBtn {
+//    top: 10px;
+//    right: 10px;
+//  }
+//
+//}
+//

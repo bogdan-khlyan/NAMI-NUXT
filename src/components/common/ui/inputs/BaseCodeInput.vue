@@ -113,7 +113,6 @@ export default {
       width: 56px;
       height: 56px;
 
-
       font-family: Ubuntu, sans-serif;
       font-style: normal;
       font-weight: 300;
@@ -128,6 +127,11 @@ export default {
       border-radius: 4px;
 
       transition: 200ms;
+
+      @media screen and (max-width: 420px) {
+        width: calc((100vw / 6) - 10px);
+        height: calc((100vw / 6) - 10px);
+      }
 
       &:focus {
         border-color: #7695CC;
@@ -153,6 +157,9 @@ export default {
     height: 40px;
 
     cursor: pointer;
+    @media screen and (max-width: 768px) {
+      margin-top: 10px;
+    }
 
     &.disabled {
       cursor: no-drop;
@@ -184,8 +191,12 @@ export default {
 
   &.error {
     input {
+      color: #212121;
       border-color: #FFD8D8;
       background: #FFF5F5;
+      &::placeholder {
+        color: #212121;
+      }
     }
   }
 

@@ -5,7 +5,8 @@
     </transition>
     <div class="base-layout">
       <app-header/>
-      <div class="base-layout__content">
+      <div class="base-layout__content"
+           :class="{'base-bg': baseBg}">
         <transition name="el-fade-in-linear" mode="out-in">
           <nuxt/>
         </transition>
@@ -20,7 +21,7 @@
     </div>
 
     <cart/>
-    <header-collapse/>
+    <header-drawer/>
   </div>
 </template>
 
@@ -28,19 +29,32 @@
 import AppHeader from "@/components/common/header/AppHeader";
 import AppFooter from "@/components/common/footer/AppFooter";
 import Cart from "@/components/cart/Cart";
-import HeaderCollapse from "@/components/common/header/mobile/HeaderCollapse";
+import HeaderDrawer from "@/components/common/header/mobile/HeaderDrawer";
 import BodyLoading from "@/components/common/bodyLoading/BodyLoading";
 
 export default {
   name: 'base-layout',
-  components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderCollapse },
+  components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderDrawer },
   computed: {
     route() {
       return this.$route.name
     },
+    baseBg () {
+      if (this.route === 'index') {
+        return true
+      }
+      if (this.windowWidth > 1200) {
+        const routes = ['delivery', 'stocks', 'contacts']
+        return routes.indexOf(this.route) !== -1
+      }
+      return false
+    },
     weaveBg() {
-      const routes = ['profile', 'profilePage-address', 'profilePage-orders']
+      const routes = ['profile', 'profile-address', 'profile-orders', 'product-id']
       return routes.indexOf(this.route) !== -1
+    },
+    windowWidth() {
+      return this.$store.state.windowWidth
     }
   },
   data() {
@@ -90,18 +104,21 @@ export default {
 
     width: 100%;
     min-height: 100vh;
-    //background-image: url('@/assets/images/menu-bg.png');
-    //background-size: 100% auto;
 
     overflow-y: hidden;
     overflow-x: hidden;
 
     @media screen and (max-width: 1400px) { background-image: none; }
 
+    &.base-bg {
+      background-image: url('@/assets/images/menu-bg.png');
+      background-size: 100% auto;
+    }
+
     .bg-waves {
       position: absolute;
       left: 0;
-      bottom: 150px;
+      bottom: 100px;
       z-index: -1;
 
       width: 100vw;

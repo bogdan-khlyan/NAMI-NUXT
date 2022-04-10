@@ -84,6 +84,7 @@ export default {
 
 <style lang="scss" scoped>
 .settings-form {
+  width: max-content;
 
   h2 {
     margin-top: 32px;

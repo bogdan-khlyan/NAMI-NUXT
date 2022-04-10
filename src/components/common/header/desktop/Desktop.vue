@@ -25,6 +25,12 @@
               <span>Акции</span>
             </router-link>
           </div>
+          <div class="header__nav--menu--item"
+               :class="{'active': $route.name === 'contacts'}">
+            <router-link to="/contacts">
+              <span>Контакты</span>
+            </router-link>
+          </div>
           <div class="header__nav--menu--item">
             <el-tooltip class="item" effect="dark" placement="top">
               <div slot="content">Временно недоступно</div>
@@ -32,12 +38,6 @@
                 <span>Отзывы</span>
               </a>
             </el-tooltip>
-          </div>
-          <div class="header__nav--menu--item"
-               :class="{'active': $route.name === 'contacts'}">
-            <router-link to="/contacts">
-              <span>Контакты</span>
-            </router-link>
           </div>
         </div>
         <div class="header__nav--phone">
@@ -66,11 +66,15 @@
             <cart-header-button class="btn"/>
           </div>
           <div class="header__nav--profile">
-            <el-tooltip class="item" effect="dark" placement="top">
+            <button v-if="enabledRegister"
+                    class="login"
+                    @click="$router.push('/login')">Войти</button>
+            <el-tooltip v-else class="item" effect="dark" placement="top">
               <div slot="content">
                 К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
               </div>
-              <button class="login" @click="$router.push('/login')">Войти</button>
+              <button class="login"
+                      style="cursor: no-drop">Войти</button>
             </el-tooltip>
           </div>
         </template>
@@ -89,6 +93,9 @@ export default {
   name: 'desktop',
   components: { CartHeaderButton, BaseUserAvatar, CircleButton },
   computed: {
+    enabledRegister() {
+      return true
+    },
     isLoggedIn () {
       console.log(this.$store.state.userInstance)
       return this.$store.state.userInstance.isLoggedIn
@@ -104,23 +111,28 @@ export default {
     }
   },
   methods: {
-    clickLogo: function () {
+    clickLogo() {
       if (this.$route.name !== 'index') {
         this.$router.push('/')
-      } else if (this.isMenu) {
-        this.$scrollTo('#banner', 800, { offset: -70 })
-      } else {
-        this.$scrollTo('#menu', 500, { offset: -70 })
+        return
       }
+      if (this.isMenu) {
+        this.$scrollTo('#banner', 800, { offset: -70 })
+        return
+      }
+      this.$scrollTo('#menu', 500, { offset: -70 })
     },
-    clickMenu: function () {
+    async clickMenu() {
       if (this.$route.name !== 'index') {
         if (this.$route.name === 'product') {
-          this.$router.push('/')
+          await this.$router.push('/')
         } else {
-          this.$router.push('/')
-          setTimeout(() =>
-              this.$scrollTo('#menu', 0, { offset: -70 }), 300)
+          await this.$router.push('/')
+          setTimeout(() => {
+            if (!this.$store.state.scrollToProduct) {
+              this.$scrollTo('#menu', 200, {offset: -70})
+            }
+          }, 300)
         }
       } else {
         this.$scrollTo('#menu', 500, { offset: -70 })
@@ -376,7 +388,8 @@ export default {
 
         color: #000000;
 
-        cursor: no-drop;
+        //cursor: no-drop;
+        cursor: pointer;
 
       }
     }

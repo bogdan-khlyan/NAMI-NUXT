@@ -49,6 +49,9 @@ export default {
     }
   },
   computed: {
+    windowWidth() {
+      return this.$store.state.windowWidth
+    }
     // isDone() {
     //   return this.number && this.number.length === 9
     // }
@@ -86,7 +89,12 @@ export default {
     .phone-input__content {
       border-color: #FFD8D8;
       background: #FFF5F5;
-      //border: 1px solid #FFD8D8;
+      input {
+        color: #212121;
+        &::placeholder {
+          color: #212121;
+        }
+      }
     }
   }
 
@@ -105,6 +113,10 @@ export default {
     border-radius: 4px;
 
     transition: 200ms;
+
+    @media screen and (max-width: 420px) {
+      width: calc(100vw - 20px);
+    }
 
     &:hover {
       border-color: #7695CC;
@@ -133,6 +145,13 @@ export default {
       color: #053468;
       letter-spacing: 0.1em;
 
+      @media screen and (max-width: 420px) {
+        font-size: 14px;
+        padding-left: 12px;
+        padding-right: 8px;
+        min-width: max-content;
+      }
+
       &:after {
         content: '';
         display: block;
@@ -154,6 +173,9 @@ export default {
       position: relative;
       padding-left: 12px;
       width: 240px;
+      @media screen and (max-width: 420px) {
+        width: 100%;
+      }
 
       > input {
         padding: 0;
@@ -169,6 +191,9 @@ export default {
         letter-spacing: 0.7em;
 
         background: transparent;
+        @media screen and (max-width: 420px) {
+          font-size: 14px;
+        }
 
         &::placeholder {
           font-family: Ubuntu, sans-serif;
@@ -178,6 +203,9 @@ export default {
           line-height: 24px;
           color: #D4D9E6;
           letter-spacing: 0.7em;
+          @media screen and (max-width: 420px) {
+            font-size: 14px;
+          }
         }
 
       }
@@ -190,6 +218,13 @@ export default {
 
 <style lang="scss">
 .phone-input {
+  &.error {
+    .phone-input__content--icon {
+      svg path {
+        fill: rgba(33, 33, 33, 0.5) !important;
+      }
+    }
+  }
   .phone-input__content--icon {
     svg path {
       transition: 200ms;

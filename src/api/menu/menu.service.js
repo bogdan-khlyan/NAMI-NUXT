@@ -18,7 +18,10 @@ export class MenuService {
       ...menu,
       products: menu.products.map(product => ({
         ...product,
-        images: product.images.map(image => '/image/product/' + image)
+        $id: product.title
+          .toLowerCase()
+          .replaceAll(' ', '-'),
+        images: product.images.map(image => '/api/product/image/' + image)
       }))
     }
 

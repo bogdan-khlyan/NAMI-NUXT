@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ProductCard from "@/components/pages/indexPage/menu/products/productCard/ProductCard";
+import ProductCard from "@/components/pages/indexPage/menu/products/ProductCard";
 
 export default {
   name: 'product-list',
@@ -23,7 +23,8 @@ export default {
     products () {
       if (this.category) {
         const ids = this.category.productIds
-        return this.$store.state.menu.products.filter(item => ids.indexOf(item._id) !== -1)
+        return this.$store.state.menu.products
+          .filter(item => ids.indexOf(item._id) !== -1)
       }
       return []
     }
@@ -36,6 +37,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  margin: 0 auto;
+
+  max-width: 1500px;
 
   &__empty {
     display: flex;

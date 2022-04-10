@@ -5,17 +5,22 @@ export class OrdersService {
 
   #store = null
   #router = null
+  #notify = null
   #repository = new OrdersRepository()
 
-  constructor(app) {
+  constructor(app, notify) {
     this.#store = app.store
     this.#router = app.router
+    this.#notify = notify
   }
 
   async createOrder(requestData) {
     try {
       const data = await this.#repository.createOrder(requestData)
-      Notification.success({title: 'Успех', message: 'Заказ успешно отправлен. Ожидайте звонка оператора'})
+      this.#notify.success({
+        title: 'Заказ создан',
+        message: 'Заказ успешно отправлен. Ожидайте звонка оператора'
+      })
       return data
     } catch (error) {
       console.log(error)
@@ -27,4 +32,4 @@ export class OrdersService {
 
 }
 
-export default null
+export default {}

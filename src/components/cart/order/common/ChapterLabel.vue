@@ -17,20 +17,19 @@ export default {
 
 <style scoped lang="scss">
 .chapter-label {
-  position: relative;
   display: flex;
+  align-items: center;
 
   > label {
-    padding-left: 30px;
+    padding-left: 14px;
     display: block;
 
-    font-family: Neucha, sans-serif;
+    font-family: Ubuntu, sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 300;
     font-size: 22px;
-    line-height: 24px;
-
-    color: #000000;
+    line-height: 25px;
+    color: #191919;
 
     @media screen and (max-width: 480px) {
       font-size: 18px;
@@ -39,10 +38,6 @@ export default {
   }
 
   > .num {
-    position: absolute;
-    top: -7px;
-    left: -25px;
-
     display: flex;
     justify-content: center;
     align-items: center;

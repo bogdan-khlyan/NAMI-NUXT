@@ -1,7 +1,7 @@
 <template>
   <div class="product"
        :class="count > 0 ? 'product_active' : ''"
-       @click="$router.push(`/product/${product._id}`)">
+       @click="$router.push(`/product/${product.$id}`)">
     <div class="product__slider">
       <img :src="product.images[0]" alt="">
     </div>
@@ -17,18 +17,25 @@
           <span class="description">{{ product.ingredients.join(', ') }}</span>
         </div>
       </div>
-      <variant-product-content
+      <select-variant
         v-else
-        v-model="selectedVariant"
-        :product="product"/>
+        label="Выберите начинку"
+        :product="product"
+        @change="changeVariant"/>
     </div>
     <div class="product__footer">
       <div class="price">
         <span>{{ cost }}₽</span>
       </div>
       <div @click="stopPropagation" class="btn">
-        <button v-if="count < 1" @click="toCard" class="product__btn-to-cart">В корзину</button>
-        <plus-minus class="plus-minus-btn" v-else :id="product._id"/>
+        <button
+          v-if="count < 1"
+          class="product__btn-to-cart"
+          @click="toCard">В корзину</button>
+        <plus-minus
+          v-else
+          class="plus-minus-btn"
+          :product-id="product._id"/>
       </div>
     </div>
   </div>
@@ -36,11 +43,11 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
-import VariantProductContent from "@/components/pages/indexPage/menu/products/productCard/variant/SelectVariant";
+import SelectVariant from "@/components/common/SelectVariant";
 
 export default {
   name: 'home',
-  components: { PlusMinus, VariantProductContent },
+  components: { PlusMinus, SelectVariant },
   props: {
     product: {type: Object}
   },
@@ -56,7 +63,11 @@ export default {
     cost() {
       if (this.product.type === 'SINGLE') {
         return this.product.cost
-      } else if (this.selectedVariant) {
+      }
+      if (this.cartProduct?.selectedVariant) {
+        return this.cartProduct.selectedVariant.cost
+      }
+      if (this.selectedVariant) {
         return this.selectedVariant.cost
       }
       return 0
@@ -81,9 +92,13 @@ export default {
         return this.product.description
       }
     },
+    cartProduct() {
+      return this.$store.state.cart.products
+        .find(item => item._id === this.product._id)
+    },
     count() {
-      if (this.$store.state.orders.list.find(item => item._id === this.product._id)) {
-        return this.$store.state.orders.list.find(item => item._id === this.product._id).count
+      if (this.cartProduct) {
+        return this.cartProduct.count
       } else {
         return 0
       }
@@ -95,11 +110,18 @@ export default {
     }
   },
   methods: {
-    toCard: function () {
-      // this.$metrika.reachGoal('add-product-to-card')
-      this.$store.commit('pushProductToCart', this.product._id)
+    changeVariant(variant) {
+      this.selectedVariant = variant
     },
-    stopPropagation: function ($event) {
+    toCard() {
+      // this.$metrika.reachGoal('add-product-to-card')
+      // this.$store.commit('pushProductToCart', this.product._id)
+      this.$cart.addProduct({
+        ...this.product,
+        selectedVariant: this.selectedVariant
+      })
+    },
+    stopPropagation($event) {
       $event.stopPropagation()
     }
   }
@@ -258,6 +280,10 @@ export default {
 
   &__content {
     position: relative;
+
+    > .select-variant {
+      margin-top: 8px;
+    }
 
     @media screen and (max-width: 700px) {
       margin-top: 20px;

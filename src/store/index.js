@@ -4,19 +4,25 @@ import Vuex from "vuex";
 import orders from "@/api/orders/orders.store";
 import userInstance from "@/api/userInstance/user-instance.store";
 import menu from "@/api/menu/menu.store";
+import cart from "@/api/cart/cart.store";
 
 Vue.use(Vuex)
 
 export const state = () => ({
   isMenu: false,
-  isShowCart: false,
-  isShowLoginModal: false,
   isShowHeaderCollapse: false,
   windowScroll: false,
-  windowWidth: null
+  windowWidth: null,
+
+  scrollToProduct: null
 })
 
 export const mutations = {
+  'app.setScrollToProduct' (state, data) {
+    state.scrollToProduct = data
+  },
+
+
   setIsMenu (state, data) {
     state.isMenu = data
   },
@@ -29,21 +35,9 @@ export const mutations = {
   hideHeaderCollapse(state) {
     state.isShowHeaderCollapse = false
   },
-  showCart(state) {
-    state.isShowCart = true
-  },
-  hideCart(state) {
-    state.isShowCart = false
-  },
-  showLoginModal(state) {
-    state.isShowLoginModal = true
-  },
-  hideLoginModal(state) {
-    state.isShowLoginModal = false
-  },
   setWindowWidth(state, width) {
     state.windowWidth = width
   }
 }
 
-export const modules = { orders, userInstance, menu }
+export const modules = { orders, userInstance, menu, cart }

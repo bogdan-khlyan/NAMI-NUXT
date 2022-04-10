@@ -8,15 +8,20 @@
       <div class="product__info">
         <product-ingredients
           :product="product"/>
-        <div class="product__info--descr">{{product.description}}</div>
+        <div v-if="product.type === 'SINGLE'"
+             class="product__info--descr">{{product.description}}</div>
+        <select-variant
+          :product="product"
+          @change="changeVariant"/>
         <div class="product__info--cost">
-          <span>{{product.cost}} ₽ - {{product.weight}} г</span>
+          <span>{{cost}} ₽ - {{weight}} г</span>
         </div>
         <div class="product__info--actions">
           <button v-if="count === 0"
             @click="toCard">Добавить в коризну</button>
-          <plus-minus v-else
-            :id="productId"/>
+          <plus-minus
+            v-else
+            :product-id="productId"/>
         </div>
       </div>
     </div>
@@ -27,28 +32,67 @@
 import ProductMedia from "@/components/pages/productPage/ProductMedia";
 import ProductIngredients from "@/components/pages/productPage/ProductIngredients";
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
+import SelectVariant from "@/components/common/SelectVariant";
 
 export default {
   name: 'product',
-  components: { PlusMinus, ProductMedia, ProductIngredients },
+  components: { PlusMinus, ProductMedia, ProductIngredients, SelectVariant },
   layout: 'base',
+  data() {
+    return {
+      selectedVariant: null
+    }
+  },
   computed: {
+    weight() {
+      if (this.product.type === 'SINGLE') {
+        return this.product.weight
+      } else if (this.selectedVariant) {
+        return this.selectedVariant.weight
+      }
+      return 0
+    },
+    cost() {
+      if (this.product.type === 'SINGLE') {
+        return this.product.cost
+      }
+      if (this.cartProduct?.selectedVariant) {
+        return this.cartProduct.selectedVariant.cost
+      }
+      if (this.selectedVariant) {
+        return this.selectedVariant.cost
+      }
+      return 0
+    },
+    cartProduct() {
+      return this.$store.state.cart.products
+        .find(item => item._id === this.productId)
+    },
     productId() {
-      return this.$route.params.id
+      return this.product._id
     },
     product() {
       return this.$store.state.menu.products
-        .find(product => product._id === this.productId)
+        .find(product => product.$id === this.$route.params.id)
     },
     count() {
-      const orderProduct = this.$store.state.orders.list
-        .find(item => item._id === this.productId)
-      return orderProduct ? orderProduct.count : 0
+      if (this.cartProduct) {
+        return this.cartProduct.count
+      } else {
+        return 0
+      }
     }
   },
   methods: {
+    changeVariant(variant) {
+      this.selectedVariant = variant
+    },
     toCard: function () {
-      this.$store.commit('pushProductToCart', this.productId)
+      // this.$store.commit('pushProductToCart', this.productId)
+      this.$cart.addProduct({
+        ...this.product,
+        selectedVariant: this.selectedVariant
+      })
     }
   }
 }
@@ -82,9 +126,13 @@ export default {
     }
   }
 
+  &__media {
+    padding-right: 20px;
+  }
 
   &__info {
     padding-top: 30px;
+    min-width: 300px;
     text-align: left;
 
     @media screen and (max-width: 768px) {

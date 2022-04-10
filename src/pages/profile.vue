@@ -41,7 +41,7 @@ export default {
   margin: 0 auto;
 
   &__nav {
-    max-width: 250px;
+    width: 250px;
 
     &--links {
       margin-top: 24px;
@@ -51,6 +51,7 @@ export default {
 
   &__content {
     padding-left: 100px;
+    flex: 1;
   }
 
 }

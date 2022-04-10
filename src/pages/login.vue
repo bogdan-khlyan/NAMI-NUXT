@@ -18,7 +18,10 @@
 
         <transition name="el-fade-in-linear">
           <div v-if="isShowCodeInput" class="login__form--code">
-            <register-or-repeat-password-form/>
+            <register-or-repeat-password-form
+              :loading="loading"
+              :phone="phone"
+              ref="registerForm"/>
           </div>
         </transition>
 
@@ -34,8 +37,7 @@
           </div>
         </transition>
 
-        <button
-                class="login__form--btn-submit">
+        <button class="login__form--btn-submit">
           <transition name="el-fade-in-linear" mode="out-in">
             <img v-if="loading"
                  src="@/assets/images/spinner.svg" alt="">
@@ -46,6 +48,9 @@
       </form>
 
     </div>
+
+    <img class="bg"
+         src="@/assets/images/bg-waves.svg" alt="">
   </div>
 </template>
 
@@ -53,9 +58,9 @@
 import { required, maxLength, minLength } from "vuelidate/lib/validators";
 import { validationMixin } from "vuelidate";
 
-import phoneInput from "@/components/pages/loginPage/PhoneInput";
+import phoneInput from "@/components/common/ui/inputs/BasePhoneInput";
 import RegisterOrRepeatPasswordForm from "@/components/pages/loginPage/RegisterOrRepeatPasswordForm";
-import PasswordInput from "@/components/pages/loginPage/PasswordInput";
+import PasswordInput from "@/components/common/ui/inputs/BasePasswordInput";
 import BaseSvg from "@/components/common/BaseSvg";
 
 export default {
@@ -97,6 +102,11 @@ export default {
       if (this.type === 'auth-password') {
         this.auth()
       }
+      if (this.type === 'register') {
+        this.loading = true
+        this.$refs.registerForm.submit()
+          .finally(() => this.loading = false)
+      }
     },
     auth() {
       this.$v.password.$touch()
@@ -113,8 +123,8 @@ export default {
       if (!this.$v.phone.$error) {
         this.loading = true
         setTimeout(() => { // TODO запрос на бэк, если номер уже был зареган, просим пароль
-          this.type = 'auth-password'
-          // this.type = 'register' // если номера еще не было, отсылаем смс с кодом
+          // this.type = 'auth-password'
+          this.type = 'register' // если номера еще не было, отсылаем смс с кодом
 
           this.loading = false
         }, 3000)
@@ -138,15 +148,35 @@ export default {
 
 <style lang="scss" scoped>
 .login {
+  position: relative;
   padding-top: 130px;
-  min-height: calc(100vh - 130px);
-
 
   display: flex;
   justify-content: center;
 
+  min-height: calc(100vh - 130px);
+  @media screen and (max-width: 1250px) {
+    padding-top: 100px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 80px;
+  }
+
+  > .bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+
+    width: 100%;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
   &__content {
     max-width: 500px;
+    padding-bottom: 50px;
 
     > h1 {
       font-family: Neucha, sans-serif;
@@ -159,6 +189,10 @@ export default {
       letter-spacing: 0.01em;
 
       color: #384673;
+      @media screen and (max-width: 420px) {
+        font-size: 24px;
+        line-height: 32px;
+      }
     }
   }
 
@@ -187,8 +221,11 @@ export default {
       border: none;
 
       cursor: pointer;
-
       transition: 200ms;
+
+      @media screen and (max-width: 420px) {
+        width: calc(100vw - 20px);
+      }
 
       &:hover {
         background: #0e508a;
