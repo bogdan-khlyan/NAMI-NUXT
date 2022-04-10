@@ -12,6 +12,22 @@
           <close-icon/>
         </button>
       </div>
+
+      <nuxt-link v-if="isLoggedIn"
+                 to="/profile"
+                 class="header-drawer__profile"
+                 @click.native="close">
+        <div class="header-drawer__profile--avatar">
+          <base-user-avatar avatar="asfasf#%35afas" :size="42"/>
+        </div>
+        <div class="header-drawer__profile--info">
+          <span class="name">Ксения Уткина</span>
+          <span class="phone">+38 071 123 45 67</span>
+        </div>
+      </nuxt-link>
+
+      <hr v-if="isLoggedIn">
+
       <nav class="header-drawer__menu">
         <nuxt-link to="/"
                    @click.native="close">
@@ -53,7 +69,10 @@
       <hr>
 
       <div class="header-drawer__footer">
-        <button class="header-drawer__footer--btn-login">Войти</button>
+        <button v-if="isLoggedIn"
+                class="header-drawer__footer--btn-logout">Выйти</button>
+        <button v-else
+                class="header-drawer__footer--btn-login">Войти</button>
       </div>
     </div>
 
@@ -67,10 +86,11 @@ import DeliveryIcon from "@/components/common/icons/DeliveryIcon";
 import StockIcon from "@/components/common/icons/StockIcon";
 import ReviewsIcon from "@/components/common/icons/ReviewsIcon";
 import EmailIcon from "@/components/common/icons/EmailIcon";
+import BaseUserAvatar from "@/components/common/BaseUserAvatar";
 
 export default {
   name: 'header-collapse',
-  components: { CloseIcon, MenuIcon, DeliveryIcon, StockIcon, ReviewsIcon, EmailIcon },
+  components: { CloseIcon, MenuIcon, DeliveryIcon, StockIcon, ReviewsIcon, EmailIcon, BaseUserAvatar },
   computed: {
     isShowHeaderCollapse() {
       return this.$store.state.isShowHeaderCollapse
@@ -99,7 +119,8 @@ export default {
   },
   data() {
     return {
-      visible: false
+      visible: false,
+      isLoggedIn: false
     }
   },
   methods: {
@@ -125,7 +146,7 @@ export default {
   box-sizing: border-box;
 
   width: 280px;
-  height: 360px;
+  //min-height: 360px;
 
   background: #062D4E;
   border-radius: 0px 16px 16px 0px;
@@ -138,6 +159,36 @@ export default {
   &__header {
     width: 100%;
     text-align: right;
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    &--info {
+      padding-left: 16px;
+      text-align: left;
+      .name {
+        display: block;
+        font-family: Ubuntu, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 24px;
+        color: #FFFFFF;
+      }
+      .phone {
+        display: block;
+        font-family: Ubuntu, sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 16px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+
   }
 
   &__menu {
@@ -201,12 +252,30 @@ export default {
       border-radius: 100px;
       border: none;
     }
+    &--btn-logout {
+      width: 160px;
+      height: 48px;
+
+      font-family: Ubuntu, sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 24px;
+      color: #FFFFFF;
+
+      background: #1F4260;
+      border-radius: 100px;
+      border: none;
+
+      cursor: pointer;
+    }
   }
 
   &__close-btn {
     margin-right: -10px;
     background-color: transparent;
     border: none;
+    cursor: pointer;
   }
 
   hr {
