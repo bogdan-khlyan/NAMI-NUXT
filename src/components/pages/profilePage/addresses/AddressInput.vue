@@ -9,17 +9,18 @@
   <div class="address-input__input-wrapper">
     <div class="address-input__switch-city">
       <transition name="fade" :duration="60" mode="out-in">
-        <span :key="myAddress.city">{{myAddress.city}}</span>
+        <span :key="addressInfo.city">{{addressInfo.city}}</span>
       </transition>
       <img @click="changeCity"
            class="icon-change"
-           :class="{'icon-change--transform': myAddress.city === typeCity[1]}"
+           :class="{'icon-change--transform': addressInfo.city === typeCity[1]}"
            src="@/assets/images/myAddress/icon-exchange.svg"
            alt="change">
     </div>
     <input required
            type="text"
-           :value="myAddress.street"
+           minlength="10"
+           :value="addressInfo.street"
            placeholder="Название улицы, № дома, № квартиры">
 
     <img class="icon-delete" src="@/assets/images/myAddress/icon-delete.svg" alt="delete">
@@ -32,7 +33,7 @@
 export default {
   name: "AddressInput",
   props:{
-    myAddress: Object,
+    addressInfo: Object,
     number: Number
   },
   data(){
@@ -41,14 +42,14 @@ export default {
     }
   },
   created() {
-    if(!this.myAddress.city)
-    this.myAddress.city = this.typeCity[0]
+    if(!this.addressInfo.city)
+    this.addressInfo.city = this.typeCity[0]
   },
   methods:{
     changeCity(){
-      this.myAddress.city === 'г. Донецк' ?
-        this.myAddress.city = this.typeCity[1] :
-        this.myAddress.city = this.typeCity[0]
+      this.addressInfo.city === 'г. Донецк' ?
+        this.addressInfo.city = this.typeCity[1] :
+        this.addressInfo.city = this.typeCity[0]
     }
   }
 
