@@ -2,7 +2,7 @@
 <label class="address-input__wrapper">
 
   <div class="address-input__label">
-    <div class="address-input__number">{{ number }}</div>
+    <div class="address-input__number">{{ number + 1 }}</div>
     <div class="address-input__title">Адрес доставки</div>
   </div>
 
@@ -23,7 +23,10 @@
            :value="addressInfo.street"
            placeholder="Название улицы, № дома, № квартиры">
 
-    <img class="icon-delete" src="@/assets/images/myAddress/icon-delete.svg" alt="delete">
+    <img class="icon-delete"
+         @click="$emit('deleteAddress',number)"
+         src="@/assets/images/myAddress/icon-delete.svg"
+         alt="delete">
   </div>
 
 </label>
