@@ -2,7 +2,7 @@
   <div class="address-info">
 
     <div class="address-info__label">
-      <div class="address-info__number">{{ number }}</div>
+      <div class="address-info__number">{{ number + 1}}</div>
       <div class="address-info__title">Адрес доставки</div>
     </div>
 
