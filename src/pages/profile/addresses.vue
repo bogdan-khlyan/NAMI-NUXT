@@ -4,25 +4,29 @@
       title-icon="home"
       title="Мои адреса"/>
 
-    <div>
 
-      <component v-for="(address,i) in myAddresses" :key="i"
-                  :is="typeMode(address)"
-                 :number="i+1" :address-info="address"
-                 @editAddress="editableAddresses.push($event)"/>
-
-    </div>
+    <transition appear name="fade" mode="out-in">
+      <address-empty v-if="myAddresses.length === 0"/>
+      <div v-else class="address-items">
+        <component v-for="(address,i) in myAddresses" :key="i"
+                   :is="typeMode(address)"
+                   :number="i" :address-info="address"
+                   @deleteAddress="deleteAddress"
+                   @editAddress="editableAddresses.push($event)"/>
+      </div>
+    </transition>
 
     <button class="address__btn-add-address" @click="addNewAddress">
       <img src="@/assets/images/icons/icon-plus.svg" alt="add">
       Добавить новый адрес
     </button>
 
-    <button v-if="isEditMode" class="address__btn-save-address" @click="addNewAddress">
-      <img src="@/assets/images/icons/icon-plus.svg" alt="add">
-      Сохранить адреса
-    </button>
-
+    <transition appear name="fade">
+      <button v-if="isEditMode" class="address__btn-save-address" @click="saveForm">
+        <img src="@/assets/images/icons/icon-plus.svg" alt="add">
+        Сохранить адреса
+      </button>
+    </transition>
 
   </div>
 </template>
@@ -31,49 +35,57 @@
 import PageTitle from "@/components/pages/profilePage/common/PageTitle";
 import AddressInput from "@/components/pages/profilePage/addresses/AddressInput";
 import AddressInfo from "@/components/pages/profilePage/addresses/AddressInfo";
+import AddressEmpty from "@/components/pages/profilePage/addresses/AddressEmpty";
 
 export default {
   name: 'addresses',
-  components: {PageTitle, AddressInput, AddressInfo},
+  components: {
+    PageTitle,
+    AddressInput,
+    AddressInfo,
+    AddressEmpty
+  },
   data() {
     return {
       myAddresses: [
         {
           id: 0,
-          city: '',
+          city: 'г. Донецк',
           street: 'ул. Заперевальная, д.283, кв.3'
         },
         {
           id: 1,
-          city: '',
+          city: 'г. Макеевка',
           street: 'ул.Шахтерской Дивизии, д.39'
         },
-        {
-          id: 2,
-          city: '',
-          street: ''
-        },
       ],
-      editableAddresses: []
+      editableAddresses: [],
+      deletedAddresses: []
     }
   },
-  computed:{
-    isEditMode(){
+  computed: {
+    isEditMode() {
       return this.editableAddresses.length > 0 ||
-        this.myAddresses.filter(address => address.id === undefined).length>0
+        this.myAddresses.filter(address => address.id === undefined).length > 0
     }
   },
   methods: {
-
-    typeMode(address){
-      return this.editableAddresses.includes(address.id) || !address.hasOwnProperty('id') ?'address-input':'address-info'
+    typeMode(address) {
+      return this.editableAddresses.includes(address.id) ||
+      !address.hasOwnProperty('id') ? 'address-input' : 'address-info'
     },
     saveForm() {
-      alert('save')
+      this.editableAddresses = []
+      this.deletedAddresses = []
     },
     addNewAddress() {
-      alert('addNewAddress')
-      this.myAddresses.push({city:'',street:''})
+      this.myAddresses.push({city: '', street: ''})
+    },
+    deleteAddress(index) {
+      if (this.myAddresses[index].id !== undefined)
+        this.deletedAddresses.push(this.myAddresses[index].id)
+
+      this.myAddresses.splice(index, 1)
     }
   }
 }
@@ -82,6 +94,7 @@ export default {
 <style lang="scss" scoped>
 .address {
   max-width: 500px;
+  margin-bottom: 60px;
 
   .page-title {
     margin-bottom: 18px;
