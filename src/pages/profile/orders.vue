@@ -21,4 +21,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.orders {
+  margin-left: auto;
+  .orders-table {
+    margin-top: 16px;
+  }
+}
 </style>

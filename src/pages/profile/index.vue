@@ -29,6 +29,7 @@ export default {
 .profile-info {
   height: 100%;
   min-height: 600px;
+  padding-left: 70px;
 
   &__avatar {
     margin-top: 20px;

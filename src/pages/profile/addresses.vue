@@ -94,7 +94,10 @@ export default {
 <style lang="scss" scoped>
 .address {
   max-width: 500px;
+  width: 100%;
+
   margin-bottom: 60px;
+  padding-left: 70px;
 
   .page-title {
     margin-bottom: 18px;

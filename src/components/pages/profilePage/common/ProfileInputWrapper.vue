@@ -75,9 +75,6 @@ export default {
   }
 
   &__preview {
-    position: absolute;
-    top: 0;
-    left: 0;
     &--value {
       position: relative;
 
