@@ -8,11 +8,9 @@
         <profile-navigation/>
       </div>
     </div>
-    <div class="profile-page-wrapper__content">
       <transition name="el-fade-in-linear" mode="out-in">
         <nuxt-child/>
       </transition>
-    </div>
   </div>
 </template>
 
@@ -41,7 +39,8 @@ export default {
   margin: 0 auto;
 
   &__nav {
-    width: 250px;
+    width: 280px;
+    min-width: 280px;
 
     &--links {
       margin-top: 24px;
