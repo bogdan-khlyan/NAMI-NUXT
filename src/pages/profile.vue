@@ -48,10 +48,9 @@ export default {
     }
   }
 
-  &__content {
-    padding-left: 100px;
-    flex: 1;
+  @media screen and (max-width: 1140px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
-
 }
 </style>
