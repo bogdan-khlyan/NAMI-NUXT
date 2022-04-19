@@ -122,6 +122,7 @@ export default {
       z-index: -1;
 
       width: 100vw;
+      max-width: 100%;
 
       object-fit: contain;
     }
