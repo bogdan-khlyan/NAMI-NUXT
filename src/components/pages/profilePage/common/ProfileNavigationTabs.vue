@@ -1,56 +1,146 @@
 <template>
-  <el-tabs class="profile-navigation-tabs" v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="Личные данные" name="profile"/>
-    <el-tab-pane label="Мои заказы" name="profile-orders"/>
-    <el-tab-pane label="Мои адреса" name="profile-addresses"/>
-  </el-tabs>
+
+  <nav class="profile-navigation-tabs">
+    <nuxt-link to="/profile"
+               class="profile-navigation-tabs__item"
+               @click.native="handleClick">
+      <span>Личные данные</span>
+    </nuxt-link>
+    <nuxt-link to="/profile/orders"
+               class="profile-navigation-tabs__item"
+               @click.native="handleClick">
+      <span>Мои заказы</span>
+    </nuxt-link>
+    <nuxt-link to="/profile/addresses"
+               class="profile-navigation-tabs__item"
+               @click.native="handleClick">
+      <span>Мои адреса</span>
+    </nuxt-link>
+    <div ref="tabPanel" class="profile-navigation-tabs__tab-panel"/>
+  </nav>
 </template>
 
 <script>
+
 export default {
   name: "ProfileNavigationTabs",
   data() {
     return {
-      activeName: 'profile'
-    };
+      resizeObserver: null,
+    }
   },
-  created() {
-    this.activeName = this.$route.name
-    console.log('ProfileNavigationTabs')
+  mounted() {
+    this.resizeObserver = new ResizeObserver(() => {
+      const el = document.querySelector('.profile-navigation-tabs__item.nuxt-link-exact-active')
+
+      this.$refs.tabPanel.style.transition = 'all 0s'
+      this.updateTabPanel(el)
+      this.$refs.tabPanel.style.transition = '0.3s'
+    })
+
+    this.resizeObserver.observe(document.querySelector('.profile-navigation-tabs'))
   },
   methods: {
-    handleClick() {
-      this.$router.push(`/${this.activeName.replace('-','/')}`)
+    handleClick(event) {
+      this.updateTabPanel(event.path[0])
+    },
+    updateTabPanel(event) {
+      this.$refs.tabPanel.style.left = `${event.offsetLeft - 12}px`
+      this.$refs.tabPanel.style.width = `${event.offsetWidth + 24}px`
     }
+  },
+  beforeDestroy() {
+    this.resizeObserver.disconnect();
   }
 }
 </script>
 
 <style lang="scss">
 .profile-navigation-tabs {
-  .el-tabs__item {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+
+  margin-bottom: 40px;
+  transition: 0.2s;
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 1px;
+    bottom: -5px;
+    background: #E4E4E4;
+    border-radius: 2px;
+  }
+
+  &__tab-panel {
+    position: absolute;
+    content: '';
+    width: 80px;
+    height: 3px;
+    left: 24px;
+    bottom: -6px;
+    background: #062D4E;
+    border-radius: 4px;
+    transition: 0.3s;
+  }
+
+  &__item {
     font-family: Ubuntu, sans-serif;
     font-size: 16px;
     font-weight: 300;
-    line-height: 40px;
-    text-align: left;
+    line-height: 24px;
+    text-align: center;
+    text-decoration: none;
     color: #757575;
-    transition: 0.1s;
-    padding: 0 45px;
-  }
-  .el-tabs__item.is-active {
-    font-weight: 400;
-    color: #062D4E;
-  }
-  .el-tabs__active-bar {
-    background-color: #062D4E;
-    z-index: 1;
+    transition: 0.2s;
+
+    &:nth-child(1) {
+      margin-left: 24px;
+    }
+
+    &:nth-child(2) {
+      margin: 0 90px;
+    }
+    &:nth-child(3) {
+      margin-right: 24px;
+    }
+    &.nuxt-link-exact-active {
+      color: #062D4E;
+      font-weight: 400;
+    }
   }
 
-  @media screen and (max-width: 530px) {
-    .el-tabs__item {
+    @media screen and (max-width: 575px) {
+    &__item:nth-child(2) {
+      margin: 0 auto;
+    }
+  }
+  @media screen and (max-width: 460px) {
+    &__item{
       font-size: 14px;
-      padding: 0 30px;
+      line-height: 20px;
+      &:nth-child(1){
+        margin-left: 8px;
+      }
+      &:nth-child(3){
+        margin-right: 5px;
+      }
+    }
+  }
+  @media screen and (max-width: 370px) {
+    &__item{
+      font-size: 13px;
+      line-height: 16px;
+    }
+    &__tab-panel {
+      height: 2px;
+    }
+  }
+  @media screen and (max-width: 330px) {
+    &__item{
+      font-size: 12px;
     }
   }
 }
