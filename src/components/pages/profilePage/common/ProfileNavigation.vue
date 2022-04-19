@@ -25,8 +25,11 @@
 import BaseSvg from "@/components/common/BaseSvg";
 
 export default {
-  name: 'page-title',
-  components: { BaseSvg }
+  name: 'profile-navigation',
+  components: { BaseSvg },
+  mounted() {
+    console.log('profile-navigation')
+  }
 }
 </script>
 

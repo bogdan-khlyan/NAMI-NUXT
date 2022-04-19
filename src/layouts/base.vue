@@ -71,15 +71,15 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.resize)
-    window.removeEventListener('resize', this.scroll)
+    window.removeEventListener('scroll', this.scroll)
   },
   methods: {
     loadingDone() {
       this.loading = false
     },
     resize() {
-      this.$store.commit('setWindowWidth', document.documentElement.clientWidth)
-    },
+    this.$store.commit('setWindowWidth', document.documentElement.clientWidth)
+  },
     scroll: function () {
       this.$store.commit('setWindowScroll', pageYOffset) // TODO deprecated pageYOffset
     }
