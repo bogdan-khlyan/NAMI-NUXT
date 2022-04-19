@@ -35,5 +35,8 @@ export default {
     margin-top: 20px;
   }
 
+  @media screen and (max-width: 980px) {
+    padding-left: 0;
+  }
 }
 </style>

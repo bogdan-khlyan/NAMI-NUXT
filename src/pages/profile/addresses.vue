@@ -176,5 +176,9 @@ export default {
       color: #FFFFFF;
     }
   }
+
+  @media screen and (max-width: 980px) {
+    padding-left: 0;
+  }
 }
 </style>

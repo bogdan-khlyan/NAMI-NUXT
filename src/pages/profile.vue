@@ -5,10 +5,11 @@
       <div class="profile-page-wrapper__nav--account-info">
         <account-info/>
       </div>
-      <div v-if="windowWidth > 980" class="profile-page-wrapper__nav--links">
+      <!-- TODO v-if-else -->
+      <div class="profile-page-wrapper__nav--links">
         <profile-navigation/>
       </div>
-      <profile-navigation-tabs v-else/>
+      <profile-navigation-tabs/>
     </div>
 
       <transition name="el-fade-in-linear" mode="out-in">
@@ -39,12 +40,13 @@ export default {
   position: relative;
   display: flex;
 
-  padding-top: 200px;
+  padding-top: 180px;
   box-sizing: border-box;
 
   max-width: 1140px;
   min-height: 100vh;
 
+  transition: 0.2s;
   margin: 0 auto;
 
   &__nav {
@@ -56,17 +58,26 @@ export default {
       border-left: 1px solid #E4E4E4;
     }
 
+    .profile-navigation-tabs {
+      display: none;
+    }
     @media screen and (max-width: 980px) {
       width: 100%;
+      .profile-navigation-tabs {
+        display: block;
+      }
+      &--links {
+        display: none;
+      }
     }
   }
 
   @media screen and (max-width: 1140px) {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding: 150px 24px 0 24px
   }
 
   @media screen and (max-width: 980px) {
+    padding-top: 100px;
     display: block;
   }
 }
