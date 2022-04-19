@@ -167,6 +167,7 @@ export default {
   box-sizing: border-box;
 
   width: 100vw;
+  max-width: 100%;
   height: 120px;
 
   transition: all 300ms ease-in-out;
