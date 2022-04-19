@@ -64,7 +64,7 @@ export default {
     @media screen and (max-width: 980px) {
       width: 100%;
       .profile-navigation-tabs {
-        display: block;
+        display: flex;
       }
       &--links {
         display: none;
@@ -79,6 +79,10 @@ export default {
   @media screen and (max-width: 980px) {
     padding-top: 100px;
     display: block;
+  }
+
+  @media screen and (max-width: 460px) {
+    padding: 100px 16px 0 16px
   }
 }
 </style>
