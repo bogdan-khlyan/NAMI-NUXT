@@ -41,6 +41,7 @@ export default {
   align-items: center;
 
   width: 100vw;
+  max-width: 100%;
   height: calc(100vh - 88px);
   min-height: 500px;
 
