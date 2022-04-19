@@ -167,7 +167,8 @@ export default {
   background: #FFFFFF;
   border-radius: 4px;
   box-sizing: border-box;
-  box-shadow: 10px 10px 10px rgba(209, 222, 227, 0.05), -5px -5px 10px #FAFBFF;
+  box-shadow: 10px 10px 10px rgba(212, 217, 230, 0.12), -5px -5px 10px rgba(212, 217, 230, 0.1);
+  transition: 0.2s;
 
   &__row {
     position: relative;
@@ -214,6 +215,10 @@ export default {
         }
       }
     }
+  }
+  @media screen and (max-width: 700px) {
+    max-width: 538px;
+    margin: 0 auto;
   }
 
 }

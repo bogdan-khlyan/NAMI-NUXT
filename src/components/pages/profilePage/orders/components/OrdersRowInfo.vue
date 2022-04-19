@@ -179,14 +179,8 @@ export default {
 
   &__buttons {
     display: flex;
-
-    @media screen and (max-width: 1140px) {
-      flex-direction: column;
-      .orders-row-info__item-btn-action:last-child {
-        margin-left: 0;
-        margin-top: 10px;
-      }
-    }
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
   &__item-btn-action {
@@ -216,10 +210,6 @@ export default {
       margin-left: 10px;
     }
 
-    &:last-child {
-      margin-left: 12px;
-    }
-
     &:hover, &:active {
       background: #D7EAFF;
     }
@@ -243,6 +233,19 @@ export default {
 
     &--active {
       transform: rotate(180deg);
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    display: block;
+    &__main {
+      margin-bottom: 16px;
+    }
+    &__item-amount {
+      margin-right: 0;
+    }
+    &__buttons {
+      justify-content: flex-end;
     }
   }
 }

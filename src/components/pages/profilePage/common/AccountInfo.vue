@@ -43,5 +43,8 @@ export default {
     }
   }
 
+  @media screen and (max-width: 980px) {
+    margin-bottom: 32px;
+  }
 }
 </style>
