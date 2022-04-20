@@ -50,6 +50,7 @@ export default {
 .header__mobile {
   position: fixed;
   width: 100vw;
+  max-width: 100%;
   height: 72px!important;
   background-color: #fff;
   box-sizing: border-box;

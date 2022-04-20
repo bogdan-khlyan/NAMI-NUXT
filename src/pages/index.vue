@@ -33,5 +33,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home { width: 100vw; }
+.home { width: 100vw; max-width: 100%; }
 </style>

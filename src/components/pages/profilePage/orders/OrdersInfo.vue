@@ -1,18 +1,30 @@
 <template>
-  <div class="orders-table">
-    <orders-row-header/>
+  <div class="orders-info">
 
-    <div class="orders-table__row" v-for="(item,index) in tableData" :key="index">
+    <div v-if="windowWidth>600" class="orders-info__orders-table">
 
-      <orders-row-info :order-info="item"
+      <orders-row-header/>
+
+      <div class="orders-info__row" v-for="(item,index) in tableData" :key="item.id">
+
+        <orders-row-info :order-info="item"
+                         :number="index + 1"
+                         :show-details="selectedOrder === item.id"
+                         @clickDetails="selectedOrder = $event"/>
+
+        <el-collapse-transition>
+          <orders-row-details v-show="selectedOrder === item.id" :order-info="item"/>
+        </el-collapse-transition>
+
+      </div>
+
+    </div>
+    <div v-else class="orders-info__order-cards">
+      <order-card-info v-for="(item,index) in tableData" :key="item.id"
+                       :order-info="item"
                        :number="index + 1"
                        :show-details="selectedOrder === item.id"
                        @clickDetails="selectedOrder = $event"/>
-
-      <el-collapse-transition>
-        <orders-row-details v-show="selectedOrder === item.id" :order-info="item"/>
-      </el-collapse-transition>
-
     </div>
 
   </div>
@@ -22,13 +34,15 @@
 import OrdersRowHeader from "@/components/pages/profilePage/orders/components/OrdersRowHeader";
 import OrdersRowInfo from "@/components/pages/profilePage/orders/components/OrdersRowInfo";
 import OrdersRowDetails from "@/components/pages/profilePage/orders/components/OrderTableDetails";
+import OrderCardInfo from "@/components/pages/profilePage/orders/components/OrderCardInfo";
 
 export default {
-  name: "OrdersTable",
+  name: "OrdersInfo",
   components: {
     OrdersRowHeader,
     OrdersRowInfo,
-    OrdersRowDetails
+    OrdersRowDetails,
+    OrderCardInfo
   },
   data() {
     return {
@@ -154,20 +168,29 @@ export default {
       selectedOrder: null
     }
   },
+  computed: {
+    windowWidth() {
+      return this.$store.state.windowWidth
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-.orders-table {
+.orders-info {
+  margin-top: 16px;
 
-  max-width: 790px;
-  margin-bottom: 40px;
-  padding: 12px 0;
+  &__orders-table {
+    max-width: 796px;
+    margin-bottom: 40px;
+    padding: 12px 0;
 
-  background: #FFFFFF;
-  border-radius: 4px;
-  box-sizing: border-box;
-  box-shadow: 10px 10px 10px rgba(209, 222, 227, 0.05), -5px -5px 10px #FAFBFF;
+    background: #FFFFFF;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 10px rgba(212, 217, 230, 0.12), -5px -5px 10px rgba(212, 217, 230, 0.1);
+    transition: 0.2s;
+  }
 
   &__row {
     position: relative;
@@ -181,10 +204,13 @@ export default {
       .orders-row-info {
         background: #FBFCFF;
       }
+
       .order-table-details {
         background: #FBFCFF;
 
         .el-table {
+          background: #FBFCFF;
+
           tr, th.el-table__cell {
             background: #FBFCFF;
           }
@@ -207,6 +233,7 @@ export default {
 
       opacity: 0;
     }
+
     &:nth-child(2) {
       .orders-row-info {
         &:before {
@@ -214,6 +241,11 @@ export default {
         }
       }
     }
+  }
+
+  @media screen and (max-width: 730px) {
+    max-width: 554px;
+    margin: 16px auto 40px auto;
   }
 
 }
