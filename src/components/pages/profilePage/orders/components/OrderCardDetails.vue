@@ -151,7 +151,6 @@ export default {
 
   hr {
     height: 1px;
-    max-width: 575px;
     margin: -8px 0 16px 0;
     background: #E8E8E8;
     border-radius: 2px;
