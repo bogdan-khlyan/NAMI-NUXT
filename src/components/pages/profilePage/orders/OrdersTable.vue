@@ -186,6 +186,7 @@ export default {
         background: #FBFCFF;
 
         .el-table {
+          background: #FBFCFF;
           tr, th.el-table__cell {
             background: #FBFCFF;
           }
@@ -216,9 +217,9 @@ export default {
       }
     }
   }
-  @media screen and (max-width: 700px) {
-    max-width: 538px;
-    margin: 0 auto;
+  @media screen and (max-width: 730px) {
+    max-width: 554px;
+    //margin: 0 auto;
   }
 
 }
