@@ -1,53 +1,60 @@
 <template>
-<div class="orders-row-info">
-  <div class="orders-row-info__item-number">
-    {{number}}
+  <div class="orders-row-info">
+
+    <div class="orders-row-info__main">
+
+      <div class="orders-row-info__item-number">
+        {{ number }}
+      </div>
+      <div class="orders-row-info__item-id">
+        {{ orderInfo.id }}
+      </div>
+      <div class="orders-row-info__item-date">
+        {{ new Date(orderInfo.dateOrder * 1000).toLocaleDateString() }}
+      </div>
+      <div class="orders-row-info__item-status"
+           :class="`orders-row-info__item-status--${orderInfo.status}`">
+        {{ getStatusName }}
+      </div>
+      <div class="orders-row-info__item-amount">
+        {{ orderInfo.amountOrder + orderInfo.amountDelivery }} ₽
+      </div>
+
+    </div>
+
+    <div class="orders-row-info__buttons">
+      <div class="orders-row-info__item-btn-action">
+        Повторить
+      </div>
+      <div class="orders-row-info__item-btn-action" @click="clickDetails">
+        Детали
+        <img class="orders-row-info__show-details"
+             :class="{'orders-row-info__show-details--active': showDetails}"
+             src="@/assets/images/orders/icon-expand.svg" alt="">
+      </div>
+    </div>
+
   </div>
-  <div class="orders-row-info__item-id">
-    {{orderInfo.id}}
-  </div>
-  <div class="orders-row-info__item-date">
-    {{ new Date(orderInfo.dateOrder*1000).toLocaleDateString() }}
-  </div>
-  <div class="orders-row-info__item-status"
-       :class="`orders-row-info__item-status--${orderInfo.status}`">
-    {{ getStatusName }}
-  </div>
-  <div class="orders-row-info__item-amount">
-    {{ orderInfo.amountOrder +  orderInfo.amountDelivery}} ₽
-  </div>
-  <div class="orders-row-info__item-btn-action">
-    Повторить
-  </div>
-  <div class="orders-row-info__item-btn-action" @click="clickDetails">
-    Детали
-    <img class="orders-row-info__show-details"
-         :class="{'orders-row-info__show-details--active': showDetails}"
-         src="@/assets/images/orders/icon-expand.svg" alt="">
-  </div>
-</div>
 </template>
 
 <script>
 export default {
   name: "OrdersRowInfo",
-  props:{
-    orderInfo:{type:Object},
-    number:{type:Number},
-    showDetails:{type:Boolean}
+  props: {
+    orderInfo: {type: Object},
+    number: {type: Number},
+    showDetails: {type: Boolean}
   },
   computed: {
-    getStatusName(){
+    getStatusName() {
       const status = this.orderInfo.status
-      return status==='new'?'Новый': status==='completed' ? 'Завершен' : status==='processing' ?
-                      'В обработке': status==='delivered'?'Доставляется': 'Отменен'
+      return status === 'new' ? 'Новый' : status === 'completed' ? 'Завершен' : status === 'processing' ?
+        'В обработке' : status === 'delivered' ? 'Доставляется' : 'Отменен'
     }
   },
-  methods:{
-    clickDetails(el){
-      el.target.firstElementChild.classList.length>1 ?
-        this.$emit('clickDetails', null) :
-        this.$emit('clickDetails', this.orderInfo.id)
+  methods: {
+    clickDetails() {
+        this.$emit('clickDetails', this.showDetails ? null : this.orderInfo.id)
     }
   }
 }
@@ -57,11 +64,15 @@ export default {
 .orders-row-info {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 16px 24px;
 
   transition: 0.2s;
 
+  &__main {
+    display: flex;
+    align-items: center;
+  }
   &__item-number {
     display: flex;
     align-items: center;
@@ -79,7 +90,7 @@ export default {
     color: #FFFFFF;
   }
 
-  &__item-id{
+  &__item-id {
     font-family: Ubuntu, sans-serif;
     font-size: 16px;
     font-weight: 300;
@@ -93,7 +104,7 @@ export default {
     margin-right: 48px;
   }
 
-  &__item-date{
+  &__item-date {
     font-family: Ubuntu, sans-serif;
     font-size: 16px;
     font-weight: 300;
@@ -131,18 +142,22 @@ export default {
       background: #E4F7FF;
       color: #1F86F8;
     }
+
     &--completed {
       background: #E9FFED;
       color: #31AA27;
     }
+
     &--processing {
       background: #FFF7EB;
       color: #FF8B20;
     }
+
     &--delivered {
       background: #E9FFED;
       color: #31AA27;
     }
+
     &--cancelled {
       background: #FFF0F0;
       color: #F93232;
@@ -157,10 +172,17 @@ export default {
     text-align: right;
     color: #121212;
     width: 60px;
-    margin-right: 52px;
+    margin-right: 40px;
   }
 
-  &__item-btn-action{
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__item-btn-action {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -186,9 +208,7 @@ export default {
     img {
       margin-left: 10px;
     }
-    &:last-child {
-      margin-left: 12px;
-    }
+
     &:hover, &:active {
       background: #D7EAFF;
     }
@@ -209,8 +229,23 @@ export default {
 
     pointer-events: none;
     transition: 0.2s;
+
     &--active {
       transform: rotate(180deg);
+    }
+  }
+
+  @media screen and (max-width: 730px) {
+    display: block;
+    &__main {
+      margin-bottom: 16px;
+    }
+    &__item-amount {
+      margin-right: 0;
+    }
+    &__buttons {
+      margin-right: 14px;
+      justify-content: flex-end;
     }
   }
 }

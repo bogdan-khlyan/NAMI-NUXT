@@ -1,29 +1,37 @@
 <template>
   <div class="profile-page-wrapper">
+
     <div class="profile-page-wrapper__nav">
       <div class="profile-page-wrapper__nav--account-info">
         <account-info/>
       </div>
+      <!-- TODO v-if-else -->
       <div class="profile-page-wrapper__nav--links">
         <profile-navigation/>
       </div>
+      <profile-navigation-tabs/>
     </div>
-    <div class="profile-page-wrapper__content">
+
       <transition name="el-fade-in-linear" mode="out-in">
         <nuxt-child/>
       </transition>
-    </div>
   </div>
 </template>
 
 <script>
 import AccountInfo from "@/components/pages/profilePage/common/AccountInfo";
 import ProfileNavigation from "@/components/pages/profilePage/common/ProfileNavigation";
+import ProfileNavigationTabs from "@/components/pages/profilePage/common/ProfileNavigationTabs";
 
 export default {
   name: 'profile',
   layout: 'base',
-  components: { AccountInfo, ProfileNavigation }
+  components: { AccountInfo, ProfileNavigation, ProfileNavigationTabs },
+  computed: {
+    windowWidth () {
+      return this.$store.state.windowWidth
+    }
+  }
 }
 </script>
 
@@ -32,27 +40,49 @@ export default {
   position: relative;
   display: flex;
 
-  padding-top: 200px;
+  padding-top: 180px;
   box-sizing: border-box;
 
   max-width: 1140px;
   min-height: 100vh;
 
+  transition: 0.2s;
   margin: 0 auto;
 
   &__nav {
-    width: 250px;
+    width: 280px;
+    min-width: 280px;
 
     &--links {
       margin-top: 24px;
       border-left: 1px solid #E4E4E4;
     }
+
+    .profile-navigation-tabs {
+      display: none;
+    }
+    @media screen and (max-width: 980px) {
+      width: 100%;
+      .profile-navigation-tabs {
+        display: flex;
+      }
+      &--links {
+        display: none;
+      }
+    }
   }
 
-  &__content {
-    padding-left: 100px;
-    flex: 1;
+  @media screen and (max-width: 1140px) {
+    padding: 150px 24px 0 24px
   }
 
+  @media screen and (max-width: 980px) {
+    padding-top: 100px;
+    display: block;
+  }
+
+  @media screen and (max-width: 460px) {
+    padding: 100px 16px 0 16px
+  }
 }
 </style>
