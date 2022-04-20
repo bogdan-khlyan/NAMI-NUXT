@@ -180,6 +180,7 @@ export default {
   &__buttons {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
   }
 
@@ -236,7 +237,7 @@ export default {
     }
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 730px) {
     display: block;
     &__main {
       margin-bottom: 16px;
@@ -245,6 +246,7 @@ export default {
       margin-right: 0;
     }
     &__buttons {
+      margin-right: 14px;
       justify-content: flex-end;
     }
   }
