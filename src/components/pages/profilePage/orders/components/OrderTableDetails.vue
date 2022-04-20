@@ -181,6 +181,7 @@ export default {
     font-style: normal;
     font-weight: 400;
     line-height: 18px;
+    word-break: break-word;
     color: #121212;
     margin-bottom: 4px;
   }
@@ -191,7 +192,12 @@ export default {
     font-style: normal;
     font-weight: 300;
     line-height: 18px;
+    word-break: break-word;
     color: #7F848B;
+  }
+
+  @media screen and (max-width: 750px) {
+    padding-left: 55px;
   }
 
   @media screen and (max-width: 730px) {
