@@ -1,5 +1,12 @@
 <template>
   <div class="orders-table">
+
+    <order-card-info v-for="(item,index) in tableData" :key="index"
+                     :order-info="item"
+                     :number="index + 1"
+                     :show-details="selectedOrder === item.id"
+                     @clickDetails="selectedOrder = $event"/>
+
     <orders-row-header/>
 
     <div class="orders-table__row" v-for="(item,index) in tableData" :key="index">
@@ -22,13 +29,15 @@
 import OrdersRowHeader from "@/components/pages/profilePage/orders/components/OrdersRowHeader";
 import OrdersRowInfo from "@/components/pages/profilePage/orders/components/OrdersRowInfo";
 import OrdersRowDetails from "@/components/pages/profilePage/orders/components/OrderTableDetails";
+import OrderCardInfo from "@/components/pages/profilePage/orders/components/OrderCardInfo";
 
 export default {
   name: "OrdersTable",
   components: {
     OrdersRowHeader,
     OrdersRowInfo,
-    OrdersRowDetails
+    OrdersRowDetails,
+    OrderCardInfo
   },
   data() {
     return {

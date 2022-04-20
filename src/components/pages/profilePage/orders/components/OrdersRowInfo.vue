@@ -53,10 +53,8 @@ export default {
     }
   },
   methods: {
-    clickDetails(el) {
-      el.target.firstElementChild.classList.length > 1 ?
-        this.$emit('clickDetails', null) :
-        this.$emit('clickDetails', this.orderInfo.id)
+    clickDetails() {
+        this.$emit('clickDetails', this.showDetails ? null : this.orderInfo.id)
     }
   }
 }
