@@ -219,7 +219,7 @@ export default {
   }
   @media screen and (max-width: 730px) {
     max-width: 554px;
-    //margin: 0 auto;
+    margin: 0 auto 40px auto;
   }
 
 }
