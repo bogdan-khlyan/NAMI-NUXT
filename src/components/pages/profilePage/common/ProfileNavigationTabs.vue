@@ -103,34 +103,40 @@ export default {
     &:nth-child(2) {
       margin: 0 90px;
     }
+
     &:nth-child(3) {
       margin-right: 24px;
     }
+
     &.nuxt-link-exact-active {
       color: #062D4E;
       font-weight: 400;
     }
   }
 
-    @media screen and (max-width: 575px) {
+  @media screen and (max-width: 575px) {
     &__item:nth-child(2) {
       margin: 0 auto;
     }
+
+    margin-bottom: 20px;
   }
   @media screen and (max-width: 460px) {
-    &__item{
+    &__item {
       font-size: 14px;
       line-height: 20px;
-      &:nth-child(1){
+
+      &:nth-child(1) {
         margin-left: 8px;
       }
-      &:nth-child(3){
+
+      &:nth-child(3) {
         margin-right: 5px;
       }
     }
   }
   @media screen and (max-width: 370px) {
-    &__item{
+    &__item {
       font-size: 13px;
       line-height: 16px;
     }
@@ -139,7 +145,7 @@ export default {
     }
   }
   @media screen and (max-width: 330px) {
-    &__item{
+    &__item {
       font-size: 12px;
     }
   }
