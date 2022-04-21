@@ -13,9 +13,7 @@
       </div>
     </div>
 
-    <transition
-      v-else
-      name="el-fade-in-linear">
+    <transition v-else name="el-fade-in-linear">
       <div>
         <slot/>
 

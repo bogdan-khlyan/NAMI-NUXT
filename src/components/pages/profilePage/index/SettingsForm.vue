@@ -5,10 +5,14 @@
       <profile-input-wrapper
         :value="form.phoneNumber"
         label="Номер телефона"
-        :loading="loading"
-        :disabled="true"
+        :loading="loading.phone"
         ref="phoneInputWrapper">
-          <!-- TODO phone input -->
+        <base-input
+          v-model="form.phoneNumber"
+          v-mask="'+38(071)-###-##-##'"
+          :loading="loading.phone"
+          label="Имя"
+          placeholder="Вы еще не указали свое имя"/>
       </profile-input-wrapper>
     </div>
     <div class="settings-form__item">
@@ -16,12 +20,12 @@
         :value="form.username"
         label="Имя"
         placeholder="Вы еще не указали свое имя"
-        :loading="loading"
+        :loading="loading.userName"
         @submit="submitUsername"
         ref="usernameInputWrapper">
         <base-input
           v-model="form.username"
-          :loading="loading"
+          :loading="loading.userName"
           label="Имя"
           placeholder="Вы еще не указали свое имя"/>
       </profile-input-wrapper>
@@ -31,12 +35,12 @@
         :value="form.email"
         label="Email"
         placeholder="Вы еще не указали свой email"
-        :loading="loading"
+        :loading="loading.email"
         @submit="submitEmail"
         ref="emailInputWrapper">
         <base-input
           v-model="form.username"
-          :loading="loading"
+          :loading="loading.userName"
           label="Имя"
           placeholder="Вы еще не указали свое имя"/>
       </profile-input-wrapper>
@@ -50,12 +54,19 @@ import BaseInput from "@/components/common/ui/inputs/BaseInput";
 
 export default {
   name: 'settings-form',
-  components: { ProfileInputWrapper, BaseInput },
+  components: {
+    ProfileInputWrapper,
+    BaseInput,
+  },
   data() {
     return {
-      loading: false,
+      loading: {
+        phone: false,
+        userName: false,
+        email: false
+      },
       form: {
-        phoneNumber: '+38 (071) 700-97-91',
+        phoneNumber: '+38(071)-700-97-91',
         username: null,
         email: null
       }
@@ -64,17 +75,17 @@ export default {
   methods: {
     submitUsername() {
       console.log('submit username')
-      this.loading = true
+      this.loading.userName = true
       setTimeout(() => {
-        this.loading = false
+        this.loading.userName = false
         this.$refs.usernameInputWrapper.setEditMode(false)
       }, 3000)
     },
     submitEmail() {
       console.log('submit email')
-      this.loading = true
+      this.loading.email = true
       setTimeout(() => {
-        this.loading = false
+        this.loading.email = false
         this.$refs.emailInputWrapper.setEditMode(false)
       }, 3000)
     }

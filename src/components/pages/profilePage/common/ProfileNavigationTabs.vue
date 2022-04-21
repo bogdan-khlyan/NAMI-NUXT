@@ -114,7 +114,7 @@ export default {
     }
   }
 
-  @media screen and (max-width: 575px) {
+  @media screen and (max-width: 590px) {
     &__item:nth-child(2) {
       margin: 0 auto;
     }
