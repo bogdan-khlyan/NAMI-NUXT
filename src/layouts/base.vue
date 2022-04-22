@@ -51,7 +51,7 @@ export default {
     },
     weaveBg() {
       const routes = ['profile', 'profile-addresses', 'profile-orders', 'product-id']
-      return routes.indexOf(this.route) !== -1
+      return routes.indexOf(this.route) !== -1 && this.windowWidth > 980
     },
     windowWidth() {
       return this.$store.state.windowWidth

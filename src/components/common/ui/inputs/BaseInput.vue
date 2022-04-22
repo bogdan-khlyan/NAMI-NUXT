@@ -10,6 +10,7 @@
              :value="value"
              :disabled="loading"
              :placeholder="placeholder"
+             v-mask="mask"
              maxlength="126"
              @input="$emit('input', $event.target.value)"
              @focus="isFocus = true"
@@ -30,6 +31,7 @@ export default {
     label: { type: String, default: null },
     placeholder: { type: String, default: null },
     loading: { type: Boolean, default: false },
+    mask:{type:String, default: null},
     error: { type: Object }
   },
   data() {
