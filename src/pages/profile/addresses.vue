@@ -10,7 +10,8 @@
       <div v-else class="address-items">
         <component v-for="(address,i) in myAddresses" :key="i"
                    :is="typeMode(address)"
-                   :number="i" :address-info="address"
+                   :number="i"
+                   :address-info="address"
                    @deleteAddress="deleteAddress"
                    @editAddress="editableAddresses.push($event)"/>
       </div>
