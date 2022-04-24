@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     input($event) {
-      this.$emit('input', '+ 38 (071)-' + $event.target.value)
+      this.$emit('input', '+38(071)' + $event.target.value)
     }
   }
 }
