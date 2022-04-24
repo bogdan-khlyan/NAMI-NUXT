@@ -1,17 +1,23 @@
 <template>
   <label class="code-input"
          :class="[{ error: error.$error }]">
-    <span class="code-input__label">Код из смс</span>
+    <span class="code-input__label">
+      Код из смс
+      <img v-if="loading" src="@/assets/images/spinner.gif" alt="">
+      <check-icon v-if="verified"/>
+    </span>
     <span class="code-input__content"
           @keydown="keyDown">
       <input v-for="(item, index) in code"
              v-model="code[index]"
              type="text" maxlength="2" placeholder="_"
+             :disabled="disabled"
              @input="input(index)"
              :uid="index"
              ref="input">
     </span>
-    <span class="code-input__new-code"
+    <span v-if="!verified"
+          class="code-input__new-code"
           :class="{ disabled: isNewCodeDisabled }"
           @click="newCode">
       <base-svg
@@ -24,15 +30,21 @@
 
 <script>
 import BaseSvg from "@/components/common/BaseSvg";
+import CheckIcon from "@/components/common/icons/CheckIcon";
 
 export default {
   name: 'phone-input',
+  components: { BaseSvg, CheckIcon },
   props: {
     value: { type: String, default: null },
-    error: { type: Object, default: null }
+    error: { type: Object, default: null },
+    loading: { type: Boolean, default: false },
+    verified: { type: Boolean, default: false }
   },
-  components: { BaseSvg },
   computed: {
+    disabled() {
+      return this.loading || this.verified
+    },
     timeHuman() {
       const minutes = Math.trunc(this.time / 60)
       const seconds = this.time - (minutes * 60)
@@ -103,6 +115,12 @@ export default {
     line-height: 16px;
     text-align: left;
     color: #404040;
+
+    > img {
+      margin-left: 6px;
+      width: 16px;
+      height: 16px;
+    }
   }
   &__content {
     display: flex;
@@ -212,6 +230,16 @@ export default {
   }
   svg path {
     fill: #212121;
+  }
+}
+.code-input__label {
+  > svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 6px;
+    path {
+      fill: #0AB258;
+    }
   }
 }
 </style>
