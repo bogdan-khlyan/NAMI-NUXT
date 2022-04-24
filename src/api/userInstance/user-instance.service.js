@@ -11,6 +11,37 @@ export class UserInstanceService {
     this.#router = app.router
   }
 
+  async verifyOTP({ phone, code }) {
+    try {
+      return await this.#repository.verifyOTP({ phone, code })
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+
+  async sendOTP(phone) {
+    try {
+      return this.#repository.sendOTP({ phone })
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+
+  async getStatus(phone) {
+    try {
+      const { status } = await this.#repository.getStatus({ phone })
+      if (status === 'SIGN_UP') {
+        this.sendOTP(phone)
+      }
+      return status
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+
   async signIn() {
     try {
       const user = await this.#repository.signIn()
@@ -23,6 +54,7 @@ export class UserInstanceService {
       return user
     } catch (error) {
       console.log(error)
+      throw error
     }
   }
 
