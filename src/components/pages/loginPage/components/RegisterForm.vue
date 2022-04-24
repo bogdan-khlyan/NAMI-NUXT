@@ -36,7 +36,7 @@ import { validationMixin } from "vuelidate";
 import {maxLength, minLength, required} from "vuelidate/lib/validators";
 
 export default {
-  name: 'register-or-repeat-password-form',
+  name: 'register-form',
   mixins: [validationMixin],
   components: { CodeInput, PasswordInput },
   props: {

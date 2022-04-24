@@ -33,7 +33,7 @@ export class UserInstanceService {
     try {
       const { status } = await this.#repository.getStatus({ phone })
       if (status === 'SIGN_UP') {
-        this.sendOTP(phone)
+        await this.sendOTP(phone)
       }
       return status
     } catch (error) {
