@@ -73,7 +73,7 @@ export default {
       return this.type === 'auth-password'
     },
     isShowCodeInput() {
-      return this.type === 'pending-code' || this.type === 'register' || this.type === 'reset-password'
+      return this.type === 'pending-code' || this.type === 'SIGN_UP' || this.type === 'reset-password'
     },
     loadingPhone() {
       return this.type === 'pending-phone' && this.loading
@@ -102,7 +102,7 @@ export default {
       if (this.type === 'auth-password') {
         this.auth()
       }
-      if (this.type === 'register') {
+      if (this.type === 'SIGN_UP') {
         this.loading = true
         this.$refs.registerForm.submit()
           .finally(() => this.loading = false)
@@ -118,23 +118,21 @@ export default {
         }, 3000)
       }
     },
-    submitPhone() {
+    async submitPhone() {
       this.$v.phone.$touch()
       if (!this.$v.phone.$error) {
         this.loading = true
-        setTimeout(() => { // TODO запрос на бэк, если номер уже был зареган, просим пароль
-          // this.type = 'auth-password'
-          this.type = 'register' // если номера еще не было, отсылаем смс с кодом
 
-          this.loading = false
-        }, 3000)
+        this.$userInstance.getStatus(this.phone)
+          .then((status) => this.type = status)
+          .finally(() => this.loading = false)
       }
     }
   },
   validations: {
     phone: {
-      maxLength: maxLength(20),
-      minLength: minLength(20),
+      maxLength: maxLength(17),
+      minLength: minLength(17),
       required
     },
     password: {

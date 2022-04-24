@@ -4,8 +4,9 @@
       <code-input
         v-model="code"
         :error="$v.code"
-        :loading="loading"
-        @input="submitCode"/>
+        :loading="codeLoading"
+        :verified="codeVerified"
+        @input="inputCode"/>
     </div>
     <div class="register-form__password">
       <password-input
@@ -44,6 +45,9 @@ export default {
   },
   data() {
     return {
+      codeLoading: false,
+      codeVerified: false,
+
       code: null,
       password: null,
       confirmPassword: null
@@ -70,18 +74,12 @@ export default {
         }
       })
     },
-    submitCode() {
+    inputCode() {
       if (this.code?.length !== 6) {
         this.$v.code.$reset()
         return
       }
       this.$v.code.$touch()
-      if (!this.$v.code.$error) {
-        console.log('code no error')
-        setTimeout(() => {
-          this.$v.code.$reset()
-        }, 1000)
-      }
     }
   },
   validations() {
@@ -104,8 +102,24 @@ export default {
         maxLength: maxLength(6),
         minLength: minLength(6),
         required,
-        isUnique(value) {
-          return value !== '999999'
+        async isUnique(value) {
+          console.log('ASDASFASFASFASF!!')
+          if (value.length !== 6) {
+            return true
+          }
+          this.codeLoading = true
+          try {
+            await this.$userInstance.verifyOTP({
+              phone: this.phone,
+              code: this.code
+            })
+            this.codeVerified = true
+            return true
+          } catch (error) {
+            return false
+          } finally {
+            this.codeLoading = false
+          }
         }
       }
     }
