@@ -50,8 +50,8 @@ export default {
       return false
     },
     weaveBg() {
-      const routes = ['profile', 'profile-address', 'profile-orders', 'product-id']
-      return routes.indexOf(this.route) !== -1
+      const routes = ['profile', 'profile-addresses', 'profile-orders', 'product-id']
+      return routes.indexOf(this.route) !== -1 && this.windowWidth > 980
     },
     windowWidth() {
       return this.$store.state.windowWidth
@@ -71,15 +71,15 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.resize)
-    window.removeEventListener('resize', this.scroll)
+    window.removeEventListener('scroll', this.scroll)
   },
   methods: {
     loadingDone() {
       this.loading = false
     },
     resize() {
-      this.$store.commit('setWindowWidth', document.documentElement.clientWidth)
-    },
+    this.$store.commit('setWindowWidth', document.documentElement.clientWidth)
+  },
     scroll: function () {
       this.$store.commit('setWindowScroll', pageYOffset) // TODO deprecated pageYOffset
     }
@@ -122,6 +122,7 @@ export default {
       z-index: -1;
 
       width: 100vw;
+      max-width: 100%;
 
       object-fit: contain;
     }
