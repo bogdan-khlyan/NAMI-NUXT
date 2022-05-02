@@ -17,6 +17,11 @@ export class UserInstanceRepository {
     return response.data
   }
 
+  async signUp(requestData) {
+    const response = await axios.post('/api/user/signup', requestData)
+    return response.data
+  }
+
   async signIn() {
     return {
       _id: 'devid',
