@@ -55,24 +55,34 @@ export default {
   },
   methods: {
     async submit() {
-      return new Promise((resolve, reject) => {
-        this.$v.code.$touch()
-        this.$v.password.$touch()
-        this.$v.confirmPassword.$touch()
-        if (!this.$v.code.$error && !this.$v.password.$error && !this.$v.confirmPassword.$error) {
-          console.log('register no error')
-          return setTimeout(() => {
-            this.$v.code.$reset()
-            this.$v.password.$reset()
-            this.$v.confirmPassword.$reset()
-            this.$router.push('/profile')
-            this.$userInstance.signIn()
-            return resolve(true)
-          }, 2000)
-        } else {
-          return reject('validate error')
-        }
-      })
+      this.$v.code.$touch()
+      this.$v.password.$touch()
+      this.$v.confirmPassword.$touch()
+      if (!this.$v.code.$error && !this.$v.password.$error && !this.$v.confirmPassword.$error) {
+        this.$userInstance.signUp({
+          phone: this.phone,
+          code: this.code,
+          password: this.password
+        })
+      }
+      // return new Promise((resolve, reject) => {
+      //   this.$v.code.$touch()
+      //   this.$v.password.$touch()
+      //   this.$v.confirmPassword.$touch()
+      //   if (!this.$v.code.$error && !this.$v.password.$error && !this.$v.confirmPassword.$error) {
+      //     console.log('register no error')
+      //     return setTimeout(() => {
+      //       this.$v.code.$reset()
+      //       this.$v.password.$reset()
+      //       this.$v.confirmPassword.$reset()
+      //       this.$router.push('/profile')
+      //       this.$userInstance.signIn()
+      //       return resolve(true)
+      //     }, 2000)
+      //   } else {
+      //     return reject('validate error')
+      //   }
+      // })
     },
     inputCode() {
       if (this.code?.length !== 6) {
@@ -103,7 +113,6 @@ export default {
         minLength: minLength(6),
         required,
         async isUnique(value) {
-          console.log('ASDASFASFASFASF!!')
           if (value.length !== 6) {
             return true
           }
