@@ -42,6 +42,17 @@ export class UserInstanceService {
     }
   }
 
+  async signUp(requestData) {
+    try {
+      const data = await this.#repository.signUp(requestData)
+      console.log(data)
+      return data
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+
   async signIn() {
     try {
       const user = await this.#repository.signIn()

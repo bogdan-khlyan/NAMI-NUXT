@@ -2,6 +2,8 @@
   <div class="order"
        v-loading="loading">
 
+    <h2>Оформление заказа</h2>
+
     <button v-if="windowWidth > 640"
             class="order__btn-back"
             @click="$emit('changeMode', 'INDEX')">
@@ -80,7 +82,8 @@ export default {
             // ...product,
 
           })),
-          ...this.order
+          ...this.order,
+          phone: this.order.phone.slice(0, 8) + this.order.phone.slice(9)
         }
         if (!tmp.deliveryCost && tmp.delivery) tmp.deliveryCalculateManually = true
         if (tmp.additionalInformation.length === 0)
@@ -118,6 +121,51 @@ export default {
   @media screen and (max-width: 640px) {
     padding: 60px 20px 20px 20px;
     //min-height: calc(100vh - 42px);
+  }
+
+
+  > h2 {
+    position: relative;
+    margin: 0 auto 24px auto;
+    width: max-content;
+
+
+    font-family: Neucha, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 35px;
+    color: #191919;
+
+    @media screen and (max-width: 640px) {
+      margin-top: 16px;
+      margin-bottom: 16px;
+
+      font-size: 26px;
+      line-height: 30px;
+    }
+
+    &:after, &:before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      margin: auto;
+
+      width: 5px;
+      height: 5px;
+
+      background: #312525;
+      border-radius: 50%;
+    }
+
+    &:after {
+      right: -20px;
+    }
+
+    &:before {
+      left: -20px;
+    }
+
   }
 
   &__chapter {
