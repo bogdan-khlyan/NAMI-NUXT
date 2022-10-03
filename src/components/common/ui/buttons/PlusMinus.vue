@@ -36,10 +36,12 @@ export default {
   },
   mounted () { this.$emit('input', this.count) },
   methods: {
-    inc() {
+    inc($event) {
+      $event.stopPropagation()
       this.changeCount(1)
     },
-    dec() {
+    dec($event) {
+      $event.stopPropagation()
       if (this.count > 0) {
         this.changeCount(-1)
       }
