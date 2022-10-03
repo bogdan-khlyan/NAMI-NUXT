@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      selectedCategory: null
+      selectedCategory: this.value
     }
   },
   computed: {
@@ -31,19 +31,8 @@ export default {
     value(value) {
       this.selectedCategory = value
     },
-    categories() {
-      this.selectDefault()
-    }
-  },
-  mounted() {
-    this.selectDefault()
   },
   methods: {
-    selectDefault() {
-      if (this.categories && this.categories[0]) {
-        this.selectCategory(this.categories[0])
-      }
-    },
     selectCategory(category) {
       this.selectedCategory = category
       this.$emit('change', category)
