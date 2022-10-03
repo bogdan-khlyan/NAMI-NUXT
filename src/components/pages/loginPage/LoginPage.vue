@@ -65,6 +65,7 @@ import BaseSvg from "@/components/common/BaseSvg";
 
 export default {
   name: 'login-page',
+  layout: 'base',
   mixins: [validationMixin],
   components: {phoneInput, RegisterForm, PasswordInput, BaseSvg},
   computed: {

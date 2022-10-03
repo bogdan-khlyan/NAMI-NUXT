@@ -1,37 +1,16 @@
 <template>
-  <div class="home">
-    <banner/>
-    <app-menu id="menu"/>
-  </div>
+  <index-page/>
 </template>
 
 <script>
-import Banner from "@/components/pages/indexPage/banner/Banner";
-import AppMenu from "@/components/pages/indexPage/menu/AppMenu";
+import IndexPage from "@/components/pages/indexPage/IndexPage";
 
 export default {
-  name: 'IndexPage',
-  components: { Banner, AppMenu },
+  name: 'Index',
   layout: 'base',
-  // created() {
-    // console.log(this.$route)
-  // },
-  // watch: {
-  //   '$route'(val) {
-  //     console.log(val)
-  //   }
-  // },
-  // computed: {
-  //   route() {
-  //     return this.$route
-  //   }
-  // },
-  beforeDestroy() {
-    this.$store.commit('setIsMenu', false)
-  }
+  components: { IndexPage }
 }
 </script>
 
 <style lang="scss" scoped>
-.home { width: 100vw; max-width: 100%; }
 </style>

@@ -16,6 +16,7 @@ import Widgets from "@/components/pages/contactsPage/components/Widgets";
 
 export default {
   name: 'Contacts',
+  layout: 'base',
   components: { Info, Widgets },
 }
 </script>

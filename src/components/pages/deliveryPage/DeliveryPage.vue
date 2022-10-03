@@ -28,6 +28,7 @@ import BaseSvg from "@/components/common/BaseSvg";
 
 export default {
   name: 'Delivery',
+  layout: 'base',
   components: { BaseSvg },
 }
 </script>
