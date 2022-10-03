@@ -83,7 +83,7 @@ export default {
 
           })),
           ...this.order,
-          phone: this.order.phone.slice(0, 8) + this.order.phone.slice(9)
+          phone: this.order.phone // .slice(0, 8) + this.order.phone.slice(9)
         }
         if (!tmp.deliveryCost && tmp.delivery) tmp.deliveryCalculateManually = true
         if (tmp.additionalInformation.length === 0)
