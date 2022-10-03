@@ -9,7 +9,7 @@
       </input-expand>
       <input-expand v-model="data.phone"
                     class="order-form__input"
-                    v-mask="'+38(071)-###-##-##'"
+                    v-mask="'+7(949)###-##-##'"
                     :isValid="fieldsValid.phone"
                     @focus="focusInputPhone"
                     placeholder="Телефон"
@@ -83,13 +83,13 @@ export default {
       if (this.calcDeliveryCost) this.calcDeliveryCost = false
     },
     focusInputPhone() {
-      if (this.data.phone.length === 0) this.$refs.inputPhone.setData('+38(071)-')
+      if (this.data.phone.length === 0) this.$refs.inputPhone.setData('+7(949)')
     },
     validateAddress(notify) {
       if (!this.data.address || this.data.address.length <= 5) {
         this.fieldsValid.address = false
         if (notify)
-          setTimeout(() => this.$notify.error({ title: 'Error', message: 'Введен некорректный адрес' }), 100)
+          setTimeout(() => this.$toast.error('Введен некорректный адрес'), 100)
         return false
       } else {
         this.fieldsValid.address = true
@@ -97,13 +97,13 @@ export default {
       }
     },
     validatePhone(notify) {
-      if (this.data.phone.length !== 18) {
+      if (this.data.phone.length !== 16) {
         this.fieldsValid.phone = false
         if (notify) {
           if (this.data.phone.length === 8 || this.data.phone.length === 0)
-            this.$notify.error({ title: 'Error', message: 'Введите номер телефона!' })
+            this.$toast.error('Введите номер телефона!')
           else
-            this.$notify.error({ title: 'Error', message: 'Введен некорректный номер телефона' })
+            this.$toast.error('Введен некорректный номер телефона')
         }
         return false
       } else {

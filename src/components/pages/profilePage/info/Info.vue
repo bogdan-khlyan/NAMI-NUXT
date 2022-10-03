@@ -16,8 +16,8 @@
 
 <script>
 import PageTitle from "@/components/pages/profilePage/common/PageTitle";
-import EditAvatar from "@/components/pages/profilePage/index/EditAvatar";
-import SettingsForm from "@/components/pages/profilePage/index/SettingsForm";
+import EditAvatar from "@/components/pages/profilePage/info/EditAvatar";
+import SettingsForm from "@/components/pages/profilePage/info/SettingsForm";
 
 export default {
   name: 'profile-index',

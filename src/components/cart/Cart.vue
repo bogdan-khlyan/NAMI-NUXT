@@ -43,17 +43,6 @@ export default {
       mode: 'INDEX'
     }
   },
-  watch: {
-    isVisibleCart() {
-      this.$baseNotify.checkOffsetRight()
-      this.$baseNotify.checkOffsetTop()
-      this.$nextTick(() => {
-        this.$nextTick(() => {
-          this.$refs.scroll.scrollTop()
-        })
-      })
-    }
-  },
   methods: {
     changeMode: function (mode) {
       this.mode = mode
