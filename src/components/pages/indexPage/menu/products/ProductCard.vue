@@ -116,7 +116,7 @@ export default {
       this.selectedVariant = variant
     },
     toCard($event) {
-      $event.stopPropagation()
+      $event.preventDefault()
       // this.$metrika.reachGoal('add-product-to-card')
       // this.$store.commit('pushProductToCart', this.product._id)
       this.$cart.addProduct({
