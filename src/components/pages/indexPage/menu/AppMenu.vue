@@ -7,16 +7,10 @@
         v-model="selectedCategory"/>
     </div>
 
-    <keep-alive>
-      <transition
-        v-if="!refresh"
-        name="el-fade-in-linear">
-        <div class="menu__products">
-          <product-list
-            :category="selectedCategory"/>
-        </div>
-      </transition>
-    </keep-alive>
+    <div class="menu__products">
+      <product-list
+        :category="selectedCategory"/>
+    </div>
 
   </div>
 </template>
@@ -38,18 +32,16 @@ export default {
   },
   data() {
     return {
-      refresh: false,
       selectedCategory: null
     }
   },
   watch: {
-    selectedCategoryId() {
-      this.refresh = true
-      this.$nextTick(() => this.refresh = false)
-    },
     categories() {
       this.init()
     }
+  },
+  created() {
+    this.selectedCategory = this.categories[0]
   },
   mounted() {
     this.init()
