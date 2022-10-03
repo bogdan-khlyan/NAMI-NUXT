@@ -21,8 +21,10 @@ import Spinner from "@/components/common/bodyLoading/Spinner";
 export default {
   name: 'body-loading',
   components: { Spinner },
-  async mounted() {
+  async fetch() {
     await this.$menu.getMenu()
+  },
+  async mounted() {
     setTimeout(() =>
         this.$emit('done'), 500)
   }

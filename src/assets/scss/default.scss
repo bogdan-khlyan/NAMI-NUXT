@@ -33,3 +33,10 @@ body {
     text-align: unset;
   }
 }
+
+.toasted-container {
+  z-index: 10000000!important;
+  .toasted {
+    font-family: Neucha, sans-serif;
+  }
+}

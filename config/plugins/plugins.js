@@ -9,13 +9,15 @@ module.exports = {
     '~/plugins/scroll-to',
     '~/plugins/mask',
     '~/plugins/perfect-scrollbar.js',
+    '~/plugins/api-services.js',
     { src: '~/plugins/yandex-map.js',  mode: 'client' },
-    { src: '~/plugins/main.js', mode: 'client' },
-    { src: '~/plugins/api-services.js', mode: 'client' }
+    { src: '~/plugins/main.js', mode: 'client' }
   ],
   modules: [
     '@nuxtjs/proxy',
     ['@nuxtjs/dotenv', { path: '~/../' }],
+    '@nuxtjs/axios',
+    '@nuxtjs/toast'
   ],
   proxy,
   axios: {
@@ -25,6 +27,6 @@ module.exports = {
   },
   toast: {
     position: 'top-center',
-    duration: 3000
+    duration: 26000
   }
 }
