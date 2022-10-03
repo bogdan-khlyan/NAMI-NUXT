@@ -42,6 +42,7 @@ import Stock from "@/components/pages/stocksPage/components/Stock";
 
 export default {
   name: 'Stocks',
+  layout: 'base',
   components: { Stock },
 }
 </script>

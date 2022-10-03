@@ -1,7 +1,9 @@
 <template>
-  <div class="product"
-       :class="count > 0 ? 'product_active' : ''"
-       @click="$router.push(`/product/${product.$id}`)">
+  <nuxt-link
+    class="product"
+    :class="count > 0 ? 'product_active' : ''"
+    :to="`/product/${product.$id}`"
+  >
     <div class="product__slider">
       <img :src="product.images[0]" alt="">
     </div>
@@ -38,7 +40,7 @@
           :product-id="product._id"/>
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
@@ -113,7 +115,8 @@ export default {
     changeVariant(variant) {
       this.selectedVariant = variant
     },
-    toCard() {
+    toCard($event) {
+      $event.stopPropagation()
       // this.$metrika.reachGoal('add-product-to-card')
       // this.$store.commit('pushProductToCart', this.product._id)
       this.$cart.addProduct({
@@ -159,6 +162,7 @@ export default {
 
   transition: 0.3s;
   cursor: pointer;
+  text-decoration: none;
 
   @media screen and (max-width: 800px) {
     width: 40vw;
