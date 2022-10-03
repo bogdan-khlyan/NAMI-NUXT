@@ -17,10 +17,10 @@ export default {
       items: [{
         icon: require('@/assets/images/icons/phone-black.svg'),
         link: {
-          src: 'tel:+380717009791',
+          src: 'tel:+79497009791',
           target: '_self'
         },
-        content: ['+38 071 700 97 91', '+38 071 700 97 91'],
+        content: ['+7 949 700 97 91', '+7 949 700 97 91'],
         width: '200px'
       }, {
         icon: require('@/assets/images/icons/point.svg'),

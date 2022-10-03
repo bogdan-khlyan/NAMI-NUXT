@@ -3,7 +3,7 @@
     <div class="temp__item">
       <label>Номер телефона</label>
       <div class="temp__item-content">
-        <a :href="`tel:+380717009791`">+38 071 700 97 91</a>
+        <a :href="`tel:+79497009791`">+7 949 700 97 91</a>
 <!--        <a href="tel:+380717009791">+38 071 700 97 91</a>-->
       </div>
     </div>

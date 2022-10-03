@@ -22,7 +22,7 @@
         </div>
         <div class="header-drawer__profile--info">
           <span class="name">Ксения Уткина</span>
-          <span class="phone">+38 071 123 45 67</span>
+          <span class="phone">+7 949 123 45 67</span>
         </div>
       </nuxt-link>
 
