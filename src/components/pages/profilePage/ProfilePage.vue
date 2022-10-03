@@ -12,9 +12,9 @@
       <profile-navigation-tabs/>
     </div>
 
-      <transition name="el-fade-in-linear" mode="out-in">
-        <nuxt-child/>
-      </transition>
+    <transition name="el-fade-in-linear" mode="out-in">
+      <nuxt-child/>
+    </transition>
   </div>
 </template>
 
