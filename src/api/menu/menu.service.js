@@ -1,3 +1,5 @@
+import {translit} from "@/utils/translit";
+
 export default ({ $axios, store, router, $toast }) => ({
   async getMenu() {
     const menu = await $axios.$get('/api/products')
@@ -6,9 +8,11 @@ export default ({ $axios, store, router, $toast }) => ({
       products: menu.products.map(product => {
         return {
           ...product,
-          $id: product.title
-            .toLowerCase()
-            .replaceAll(' ', '-'),
+          $id: translit(
+            product.title
+              .toLowerCase()
+              .replaceAll(' ', '-')
+          ),
           images: product.images.map(image => '/api/product/image/' + image)
         }
       })
