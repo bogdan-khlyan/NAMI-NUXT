@@ -26,7 +26,8 @@ module.exports = {
     browserBaseURL: process.env.NAMI_BACKEND_HOST
   },
   toast: {
-    position: 'top-right',
-    duration: 6000
+    position: 'top-left',
+    duration: 6000,
+    closeOnSwipe: true
   }
 }
