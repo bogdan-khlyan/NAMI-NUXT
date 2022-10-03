@@ -14,11 +14,11 @@
     </div>
     <div v-if="windowWidth > 600"
          class="phone">
-      <a :href="`tel:+380717009791`">
+      <a :href="`tel:+79497009791`">
         <div class="circle">
           <img src="@/assets/images/icons/phone-black.svg" alt="">
         </div>
-        <span>+38 071 700 97 91</span>
+        <span>+7 949 700 97 91</span>
       </a>
     </div>
     <div class="cart">
