@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     checkPointsOffset() {
-      this.$refs.points.forEach(item => {
+      this.$refs.points?.forEach(item => {
         item.style.display = 'inline-block'
         if (item.offsetLeft === 10) {
           item.style.display = 'none'

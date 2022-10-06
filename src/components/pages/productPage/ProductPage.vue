@@ -3,7 +3,9 @@
     <div class="product__content">
       <div class="product__media">
         <product-media
-          :product="product"/>
+          :product="product"
+          :selected-variant="selectedVariant"
+        />
       </div>
       <div class="product__info">
         <product-ingredients

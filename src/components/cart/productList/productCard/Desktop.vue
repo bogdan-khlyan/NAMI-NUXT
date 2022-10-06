@@ -1,7 +1,10 @@
 <template>
   <div class="product-card-desktop">
     <div class="product-card-desktop__img">
-      <img :src="product.images[0]" alt="">
+      <img v-if="product.type === 'SINGLE'" :src="product.images[0]" alt="">
+      <img v-else-if="selectedVariant"
+           :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
+           :key="selectedVariant.image">
     </div>
     <div class="product-card-desktop__info">
       <div class="product-card-desktop__info--name">
@@ -11,7 +14,9 @@
         <span v-if="product.type === 'SINGLE'">{{product.description}}</span>
         <select-variant
           v-else
-          :product="product"/>
+          :product="product"
+          @change="changeVariant"
+        />
       </div>
     </div>
     <div class="product-card-desktop__price">
@@ -48,7 +53,15 @@ export default {
   props: {
     product: { type: Object }
   },
+  data() {
+    return {
+      selectedVariant: null
+    }
+  },
   methods: {
+    changeVariant(variant) {
+      this.selectedVariant = variant
+    },
     removeProduct() {
       this.$cart.removeProduct(this.product._id)
     }
