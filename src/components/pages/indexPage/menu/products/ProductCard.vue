@@ -5,7 +5,10 @@
     :to="`/product/${product.$id}`"
   >
     <div class="product__slider">
-      <img :src="product.images[0]" alt="">
+      <img v-if="product.type === 'SINGLE'" :src="product.images[0]" alt="">
+      <img v-else-if="selectedVariant"
+           :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
+           :key="selectedVariant.image">
     </div>
     <div class="product__content"
          :style="contentStyles">

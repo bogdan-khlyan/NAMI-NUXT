@@ -2,7 +2,10 @@
   <div class="product">
     <div class="product__content">
       <div class="product__images">
-        <img :src="product.images[0]" alt="">
+        <img v-if="product.type === 'SINGLE'" :src="product.images[0]" alt="">
+        <img v-else-if="selectedVariant"
+             :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
+             :key="selectedVariant.image">
       </div>
       <div class="product__info">
         <div>
@@ -11,7 +14,9 @@
             <span v-if="product.type === 'SINGLE'">{{ product.description }}</span>
             <select-variant
               v-else
-              :product="product"/>
+              :product="product"
+              @change="changeVariant"
+            />
           </div>
         </div>
       </div>
@@ -42,6 +47,16 @@ export default {
   mixins: [productCardMixin],
   props: {
     product: { type: Object }
+  },
+  data() {
+    return {
+      selectedVariant: null
+    }
+  },
+  methods: {
+    changeVariant(variant) {
+      this.selectedVariant = variant
+    }
   }
 }
 </script>

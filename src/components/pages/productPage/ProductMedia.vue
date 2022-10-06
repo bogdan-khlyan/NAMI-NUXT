@@ -2,7 +2,13 @@
   <div class="product-media">
     <h1>{{product.title}}</h1>
     <div class="product-media__image">
-      <img class="image" :src="product.images[0]" alt="">
+      <img class="image"
+           v-if="product.type === 'SINGLE'"
+           :src="product.images[0]" alt="">
+      <img class="image"
+           v-else-if="selectedVariant"
+           :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
+           :key="selectedVariant.image">
       <img class="bg" src="@/assets/images/product/bg.png" alt="">
     </div>
   </div>
@@ -12,7 +18,8 @@
 export default {
   name: 'product-media',
   props: {
-    product: { type: Object, required: true }
+    product: { type: Object, required: true },
+    selectedVariant: { type: Object }
   }
 }
 </script>
