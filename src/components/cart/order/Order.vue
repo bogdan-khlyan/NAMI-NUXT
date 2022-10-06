@@ -78,7 +78,7 @@ export default {
           products: this.cartProducts.map(product => ({
             productId: product._id,
             variantId: product.selectedVariant?._id,
-            number: 1
+            number: product.count
             // ...product,
 
           })),
