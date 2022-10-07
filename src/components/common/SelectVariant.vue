@@ -75,7 +75,7 @@ export default {
   margin-bottom: 14px;
 
   &__label {
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
     text-align: left;
     > span {
       font-family: Ubuntu, sans-serif;
@@ -89,10 +89,12 @@ export default {
 
   &__variants {
     display: flex;
+    flex-wrap: wrap;
 
     &--item {
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-top: 4px;
+      //margin-left: 5px;
+      margin-right: 10px;
 
       display: flex;
       justify-content: center;
