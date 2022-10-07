@@ -1,5 +1,8 @@
 <template>
-  <div class="product-card-desktop">
+  <div
+    class="product-card-desktop"
+    :class="{ 'product-card-desktop_variant-many': product.type === 'VARIANT' && product.variants.length > 4 }"
+  >
     <div class="product-card-desktop__img">
       <img v-if="product.type === 'SINGLE'" :src="product.images[0]" alt="">
       <img v-else-if="selectedVariant"
@@ -218,5 +221,19 @@ export default {
 
   }
 
+}
+</style>
+
+<style lang="scss">
+.product-card-desktop_variant-many {
+  .product-card-desktop__info {
+    margin-top: -10px;
+  }
+  .product-card-desktop__info--description {
+    height: 80px;
+    .select-variant {
+      margin: 0;
+    }
+  }
 }
 </style>
