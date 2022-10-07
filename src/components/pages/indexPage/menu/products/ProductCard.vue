@@ -1,7 +1,10 @@
 <template>
   <nuxt-link
     class="product"
-    :class="count > 0 ? 'product_active' : ''"
+    :class="[
+      { 'product_active': count > 0 },
+      { 'product_variant-many': product.type === 'VARIANT' && product.variants.length > 4 }
+    ]"
     :to="`/product/${product.$id}`"
   >
     <div class="product__slider">
@@ -438,6 +441,12 @@ export default {
 </style>
 
 <style lang="scss">
+.product_variant-many {
+  .select-variant {
+    padding-bottom: 40px;
+  }
+}
+
 .product .el-carousel__container {
   height: 165px;
   @media screen and (max-width: 700px) {
