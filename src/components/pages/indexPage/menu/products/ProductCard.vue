@@ -487,7 +487,7 @@ export default {
     border-color: #FFFFFF!important;
     background-color: #312525!important;
     > svg path {
-      fill: #FFFFFF!important;
+      fill: #FFFFFF;
     }
     &:hover {
       border-color: #ececec;
