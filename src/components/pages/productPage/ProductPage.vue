@@ -85,6 +85,11 @@ export default {
       }
     }
   },
+  mounted() {
+    if (!this.product) {
+      throw({ statusCode: 404, message: 'Post not found' })
+    }
+  },
   methods: {
     changeVariant(variant) {
       this.selectedVariant = variant
