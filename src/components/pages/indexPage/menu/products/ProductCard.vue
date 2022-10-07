@@ -480,24 +480,24 @@ export default {
 
 .product_active {
   .select-variant__label > span {
-    color: #FFFFFF;
+    color: #FFFFFF!important;
   }
 
   .select-variant__variants--item {
-    border-color: #FFFFFF;
+    border-color: #FFFFFF!important;
     background-color: #312525!important;
     > svg path {
-      fill: #FFFFFF;
+      fill: #FFFFFF!important;
     }
     &:hover {
       border-color: #ececec;
       background-color: #FFFFFF!important;
       > svg path {
-        fill: #312525;
+        fill: #312525!important;
       }
     }
     &.active {
-      border-color: #ececec;
+      border-color: #ececec!important;
       background-color: #FFFFFF!important;
       > svg path {
         fill: #312525;
@@ -517,6 +517,6 @@ export default {
 }
 
 .product_active .plus-minus__value {
-  color: #FFFFFF;
+  color: #FFFFFF!important;
 }
 </style>
