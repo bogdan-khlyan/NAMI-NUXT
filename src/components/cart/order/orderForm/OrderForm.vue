@@ -3,6 +3,7 @@
 
     <div class="order-form__content">
       <input-expand v-model="data.username"
+                    :isValid="fieldsValid.username"
                     class="order-form__input"
                     placeholder="Имя">
         <user-icon/>
@@ -68,7 +69,8 @@ export default {
       calcDeliveryCost: false,
       fieldsValid: {
         address: true,
-        phone: true
+        phone: true,
+        username: true
       }
     }
   },
@@ -89,10 +91,21 @@ export default {
       if (!this.data.address || this.data.address.length <= 5) {
         this.fieldsValid.address = false
         if (notify)
-          setTimeout(() => this.$toast.error('Введен некорректный адрес'), 100)
+          setTimeout(() => this.$toast.error('Введен некорректный адрес!'), 100)
         return false
       } else {
         this.fieldsValid.address = true
+        return true
+      }
+    },
+    validateUsername(notify) {
+      if (!this.data.username || this.data.username.length <= 3) {
+        this.fieldsValid.username = false
+        if (notify)
+          setTimeout(() => this.$toast.error('Ведите имя!'), 200)
+        return false
+      } else {
+        this.fieldsValid.username = true
         return true
       }
     },
@@ -103,7 +116,7 @@ export default {
           if (this.data.phone.length === 8 || this.data.phone.length === 0)
             this.$toast.error('Введите номер телефона!')
           else
-            this.$toast.error('Введен некорректный номер телефона')
+            this.$toast.error('Введен некорректный номер телефона!')
         }
         return false
       } else {
@@ -117,6 +130,8 @@ export default {
       if (this.data.delivery && !this.validateAddress(notify)) valid = false
 
       if (!this.validatePhone(notify)) valid = false
+
+      if (!this.validateUsername(notify)) valid = false
 
       return valid
     }
