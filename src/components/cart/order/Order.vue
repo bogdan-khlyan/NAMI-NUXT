@@ -85,7 +85,12 @@ export default {
           ...this.order,
           phone: this.order.phone // .slice(0, 8) + this.order.phone.slice(9)
         }
-        if (!tmp.deliveryCost && tmp.delivery) tmp.deliveryCalculateManually = true
+        if (!tmp.deliveryCost && tmp.delivery) {
+          tmp.deliveryCalculateManually = true
+        }
+        if (!tmp.delivery) {
+          delete tmp.address
+        }
         if (tmp.additionalInformation.length === 0)
           delete tmp.additionalInformation
         if (tmp.username.length === 0)
