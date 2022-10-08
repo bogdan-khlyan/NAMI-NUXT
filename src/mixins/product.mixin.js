@@ -19,7 +19,7 @@ export default {
     cost() {
       return this.isSingle ?
         this.product.cost
-        : this.selectedVariant.cost
+        : this.selectedVariant?.cost
     },
     costAll() {
       return this.isSingle ?
@@ -29,7 +29,7 @@ export default {
     weight() {
       return this.isSingle ?
         this.product.weight
-        : this.selectedVariant.weight
+        : this.selectedVariant?.weight
     },
     cardDescription() {
       const description = this.product.ingredients.join(', ')
