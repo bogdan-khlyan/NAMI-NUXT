@@ -21,6 +21,11 @@ export default {
         this.product.cost
         : this.selectedVariant.cost
     },
+    costAll() {
+      return this.isSingle ?
+        this.cartProduct.count * this.product.cost
+        : this.cartProduct.count * this.selectedVariant.cost
+    },
     weight() {
       return this.isSingle ?
         this.product.weight
@@ -36,6 +41,11 @@ export default {
     },
     count() {
       return this.cartProduct?.count
+    },
+    titleStyles() {
+      return this.product.title.length > 14 ?
+        'font-size: 16px;line-height: 18px;'
+        : ''
     }
   },
   methods: {

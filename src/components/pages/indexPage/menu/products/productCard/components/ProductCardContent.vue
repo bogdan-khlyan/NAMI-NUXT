@@ -33,15 +33,6 @@ export default {
   components: { SelectVariant },
   props: {
     product: { type: Object }
-  },
-  computed: {
-    titleStyles() {
-      if (this.product.title.length > 14) {
-        return 'font-size: 16px;line-height: 18px;'
-      } else {
-        return ''
-      }
-    }
   }
 }
 </script>

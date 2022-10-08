@@ -4,7 +4,8 @@
     <div class="product-list__products">
       <product-card
         v-for="product in cartProducts" :key="product._id"
-        :product="product"/>
+        :product="product"
+      />
       <div v-if="cartProducts.length === 0"
            class="product-list__products--empty">
         <div class="content">
@@ -23,7 +24,8 @@
       </button>
       <button class="product-list__footer--submit"
               :class="{'disabled': cartProducts.length === 0}"
-              @click="send">Оформить заказ</button>
+              @click="send"
+      >Оформить заказ</button>
     </div>
   </div>
 </template>
