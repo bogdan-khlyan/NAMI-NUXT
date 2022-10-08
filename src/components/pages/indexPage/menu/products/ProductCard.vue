@@ -22,7 +22,7 @@
       <div v-if="product.type === 'SINGLE'"
            class="product__content--info">
         <div>
-          <span class="description">{{ product.ingredients.join(', ') }}</span>
+          <span class="description">{{ description }}</span>
         </div>
       </div>
       <select-variant
@@ -94,10 +94,11 @@ export default {
       }
     },
     description() {
-      if (this.product.description.length > 75) {
-        return this.product.description.slice(0, 75) + '...'
+      const description = this.product.ingredients.join(', ')
+      if (description.length > 75) {
+        return description.slice(0, 75) + '...'
       } else {
-        return this.product.description
+        return description
       }
     },
     cartProduct() {
