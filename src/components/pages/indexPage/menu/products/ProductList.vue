@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ProductCard from "@/components/pages/indexPage/menu/products/ProductCard";
+import ProductCard from "@/components/pages/indexPage/menu/products/productCard/ProductCard";
 
 export default {
   name: 'product-list',

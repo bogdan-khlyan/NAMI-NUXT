@@ -13,7 +13,10 @@ export default ({ $axios, store, router, $toast }) => ({
               .toLowerCase()
               .replaceAll(' ', '-')
           ),
-          images: product.images.map(image => '/api/product/image/' + image)
+          images: product.images.map(image => '/api/product/image/' + image),
+          selectedVariant: product.type === 'VARIANT' ? (
+            product.variants?.[0]
+          ) : null
         }
       })
     }
@@ -21,5 +24,8 @@ export default ({ $axios, store, router, $toast }) => ({
     store.commit('menu.setMenu', result)
 
     return result
+  },
+  async changeVariant() {
+
   }
 })
