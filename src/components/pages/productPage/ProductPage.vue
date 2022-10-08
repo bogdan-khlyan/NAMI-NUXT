@@ -10,9 +10,9 @@
       <div class="product__info">
         <product-ingredients
           :product="product"/>
-        <div v-if="product.type === 'SINGLE'"
-             class="product__info--descr">{{product.description}}</div>
+        <div class="product__info--descr">{{product.description}}</div>
         <select-variant
+          v-if="product.type === 'VARIANT'"
           :product="product"
           @change="changeVariant"/>
         <div class="product__info--cost">
