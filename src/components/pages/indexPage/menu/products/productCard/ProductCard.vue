@@ -139,10 +139,8 @@ export default {
 
   }
 
-  &.variant-many {
-    .select-variant {
-      padding-bottom: 40px;
-    }
+  .select-variant {
+    padding-bottom: 40px;
   }
 
 }
