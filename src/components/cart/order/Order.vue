@@ -102,7 +102,13 @@ export default {
               this.$store.commit('clearCartProducts')
               this.$store.commit('setPhoneNumber', tmp.phone)
               // this.$metrika.reachGoal('create-order')
-              this.$nextTick(() => this.$router.push('/successful-order'))
+              this.$nextTick(() => {
+                if (this.$route.name !== 'successful-order') {
+                  this.$router.push('/successful-order')
+                } else {
+                  location.reload()
+                }
+              })
             })
             .finally(() => this.loading = false)
       }
