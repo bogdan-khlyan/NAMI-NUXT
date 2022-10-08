@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="product-list__cost">
-      Общая сумма <span>{{cost}} ₽</span>
+      Общая сумма <span><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>₽</span>
     </div>
     <div class="product-list__footer">
       <button class="product-list__footer--back"

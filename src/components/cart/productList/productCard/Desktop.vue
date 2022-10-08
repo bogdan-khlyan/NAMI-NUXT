@@ -23,7 +23,7 @@
     </div>
     <div class="product-card-desktop__price">
       <div class="product-card-desktop__price--cost">
-        Цена <span>{{ cost }}₽</span>
+        Цена <span><span v-number-transition="{ target: cost, iteration: 10, speed: 1000 }"/>₽</span>
       </div>
       <div class="product-card-desktop__price--button">
         <plus-minus
@@ -34,7 +34,7 @@
       <el-collapse-transition>
         <div v-if="count > 1"
              class="product-card-desktop__price--cost">
-          Сумма <span>{{ costAll }}₽</span>
+          Сумма <span><span v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"/>₽</span>
         </div>
       </el-collapse-transition>
     </div>

@@ -1,13 +1,14 @@
 <template>
   <div class="product-card-footer">
     <div class="price">
-      <span>{{ cost }}₽</span>
+      <span><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>₽</span>
     </div>
     <div @click="$event.stopPropagation()" class="btn">
       <button
         v-if="!count"
         class="product-card-footer__btn-to-cart"
-        @click="toCard">В корзину</button>
+        @click="toCard"
+      >В корзину</button>
       <plus-minus
         v-else
         class="plus-minus-btn"

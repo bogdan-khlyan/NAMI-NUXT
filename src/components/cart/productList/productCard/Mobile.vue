@@ -30,7 +30,7 @@
       />
 
       <div class="product__cost">
-        {{ costAll }} ₽
+        <span v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"></span> ₽
       </div>
     </div>
 
