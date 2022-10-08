@@ -87,7 +87,7 @@ export default {
   },
   created() {
     if (!this.product) {
-      throw({ statusCode: 404, message: 'Product not found' })
+      this.$router.push('/404')
     }
   },
   methods: {
