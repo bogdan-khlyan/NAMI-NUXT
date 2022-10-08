@@ -20,7 +20,7 @@ export default {
                 config.currentIteration = config.currentIteration + 1;
 
                 if (config.currentIteration >= config.iteration) {
-                    element.innerText = binding.target.toString();
+                    element.innerText = config.target.toString();
                     clearInterval(element._updateInterval);
                 }
 
