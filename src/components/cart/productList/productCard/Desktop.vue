@@ -120,7 +120,8 @@ export default {
     &--name {
       > h3 {
         margin: 0;
-        max-width: 220px!important;
+        //max-width: 220px!important;
+        max-width: 100%;
         width: max-content;
 
         font-family: Neucha, sans-serif;
