@@ -5,6 +5,7 @@ module.exports = {
   buildModules: [
     ['@nuxtjs/google-fonts', {
       families: {
+        Raleway: true,
         Neucha: true,
         Kalam: true,
         Manrope: true,
