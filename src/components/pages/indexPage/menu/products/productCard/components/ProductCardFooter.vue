@@ -5,13 +5,15 @@
     </div>
     <div @click="$event.stopPropagation()" class="btn">
       <button
-        v-if="count < 1"
+        v-if="!count"
         class="product-card-footer__btn-to-cart"
         @click="toCard">В корзину</button>
       <plus-minus
         v-else
         class="plus-minus-btn"
-        :product-id="product._id"/>
+        :value="count"
+        @input="changeCount"
+      />
     </div>
   </div>
 </template>
@@ -31,7 +33,7 @@ export default {
     toCard($event) {
       $event.preventDefault()
       this.$cart.addProduct(this.product)
-    }
+    },
   }
 }
 </script>

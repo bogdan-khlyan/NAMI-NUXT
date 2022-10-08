@@ -1,5 +1,8 @@
 export default {
   computed: {
+    productId() {
+      return this.product._id
+    },
     isSingle() {
       return this.product.type === 'SINGLE'
     },
@@ -8,18 +11,18 @@ export default {
     },
     cartProduct() {
       return this.$store.state.cart.products
-        .find(item => item._id === this.product._id)
+        .find(item => item._id === this.productId)
     },
     selectedVariant() {
       return this.product.selectedVariant
     },
     cost() {
-      return this.product.type === 'SINGLE' ?
+      return this.isSingle ?
         this.product.cost
         : this.selectedVariant.cost
     },
     weight() {
-      return this.product.type === 'SINGLE' ?
+      return this.isSingle ?
         this.product.weight
         : this.selectedVariant.weight
     },
@@ -32,9 +35,16 @@ export default {
       }
     },
     count() {
-      return this.cartProduct ?
-        this.cartProduct.count
-        : 0
+      return this.cartProduct?.count
+    }
+  },
+  methods: {
+    changeCount(count) {
+      if (count === 0) {
+        this.$cart.removeProduct(this.productId)
+        return
+      }
+      this.$cart.changeProductCount(this.productId, count)
     }
   }
 }

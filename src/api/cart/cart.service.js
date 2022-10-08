@@ -6,8 +6,10 @@ export default ({ $axios, store, router, $toast }) => ({
     store.commit('cart.setIsVisibleCart', false)
   },
   addProduct(product) {
-    product.count = 1
-    store.commit('cart.addProduct', product)
+    store.commit('cart.addProduct', {
+      ...product,
+      count: 1
+    })
     this.notifyOrderInfo()
   },
   changeProductVariant(productId, variant) {
