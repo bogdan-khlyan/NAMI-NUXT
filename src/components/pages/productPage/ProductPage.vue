@@ -85,9 +85,9 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     if (!this.product) {
-      throw({ statusCode: 404, message: 'Post not found' })
+      throw({ statusCode: 404, message: 'Product not found' })
     }
   },
   methods: {
