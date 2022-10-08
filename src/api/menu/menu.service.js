@@ -25,7 +25,7 @@ export default ({ $axios, store, router, $toast }) => ({
 
     return result
   },
-  async changeVariant() {
-
+  async changeProductVariant(productId, variant) {
+    store.commit('menu.changeProductVariant', { productId, variant })
   }
 })
