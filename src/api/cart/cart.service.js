@@ -6,6 +6,7 @@ export default ({ $axios, store, router, $toast }) => ({
     store.commit('cart.setIsVisibleCart', false)
   },
   addProduct(product) {
+    ym(90714880,'reachGoal','add-product-to-cart')
     store.commit('cart.addProduct', {
       ...product,
       count: 1
