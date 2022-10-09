@@ -3,17 +3,19 @@
 
     <div class="order-form__content">
       <input-expand v-model="data.username"
-                    :isValid="fieldsValid.username"
                     class="order-form__input"
-                    placeholder="Имя">
+                    placeholder="Имя"
+                    :isValid="fieldsValid.username"
+                    @input="validateUsername(false)">
         <user-icon/>
       </input-expand>
       <input-expand v-model="data.phone"
                     class="order-form__input"
                     v-mask="'+7(949)###-##-##'"
                     :isValid="fieldsValid.phone"
-                    @focus="focusInputPhone"
                     placeholder="Телефон"
+                    @focus="focusInputPhone"
+                    @input="validatePhone(false)"
                     ref="inputPhone">
         <phone-icon/>
       </input-expand>

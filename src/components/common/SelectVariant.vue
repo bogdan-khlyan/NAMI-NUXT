@@ -10,7 +10,7 @@
                   :content="variant.title"
                   placement="bottom">
         <div class="select-variant__variants--item"
-             :class="{ 'active': value && value._id === variant._id }"
+             :class="{ 'active': selectedVariant && selectedVariant._id === variant._id }"
              @click="changeVariant(variant)"
              :ref="`variant${variant._id}`">
           <i class="el-icon-loading"/>
@@ -21,34 +21,16 @@
 </template>
 
 <script>
+import productMixin from "@/mixins/product.mixin";
+
 export default {
   name: 'select-variant',
+  mixins: [productMixin],
   props: {
     label: { type: String, default: null },
     product: { type: Object, default: null }
   },
-  computed: {
-    value() {
-      const item = this.$store.state.cart.products
-        .find(item => item._id === this.product._id)
-      if (item) {
-        return item.selectedVariant
-      } else {
-        return this.selectedVariant
-      }
-    }
-  },
-  data() {
-    return {
-      selectedVariant: null
-    }
-  },
   mounted() {
-    if (this.product?.variants?.[0] && !this.product?.selectedVariant) {
-      this.changeVariant(this.product.variants[0])
-    } else if (this.product?.selectedVariant) {
-      this.changeVariant(this.product?.selectedVariant)
-    }
     this.getIcons()
   },
   methods: {
@@ -62,8 +44,8 @@ export default {
     },
     changeVariant(variant) {
       this.$emit('change', variant)
-      this.selectedVariant = variant
-      this.$cart.changeProductVariant(this.product._id, variant)
+      this.$menu.changeProductVariant(this.productId, variant)
+      this.$cart.changeProductVariant(this.productId, variant)
     }
   }
 }

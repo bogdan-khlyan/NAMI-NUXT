@@ -1,10 +1,10 @@
 <template>
   <div
     class="product-card-desktop"
-    :class="{ 'product-card-desktop_variant-many': product.type === 'VARIANT' && product.variants.length > 4 }"
+    :class="{ 'product-card-desktop_variant-many': isVariant && product.variants.length > 4 }"
   >
     <div class="product-card-desktop__img">
-      <img v-if="product.type === 'SINGLE'" :src="product.images[0]" alt="">
+      <img v-if="isSingle" :src="product.images[0]" alt="">
       <img v-else-if="selectedVariant"
            :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
            :key="selectedVariant.image">
@@ -14,26 +14,29 @@
         <h3 :style="titleStyles">{{product.title}}</h3>
       </div>
       <div class="product-card-desktop__info--description">
-        <span v-if="product.type === 'SINGLE'">{{product.description}}</span>
+        <span v-if="isSingle">{{ cardDescription }}</span>
         <select-variant
           v-else
           :product="product"
-          @change="changeVariant"
         />
       </div>
     </div>
     <div class="product-card-desktop__price">
       <div class="product-card-desktop__price--cost">
-        Цена <span>{{ cost }}₽</span>
+        Цена <span><span v-number-transition="{ target: cost, iteration: 10, speed: 1000 }"/>₽</span>
       </div>
       <div class="product-card-desktop__price--button">
         <plus-minus
-          :product-id="product._id"/>
+          :value="count"
+          @input="changeCount"
+        />
       </div>
-      <div v-if="count > 1"
-           class="product-card-desktop__price--cost">
-        Сумма <span>{{ costAll }}₽</span>
-      </div>
+      <el-collapse-transition>
+        <div v-if="count > 1"
+             class="product-card-desktop__price--cost">
+          Сумма <span><span v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"/>₽</span>
+        </div>
+      </el-collapse-transition>
     </div>
     <div class="product-card-desktop__actions">
       <div class="product-card-desktop__actions--delete"
@@ -47,24 +50,16 @@
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
 import SelectVariant from "@/components/common/SelectVariant";
-import {productCardMixin} from "@/components/cart/productList/productCard/product-card.mixin";
+import productMixin from "@/mixins/product.mixin";
 
 export default {
   name: 'desktop',
   components: { PlusMinus, SelectVariant },
-  mixins: [productCardMixin],
+  mixins: [productMixin],
   props: {
     product: { type: Object }
   },
-  data() {
-    return {
-      selectedVariant: null
-    }
-  },
   methods: {
-    changeVariant(variant) {
-      this.selectedVariant = variant
-    },
     removeProduct() {
       this.$cart.removeProduct(this.product._id)
     }
@@ -78,13 +73,12 @@ export default {
   margin-bottom: 5px;
 
   display: flex;
+  align-items: center;
 
   width: 100%;
   height: 140px;
   box-sizing: border-box;
 
-  padding-top: 27px;
-  padding-bottom: 27px;
   padding-left: 20px;
 
   background: #FAFAFA;
@@ -228,7 +222,7 @@ export default {
 <style lang="scss">
 .product-card-desktop_variant-many {
   .product-card-desktop__info {
-    margin-top: -10px;
+    //margin-top: -10px;
   }
   .product-card-desktop__info--description {
     height: 80px;
