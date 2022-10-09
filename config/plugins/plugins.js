@@ -11,7 +11,8 @@ module.exports = {
     '~/plugins/perfect-scrollbar.js',
     '~/plugins/api-services.js',
     { src: '~/plugins/yandex-map.js',  mode: 'client' },
-    { src: '~/plugins/main.js', mode: 'client' }
+    { src: '~/plugins/main.js', mode: 'client' },
+    { src: '~/plugins/directives.js', mode: 'client' }
   ],
   modules: [
     '@nuxtjs/proxy',

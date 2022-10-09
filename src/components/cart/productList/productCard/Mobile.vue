@@ -2,16 +2,20 @@
   <div class="product">
     <div class="product__content">
       <div class="product__images">
-        <img :src="product.images[0]" alt="">
+        <img v-if="isSingle" :src="product.images[0]" alt="">
+        <img v-else-if="selectedVariant"
+             :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
+             :key="selectedVariant.image">
       </div>
       <div class="product__info">
         <div>
           <h3 :style="titleStyles">{{ product.title }}</h3>
           <div class="product__info-description">
-            <span v-if="product.type === 'SINGLE'">{{ product.description }}</span>
+            <span v-if="isSingle">{{ cardDescription }}</span>
             <select-variant
               v-else
-              :product="product"/>
+              :product="product"
+            />
           </div>
         </div>
       </div>
@@ -21,10 +25,12 @@
 
     <div class="product__content" style="padding-top: 5px">
       <plus-minus
-        :product-id="product._id"/>
+        :value="count"
+        @input="changeCount"
+      />
 
       <div class="product__cost">
-        {{ costAll }} ₽
+        <span v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"></span> ₽
       </div>
     </div>
 
@@ -34,12 +40,12 @@
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
 import SelectVariant from "@/components/common/SelectVariant";
-import {productCardMixin} from "@/components/cart/productList/productCard/product-card.mixin";
+import productMixin from "@/mixins/product.mixin";
 
 export default {
   name: 'mobile',
   components: { PlusMinus, SelectVariant },
-  mixins: [productCardMixin],
+  mixins: [productMixin],
   props: {
     product: { type: Object }
   }

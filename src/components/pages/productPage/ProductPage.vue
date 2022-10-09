@@ -3,25 +3,32 @@
     <div class="product__content">
       <div class="product__media">
         <product-media
-          :product="product"/>
+          :product="product"
+          :selected-variant="selectedVariant"
+        />
       </div>
       <div class="product__info">
         <product-ingredients
-          :product="product"/>
-        <div v-if="product.type === 'SINGLE'"
-             class="product__info--descr">{{product.description}}</div>
-        <select-variant
           :product="product"
-          @change="changeVariant"/>
+        />
+        <div class="product__info--descr">{{product.description}}</div>
+        <select-variant
+          v-if="isVariant"
+          :product="product"
+        />
         <div class="product__info--cost">
           <span>{{cost}} ₽ - {{weight}} г</span>
         </div>
         <div class="product__info--actions">
-          <button v-if="count === 0"
-            @click="toCard">Добавить в коризну</button>
+          <button
+            v-if="!count"
+            @click="toCard"
+          >Добавить в коризну</button>
           <plus-minus
             v-else
-            :product-id="productId"/>
+            :value="count"
+            @input="changeCount"
+          />
         </div>
       </div>
     </div>
@@ -29,70 +36,31 @@
 </template>
 
 <script>
-import ProductMedia from "@/components/pages/productPage/ProductMedia";
-import ProductIngredients from "@/components/pages/productPage/ProductIngredients";
+import ProductMedia from "@/components/pages/productPage/components/ProductMedia";
+import ProductIngredients from "@/components/pages/productPage/components/ProductIngredients";
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
 import SelectVariant from "@/components/common/SelectVariant";
+import productMixin from "@/mixins/product.mixin";
 
 export default {
   name: 'product',
+  mixins: [productMixin],
   components: { PlusMinus, ProductMedia, ProductIngredients, SelectVariant },
   layout: 'base',
-  data() {
-    return {
-      selectedVariant: null
-    }
-  },
   computed: {
-    weight() {
-      if (this.product.type === 'SINGLE') {
-        return this.product.weight
-      } else if (this.selectedVariant) {
-        return this.selectedVariant.weight
-      }
-      return 0
-    },
-    cost() {
-      if (this.product.type === 'SINGLE') {
-        return this.product.cost
-      }
-      if (this.cartProduct?.selectedVariant) {
-        return this.cartProduct.selectedVariant.cost
-      }
-      if (this.selectedVariant) {
-        return this.selectedVariant.cost
-      }
-      return 0
-    },
-    cartProduct() {
-      return this.$store.state.cart.products
-        .find(item => item._id === this.productId)
-    },
-    productId() {
-      return this.product._id
-    },
     product() {
       return this.$store.state.menu.products
         .find(product => product.$id === this.$route.params.id)
-    },
-    count() {
-      if (this.cartProduct) {
-        return this.cartProduct.count
-      } else {
-        return 0
-      }
+    }
+  },
+  created() {
+    if (!this.product) {
+      this.$router.push('/404')
     }
   },
   methods: {
-    changeVariant(variant) {
-      this.selectedVariant = variant
-    },
-    toCard: function () {
-      // this.$store.commit('pushProductToCart', this.productId)
-      this.$cart.addProduct({
-        ...this.product,
-        selectedVariant: this.selectedVariant
-      })
+    toCard() {
+      this.$cart.addProduct(this.product)
     }
   }
 }

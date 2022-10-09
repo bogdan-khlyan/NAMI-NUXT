@@ -78,14 +78,19 @@ export default {
           products: this.cartProducts.map(product => ({
             productId: product._id,
             variantId: product.selectedVariant?._id,
-            number: 1
+            number: product.count
             // ...product,
 
           })),
           ...this.order,
           phone: this.order.phone // .slice(0, 8) + this.order.phone.slice(9)
         }
-        if (!tmp.deliveryCost && tmp.delivery) tmp.deliveryCalculateManually = true
+        if (!tmp.deliveryCost && tmp.delivery) {
+          tmp.deliveryCalculateManually = true
+        }
+        if (!tmp.delivery) {
+          delete tmp.address
+        }
         if (tmp.additionalInformation.length === 0)
           delete tmp.additionalInformation
         if (tmp.username.length === 0)
@@ -97,7 +102,13 @@ export default {
               this.$store.commit('clearCartProducts')
               this.$store.commit('setPhoneNumber', tmp.phone)
               // this.$metrika.reachGoal('create-order')
-              this.$nextTick(() => this.$router.push('/successful-order'))
+              this.$nextTick(() => {
+                if (this.$route.name !== 'successful-order') {
+                  this.$router.push('/successful-order')
+                } else {
+                  location.reload()
+                }
+              })
             })
             .finally(() => this.loading = false)
       }

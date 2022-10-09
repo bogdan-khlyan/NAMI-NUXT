@@ -1,52 +1,51 @@
 <template>
   <div class="select-variant"
-       @click="($event) => $event.stopPropagation()">
+       @click="($event) => $event.preventDefault()">
     <div v-if="label" class="select-variant__label">
       <span>{{ label }}</span>
     </div>
     <div class="select-variant__variants">
-      <div class="select-variant__variants--item"
-           :class="{ 'active': value && value._id === variant._id }"
-           v-for="variant in product.variants"
-           v-html="variant.icon"
-           @click="changeVariant(variant)"/>
+      <el-tooltip class="item" effect="dark"
+                  v-for="variant in product.variants" :key="variant._id"
+                  :content="variant.title"
+                  placement="bottom">
+        <div class="select-variant__variants--item"
+             :class="{ 'active': selectedVariant && selectedVariant._id === variant._id }"
+             @click="changeVariant(variant)"
+             :ref="`variant${variant._id}`">
+          <i class="el-icon-loading"/>
+        </div>
+      </el-tooltip>
     </div>
   </div>
 </template>
 
 <script>
+import productMixin from "@/mixins/product.mixin";
+
 export default {
   name: 'select-variant',
+  mixins: [productMixin],
   props: {
     label: { type: String, default: null },
     product: { type: Object, default: null }
   },
-  computed: {
-    value() {
-      const item = this.$store.state.cart.products
-        .find(item => item._id === this.product._id)
-      if (item) {
-        return item.selectedVariant
-      } else {
-        return this.selectedVariant
-      }
-    }
-  },
-  data() {
-    return {
-      selectedVariant: null
-    }
-  },
   mounted() {
-    if (this.product?.variants?.[0] && !this.product?.selectedVariant) {
-      this.changeVariant(this.product.variants[0])
-    }
+    this.getIcons()
   },
   methods: {
+    getIcons() {
+      this.product.variants
+        .forEach(variant => this.getIcon(variant))
+    },
+    async getIcon(variant) {
+      const blob = await this.$axios.$get(`/api/product/variant/icon/${variant.icon}`, { responseType: 'blob' })
+      this.$refs[`variant${variant._id}`][0].innerHTML = await blob.text()
+    },
     changeVariant(variant) {
       this.$emit('change', variant)
-      this.selectedVariant = variant
-      this.$cart.changeProductVariant(this.product._id, variant)
+      this.$menu.changeProductVariant(this.productId, variant)
+      this.$cart.changeProductVariant(this.productId, variant)
     }
   }
 }
@@ -58,7 +57,7 @@ export default {
   margin-bottom: 14px;
 
   &__label {
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
     text-align: left;
     > span {
       font-family: Ubuntu, sans-serif;
@@ -72,10 +71,12 @@ export default {
 
   &__variants {
     display: flex;
+    flex-wrap: wrap;
 
     &--item {
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-top: 4px;
+      //margin-left: 5px;
+      margin-right: 10px;
 
       display: flex;
       justify-content: center;
@@ -111,6 +112,9 @@ export default {
 
 <style lang="scss">
 .select-variant__variants--item {
+  .el-icon-loading {
+    color: #312525;
+  }
   svg {
     width: 20px;
     height: 20px;
@@ -120,6 +124,9 @@ export default {
     }
   }
   &:hover, &.active {
+    .el-icon-loading {
+      color: #FFFFFF;
+    }
     svg path {
       fill: #FFFFFF;
     }

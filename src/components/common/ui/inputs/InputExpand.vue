@@ -8,6 +8,7 @@
            :maxlength="maxlength"
            @input="updateData"
            @focus="$emit('focus')"
+           spellcheck="false"
            ref="input">
     <span class="bar"></span>
     <label>{{ placeholder }}</label>
