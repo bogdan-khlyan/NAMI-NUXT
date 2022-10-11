@@ -50,7 +50,7 @@ export default {
   methods: {
     send() {
       if (this.cartProducts.length !== 0) {
-        // this.$metrika.reachGoal('making-an-order')
+        ym(90714880,'reachGoal','making-an-order')
         this.$emit('changeMode', 'ORDER')
       }
     },

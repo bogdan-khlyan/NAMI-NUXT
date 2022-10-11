@@ -22,7 +22,7 @@
         <div class="product__info--actions">
           <button
             v-if="!count"
-            @click="toCard"
+            @click="toCart"
           >Добавить в коризну</button>
           <plus-minus
             v-else
@@ -59,7 +59,7 @@ export default {
     }
   },
   methods: {
-    toCard() {
+    toCart() {
       this.$cart.addProduct(this.product)
     }
   }
