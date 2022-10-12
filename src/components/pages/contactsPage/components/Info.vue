@@ -18,7 +18,7 @@
       <label>График работы</label>
       <div class="temp__item-content">
         Ежедневно <br>
-        с 10:00 до 21:00
+        с 10:00 до 19:00
       </div>
     </div>
     <div class="temp__item">
