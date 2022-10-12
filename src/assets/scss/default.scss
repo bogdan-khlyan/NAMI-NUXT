@@ -40,3 +40,7 @@ body {
     font-family: Neucha, sans-serif;
   }
 }
+
+.el-tooltip__popper {
+  z-index: 10000!important;
+}
