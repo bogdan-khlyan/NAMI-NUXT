@@ -1,6 +1,8 @@
 <template>
   <div v-loading="loading" class="map-wrapper">
+    <address-not-found v-if="error"/>
     <yandex-map
+      v-show="!error"
       :coords="startCoords"
       :zoom="zoom"
       :controls="[]"
@@ -26,7 +28,7 @@ export default {
       loading: false,
       startCoords: [48.005202, 37.799126],
       zoom: 12,
-      error: null
+      error: false
     }
   },
   mounted() {
@@ -58,6 +60,10 @@ export default {
       const activeRoute = route.getActiveRoute()
       if (!activeRoute) this.mapError()
       const distance = activeRoute.properties.get('distance')
+      if (distance.value > 20000) {
+        this.mapError()
+        return
+      }
       const cost = this.calcDeliveryCost(distance)
 
       const template = `<span>Расстояние: ${distance.text}</span>` + '<br/>' +
@@ -77,7 +83,7 @@ export default {
       return cost
     },
     mapError() {
-      this.error = 'ADDRESS_NOT_FOUND'
+      this.error = true
       this.loading = false
     }
   }
