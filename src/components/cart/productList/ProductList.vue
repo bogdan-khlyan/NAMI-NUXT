@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="product-list__cost">
-      Общая сумма <span><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>₽</span>
+      Общая сумма <span><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }" style="text-decoration: line-through"/> <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>₽</span>
     </div>
     <div class="product-list__footer">
       <button class="product-list__footer--back"
@@ -45,6 +45,9 @@ export default {
     },
     cost() {
       return this.$store.getters['cart.cost']
+    },
+    discountCost() {
+      return (this.cost * 0.9).toFixed(0)
     }
   },
   methods: {

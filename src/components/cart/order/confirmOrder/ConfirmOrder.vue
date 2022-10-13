@@ -3,7 +3,7 @@
     <div class="order-chapter4__content">
       <div class="calc-cost">
         <div class="calc-cost__item">
-          <div class="one">Стоимость товаров</div><div class="two">{{ cost }} ₽</div>
+          <div class="one">Стоимость товаров</div><div class="two"> <span v-if="delivery" style="text-decoration: line-through">{{ cost }}</span> {{ discountCost }} ₽</div>
         </div>
         <div v-if="delivery" class="calc-cost__item">
           <div class="one">Доставка</div>
@@ -16,7 +16,7 @@
         </div>
         <i v-if="delivery && deliveryCost" class="line"></i>
         <div v-if="deliveryCost" class="calc-cost__item">
-          <div class="one">ВСЕГО</div><div class="two">{{cost + deliveryCost}} ₽</div>
+          <div class="one">ВСЕГО</div><div class="two"><span v-if="delivery" style="text-decoration: line-through">{{cost + deliveryCost}}</span> <span>{{ discountCost + deliveryCost }}</span> ₽</div>
         </div>
       </div>
       <button @click="buy" class="order-chapter4__btn--buy">{{ windowWidth > 420 ? 'Купить и оплатить' : 'Купить'}}</button>
@@ -52,6 +52,9 @@ export default {
     },
     costAll () {
       return this.$store.getters['cart.cost']
+    },
+    discountCost() {
+      return Number.parseInt((this.costAll * 0.9).toFixed(0))
     }
   },
   data() {
