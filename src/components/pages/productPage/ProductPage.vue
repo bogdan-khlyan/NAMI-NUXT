@@ -11,7 +11,7 @@
         <product-ingredients
           :product="product"
         />
-        <div class="product__info--descr">{{product.description}}</div>
+        <p class="product__info--descr">{{product.description}}</p>
         <select-variant
           v-if="isVariant"
           :product="product"
@@ -47,6 +47,22 @@ export default {
   mixins: [productMixin],
   components: { PlusMinus, ProductMedia, ProductIngredients, SelectVariant },
   layout: 'base',
+  head() {
+    return {
+      title: `${this.product.title} - доставка Донецк, Макеевка`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `${this.product.title} - доставка Донецк, Макеевка и самовывоз. Заказывайте ${this.product.title} домой или в офис.`
+        }, {
+          hid: 'keywords',
+          name: 'keywords',
+          content: `${this.product.title.toLowerCase()}, донецк, макеевка, доставка, купить, заказать, самовывоз, акции, лучшие, вкусные, недорогие, бесплатная, кафе, быстрая, ресторан, акции`
+        }
+      ]
+    }
+  },
   computed: {
     product() {
       return this.$store.state.menu.products
