@@ -1,6 +1,6 @@
 module.exports = {
   head: {
-    title: 'NamiSushi | Доставка японской еды в Донецке и Макеевке',
+    title: 'NamiSushi | Доставка суши и роллов в Донецке и Макеевке',
     htmlAttrs: {
       lang: 'ru'
     },

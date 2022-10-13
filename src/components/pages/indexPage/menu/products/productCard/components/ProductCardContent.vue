@@ -2,7 +2,7 @@
   <div class="product-card-content">
 
     <div class="product-card-content__name">
-      <span :style="titleStyles">{{ product.title }}</span>
+      <h4 :style="titleStyles">{{ product.title }}</h4>
       <i>{{ weight }}г</i>
     </div>
 
@@ -11,7 +11,7 @@
       class="product-card-content__info"
     >
       <div>
-        <span class="description">{{ cardDescription }}</span>
+        <p class="description">{{ cardDescription }}</p>
       </div>
     </div>
     <select-variant
@@ -54,8 +54,9 @@ export default {
     display: flex;
     height: 30px;
 
-    > span {
+    > h4 {
       display: block;
+      margin: 0;
       width: 100%;
 
       text-align: left;
@@ -119,6 +120,7 @@ export default {
     }
 
     .description {
+      margin: 0;
       font-family: Montserrat, sans-serif;
       font-style: normal;
       font-weight: normal;
