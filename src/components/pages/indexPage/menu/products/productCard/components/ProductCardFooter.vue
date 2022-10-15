@@ -1,7 +1,7 @@
 <template>
   <div class="product-card-footer">
     <div class="price">
-      <span><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }" style="text-decoration: line-through"/> <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>₽</span>
+      <span><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }" style="text-decoration: line-through;font-size: 24px"/> <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>₽</span>
     </div>
     <div @click="$event.stopPropagation()" class="btn">
       <button
