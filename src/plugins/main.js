@@ -7,7 +7,7 @@ function initStore(app) {
   const currentDay = currentDate.getDay()
   if (currentDay !== 0 && currentDay !== 5 && currentDay !== 6) {
     const hours = currentDate.getHours()
-    if (hours < 16) {
+    if (hours > 11 && hours < 16) {
       app.store.commit('app.setIsDiscount', true)
     }
   }
