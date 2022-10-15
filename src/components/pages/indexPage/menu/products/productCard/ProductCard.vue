@@ -89,7 +89,7 @@ export default {
   &.active {
     background: #312525 !important;
 
-    .product-card-content__name > span,
+    .product-card-content__name > h4,
     .product-card-content__name > i,
     .product-card-content__info .description {
       color: #FFFFFF !important;
@@ -107,20 +107,20 @@ export default {
       .select-variant__variants--item {
         border-color: #FFFFFF!important;
         background-color: #312525!important;
-        > svg path {
+        > .icon > svg path {
           fill: #FFFFFF;
         }
         &:hover {
           border-color: #ececec;
           background-color: #FFFFFF!important;
-          > svg path {
+          > .icon > svg path {
             fill: #312525!important;
           }
         }
         &.active {
           border-color: #ececec!important;
           background-color: #FFFFFF!important;
-          > svg path {
+          > .icon > svg path {
             fill: #312525;
           }
         }

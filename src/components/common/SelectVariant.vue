@@ -10,10 +10,17 @@
                   :content="variant.title"
                   placement="bottom">
         <div class="select-variant__variants--item"
-             :class="{ 'active': selectedVariant && selectedVariant._id === variant._id }"
+             :class="{ 'active': isActiveVariant(variant) }"
              @click="changeVariant(variant)"
              :ref="`variant${variant._id}`">
-          <i class="el-icon-loading"/>
+          <div class="icon"
+               :ref="`variant${variant._id}`">
+            <i class="el-icon-loading"/>
+          </div>
+          <transition name="el-fade-in-linear">
+            <div v-if="selectedVariantCount(variant)"
+                 class="count">{{ selectedVariantCount(variant) }}</div>
+          </transition>
         </div>
       </el-tooltip>
     </div>
@@ -45,7 +52,7 @@ export default {
     changeVariant(variant) {
       this.$emit('change', variant)
       this.$menu.changeProductVariant(this.productId, variant)
-      this.$cart.changeProductVariant(this.productId, variant)
+      // this.$cart.changeProductVariant(this.productId, variant)
     }
   }
 }
@@ -74,6 +81,7 @@ export default {
     flex-wrap: wrap;
 
     &--item {
+      position: relative;
       margin-top: 4px;
       //margin-left: 5px;
       margin-right: 10px;
@@ -101,6 +109,37 @@ export default {
 
       &:hover, &.active {
         background-color: #312525;
+      }
+
+      > .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+      }
+
+      .count {
+        position: absolute;
+        bottom: -3px;
+        right: -3px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 1px solid #312525;
+        background: #FFFFFF;
+
+        font-family: Ubuntu, sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 14px;
+        color: #3D3D3D;
       }
 
     }

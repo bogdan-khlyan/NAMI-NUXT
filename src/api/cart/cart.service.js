@@ -13,15 +13,15 @@ export default ({ $axios, store, router, $toast }) => ({
     })
     this.notifyOrderInfo()
   },
-  changeProductVariant(productId, variant) {
-    store.commit('cart.changeProductVariant', { productId, variant })
-  },
-  changeProductCount(productId, count) {
-    store.commit('cart.changeProductCount', { productId, count })
+  // changeProductVariant(productId, variant) {
+  //   store.commit('cart.changeProductVariant', { productId, variant })
+  // },
+  changeProductCount(productId, variantId, count) {
+    store.commit('cart.changeProductCount', { productId, variantId, count })
     this.notifyOrderInfo()
   },
-  removeProduct(productId) {
-    store.commit('cart.removeProduct', productId)
+  removeProduct(productId, variantId) {
+    store.commit('cart.removeProduct', { productId, variantId })
     this.notifyOrderInfo('Товар удален из корзины')
   },
   notifyOrderInfo(title = 'Товар добавлен в корзину') {

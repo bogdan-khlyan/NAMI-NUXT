@@ -10,11 +10,20 @@ export default {
       return this.product.type === 'VARIANT'
     },
     cartProduct() {
-      return this.$store.state.cart.products
-        .find(item => item._id === this.productId)
+      if (this.isSingle) {
+        return this.$store.state.cart.products
+            .find(item => item._id === this.productId)
+      } else {
+        return this.$store.state.cart.products
+            .find(item => item._id === this.productId && this.selectedVariant._id === item.selectedVariant._id)
+      }
     },
     selectedVariant() {
       return this.product.selectedVariant
+    },
+    cartProducts() { // в случае с VARIANT продуктами в корзине может быть несколько продуктов с одним id и разными variant
+      return this.$store.state.cart.products
+          .filter(item => item._id === this.productId)
     },
     cost() {
       return this.isSingle ?
@@ -49,12 +58,18 @@ export default {
     }
   },
   methods: {
+    isActiveVariant(variant) {
+      return !!this.cartProducts?.find(item => item.selectedVariant._id === variant._id) || this.selectedVariant._id === variant._id
+    },
+    selectedVariantCount(variant) {
+      return this.cartProducts?.find(item => item.selectedVariant._id === variant._id)?.count
+    },
     changeCount(count) {
       if (count === 0) {
-        this.$cart.removeProduct(this.productId)
+        this.$cart.removeProduct(this.productId, this.selectedVariant?._id)
         return
       }
-      this.$cart.changeProductCount(this.productId, count)
+      this.$cart.changeProductCount(this.productId, this.selectedVariant?._id, count)
     }
   }
 }

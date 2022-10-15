@@ -24,12 +24,16 @@ const mutations = {
       item.selectedVariant = variant
     }
   },
-  'cart.changeProductCount'(state, { productId, count }) {
-    const item = state.products.find(item => item._id === productId)
+  'cart.changeProductCount'(state, { productId, variantId, count }) {
+    const item = variantId ?
+      state.products.find(item => item._id === productId && item.selectedVariant._id === variantId)
+      : state.products.find(item => item._id === productId)
     item.count = count
   },
-  'cart.removeProduct'(state, productId) {
-    const index = state.products.findIndex(item => item._id === productId)
+  'cart.removeProduct'(state, { productId, variantId }) {
+    const index = variantId ?
+      state.products.findIndex(item => item._id === productId && item.selectedVariant._id === variantId)
+      : state.products.findIndex(item => item._id === productId)
     state.products.splice(index, 1)
   }
 }

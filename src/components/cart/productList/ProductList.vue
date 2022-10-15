@@ -3,7 +3,7 @@
     <h2>корзина</h2>
     <div class="product-list__products">
       <product-card
-        v-for="product in cartProducts" :key="product._id"
+        v-for="product in cartProducts" :key="product.type === 'SINGLE' ? product._id : product.selectedVariant._id"
         :product="product"
       />
       <div v-if="cartProducts.length === 0"

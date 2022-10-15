@@ -12,9 +12,9 @@
           <h3 :style="titleStyles">{{ product.title }}</h3>
           <div class="product__info-description">
             <span v-if="isSingle">{{ cardDescription }}</span>
-            <select-variant
+            <selected-variant
               v-else
-              :product="product"
+              :selected-variant="selectedVariant"
             />
           </div>
         </div>
@@ -39,12 +39,12 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
-import SelectVariant from "@/components/common/SelectVariant";
+import SelectedVariant from "@/components/cart/productList/productCard/SelectedVariant";
 import productMixin from "@/mixins/product.mixin";
 
 export default {
   name: 'mobile',
-  components: { PlusMinus, SelectVariant },
+  components: { PlusMinus, SelectedVariant },
   mixins: [productMixin],
   props: {
     product: { type: Object }
