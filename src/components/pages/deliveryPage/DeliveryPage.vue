@@ -30,6 +30,9 @@ export default {
   name: 'Delivery',
   layout: 'base',
   components: { BaseSvg },
+  head: {
+    title: `NamiSushi | Доставка еды Донецк, Макеевка`
+  }
 }
 </script>
 
