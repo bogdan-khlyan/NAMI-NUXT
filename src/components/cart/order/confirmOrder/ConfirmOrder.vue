@@ -3,7 +3,12 @@
     <div class="order-chapter4__content">
       <div class="calc-cost">
         <div class="calc-cost__item">
-          <div class="one">Стоимость товаров</div><div class="two">{{ cost }} ₽</div>
+          <div class="one">Стоимость товаров</div>
+          <div v-if="isDiscount" class="two">
+            <span style="font-size: 18px;text-decoration: line-through">{{ cost }}</span>
+            <span>{{ discountCost }} ₽</span>
+          </div>
+          <div v-else class="two">{{ cost }} ₽</div>
         </div>
         <div v-if="delivery" class="calc-cost__item">
           <div class="one">Доставка</div>
@@ -16,7 +21,13 @@
         </div>
         <i v-if="delivery && deliveryCost" class="line"></i>
         <div v-if="deliveryCost" class="calc-cost__item">
-          <div class="one">ВСЕГО</div><div class="two">{{cost + deliveryCost}} ₽</div>
+          <div class="one">ВСЕГО</div>
+          <div v-if="isDiscount"
+               class="two">
+            <span style="text-decoration: line-through;font-size: 18px">{{ costAll + deliveryCost }}</span>
+            <span>{{ discountCost + deliveryCost }} ₽</span>
+          </div>
+          <div v-else class="two">{{cost + deliveryCost}} ₽</div>
         </div>
       </div>
       <button @click="buy" class="order-chapter4__btn--buy">{{ windowWidth > 420 ? 'Купить и оплатить' : 'Купить'}}</button>
@@ -25,6 +36,8 @@
 </template>
 
 <script>
+import {minusDiscount} from "@/utils/discount";
+
 export default {
   name: 'confirm-order',
   components: {
@@ -34,6 +47,12 @@ export default {
     deliveryCost: { type: Number }
   },
   computed: {
+    isDiscount() {
+      return this.$store.state.isDiscount
+    },
+    discountCost() {
+      return minusDiscount(this.costAll)
+    },
     windowWidth () {
       return this.$store.state.windowWidth
     },

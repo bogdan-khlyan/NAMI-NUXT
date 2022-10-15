@@ -1,3 +1,5 @@
+import {minusDiscount} from "@/utils/discount";
+
 export default {
   computed: {
     productId() {
@@ -55,6 +57,13 @@ export default {
       return this.product.title.length > 14 ?
         'font-size: 16px;line-height: 18px;'
         : ''
+    },
+
+    isDiscount() {
+      return this.$store.state.isDiscount
+    },
+    discountCost() {
+      return minusDiscount(this.cost)
     }
   },
   methods: {

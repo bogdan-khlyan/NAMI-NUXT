@@ -15,7 +15,15 @@
       </div>
     </div>
     <div class="product-list__cost">
-      Общая сумма <span><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>₽</span>
+      Общая сумма
+      <span v-if="isDiscount">
+        <span class="discount"
+              v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>
+        <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>₽
+      </span>
+      <span v-else>
+        <span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>₽
+      </span>
     </div>
     <div class="product-list__footer">
       <button class="product-list__footer--back"
@@ -32,11 +40,18 @@
 
 <script>
 import ProductCard from "@/components/cart/productList/productCard/ProductCard";
+import {minusDiscount} from "@/utils/discount";
 
 export default {
   name: 'product-list',
   components: { ProductCard },
   computed: {
+    isDiscount() {
+      return this.$store.state.isDiscount
+    },
+    discountCost() {
+      return minusDiscount(this.cost)
+    },
     windowWidth() {
       return this.$store.state.windowWidth
     },
@@ -220,6 +235,11 @@ export default {
       letter-spacing: 0.05em;
 
       color: #000000;
+    }
+
+    .discount {
+      font-size: 18px;
+      text-decoration: line-through;
     }
 
   }

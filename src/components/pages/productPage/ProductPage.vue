@@ -17,7 +17,14 @@
           :product="product"
         />
         <div class="product__info--cost">
-          <span>{{cost}} ₽ - {{weight}} г</span>
+          <span>
+            <span v-if="isDiscount">
+              <span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }" style="text-decoration: line-through;font-size: 16px"/>
+              <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>
+            </span>
+            <span v-else>{{cost}}</span>
+            ₽ - {{weight}} г
+          </span>
         </div>
         <div class="product__info--actions">
           <button

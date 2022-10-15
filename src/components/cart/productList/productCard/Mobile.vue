@@ -30,7 +30,12 @@
       />
 
       <div class="product__cost">
-        <span v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"></span> ₽
+        <span v-if="isDiscount">
+          <span class="discount"
+                v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"/>
+          <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/> ₽
+        </span>
+        <span v-else v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"/> ₽
       </div>
     </div>
 
@@ -41,6 +46,7 @@
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
 import SelectedVariant from "@/components/cart/productList/productCard/SelectedVariant";
 import productMixin from "@/mixins/product.mixin";
+import {minusDiscount} from "@/utils/discount";
 
 export default {
   name: 'mobile',
@@ -48,6 +54,11 @@ export default {
   mixins: [productMixin],
   props: {
     product: { type: Object }
+  },
+  computed: {
+    discountCost() {
+      return minusDiscount(this.costAll)
+    }
   }
 }
 </script>
@@ -155,6 +166,11 @@ export default {
     letter-spacing: 0.05em;
 
     color: #141414;
+
+    .discount {
+      font-size: 18px;
+      text-decoration: line-through;
+    }
 
   }
 

@@ -23,7 +23,13 @@
     </div>
     <div class="product-card-desktop__price">
       <div class="product-card-desktop__price--cost">
-        Цена <span><span v-number-transition="{ target: cost, iteration: 10, speed: 1000 }"/>₽</span>
+        Цена
+        <span v-if="isDiscount">
+          <span class="discount"
+                v-number-transition="{ target: cost, iteration: 10, speed: 1000 }"/>
+          <span v-number-transition="{ target: discountCost, iteration: 10, speed: 1000 }"/>₽
+        </span>
+        <span v-else><span v-number-transition="{ target: cost, iteration: 10, speed: 1000 }"/>₽</span>
       </div>
       <div class="product-card-desktop__price--button">
         <plus-minus
@@ -175,6 +181,11 @@ export default {
         letter-spacing: 0.05em;
 
         color: #141414;
+      }
+
+      .discount {
+        font-size: 16px;
+        text-decoration: line-through;
       }
 
     }

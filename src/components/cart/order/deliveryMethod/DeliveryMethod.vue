@@ -20,7 +20,7 @@
                 :show="false"
                 :icon="require('@/assets/images/cart/shopping-bag.svg')"
                 @input="emit">
-        <div>Самовывоз</div><div class="text-adaptive-small">Скидка - 10%</div>
+        <div>Самовывоз</div><div v-if="!isDiscount" class="text-adaptive-small">Скидка - 10%</div>
       </checkbox>
     </div>
   </div>
@@ -43,6 +43,9 @@ export default {
     }
   },
   computed: {
+    isDiscount() {
+      return this.$store.state.isDiscount
+    },
     cartProducts() {
       return this.$store.state.orders.list
     },
