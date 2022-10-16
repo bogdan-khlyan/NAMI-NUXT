@@ -12,6 +12,11 @@ import AppMenu from "@/components/pages/indexPage/menu/AppMenu";
 export default {
   name: 'index-page',
   components: { Banner, AppMenu },
+  head: {
+    link: [
+      { href: 'https://namisushi.ru/', rel: 'canonical' }
+    ]
+  },
   beforeDestroy() {
     this.$store.commit('setIsMenu', false)
   }

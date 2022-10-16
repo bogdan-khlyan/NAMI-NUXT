@@ -3,9 +3,9 @@
     <div class="categories__item"
          v-for="category in categories" :key="category._id"
          @click="selectCategory(category)">
-      <a :class="{ active: selectedCategory && (category._id === selectedCategory._id) }">
+      <h3 :class="{ active: selectedCategory && (category._id === selectedCategory._id) }">
         {{ category.title }}
-      </a>
+      </h3>
     </div>
   </div>
 </template>
@@ -57,11 +57,12 @@ export default {
 
   &__item {
     margin: 4px;
-    a {
+    > h3 {
       display: flex;
       justify-content: center;
       align-items: center;
 
+      margin: 0;
       padding-left: 32px;
       padding-right: 32px;
       height: 64px;

@@ -2,7 +2,9 @@
   <div class="cart-header-btn"
        @click="showCart">
     <cart-icon/>
-    <div class="cart-header-btn__count">{{ count }}</div>
+    <div class="cart-header-btn__count">
+      <span>{{ count }}</span>
+    </div>
   </div>
 </template>
 
@@ -52,8 +54,8 @@ export default {
 
   &__count {
     position: absolute;
-    right: -5px;
-    bottom: -5px;
+    right: -3px;
+    bottom: -3px;
 
     width: 20px;
     height: 20px;
@@ -66,14 +68,17 @@ export default {
     justify-content: center;
     align-items: center;
 
-    font-family: Neucha, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 9px;
-    line-height: 10px;
-    letter-spacing: 0.07em;
+    > span {
+      padding-top: 3px;
+      font-family: Neucha, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 12px;
+      letter-spacing: 0.07em;
 
-    color: #000000;
+      color: #000000;
+    }
 
   }
 

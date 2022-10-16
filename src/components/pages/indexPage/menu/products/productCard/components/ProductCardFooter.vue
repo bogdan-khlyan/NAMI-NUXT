@@ -1,7 +1,18 @@
 <template>
   <div class="product-card-footer">
     <div class="price">
-      <span><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>₽</span>
+      <el-tooltip
+        v-if="isDiscount"
+        effect="dark"
+        content="Скидка до 16:00"
+        placement="bottom"
+      >
+        <span @click="$event.preventDefault()">
+          <span class="discount">{{ cost }}</span>
+          <span>{{ discountCost }}</span>₽
+        </span>
+      </el-tooltip>
+      <span v-else><span>{{ cost }}</span>₽</span>
     </div>
     <div @click="$event.stopPropagation()" class="btn">
       <button
@@ -80,6 +91,10 @@ export default {
     color: #000000;
 
     transition: 0.3s;
+    .discount {
+      text-decoration: line-through;
+      font-size: 22px;
+    }
   }
 
   &__btn-to-cart {

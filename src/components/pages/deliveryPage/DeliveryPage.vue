@@ -13,7 +13,7 @@
           <div class="delivery__list--item">Минимальный  заказ для доставки - 500 ₽</div>
           <div class="delivery__list--item">Стоимость доставки 1 км - 15 ₽</div>
           <div class="delivery__list--item">Вы можете сами забрать заказ из ресторана со скидкой 10%</div>
-          <div class="delivery__list--item">Доставка осуществляется с 11:00 до 20:30</div>
+          <div class="delivery__list--item">Доставка осуществляется с 11:00 до 19:00</div>
         </div>
         <div class="delivery__content--image">
           <img src="@/assets/images/delivery/image.png" alt="">
@@ -30,6 +30,9 @@ export default {
   name: 'Delivery',
   layout: 'base',
   components: { BaseSvg },
+  head: {
+    title: `NamiSushi | Доставка еды Донецк, Макеевка`
+  }
 }
 </script>
 

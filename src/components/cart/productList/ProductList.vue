@@ -3,7 +3,7 @@
     <h2>корзина</h2>
     <div class="product-list__products">
       <product-card
-        v-for="product in cartProducts" :key="product._id"
+        v-for="product in cartProducts" :key="product.type === 'SINGLE' ? product._id : product.selectedVariant._id"
         :product="product"
       />
       <div v-if="cartProducts.length === 0"
@@ -15,7 +15,16 @@
       </div>
     </div>
     <div class="product-list__cost">
-      Общая сумма <span><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>₽</span>
+      Общая сумма
+      <span v-if="isDiscount">
+        <span class="discount"
+              v-if="cost > 0"
+              v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>
+        <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>₽
+      </span>
+      <span v-else>
+        <span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>₽
+      </span>
     </div>
     <div class="product-list__footer">
       <button class="product-list__footer--back"
@@ -32,11 +41,18 @@
 
 <script>
 import ProductCard from "@/components/cart/productList/productCard/ProductCard";
+import {minusDiscount} from "@/utils/discount";
 
 export default {
   name: 'product-list',
   components: { ProductCard },
   computed: {
+    isDiscount() {
+      return this.$store.state.isDiscount
+    },
+    discountCost() {
+      return minusDiscount(this.cost)
+    },
     windowWidth() {
       return this.$store.state.windowWidth
     },
@@ -50,7 +66,7 @@ export default {
   methods: {
     send() {
       if (this.cartProducts.length !== 0) {
-        ym(90714880,'reachGoal','making-an-order')
+        this.$yandex.sendEvent('making-an-order')
         this.$emit('changeMode', 'ORDER')
       }
     },
@@ -220,6 +236,11 @@ export default {
       letter-spacing: 0.05em;
 
       color: #000000;
+    }
+
+    .discount {
+      font-size: 18px;
+      text-decoration: line-through;
     }
 
   }

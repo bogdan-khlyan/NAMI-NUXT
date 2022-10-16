@@ -14,10 +14,16 @@ export const state = () => ({
   windowScroll: false,
   windowWidth: null,
 
-  scrollToProduct: null
+  scrollToProduct: null,
+
+  isDiscount: true
 })
 
 export const mutations = {
+  'app.setIsDiscount'(state, isDiscount) {
+    state.isDiscount = isDiscount
+  },
+
   'app.setScrollToProduct' (state, data) {
     state.scrollToProduct = data
   },

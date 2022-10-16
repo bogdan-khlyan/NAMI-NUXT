@@ -15,15 +15,20 @@
       </div>
       <div class="product-card-desktop__info--description">
         <span v-if="isSingle">{{ cardDescription }}</span>
-        <select-variant
+        <selected-variant
           v-else
-          :product="product"
+          :selected-variant="selectedVariant"
         />
       </div>
     </div>
     <div class="product-card-desktop__price">
       <div class="product-card-desktop__price--cost">
-        Цена <span><span v-number-transition="{ target: cost, iteration: 10, speed: 1000 }"/>₽</span>
+        Цена
+        <span v-if="isDiscount">
+          <span class="discount">{{ cost }}</span>
+          <span>{{ discountCost }}</span>₽
+        </span>
+        <span v-else><span>{{ cost }}</span>₽</span>
       </div>
       <div class="product-card-desktop__price--button">
         <plus-minus
@@ -49,19 +54,19 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
-import SelectVariant from "@/components/common/SelectVariant";
+import SelectedVariant from "@/components/cart/productList/productCard/SelectedVariant";
 import productMixin from "@/mixins/product.mixin";
 
 export default {
   name: 'desktop',
-  components: { PlusMinus, SelectVariant },
+  components: { PlusMinus, SelectedVariant },
   mixins: [productMixin],
   props: {
     product: { type: Object }
   },
   methods: {
     removeProduct() {
-      this.$cart.removeProduct(this.product._id)
+      this.$cart.removeProduct(this.product._id, this.product.selectedVariant?._id)
     }
   }
 }
@@ -177,6 +182,11 @@ export default {
         color: #141414;
       }
 
+      .discount {
+        font-size: 16px;
+        text-decoration: line-through;
+      }
+
     }
 
     &--button {
@@ -216,19 +226,5 @@ export default {
 
   }
 
-}
-</style>
-
-<style lang="scss">
-.product-card-desktop_variant-many {
-  .product-card-desktop__info {
-    //margin-top: -10px;
-  }
-  .product-card-desktop__info--description {
-    height: 80px;
-    .select-variant {
-      margin: 0;
-    }
-  }
 }
 </style>

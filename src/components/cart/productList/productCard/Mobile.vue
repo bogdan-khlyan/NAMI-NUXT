@@ -12,9 +12,9 @@
           <h3 :style="titleStyles">{{ product.title }}</h3>
           <div class="product__info-description">
             <span v-if="isSingle">{{ cardDescription }}</span>
-            <select-variant
+            <selected-variant
               v-else
-              :product="product"
+              :selected-variant="selectedVariant"
             />
           </div>
         </div>
@@ -30,7 +30,11 @@
       />
 
       <div class="product__cost">
-        <span v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"></span> ₽
+        <span v-if="isDiscount">
+          <span class="discount">{{ costAll }}</span>
+          <span>{{ discountCost }}</span>
+        </span>
+        <span v-else>{{ costAll }}</span> ₽
       </div>
     </div>
 
@@ -39,15 +43,21 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
-import SelectVariant from "@/components/common/SelectVariant";
+import SelectedVariant from "@/components/cart/productList/productCard/SelectedVariant";
 import productMixin from "@/mixins/product.mixin";
+import {minusDiscount} from "@/utils/discount";
 
 export default {
   name: 'mobile',
-  components: { PlusMinus, SelectVariant },
+  components: { PlusMinus, SelectedVariant },
   mixins: [productMixin],
   props: {
     product: { type: Object }
+  },
+  computed: {
+    discountCost() {
+      return minusDiscount(this.costAll)
+    }
   }
 }
 </script>
@@ -155,6 +165,11 @@ export default {
     letter-spacing: 0.05em;
 
     color: #141414;
+
+    .discount {
+      font-size: 18px;
+      text-decoration: line-through;
+    }
 
   }
 

@@ -20,7 +20,7 @@
                 :show="false"
                 :icon="require('@/assets/images/cart/shopping-bag.svg')"
                 @input="emit">
-        <div>Самовывоз</div><div class="text-adaptive-small">Скидка - 10%</div>
+        <div>Самовывоз</div><div class="text-adaptive-small">Скидка - {{isDiscount ? '15' : '10'}}%</div>
       </checkbox>
     </div>
   </div>
@@ -43,6 +43,9 @@ export default {
     }
   },
   computed: {
+    isDiscount() {
+      return this.$store.state.isDiscount
+    },
     cartProducts() {
       return this.$store.state.orders.list
     },
@@ -108,25 +111,25 @@ export default {
       margin-right: 0;
     }
     @media screen and (max-width: 570px) {
-      font-size: 11px;
-      line-height: 13px;
+      font-size: 12px;
+      line-height: 14px;
     }
-    @media screen and (max-width: 540px) {
-      font-size: 10px;
-      line-height: 12px;
-    }
-    @media screen and (max-width: 510px) {
-      font-size: 8px;
-      line-height: 10px;
-    }
-    @media screen and (max-width: 480px) {
-      font-size: 10px;
-      line-height: 12px;
-    }
-    @media screen and (max-width: 480px) {
-      font-size: 8px;
-      line-height: 10px;
-    }
+    //@media screen and (max-width: 540px) {
+    //  font-size: 12px;
+    //  line-height: 14px;
+    //}
+    //@media screen and (max-width: 510px) {
+    //  font-size: 8px;
+    //  line-height: 10px;
+    //}
+    //@media screen and (max-width: 480px) {
+    //  font-size: 10px;
+    //  line-height: 12px;
+    //}
+    //@media screen and (max-width: 480px) {
+    //  font-size: 8px;
+    //  line-height: 10px;
+    //}
   }
 
   .checkbox-disabled .label {

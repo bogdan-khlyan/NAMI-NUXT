@@ -59,7 +59,7 @@ export default {
     width: 16px;
 
     font-family: Ubuntu, sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 16px;
     text-align: center;

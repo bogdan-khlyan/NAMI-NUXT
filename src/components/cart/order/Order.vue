@@ -98,7 +98,7 @@ export default {
         this.loading = true
         this.$orders.createOrder(tmp)
             .then(() => {
-              ym(90714880,'reachGoal','create-order')
+              this.$yandex.sendEvent('create-order')
               this.$cart.hideCart()
               this.$store.commit('clearCartProducts')
               this.$store.commit('setPhoneNumber', tmp.phone)
