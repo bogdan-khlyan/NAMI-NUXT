@@ -18,6 +18,7 @@
       Общая сумма
       <span v-if="isDiscount">
         <span class="discount"
+              v-if="cost > 0"
               v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>
         <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>₽
       </span>
