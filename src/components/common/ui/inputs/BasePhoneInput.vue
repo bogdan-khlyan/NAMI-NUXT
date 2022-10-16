@@ -3,7 +3,7 @@
          :class="[{ focus: isFocus }, { done: isDone }, { error: error.$error }]">
     <span class="phone-input__label">Номер телефона</span>
     <span class="phone-input__content">
-      <span class="phone-input__content--label">+ 38 (071)</span>
+      <span class="phone-input__content--label">+ 7 (949)</span>
       <span class="phone-input__content--input">
         <input type="text"
                v-model="number"
@@ -52,13 +52,10 @@ export default {
     windowWidth() {
       return this.$store.state.windowWidth
     }
-    // isDone() {
-    //   return this.number && this.number.length === 9
-    // }
   },
   methods: {
     input($event) {
-      this.$emit('input', '+38(071)' + $event.target.value)
+      this.$emit('input', '+7(949)' + $event.target.value)
     }
   }
 }

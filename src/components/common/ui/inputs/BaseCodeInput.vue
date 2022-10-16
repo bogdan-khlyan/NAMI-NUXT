@@ -58,7 +58,7 @@ export default {
     return {
       time: 0,
       interval: null,
-      code: ['', '', '', '', '', '']
+      code: ['', '', '', '']
     }
   },
   mounted() {
@@ -78,14 +78,14 @@ export default {
       }, 1000)
     },
     input(index) {
-      if (index !== 5 && this.code[index]) {
+      if (index !== 3 && this.code[index]) {
         if (this.code[index].length === 2) {
           this.code[index + 1] = this.code[index][1]
           this.code[index] = this.code[index][0]
         }
         this.$refs.input[index + 1].focus()
       }
-      if (index === 5 && this.code[index].length === 2) {
+      if (index === 3 && this.code[index].length === 2) {
         this.code[index] = this.code[index][1]
       }
       this.$emit('input', this.code.join(''))
@@ -128,7 +128,7 @@ export default {
 
     > input {
       display: block;
-      width: 56px;
+      width: 80px;
       height: 56px;
 
       font-family: Ubuntu, sans-serif;
@@ -168,7 +168,7 @@ export default {
   }
 
   &__new-code {
-    margin-top: 20px;
+    margin-top: 10px;
 
     display: flex;
     align-items: center;

@@ -1,74 +1,24 @@
-import {UserInstanceRepository} from "@/api/userInstance/user-instance.repository";
+import {baseError} from "@/utils/base-error";
 
-export class UserInstanceService {
-
-  #store = null
-  #router = null
-  #repository = new UserInstanceRepository()
-
-  constructor(app) {
-    this.#store = app.store
-    this.#router = app.router
-  }
-
-  async verifyOTP({ phone, code }) {
+export default ({ $axios, store, router, $toast }) => ({
+  async singInCall(phone) {
     try {
-      return await this.#repository.verifyOTP({ phone, code })
+      await $axios.$post('/api/user/signin/call', { phone })
     } catch (error) {
-      console.log(error)
+      baseError(error, $toast)
       throw error
     }
-  }
+  },
+  async signIn(requestData) {
+      try {
+        const { user } = $axios.$post('/api/user/signin', requestData)
+        store.commit('userInstance.signIn')
+        store.commit('userInstance.setUserInfo', user)
 
-  async sendOTP(phone) {
-    try {
-      return this.#repository.sendOTP({ phone })
-    } catch (error) {
-      console.log(error)
-      throw error
-    }
-  }
-
-  async getStatus(phone) {
-    try {
-      const { status } = await this.#repository.getStatus({ phone })
-      if (status === 'SIGN_UP') {
-        await this.sendOTP(phone)
+        router.push('/profile')
+      } catch (error) {
+        baseError(error, $toast)
+        throw error
       }
-      return status
-    } catch (error) {
-      console.log(error)
-      throw error
-    }
   }
-
-  async signUp(requestData) {
-    try {
-      const data = await this.#repository.signUp(requestData)
-      console.log(data)
-      return data
-    } catch (error) {
-      console.log(error)
-      throw error
-    }
-  }
-
-  async signIn() {
-    try {
-      const user = await this.#repository.signIn()
-
-      this.#store.commit('userInstance.signIn')
-      this.#store.commit('userInstance.setUserInfo', user)
-
-      this.#router.push('/')
-
-      return user
-    } catch (error) {
-      console.log(error)
-      throw error
-    }
-  }
-
-}
-
-export default {}
+})
