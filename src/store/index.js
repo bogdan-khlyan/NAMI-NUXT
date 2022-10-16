@@ -16,7 +16,7 @@ export const state = () => ({
 
   scrollToProduct: null,
 
-  isDiscount: true
+  isDiscount: false
 })
 
 export const mutations = {
