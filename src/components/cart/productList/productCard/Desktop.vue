@@ -25,11 +25,10 @@
       <div class="product-card-desktop__price--cost">
         Цена
         <span v-if="isDiscount">
-          <span class="discount"
-                v-number-transition="{ target: cost, iteration: 10, speed: 1000 }"/>
-          <span v-number-transition="{ target: discountCost, iteration: 10, speed: 1000 }"/>₽
+          <span class="discount">{{ cost }}</span>
+          <span>{{ discountCost }}</span>₽
         </span>
-        <span v-else><span v-number-transition="{ target: cost, iteration: 10, speed: 1000 }"/>₽</span>
+        <span v-else><span>{{ cost }}</span>₽</span>
       </div>
       <div class="product-card-desktop__price--button">
         <plus-minus

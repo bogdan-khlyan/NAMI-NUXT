@@ -8,12 +8,11 @@
         placement="bottom"
       >
         <span @click="$event.preventDefault()">
-          <span class="discount"
-                v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>
-          <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>₽
+          <span class="discount">{{ cost }}</span>
+          <span>{{ discountCost }}</span>₽
         </span>
       </el-tooltip>
-      <span v-else><span v-number-transition="{ target: cost, iteration: 30, speed: 1000 }"/>₽</span>
+      <span v-else><span>{{ cost }}</span>₽</span>
     </div>
     <div @click="$event.stopPropagation()" class="btn">
       <button

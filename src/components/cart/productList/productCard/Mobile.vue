@@ -31,11 +31,10 @@
 
       <div class="product__cost">
         <span v-if="isDiscount">
-          <span class="discount"
-                v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"/>
-          <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>
+          <span class="discount">{{ costAll }}</span>
+          <span>{{ discountCost }}</span>
         </span>
-        <span v-else v-number-transition="{ target: costAll, iteration: 30, speed: 1000 }"/> ₽
+        <span v-else>{{ costAll }}</span> ₽
       </div>
     </div>
 
