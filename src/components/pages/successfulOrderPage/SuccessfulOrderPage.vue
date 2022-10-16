@@ -152,9 +152,9 @@ export default {
         font-size: 12px;
         line-height: 14px;
       }
-      @media screen and (max-width: 380px) {
-        font-size: 10px;
-      }
+      //@media screen and (max-width: 380px) {
+      //  font-size: 10px;
+      //}
     }
 
     > .phone {
