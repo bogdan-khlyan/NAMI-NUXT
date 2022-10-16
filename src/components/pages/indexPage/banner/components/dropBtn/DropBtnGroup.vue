@@ -32,7 +32,7 @@ export default {
         width: '230px'
       }, {
         icon: require('@/assets/images/icons/clock.svg'),
-        content: ['Ежедневно с 10:00 до 21:00', 'Доставка с 11:00 до 20:30'],
+        content: ['Ежедневно с 10:00 до 19:00', 'Доставка с 11:00 до 19:00'],
         width: '250px'
       }]
     }
