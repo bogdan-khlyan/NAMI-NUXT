@@ -23,6 +23,14 @@ export default {
   components: { Spinner },
   async fetch() {
     await this.$menu.getMenu()
+    const currentDate = new Date()
+    const currentDay = currentDate.getDay()
+    if (currentDay !== 0 && currentDay !== 5 && currentDay !== 6) {
+      const hours = currentDate.getHours()
+      if (hours >= 11 && hours < 16) {
+        this.$store.commit('app.setIsDiscount', true)
+      }
+    }
   },
   async mounted() {
     setTimeout(() =>
