@@ -22,7 +22,6 @@ export default {
   name: 'body-loading',
   components: { Spinner },
   async fetch() {
-    await this.$menu.getMenu()
     const currentDate = new Date()
     const currentDay = currentDate.getDay()
     if (currentDay !== 0 && currentDay !== 5 && currentDay !== 6) {

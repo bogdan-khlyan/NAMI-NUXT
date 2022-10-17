@@ -1,4 +1,5 @@
 module.exports = {
+  middleware: ['router-middleware'],
   extendRoutes(routes, resolve) {
     routes.push({
       path: '/contacts',

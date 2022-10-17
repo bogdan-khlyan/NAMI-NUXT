@@ -1,10 +1,12 @@
 const state = () => ({
+  isInit: false,
   categories: [],
   products: []
 })
 
 const mutations = {
   'menu.setMenu'(state, menu) {
+    state.isInit = true
     state.categories = menu.categories
     state.products = menu.products
   },

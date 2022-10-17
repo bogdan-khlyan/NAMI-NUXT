@@ -76,11 +76,6 @@ export default {
         .find(product => product.$id === this.$route.params.id)
     }
   },
-  created() {
-    if (!this.product) {
-      this.$router.push('/404')
-    }
-  },
   methods: {
     toCart() {
       this.$cart.addProduct(this.product)
