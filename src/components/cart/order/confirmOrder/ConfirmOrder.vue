@@ -5,7 +5,7 @@
         <div class="calc-cost__item">
           <div class="one">Стоимость товаров</div>
           <div v-if="isDiscount" class="two">
-            <span style="font-size: 18px;text-decoration: line-through">{{ cost }}</span>
+            <span style="font-size: 18px;text-decoration: line-through">{{ costAll }}</span>
             <span>{{ discountCost }} ₽</span>
           </div>
           <div v-else class="two">{{ cost }} ₽</div>

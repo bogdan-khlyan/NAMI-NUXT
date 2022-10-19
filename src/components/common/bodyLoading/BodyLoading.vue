@@ -21,17 +21,16 @@ import Spinner from "@/components/common/bodyLoading/Spinner";
 export default {
   name: 'body-loading',
   components: { Spinner },
-  async fetch() {
-    await this.$menu.getMenu()
-    const currentDate = new Date()
-    const currentDay = currentDate.getDay()
-    if (currentDay !== 0 && currentDay !== 5 && currentDay !== 6) {
-      const hours = currentDate.getHours()
-      if (hours >= 11 && hours < 16) {
-        this.$store.commit('app.setIsDiscount', true)
-      }
-    }
-  },
+  // async fetch() {
+  //   const currentDate = new Date()
+  //   const currentDay = currentDate.getDay()
+  //   if (currentDay !== 0 && currentDay !== 5 && currentDay !== 6) {
+  //     const hours = currentDate.getHours()
+  //     if (hours >= 11 && hours < 16) {
+  //       this.$store.commit('app.setIsDiscount', true)
+  //     }
+  //   }
+  // },
   async mounted() {
     setTimeout(() =>
         this.$emit('done'), 500)
