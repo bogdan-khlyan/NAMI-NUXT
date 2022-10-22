@@ -6,9 +6,10 @@
 
     <div class="orders__content">
       <orders-table
-        v-if="windowWidth > 600"
+        v-if="windowWidth > 600 && orders.length > 0"
         :orders="orders"
       />
+      <empty v-if="orders.length === 0"/>
     </div>
   </div>
 </template>
@@ -16,10 +17,11 @@
 <script>
 import PageTitle from "@/components/pages/profilePage/common/PageTitle";
 import OrdersTable from "@/components/pages/profilePage/orders/components/table/OrdersTable";
+import Empty from "@/components/pages/profilePage/orders/components/Empty";
 
 export default {
   name: 'orders',
-  components: {PageTitle, OrdersTable},
+  components: {PageTitle, OrdersTable, Empty},
   data() {
     return {
       orders: [],
@@ -47,6 +49,7 @@ export default {
 <style lang="scss" scoped>
 .orders {
   margin-left: auto;
+  width: 100%;
   transition: 0.2s;
   @media screen and (max-width: 1140px) {
     padding-left: 70px;
