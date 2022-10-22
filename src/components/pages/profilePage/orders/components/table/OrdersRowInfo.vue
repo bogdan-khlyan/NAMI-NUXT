@@ -7,17 +7,17 @@
         {{ number }}
       </div>
       <div class="orders-row-info__item-id">
-        {{ orderInfo.id }}
+        {{ order.number }}
       </div>
       <div class="orders-row-info__item-date">
-        {{ new Date(orderInfo.dateOrder * 1000).toLocaleDateString() }}
+        {{ new Date(order.createdAt).toLocaleDateString() }}
       </div>
       <div class="orders-row-info__item-status"
-           :class="`orders-row-info__item-status--${orderInfo.status}`">
-        {{ getStatusName }}
+           :class="`orders-row-info__item-status--${order.condition}`">
+        {{ conditionName }}
       </div>
       <div class="orders-row-info__item-amount">
-        {{ orderInfo.amountOrder + orderInfo.amountDelivery }} ₽
+        {{ order.cost }} ₽
       </div>
 
     </div>
@@ -28,7 +28,9 @@
       </div>
       <div class="orders-row-info__item-btn-action" @click="clickDetails">
         Детали
-        <img class="orders-row-info__show-details"
+        <i v-if="loading" class="el-icon-loading"/>
+        <img v-else
+             class="orders-row-info__show-details"
              :class="{'orders-row-info__show-details--active': showDetails}"
              src="@/assets/images/orders/icon-expand.svg" alt="">
       </div>
@@ -39,22 +41,42 @@
 
 <script>
 export default {
-  name: "OrdersRowInfo",
+  name: "orders-row-info",
   props: {
-    orderInfo: {type: Object},
+    order: {type: Object},
     number: {type: Number},
     showDetails: {type: Boolean}
   },
   computed: {
-    getStatusName() {
-      const status = this.orderInfo.status
-      return status === 'new' ? 'Новый' : status === 'completed' ? 'Завершен' : status === 'processing' ?
-        'В обработке' : status === 'delivered' ? 'Доставляется' : 'Отменен'
+    conditionName() {
+      const conditionsMap = new Map()
+        .set('NEW', 'Новый')
+        .set('IN_PROGRESS', 'В обработке')
+        .set('IN_THE_WAY', 'Доставляется')
+        .set('DONE', 'Завершен')
+        .set('REJECT', 'Отменен')
+      return conditionsMap.get(this.order.condition)
+    }
+  },
+  data() {
+    return {
+      loading: false
     }
   },
   methods: {
     clickDetails() {
-        this.$emit('clickDetails', this.showDetails ? null : this.orderInfo.id)
+      if (this.order.full) {
+        this.$emit('click-details', this.order._id)
+      } else {
+        this.loading = true
+        this.$orders.getOrderById(this.order.number)
+          .then(order => {
+            this.order.full = order
+            console.log(this.order)
+            this.$emit('click-details', this.order._id)
+          })
+          .finally(() => this.loading = false)
+      }
     }
   }
 }
@@ -138,27 +160,27 @@ export default {
     background: #FFF7EB;
     border-radius: 50px;
 
-    &--new {
+    &--NEW {
       background: #E4F7FF;
       color: #1F86F8;
     }
 
-    &--completed {
+    &--DONE {
       background: #E9FFED;
       color: #31AA27;
     }
 
-    &--processing {
+    &--IN_PROGRESS {
       background: #FFF7EB;
       color: #FF8B20;
     }
 
-    &--delivered {
-      background: #E9FFED;
-      color: #31AA27;
-    }
+    //&--delivered {
+    //  background: #E9FFED;
+    //  color: #31AA27;
+    //}
 
-    &--cancelled {
+    &--REJECT {
       background: #FFF0F0;
       color: #F93232;
     }
@@ -205,7 +227,7 @@ export default {
 
     transition: 0.2s;
 
-    img {
+    img, .el-icon-loading {
       margin-left: 10px;
     }
 

@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import OrderCardDetails from "@/components/pages/profilePage/orders/components/OrderCardDetails";
+import OrderCardDetails from "@/components/pages/profilePage/orders/components/card/OrderCardDetails";
 
 export default {
   name: "OrderCardInfo",
