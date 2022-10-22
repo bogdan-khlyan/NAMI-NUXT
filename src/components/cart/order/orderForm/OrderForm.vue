@@ -101,7 +101,7 @@ export default {
       }
     },
     validateUsername(notify) {
-      if (!this.data.username || this.data.username.length <= 3) {
+      if (!this.data.username || this.data.username.length <= 2) {
         this.fieldsValid.username = false
         if (notify)
           setTimeout(() => this.$toast.error('Ведите имя!'), 200)
