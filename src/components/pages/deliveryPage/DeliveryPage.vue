@@ -11,7 +11,7 @@
             <span>как получить заказ</span>
           </h2>
           <div class="delivery__list--item">Минимальный  заказ для доставки - 500 ₽</div>
-          <div class="delivery__list--item">Стоимость доставки 1 км - 15 ₽</div>
+          <div class="delivery__list--item">Стоимость доставки 1 км - 25 ₽</div>
           <div class="delivery__list--item">Вы можете сами забрать заказ из ресторана со скидкой 10%</div>
           <div class="delivery__list--item">Доставка осуществляется с 11:00 до 19:00</div>
         </div>

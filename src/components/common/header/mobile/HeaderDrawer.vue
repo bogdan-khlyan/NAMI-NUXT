@@ -50,13 +50,6 @@
           </span>
           <span>Акции</span>
         </nuxt-link>
-        <nuxt-link to="/stocks"
-                   @click.native="close">
-          <span class="icon">
-            <reviews-icon/>
-          </span>
-          <span>Отзывы</span>
-        </nuxt-link>
         <nuxt-link to="/contacts"
                    @click.native="close">
           <span class="icon">
@@ -64,6 +57,14 @@
           </span>
           <span>Контакты</span>
         </nuxt-link>
+        <el-tooltip class="item" effect="dark" placement="bottom-start" content="Временно недоступно :(">
+          <a>
+            <span class="icon">
+              <reviews-icon/>
+            </span>
+            <span>Отзывы</span>
+          </a>
+        </el-tooltip>
       </nav>
 
       <hr>
@@ -71,8 +72,12 @@
       <div class="header-drawer__footer">
         <button v-if="isLoggedIn"
                 class="header-drawer__footer--btn-logout">Выйти</button>
-        <button v-else
-                class="header-drawer__footer--btn-login">Войти</button>
+        <el-tooltip v-else class="item" effect="dark" placement="top">
+          <div slot="content">
+            К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
+          </div>
+          <button class="header-drawer__footer--btn-login">Войти</button>
+        </el-tooltip>
       </div>
     </div>
 

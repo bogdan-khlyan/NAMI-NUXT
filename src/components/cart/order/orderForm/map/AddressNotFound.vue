@@ -1,29 +1,15 @@
 <template>
   <div class="address-not-found">
     <div>
-      <img v-if="errorType === 'ADDRESS_NOT_FOUND'" src="images/adress-not-found.png" alt="">
-      <img v-else-if="errorType === 'DISTANCE_EXCEEDED'" src="images/distance-exceeded.png" alt="">
-      <button :class="{'active': data.deliveryCalculateManually}"
-              class="btn-address"
-              @click="deliveryCalculateManually">Адрес введен верно</button>
-      <div v-if="data && data.deliveryCalculateManually" class="text">В данном случае диспетчер обработает адрес доставки самостоятельно</div>
+      <img src="./images/address-not-found.png" alt="">
+      <div class="text">Диспетчер обработает адрес доставки самостоятельно и сообщит вам стоимость доставки по телефону</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'address-not-found',
-  props: {
-    data: { type: Object },
-    errorType: { type: String }
-  },
-  mounted () { },
-  methods: {
-    deliveryCalculateManually: function () {
-      this.data.deliveryCalculateManually = !this.data.deliveryCalculateManually
-    }
-  }
+  name: 'address-not-found'
 }
 </script>
 
