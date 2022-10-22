@@ -4,7 +4,7 @@
       title-icon="orders"
       title="Мои заказы"/>
 
-    <div class="orders__content">
+    <div v-loading="loading" class="orders__content">
       <orders-table
         v-if="windowWidth > 600 && orders.length > 0"
         :orders="orders"
@@ -24,6 +24,7 @@ export default {
   components: {PageTitle, OrdersTable, Empty},
   data() {
     return {
+      loading: true,
       orders: [],
       total: 0
     }
@@ -38,9 +39,11 @@ export default {
   },
   methods: {
     async getOrders() {
+      this.loading = true
       const { total, data } = await this.$orders.getOrders()
       this.orders.push(...data)
       this.total = total
+      this.loading = false
     }
   }
 }
@@ -51,6 +54,12 @@ export default {
   margin-left: auto;
   width: 100%;
   transition: 0.2s;
+  ::v-deep .el-loading-mask {
+    background: #FFFFFF;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 10px rgba(212, 217, 230, 0.12), -5px -5px 10px rgba(212, 217, 230, 0.1);
+  }
   @media screen and (max-width: 1140px) {
     padding-left: 70px;
     margin-left: 0;
