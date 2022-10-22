@@ -2,6 +2,7 @@ const state = () => ({
   isLoggedIn: null,
   info: {
     _id: null,
+    avatar: null,
     phoneNumber: null,
     username: null,
     email: null

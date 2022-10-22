@@ -27,5 +27,15 @@ export default ({ $axios, store, router, $toast }) => ({
         baseError(error, $toast)
         throw error
       }
+  },
+  async updateUser(requestData) {
+    try {
+      const { user } = await $axios.$patch('/api/user', requestData)
+      store.commit('userInstance.setUserInfo', user)
+      return user
+    } catch (error) {
+      baseError(error, $toast)
+      throw error
+    }
   }
 })
