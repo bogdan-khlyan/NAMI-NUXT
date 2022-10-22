@@ -15,6 +15,7 @@ module.exports = {
     { src: '~/plugins/directives.js', mode: 'client' }
   ],
   modules: [
+    'cookie-universal-nuxt',
     '@nuxtjs/proxy',
     ['@nuxtjs/dotenv', { path: '~/../' }],
     '@nuxtjs/axios',

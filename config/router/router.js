@@ -23,14 +23,17 @@ module.exports = {
       children: [{
         path: '/profile',
         name: 'profile-info',
+        meta: { requiresAuth: true },
         component: resolve('~/components/pages/profilePage/info/Info')
       }, {
         path: '/profile/orders',
         name: 'profile-orders',
+        meta: { requiresAuth: true },
         component: resolve('~/components/pages/profilePage/orders/Orders')
       }, {
         path: '/profile/addresses',
         name: 'profile-addresses',
+        meta: { requiresAuth: true },
         component: resolve('~/components/pages/profilePage/addresses/Addresses')
       }]
     }, {
