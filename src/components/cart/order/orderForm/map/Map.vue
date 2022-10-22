@@ -45,7 +45,7 @@ export default {
       control.routePanel.state.set({
         fromEnabled: false, toEnabled: false,
         from: 'Донецк, Университетская 33',
-        to: 'донецк' + this.address
+        to: 'донецк ' + this.address
       })
       this.$refs.map.myMap.controls.add(control)
       this.settingsRoute(control)
@@ -78,7 +78,7 @@ export default {
     },
     calcDeliveryCost(distance) {
       const routeLength = Math.round(distance.value / 1000)
-      const cost = Math.max(routeLength * 15, 15)
+      const cost = Math.max(routeLength * 25, 25)
       this.$emit('input', cost)
       return cost
     },
