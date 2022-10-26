@@ -15,13 +15,18 @@ const mutations = {
   'cart.setIsVisibleCart'(state, isVisibleCart) {
     state.isVisibleCart = isVisibleCart
   },
+  'cart.setProducts'(state, products) {
+    state.products = products
+  },
   'cart.addProduct'(state, product) {
     state.products.push(product)
+    localStorage.setItem('products', JSON.stringify(state.products))
   },
   'cart.changeProductVariant'(state, { productId, variant }) {
     const item = state.products.find(item => item._id === productId)
     if (item) {
       item.selectedVariant = variant
+      localStorage.setItem('products', JSON.stringify(state.products))
     }
   },
   'cart.changeProductCount'(state, { productId, variantId, count }) {
@@ -29,12 +34,18 @@ const mutations = {
       state.products.find(item => item._id === productId && item.selectedVariant._id === variantId)
       : state.products.find(item => item._id === productId)
     item.count = count
+    localStorage.setItem('products', JSON.stringify(state.products))
   },
   'cart.removeProduct'(state, { productId, variantId }) {
     const index = variantId ?
       state.products.findIndex(item => item._id === productId && item.selectedVariant._id === variantId)
       : state.products.findIndex(item => item._id === productId)
     state.products.splice(index, 1)
+    localStorage.setItem('products', JSON.stringify(state.products))
+  },
+  'cart.clear'(state) {
+    state.products.splice(0)
+    localStorage.removeItem('products')
   }
 }
 

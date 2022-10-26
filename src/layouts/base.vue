@@ -75,6 +75,10 @@ export default {
   },
   methods: {
     loadingDone() {
+      if (localStorage.getItem('products')) {
+        const products = JSON.parse(localStorage.getItem('products'))
+        this.$store.commit('cart.setProducts', products)
+      }
       this.loading = false
     },
     resize() {

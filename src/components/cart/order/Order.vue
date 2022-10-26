@@ -100,7 +100,7 @@ export default {
             .then(() => {
               this.$yandex.sendEvent('create-order')
               this.$cart.hideCart()
-              this.$store.commit('clearCartProducts')
+              this.$store.commit('cart.clear')
               this.$store.commit('setPhoneNumber', tmp.phone)
               // this.$metrika.reachGoal('create-order')
               this.$nextTick(() => {
