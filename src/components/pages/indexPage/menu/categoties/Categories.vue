@@ -3,7 +3,7 @@
     <div class="categories__item"
          v-for="category in categories" :key="category._id"
          @click="selectCategory(category)">
-      <h3 :class="{ active: selectedCategory && (category._id === selectedCategory._id) }">
+      <h3 :class="{ active: value && (category._id === value._id) }">
         {{ category.title }}
       </h3>
     </div>
@@ -17,24 +17,13 @@ export default {
   props: {
     value: { type: Object, default: null }
   },
-  data() {
-    return {
-      selectedCategory: this.value
-    }
-  },
   computed: {
     categories () {
       return this.$store.state.menu.categories
     }
   },
-  watch: {
-    value(value) {
-      this.selectedCategory = value
-    },
-  },
   methods: {
     selectCategory(category) {
-      this.selectedCategory = category
       this.$emit('change', category)
     }
   }

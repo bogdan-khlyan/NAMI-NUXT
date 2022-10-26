@@ -15,21 +15,21 @@
           </div>
           <div class="header__nav--menu--item"
                :class="{'active': $route.name === 'delivery'}">
-            <router-link to="/delivery">
+            <nuxt-link to="/delivery">
               <span>Доставка</span>
-            </router-link>
+            </nuxt-link>
           </div>
           <div class="header__nav--menu--item"
                :class="{'active': $route.name === 'stocks'}">
-            <router-link to="/stocks">
+            <nuxt-link to="/stocks">
               <span>Акции</span>
-            </router-link>
+            </nuxt-link>
           </div>
           <div class="header__nav--menu--item"
                :class="{'active': $route.name === 'contacts'}">
-            <router-link to="/contacts">
+            <nuxt-link to="/contacts">
               <span>Контакты</span>
-            </router-link>
+            </nuxt-link>
           </div>
           <div class="header__nav--menu--item">
             <el-tooltip class="item" effect="dark" placement="top">
