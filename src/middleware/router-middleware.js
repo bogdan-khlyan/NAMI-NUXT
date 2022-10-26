@@ -6,7 +6,11 @@ export default async function ({ redirect, error, route, req, store, $axios, $co
     await getMenu($axios, store)
   }
   if (!store.state.userInstance.isLoggedIn && $cookies.get('sessionId')) {
-    await getMe($axios, store)
+    try {
+      await getMe($axios, store)
+    } catch (error) {
+      $cookies.remove('sessionId')
+    }
   }
   if (route.meta.find(item => item.requiresAuth) && !store.state.userInstance.isLoggedIn) {
     redirect('/login')
