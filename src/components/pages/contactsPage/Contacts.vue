@@ -18,6 +18,20 @@ export default {
   name: 'Contacts',
   layout: 'base',
   components: { Info, Widgets },
+  head: {
+    title: `NamiSushi | Контакты`,
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: ''
+      }, {
+        hid: 'keywords',
+        name: 'keywords',
+        content: ''
+      }
+    ]
+  }
 }
 </script>
 

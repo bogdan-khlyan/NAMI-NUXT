@@ -44,6 +44,20 @@ export default {
   name: 'Stocks',
   layout: 'base',
   components: { Stock },
+  head: {
+    title: `NamiSushi | Акции`,
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Акции и скидки от NamiSushi. Заказывайте вкусные суши, роллы и другую вкусную еду.'
+      }, {
+        hid: 'keywords',
+        name: 'keywords',
+        content: 'акции доставка еды донецк, акции роллы донецк, акции суши донецк, скидки суши донецк, скидки роллы донецк, скидки доставка еды донецк'
+      }
+    ]
+  }
 }
 </script>
 

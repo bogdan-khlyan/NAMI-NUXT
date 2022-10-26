@@ -7,7 +7,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', property: 'description', content: 'NamiSushi - доставка японской еды в Донецке и Макеевке. Доставка еды - суши, роллов и другой вкусной еды.' },
+      { hid: 'description', name: 'description', property: 'description', content: 'NamiSushi - доставка японской еды в Донецке и Макеевке. Доставка суши, роллов и другой вкусной еды.' },
       { name: 'og:title', property: 'og:title', content: 'NamiSushi | Доставка японской еды в Донецке и Макеевке' },
       { name: 'og:description', property: 'og:description', content: 'NamiSushi - доставка японской еды в Донецке и Макеевке. Доставка еды - суши, роллов и другой вкусной еды.' },
       { name: 'og:image', property: 'og:image', content: 'https://namisushi.ru/thumbnail.jpg' },
