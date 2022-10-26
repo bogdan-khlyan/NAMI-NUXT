@@ -36,7 +36,7 @@ export default {
   methods: {
     checkScrollToMenu() {
       if (this.isScrollToMenu) {
-        this.$scrollTo('#menu')
+        this.$scrollTo('#menu', { offset: -40 })
         this.$router.replace({ query: null })
       }
     }
