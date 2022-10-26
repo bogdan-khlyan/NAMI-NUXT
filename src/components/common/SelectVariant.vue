@@ -5,10 +5,10 @@
       <span>{{ label }}</span>
     </div>
     <div class="select-variant__variants">
-      <el-tooltip class="item" effect="dark"
-                  v-for="variant in product.variants" :key="variant._id"
-                  :content="variant.title"
-                  placement="bottom">
+      <base-tooltip
+        v-for="variant in product.variants" :key="variant._id"
+        :content="variant.title"
+      >
         <div class="select-variant__variants--item"
              :class="{ 'active': isActiveVariant(variant) }"
              @click="changeVariant(variant)"
@@ -22,19 +22,20 @@
                  class="count">{{ selectedVariantCount(variant) }}</div>
           </transition>
         </div>
-      </el-tooltip>
+      </base-tooltip>
     </div>
   </div>
 </template>
 
 <script>
 import BaseIcon from "@/components/common/BaseIcon";
+import BaseTooltip from "@/components/common/BaseTooltip";
 import productMixin from "@/mixins/product.mixin";
 
 export default {
   name: 'select-variant',
   mixins: [productMixin],
-  components: { BaseIcon },
+  components: { BaseIcon, BaseTooltip },
   props: {
     label: { type: String, default: null },
     product: { type: Object, default: null }
