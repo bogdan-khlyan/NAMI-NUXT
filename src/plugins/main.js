@@ -8,7 +8,9 @@ export default ({ app }) => {
   })
 
   app.router.afterEach((to, from) => {
-    scroll(0, 0)
+    if (to.name !== from.name) {
+      scroll(0, 0)
+    }
   })
 
   app.router.beforeEach((to, from, next) => {

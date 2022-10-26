@@ -6,7 +6,6 @@ if (process.env.NODE_ENV === 'development' && process.env.NAMI_PROXY_HOST) {
 module.exports = {
   plugins: [
     '~/plugins/element-ui',
-    '~/plugins/scroll-to',
     '~/plugins/mask',
     '~/plugins/perfect-scrollbar.js',
     '~/plugins/api-services.js',
@@ -15,6 +14,7 @@ module.exports = {
     { src: '~/plugins/directives.js', mode: 'client' }
   ],
   modules: [
+    'vue-scrollto/nuxt',
     'cookie-universal-nuxt',
     '@nuxtjs/proxy',
     ['@nuxtjs/dotenv', { path: '~/../' }],

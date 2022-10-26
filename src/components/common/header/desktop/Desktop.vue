@@ -7,11 +7,10 @@
         </div>
         <div class="header__nav--menu">
           <div class="header__nav--menu--item"
-               :class="{'active': $route.name === 'index' && isMenu}"
-               @click="clickMenu">
-            <a>
+               :class="{'active': $route.name === 'index' && isMenu}">
+            <nuxt-link to="/?menu">
               <span>Меню</span>
-            </a>
+            </nuxt-link>
           </div>
           <div class="header__nav--menu--item"
                :class="{'active': $route.name === 'delivery'}">

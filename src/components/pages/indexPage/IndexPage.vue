@@ -17,8 +17,29 @@ export default {
       { href: 'https://namisushi.ru/', rel: 'canonical' }
     ]
   },
+  computed: {
+    isScrollToMenu() {
+      return this.$route.query.menu === null
+    }
+  },
+  watch: {
+    isScrollToMenu() {
+      this.checkScrollToMenu()
+    }
+  },
+  mounted() {
+    this.checkScrollToMenu()
+  },
   beforeDestroy() {
     this.$store.commit('setIsMenu', false)
+  },
+  methods: {
+    checkScrollToMenu() {
+      if (this.isScrollToMenu) {
+        this.$scrollTo('#menu')
+        this.$router.replace({ query: null })
+      }
+    }
   }
 }
 </script>
