@@ -2,9 +2,11 @@
   <header class="header" :class="{'show': show}" ref="header">
     <div class="header__wrapper">
       <nav class="header__nav">
-        <div @click="clickLogo" class="header__nav--logo" ref="logo">
+        <nuxt-link class="header__nav--logo"
+                   to="/?menu"
+                   ref="logo">
           <img src="@/assets/images/logo/logo.png" alt="" ref="logoImg">
-        </div>
+        </nuxt-link>
         <div class="header__nav--menu">
           <div class="header__nav--menu--item"
                :class="{'active': $route.name === 'index' && isMenu}">
@@ -110,33 +112,33 @@ export default {
     }
   },
   methods: {
-    clickLogo() {
-      if (this.$route.name !== 'index') {
-        this.$router.push('/')
-        return
-      }
-      if (this.isMenu) {
-        this.$scrollTo('#banner', 800, { offset: -70 })
-        return
-      }
-      this.$scrollTo('#menu', 500, { offset: -70 })
-    },
-    async clickMenu() {
-      if (this.$route.name !== 'index') {
-        if (this.$route.name === 'product') {
-          await this.$router.push('/')
-        } else {
-          await this.$router.push('/')
-          setTimeout(() => {
-            if (!this.$store.state.scrollToProduct) {
-              this.$scrollTo('#menu', 200, {offset: -70})
-            }
-          }, 300)
-        }
-      } else {
-        this.$scrollTo('#menu', 500, { offset: -70 })
-      }
-    }
+    // clickLogo() {
+    //   if (this.$route.name !== 'index') {
+    //     this.$router.push('/')
+    //     return
+    //   }
+    //   if (this.isMenu) {
+    //     this.$scrollTo('#banner', 800, { offset: -70 })
+    //     return
+    //   }
+    //   this.$scrollTo('#menu', 500, { offset: -70 })
+    // },
+    // async clickMenu() {
+    //   if (this.$route.name !== 'index') {
+    //     if (this.$route.name === 'product') {
+    //       await this.$router.push('/')
+    //     } else {
+    //       await this.$router.push('/')
+    //       setTimeout(() => {
+    //         if (!this.$store.state.scrollToProduct) {
+    //           this.$scrollTo('#menu', 200, {offset: -70})
+    //         }
+    //       }, 300)
+    //     }
+    //   } else {
+    //     this.$scrollTo('#menu', 500, { offset: -70 })
+    //   }
+    // }
   },
 }
 </script>
