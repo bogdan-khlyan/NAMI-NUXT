@@ -3,11 +3,13 @@
     <arrow-circle-icon
       class="mobile-header__arrow-icon"
       @click.native="hideCart"/>
-    <logo-icon
-      class="mobile-header__logo-icon"
-      :width="windowWidth > 480 ? '100px' : '80px'"
-      :height="windowWidth > 480 ? '50px' : '40px'"
-      @click.native="hideCart"/>
+    <nuxt-link to="/?menu">
+      <logo-icon
+        class="mobile-header__logo-icon"
+        :width="windowWidth > 480 ? '100px' : '80px'"
+        :height="windowWidth > 480 ? '50px' : '40px'"
+        @click.native="hideCart"/>
+    </nuxt-link>
     <burger-icon
       class="mobile-header__burger-icon"
       @click.native="showHeaderCollapse"/>
