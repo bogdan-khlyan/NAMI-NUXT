@@ -23,7 +23,7 @@
               <span v-number-transition="{ target: discountCost, iteration: 30, speed: 1000 }"/>
             </span>
             <span v-else>{{cost}}</span>
-            ₽ - {{weight}} г
+            ₽ <span v-if="weight">- {{weight}} г</span>
           </span>
         </div>
         <div class="product__info--actions">
