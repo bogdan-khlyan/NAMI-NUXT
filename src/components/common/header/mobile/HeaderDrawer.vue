@@ -136,7 +136,7 @@ export default {
     },
     close() {
       this.visible = false
-      // this.$store.commit('hideHeaderCollapse')
+      this.$cart.hideCart()
     }
   }
 }
