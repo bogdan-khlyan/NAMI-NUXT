@@ -13,10 +13,10 @@
              :class="{ 'active': isActiveVariant(variant) }"
              @click="changeVariant(variant)"
              :ref="`variant${variant._id}`">
-          <div class="icon"
-               :ref="`variant${variant._id}`">
-            <i class="el-icon-loading"/>
-          </div>
+          <base-icon
+            class="icon"
+            :src="`/api/product/variant/icon/${variant.icon}`"
+          />
           <transition name="el-fade-in-linear">
             <div v-if="selectedVariantCount(variant)"
                  class="count">{{ selectedVariantCount(variant) }}</div>
@@ -28,27 +28,18 @@
 </template>
 
 <script>
+import BaseIcon from "@/components/common/BaseIcon";
 import productMixin from "@/mixins/product.mixin";
 
 export default {
   name: 'select-variant',
   mixins: [productMixin],
+  components: { BaseIcon },
   props: {
     label: { type: String, default: null },
     product: { type: Object, default: null }
   },
-  mounted() {
-    this.getIcons()
-  },
   methods: {
-    getIcons() {
-      this.product.variants
-        .forEach(variant => this.getIcon(variant))
-    },
-    async getIcon(variant) {
-      const blob = await this.$axios.$get(`/api/product/variant/icon/${variant.icon}`, { responseType: 'blob' })
-      this.$refs[`variant${variant._id}`][0].innerHTML = await blob.text()
-    },
     changeVariant(variant) {
       this.$emit('change', variant)
       this.$menu.changeProductVariant(this.productId, variant)
