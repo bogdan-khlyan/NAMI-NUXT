@@ -2,11 +2,12 @@
   <div class="account-info">
     <div class="account-info__avatar">
       <base-user-avatar
-        avatar="asfas&asf)))&^asf"
+        :avatar="userInfo.avatar"
         :size="60"/>
     </div>
-    <div class="account-info__phone">
-      <span>+ 38 071 265 12 12</span>
+    <div class="account-info__info">
+      <span v-if="userInfo.name" class="bold name">{{ userInfo.name }}</span>
+      <span :class="{ bold: !userInfo.name }">{{ userInfo.phone }}</span>
     </div>
   </div>
 </template>
@@ -16,7 +17,12 @@ import BaseUserAvatar from "@/components/common/BaseUserAvatar";
 
 export default {
   name: 'account-info',
-  components: { BaseUserAvatar }
+  components: { BaseUserAvatar },
+  computed: {
+    userInfo() {
+      return this.$store.state.userInstance.info
+    }
+  }
 }
 </script>
 
@@ -30,9 +36,19 @@ export default {
 
   }
 
-  &__phone {
+  &__info {
     margin-left: 18px;
     > span {
+      display: block;
+      text-align: left;
+    }
+    > .name {
+      max-width: 180px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    > .bold {
       font-family: Ubuntu, sans-serif;
       font-style: normal;
       font-weight: 400;

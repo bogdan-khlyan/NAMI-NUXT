@@ -1,43 +1,52 @@
 <template>
-  <div class="orders-info">
+  <div class="orders-list">
 
-    <div v-if="windowWidth>600" class="orders-info__orders-table">
+    <div v-if="windowWidth > 600"
+         class="orders-list__orders-table">
 
       <orders-row-header/>
 
-      <div class="orders-info__row" v-for="(item,index) in tableData" :key="item.id">
+      <div class="orders-list__row"
+           v-for="(item,index) in tableData" :key="item.id">
 
-        <orders-row-info :order-info="item"
-                         :number="index + 1"
-                         :show-details="selectedOrder === item.id"
-                         @clickDetails="selectedOrder = $event"/>
+        <orders-row-info
+          :order-info="item"
+          :number="index + 1"
+          :show-details="selectedOrder === item._id"
+          @clickDetails="selectedOrder = $event"
+        />
 
         <el-collapse-transition>
-          <orders-row-details v-show="selectedOrder === item.id" :order-info="item"/>
+          <orders-row-details
+            v-if="selectedOrder === item.id"
+            :order-info="item"
+          />
         </el-collapse-transition>
 
       </div>
 
     </div>
-    <div v-else class="orders-info__order-cards">
-      <order-card-info v-for="(item,index) in tableData" :key="item.id"
-                       :order-info="item"
-                       :number="index + 1"
-                       :show-details="selectedOrder === item.id"
-                       @clickDetails="selectedOrder = $event"/>
+    <div v-else class="orders-list__order-cards">
+      <order-card-info
+        v-for="(item,index) in tableData" :key="item.id"
+        :order-info="item"
+        :number="index + 1"
+        :show-details="selectedOrder === item.id"
+        @clickDetails="selectedOrder = $event"
+      />
     </div>
 
   </div>
 </template>
 
 <script>
-import OrdersRowHeader from "@/components/pages/profilePage/orders/components/OrdersRowHeader";
-import OrdersRowInfo from "@/components/pages/profilePage/orders/components/OrdersRowInfo";
-import OrdersRowDetails from "@/components/pages/profilePage/orders/components/OrderTableDetails";
-import OrderCardInfo from "@/components/pages/profilePage/orders/components/OrderCardInfo";
+import OrdersRowHeader from "@/components/pages/profilePage/orders/components/table/OrdersRowHeader";
+import OrdersRowInfo from "@/components/pages/profilePage/orders/components/table/OrdersRowInfo";
+import OrdersRowDetails from "@/components/pages/profilePage/orders/components/table/OrderTableDetails";
+import OrderCardInfo from "@/components/pages/profilePage/orders/components/card/OrderCardInfo";
 
 export default {
-  name: "OrdersInfo",
+  name: 'orders-list',
   components: {
     OrdersRowHeader,
     OrdersRowInfo,
@@ -172,12 +181,22 @@ export default {
     windowWidth() {
       return this.$store.state.windowWidth
     }
+  },
+  created() {
+    this.getOrders()
+  },
+  methods: {
+    async getOrders() {
+      const data = await this.$orders.getOrders()
+      console.log(data)
+      this.tableData = data.data
+    }
   }
 }
 </script>
 
 <style lang="scss">
-.orders-info {
+.orders-list {
   margin-top: 16px;
 
   &__orders-table {

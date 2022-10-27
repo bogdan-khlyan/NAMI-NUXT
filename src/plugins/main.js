@@ -1,15 +1,16 @@
-import {initUserInstanceState} from "@/api/userInstance/user-instance.store";
-
-function initStore(app) {
-  initUserInstanceState(app)
-}
-
 export default ({ app }) => {
 
-  initStore(app)
+  window.addEventListener('storage', ($event) => {
+    if ($event.key === 'products') {
+      const products = JSON.parse($event.newValue)
+      app.store.commit('cart.setProducts', products)
+    }
+  })
 
   app.router.afterEach((to, from) => {
-    scroll(0, 0)
+    if (to.name !== from.name) {
+      scroll(0, 0)
+    }
   })
 
   app.router.beforeEach((to, from, next) => {

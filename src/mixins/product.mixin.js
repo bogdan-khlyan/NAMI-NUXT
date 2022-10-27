@@ -78,7 +78,12 @@ export default {
         this.$cart.removeProduct(this.productId, this.selectedVariant?._id)
         return
       }
-      this.$cart.changeProductCount(this.productId, this.selectedVariant?._id, count)
+      this.$cart.changeProductCount(
+        this.productId,
+        this.selectedVariant?._id,
+        count,
+        count > this.count ? 'Товар добавлен в корзину' : 'Товар удален из корзины'
+      )
     }
   }
 }

@@ -17,6 +17,7 @@
     "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/toast": "^3.3.1",
     "axios": "^0.26.0",
+    "cookie-universal-nuxt": "^2.2.2",
     "core-js": "^3.19.3",
     "element-ui": "^2.15.6",
     "jdenticon": "^3.1.1",
@@ -36,8 +37,6 @@
   },
   "devDependencies": {
     "@types/yandex-maps": "^2.1.20",
-    "express": "^4.17.3",
-    "http-proxy-middleware": "^2.0.3",
     "sass": "^1.49.8",
     "sass-loader": "^10.2.1"
   }

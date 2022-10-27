@@ -32,6 +32,9 @@ export default {
     },
     categories() {
       return this.$store.state.menu.categories
+    },
+    isScrollToMenu() {
+      return this.$route.query.menu === null
     }
   },
   data() {
@@ -42,6 +45,9 @@ export default {
   watch: {
     categories() {
       this.init()
+    },
+    isScrollToMenu() {
+      this.checkScrollToMenu()
     }
   },
   created() {
@@ -53,6 +59,7 @@ export default {
   methods: {
     init() {
       if (this.metaProduct) {
+        this.$router.replace({ query: null })
         const category = this.categories
           .find(item => item.productIds.find(id => id === this.metaProduct))
         this.$nextTick(() => {
@@ -62,6 +69,14 @@ export default {
         setTimeout(() => {
           this.$store.commit('app.setScrollToProduct', null)
         }, 300)
+      } else {
+        this.checkScrollToMenu()
+      }
+    },
+    checkScrollToMenu() {
+      if (this.isScrollToMenu) {
+        this.$scrollTo('#menu', { offset: -40 })
+        this.$router.replace({ query: null })
       }
     }
   }

@@ -1,10 +1,13 @@
 <template>
   <div class="order-table-details">
-    <el-table :data="orderInfo.details" width="auto">
+    <el-table :data="orderInfo.full.products" width="auto">
       <el-table-column width="80">
         <template slot-scope="scope">
           <div class="order-table-details__product-photo">
-            <img :src="scope.row.images[0]" alt="">
+            <img v-if="scope.row.product.type === 'SINGLE'"
+                 :src="`/api/product/image/${scope.row.product.images[0]}`" alt="">
+            <img v-else
+                 :src="`/api/product/variant/image/${scope.row.variant.image}`" alt="">
           </div>
         </template>
       </el-table-column>
@@ -13,20 +16,28 @@
         width="370px">
         <template slot-scope="scope">
           <div class="order-table-details__product-title">
-            {{ scope.row.title }}
+            {{ scope.row.product.title }}
           </div>
           <div class="order-table-details__product-info">
-            {{ scope.row.ingredients.join(', ') }} <span>({{ scope.row.weight }} г)</span>
+<!--            TODO variant-->
+            {{ scope.row.product.ingredients.join(', ') }} <span>({{ scope.row.weight }} г)</span>
           </div>
         </template>
       </el-table-column>
       <el-table-column width="80" label="Кол-во" prop="count"
-                       class-name="product-count"/>
+                       class-name="product-count">
+        <template slot-scope="scope">
+          {{ scope.row.number }}
+        </template>
+      </el-table-column>
       <el-table-column
         width="80"
         class-name="product-amount"
         label="Сумма">
-        <template slot-scope="scope">{{ scope.row.amount }} ₽</template>
+        <template slot-scope="scope">
+          <span v-if="scope.row.product.type === 'SINGLE'">{{ scope.row.product.cost }} ₽</span>
+          <span v-else>{{ scope.row.variant.cost }} ₽</span>
+        </template>
       </el-table-column>
     </el-table>
     <hr>
@@ -34,15 +45,16 @@
     <div class="order-table-details__result">
       <div class="order-table-details__result-item">
         <div>Стоимость товаров</div>
-        <div>{{ orderInfo.amountOrder }} ₽</div>
+        <div>{{ orderInfo.full.productsSum }} ₽</div>
       </div>
       <div class="order-table-details__result-item">
         <div>Доставка</div>
-        <div>{{ orderInfo.amountDelivery }} ₽</div>
+        <div v-if="orderInfo.full.deliveryCost">{{ orderInfo.full.deliveryCost }} ₽</div>
+        <div v-else>-</div>
       </div>
       <div class="order-table-details__result-item">
         <div>Итого к оплате</div>
-        <div>{{ orderInfo.amountOrder + orderInfo.amountDelivery }} ₽</div>
+        <div>{{ orderInfo.full.deliveryCost ? (orderInfo.full.productsSum + orderInfo.full.deliveryCost) : orderInfo.full.productsSum }} ₽</div>
       </div>
     </div>
 
@@ -51,7 +63,7 @@
 
 <script>
 export default {
-  name: "OrdersRowDetails",
+  name: "orders-row-details",
   props: {
     orderInfo: {
       type: Object

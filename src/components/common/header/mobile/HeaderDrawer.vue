@@ -29,7 +29,7 @@
       <hr v-if="isLoggedIn">
 
       <nav class="header-drawer__menu">
-        <nuxt-link to="/"
+        <nuxt-link to="/?menu"
                    @click.native="close">
           <span class="icon">
             <menu-icon/>
@@ -136,7 +136,7 @@ export default {
     },
     close() {
       this.visible = false
-      // this.$store.commit('hideHeaderCollapse')
+      this.$cart.hideCart()
     }
   }
 }

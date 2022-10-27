@@ -6,12 +6,13 @@
         width="30px"
         height="30px"/>
     </div>
-    <div class="logo">
+    <nuxt-link class="logo"
+               to="/?menu">
       <logo-icon
         v-if="windowWidth > 420"
         width="120px"
         height="60px"/>
-    </div>
+    </nuxt-link>
     <div v-if="windowWidth > 600"
          class="phone">
       <a :href="`tel:+79497009791`">

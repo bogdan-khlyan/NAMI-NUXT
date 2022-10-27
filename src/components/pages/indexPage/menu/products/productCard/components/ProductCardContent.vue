@@ -3,7 +3,7 @@
 
     <div class="product-card-content__name">
       <h4 :style="titleStyles">{{ product.title }}</h4>
-      <i>{{ weight }}г</i>
+      <i v-if="weight">{{ weight }}г</i>
     </div>
 
     <div

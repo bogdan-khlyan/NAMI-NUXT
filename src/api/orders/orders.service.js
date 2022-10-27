@@ -10,5 +10,24 @@ export default ({ $axios, store, router, $toast }) => ({
       else $toast.error('Заказ не был отправлен')
       throw error
     }
+  },
+  async getOrders() {
+    try {
+      const { data, total } = await $axios.$get('/api/user/orders')
+      return {
+        total,
+        data: data.map(item => ({
+          ...item,
+          full: null
+        }))
+      }
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  },
+  async getOrderById(number) {
+    const { order } = await $axios.$get(`/api/user/order/${number}`)
+    return order
   }
 })

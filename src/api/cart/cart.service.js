@@ -20,9 +20,9 @@ export default ({ $axios, store, router, $toast }) => ({
   // changeProductVariant(productId, variant) {
   //   store.commit('cart.changeProductVariant', { productId, variant })
   // },
-  changeProductCount(productId, variantId, count) {
+  changeProductCount(productId, variantId, count, message) {
     store.commit('cart.changeProductCount', { productId, variantId, count })
-    this.notifyOrderInfo()
+    this.notifyOrderInfo(message)
   },
   removeProduct(productId, variantId) {
     store.commit('cart.removeProduct', { productId, variantId })

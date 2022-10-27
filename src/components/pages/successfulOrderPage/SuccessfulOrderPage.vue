@@ -8,7 +8,7 @@
       </div>
       <div class="text">для подтверждения заказа</div>
       <div class="button">
-        <router-link to="/">Вернуться на сайт</router-link>
+        <nuxt-link to="/">Вернуться на сайт</nuxt-link>
       </div>
     </div>
   </div>
