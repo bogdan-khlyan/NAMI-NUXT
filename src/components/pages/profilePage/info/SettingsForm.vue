@@ -121,7 +121,8 @@ export default {
 
 <style lang="scss" scoped>
 .settings-form {
-  width: max-content;
+  max-width: 386px;
+  width: 100%;
   margin-bottom: 72px;
 
   > h2 {

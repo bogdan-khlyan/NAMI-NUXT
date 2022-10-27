@@ -97,7 +97,8 @@ export default {
     > input {
       padding-left: 16px;
 
-      width: 386px;
+      max-width: 386px;
+      width: 100%;
       height: 56px;
 
       font-family: Ubuntu, sans-serif;

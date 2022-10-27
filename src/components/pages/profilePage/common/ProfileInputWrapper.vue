@@ -89,7 +89,7 @@ export default {
       padding-left: 16px;
       box-sizing: border-box;
 
-      width: 386px;
+      max-width: 386px;
       height: 56px;
 
       background: #F8FAFF;
