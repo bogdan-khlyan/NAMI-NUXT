@@ -108,6 +108,11 @@ export default {
         font-size: 16px;
         line-height: 24px;
         color: #212121;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 50px;
       }
 
       .empty {
