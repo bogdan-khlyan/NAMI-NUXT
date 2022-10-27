@@ -32,6 +32,6 @@ module.exports = {
   },
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    '~/assets/scss/style.scss'
+    '~/assets/scss/index.scss'
   ]
 }

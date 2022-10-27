@@ -3,10 +3,6 @@
   -webkit-tap-highlight-color: transparent !important;
 }
 
-.el-loading-mask {
-  z-index: 900!important;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -14,33 +10,9 @@ body {
   text-align: center;
 }
 
-.el-tooltip__popper {
-  font-family: Neucha, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  color: #FFFFFF;
-}
-.el-notification {
-  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
-}
-
-.el-notification {
-  z-index: 3000!important;
-
-  .el-notification__content {
-    text-align: unset;
-  }
-}
-
 .toasted-container {
   z-index: 10000000!important;
   .toasted {
     font-family: Neucha, sans-serif;
   }
-}
-
-.el-tooltip__popper {
-  z-index: 10000!important;
 }
