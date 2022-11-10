@@ -6,6 +6,7 @@
 
 <script>
 import FavoritesList from "@/components/pages/favoritesPage/components/FavoritesList";
+import {copyDeep} from "@/utils/copy-deep";
 
 export default {
   name: 'favorites-page',
@@ -17,9 +18,7 @@ export default {
     }
   },
   mounted() {
-    if (localStorage.getItem('favorites')) {
-      this.favorites = JSON.parse(localStorage.getItem('favorites'))
-    }
+    this.favorites = copyDeep(this.$store.state.userInstance.favorites)
   }
 }
 </script>
@@ -29,5 +28,8 @@ export default {
   padding-top: 160px;
   box-sizing: border-box;
   min-height: 100vh;
+  @media screen and (max-width: 1250px) {
+    padding-top: 100px;
+  }
 }
 </style>

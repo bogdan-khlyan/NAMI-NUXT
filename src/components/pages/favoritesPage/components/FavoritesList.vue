@@ -10,8 +10,11 @@
       </p>
     </div>
     <favorites-empty v-if="favorites.length === 0"/>
-    <div v-else>
-      {{ favorites }}
+    <div v-else class="favorites-list__list">
+      <product-card
+        v-for="item of favorites" :key="item._id"
+        :product="item"
+      />
     </div>
   </div>
 </template>
@@ -19,10 +22,11 @@
 <script>
 import HeartIcon from "@/components/common/icons/HeartIcon";
 import FavoritesEmpty from "@/components/pages/favoritesPage/components/FavoritesEmpty";
+import ProductCard from "@/components/pages/indexPage/menu/products/productCard/ProductCard";
 
 export default {
   name: 'favorites-list',
-  components: { HeartIcon, FavoritesEmpty },
+  components: { HeartIcon, FavoritesEmpty, ProductCard },
   props: {
     favorites: { type: Array, default: [] }
   }
@@ -34,6 +38,7 @@ export default {
   max-width: 1200px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-bottom: 60px;
   margin: 0 auto;
 
   &__title {
@@ -85,6 +90,32 @@ export default {
         color: #185598;
       }
     }
+  }
+
+  &__list {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    @media screen and (max-width: 1150px) {
+      margin: 0 auto;
+      max-width: 900px;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media screen and (max-width: 860px) {
+      max-width: 600px;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (max-width: 650px) {
+      max-width: 320px;
+      grid-template-columns: 1fr;
+    }
+
+    ::v-deep .product-card {
+      margin: 0;
+      width: 100%;
+    }
+
   }
 
 }

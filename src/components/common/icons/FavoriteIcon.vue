@@ -5,7 +5,8 @@
           :stroke="stroke"
           :stroke-width="strikeWidth"
           :stroke-linecap="strokeLinecap"
-          :stroke-linejoin="strokeLinejoin"/>
+          :stroke-linejoin="strokeLinejoin"
+    />
   </svg>
 </template>
 

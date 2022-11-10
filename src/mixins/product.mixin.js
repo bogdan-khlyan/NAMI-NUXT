@@ -58,6 +58,9 @@ export default {
         'font-size: 16px;line-height: 18px;'
         : ''
     },
+    isFavorite() {
+      return !!this.$store.state.userInstance.favorites.find(item => item._id === this.productId)
+    },
 
     isDiscount() {
       return this.$store.state.isDiscount

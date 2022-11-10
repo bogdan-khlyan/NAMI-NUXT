@@ -63,6 +63,8 @@ export default {
     }
   },
   mounted() {
+    this.$userInstance.initFavorites()
+
     window.addEventListener('resize', this.resize)
     this.resize()
 
