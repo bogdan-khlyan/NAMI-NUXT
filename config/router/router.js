@@ -18,6 +18,10 @@ module.exports = {
       name: 'login',
       component: resolve('~/components/pages/loginPage/LoginPage')
     }, {
+      path: '/favorites',
+      name: 'favorites',
+      component: resolve('~/components/pages/favoritesPage/FavoritesPage')
+    }, {
       path: '/profile',
       component: resolve('~/components/pages/profilePage/ProfilePage'),
       children: [{
