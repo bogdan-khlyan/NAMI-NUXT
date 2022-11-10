@@ -28,13 +28,13 @@ export default {
     filter: drop-shadow(15px 12px 12px rgba(203, 182, 137, 0.7));
 
     @media screen and (max-width: 700px) {
-      width: 200px;
-      height: 200px;
-    }
-    @media screen and (max-width: 400px) {
       width: 160px;
       height: 160px;
     }
+    //@media screen and (max-width: 400px) {
+    //  width: 160px;
+    //  height: 160px;
+    //}
   }
 }
 </style>

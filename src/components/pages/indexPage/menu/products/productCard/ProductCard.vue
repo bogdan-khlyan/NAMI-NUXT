@@ -8,6 +8,12 @@
     :to="`/product/${product.$id}`"
   >
 
+    <favorite-icon
+      class="product-card__favorite-icon"
+      :active="isFavorite"
+      @click.native="clickFavorite"
+    />
+
     <product-card-images
       :product="product"
     />
@@ -24,6 +30,7 @@
 </template>
 
 <script>
+import FavoriteIcon from "@/components/common/icons/FavoriteIcon";
 import ProductCardImages from "@/components/pages/indexPage/menu/products/productCard/components/ProductCardImages";
 import ProductCardContent from "@/components/pages/indexPage/menu/products/productCard/components/ProductCardContent";
 import ProductCardFooter from "@/components/pages/indexPage/menu/products/productCard/components/ProductCardFooter";
@@ -32,9 +39,19 @@ import productMixin from "@/mixins/product.mixin";
 export default {
   name: 'home',
   mixins: [productMixin],
-  components: { ProductCardImages, ProductCardContent, ProductCardFooter },
+  components: { FavoriteIcon, ProductCardImages, ProductCardContent, ProductCardFooter },
   props: {
     product: {type: Object}
+  },
+  methods: {
+    clickFavorite($event) {
+      $event.preventDefault()
+      if (this.isFavorite) {
+        this.$userInstance.removeProductFromFavorites(this.product)
+      } else {
+        this.$userInstance.pushProductToFavorites(this.product)
+      }
+    }
   }
 }
 </script>
@@ -61,10 +78,10 @@ export default {
     width: 40vw;
   }
   @media screen and (max-width: 700px) {
-    padding-top: 50px;
-    padding-bottom: 30px;
+    //padding-top: 50px;
+    //padding-bottom: 30px;
     width: 60vw;
-    height: auto;
+    //height: auto;
   }
   @media screen and (max-width: 540px) {
     width: 78vw;
@@ -85,6 +102,14 @@ export default {
 
 <style lang="scss">
 .product-card {
+
+  .favorite-icon {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 5;
+    padding: 5px;
+  }
 
   &.active {
     background: #312525 !important;

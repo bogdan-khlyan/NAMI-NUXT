@@ -58,27 +58,28 @@ export default {
   bottom: 30px;
 
   display: flex;
-  width: 210px;
+  //width: 210px;
+  width: calc(100% - 60px);
 
   .plus-minus-btn {
     height: 35px;
   }
 
-  @media screen and (max-width: 800px) {
-    width: 32vw;
-    min-width: 32vw;
-    max-width: 32px;
-  }
-  @media screen and (max-width: 700px) {
-    width: 52vw;
-    min-width: 52vw;
-    max-width: 52px;
-  }
-  @media screen and (max-width: 540px) {
-    width: 63vw;
-    min-width: 63vw;
-    max-width: 63px;
-  }
+  //@media screen and (max-width: 800px) {
+  //  width: 32vw;
+  //  min-width: 32vw;
+  //  max-width: 32px;
+  //}
+  //@media screen and (max-width: 700px) {
+  //  width: 52vw;
+  //  min-width: 52vw;
+  //  max-width: 52px;
+  //}
+  //@media screen and (max-width: 540px) {
+  //  width: 63vw;
+  //  min-width: 63vw;
+  //  max-width: 63px;
+  //}
 
   > .price {
     margin-right: auto;
