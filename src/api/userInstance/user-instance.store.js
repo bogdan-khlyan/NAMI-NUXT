@@ -15,6 +15,16 @@ const mutations = {
     state.isLoggedIn = true
     state.info = userInfo
   },
+  'userInstance.logout'(state) {
+    state.info = {
+      _id: null,
+      avatar: null,
+      phoneNumber: null,
+      username: null,
+      email: null
+    }
+    state.isLoggedIn = null
+  },
   'userInstance.pushFavorite'(state, product) {
     if (!state.isLoggedIn) {
       const favorites = JSON.parse(localStorage.getItem('favorites'))

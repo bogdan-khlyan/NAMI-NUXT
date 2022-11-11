@@ -28,6 +28,16 @@ export default ({ $axios, store, router, $toast }) => ({
         throw error
       }
   },
+  async logout() {
+    try {
+      await $axios.delete('/api/user/signout')
+      store.commit('userInstance.logout')
+    } catch (error) {
+      console.log(error)
+      baseError(error, $toast)
+      throw error
+    }
+  },
   async updateUser(requestData) {
     try {
       const { user } = await $axios.$patch('/api/user', requestData)

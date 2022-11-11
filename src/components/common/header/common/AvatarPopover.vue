@@ -40,7 +40,8 @@
       </div>
       <br>
       <hr>
-      <a class="avatar-popover__logout">
+      <a class="avatar-popover__logout"
+         @click="logout">
         <logout-icon/>
         <span>Выход</span>
       </a>
@@ -62,6 +63,11 @@ export default {
     },
     windowWidth() {
       return this.$store.state.windowWidth
+    }
+  },
+  methods: {
+    logout() {
+      this.$userInstance.logout()
     }
   }
 }
