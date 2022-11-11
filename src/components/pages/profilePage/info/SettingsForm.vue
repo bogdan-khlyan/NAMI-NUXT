@@ -97,7 +97,7 @@ export default {
             this.form.email = user.email
             this.$refs.emailInputWrapper.setEditMode(false)
           })
-          .finally(() => this.loading.userName = false)
+          .finally(() => this.loading.email = false)
       }
     }
   },
