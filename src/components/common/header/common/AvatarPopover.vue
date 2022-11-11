@@ -4,17 +4,18 @@
     popper-class="avatar-popover__popover"
     placement="bottom-end"
     width="264"
-    trigger="hover"
+    :trigger="windowWidth > 980 ? 'hover' : 'click'"
     ref="popover"
     :key="$route.name"
   >
-    <nuxt-link class="avatar-popover__reference"
+    <component class="avatar-popover__reference"
                slot="reference"
+               :is="windowWidth > 980 ? 'nuxt-link' : 'a'"
                to="/profile">
       <base-user-avatar
         :avatar="userInfo.avatar"
         :size="42"/>
-    </nuxt-link>
+    </component>
     <div class="avatar-popover__content">
       <div class="avatar-popover__profile">
         <base-user-avatar
@@ -58,6 +59,9 @@ export default {
   computed: {
     userInfo() {
       return this.$store.state.userInstance.info
+    },
+    windowWidth() {
+      return this.$store.state.windowWidth
     }
   }
 }

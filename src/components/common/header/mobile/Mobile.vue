@@ -13,7 +13,7 @@
         width="120px"
         height="60px"/>
     </nuxt-link>
-    <div v-if="windowWidth > 600"
+    <div v-if="windowWidth > 700"
          class="phone">
       <a :href="`tel:+79497009791`">
         <div class="circle">
@@ -22,8 +22,22 @@
         <span>+7 949 700 97 91</span>
       </a>
     </div>
+    <div class="header__mobile--favorites">
+      <circle-button to="/favorites" :value="favoritesCount">
+        <heart-icon/>
+      </circle-button>
+    </div>
     <div class="cart">
-      <cart-header-button class="btn" />
+      <circle-button
+        tag="a"
+        :value="cartCount"
+        @click.native="showCart"
+      >
+        <cart-icon/>
+      </circle-button>
+    </div>
+    <div class="avatar">
+      <avatar-popover/>
     </div>
   </header>
 </template>
@@ -32,16 +46,36 @@
 import CartHeaderButton from "@/components/common/header/common/CartHeaderButton";
 import BurgerIcon from "@/components/common/icons/BurgerIcon";
 import LogoIcon from "@/components/common/icons/LogoIcon";
+import CircleButton from "@/components/common/header/common/CircleButton";
+import CartIcon from "@/components/common/icons/CartIcon";
+import HeartIcon from "@/components/common/icons/HeartIcon";
+import AvatarPopover from "@/components/common/header/common/AvatarPopover";
 
 export default {
   name: 'cart-mobile-header',
-  components: { CartHeaderButton, BurgerIcon, LogoIcon },
+  components: {
+    CartHeaderButton, BurgerIcon, LogoIcon,
+    CircleButton, CartIcon, HeartIcon, AvatarPopover
+  },
   props: {
     alwaysBg: { type: Boolean, default: false }
   },
   computed: {
     windowWidth() {
       return this.$store.state.windowWidth
+    },
+    cartCount() {
+      let count = 0
+      this.$store.state.cart.products.forEach(item => count += item.count)
+      return count
+    },
+    favoritesCount() {
+      return this.$store.state.userInstance.favorites.length
+    }
+  },
+  methods: {
+    showCart() {
+      this.$cart.showCart()
     }
   }
 }
@@ -65,6 +99,17 @@ export default {
   padding-left: 30px;
   padding-right: 30px;
 
+  &--favorites {
+    margin-right: 12px;
+    @media screen and (max-width: 700px) {
+      margin-left: auto;
+    }
+  }
+
+  .avatar {
+    margin-left: 12px;
+  }
+
   .burger {
     cursor: pointer;
   }
@@ -82,9 +127,6 @@ export default {
 
   > .cart {
     top: -10px;
-    @media screen and (max-width: 600px) {
-      margin-left: auto;
-    }
 
     > .btn {
       box-shadow: 2px 1px 13px rgba(0, 0, 0, 0.26);
@@ -105,9 +147,7 @@ export default {
     align-items: center;
 
     margin-left: auto;
-    margin-right: 50px;
-    @media screen and (max-width: 800px) { margin-right: 40px }
-    @media screen and (max-width: 800px) { margin-right: 30px }
+    margin-right: 20px;
 
 
     > a {
