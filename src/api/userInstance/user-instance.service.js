@@ -20,7 +20,7 @@ export default ({ $axios, store, router, $toast }) => ({
   },
   async signIn(requestData) {
       try {
-        const { user } = $axios.$post('/api/user/signin', requestData)
+        const { user } = await $axios.$post('/api/user/signin', requestData)
         store.commit('userInstance.setUserInfo', user)
         router.push('/profile')
       } catch (error) {

@@ -27,6 +27,7 @@
             <base-code-input
               v-model="code"
               :error="$v.code"
+              @input="handleInputCode"
             />
           </div>
         </transition>
@@ -91,7 +92,7 @@ export default {
         this.$userInstance.signIn({
           phone: this.phone,
           code: this.code
-        })
+        }).finally(() => this.loading = false)
       }
     },
     async submitPhone() {
@@ -101,6 +102,11 @@ export default {
         this.$userInstance.singInCall(this.phone)
           .then(() => this.isCalled = true)
           .finally(() => this.loading = false)
+      }
+    },
+    handleInputCode(code) {
+      if (code.length === 4) {
+        this.auth()
       }
     }
   },
