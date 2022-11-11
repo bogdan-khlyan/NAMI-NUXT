@@ -114,6 +114,12 @@ export default {
   &.active {
     background: #312525 !important;
 
+    .favorite-icon.no-active {
+      path {
+        stroke: #FFFFFF;
+      }
+    }
+
     .product-card-content__name > h4,
     .product-card-content__name > i,
     .product-card-content__info .description {
