@@ -33,7 +33,7 @@
           <img src="@/assets/images/icons/icon-user.svg" alt="">
           <span>Личные данные</span>
         </nuxt-link>
-        <nuxt-link to="/profile/addresses">
+        <nuxt-link to="/profile/favorites">
           <heart-icon/>
           <span>Избранное</span>
         </nuxt-link>
