@@ -48,12 +48,21 @@
           </a>
         </div>
 
+        <div class="header__nav--favorites">
+          <circle-button to="/favorites" :value="favoritesCount">
+            <heart-icon/>
+          </circle-button>
+        </div>
         <template v-if="isLoggedIn">
           <div class="header__nav--history">
-            <circle-button/>
+            <circle-button to="/profile/orders">
+              <img src="@/assets/images/icons/icon-orders.svg" alt="">
+            </circle-button>
           </div>
           <div class="header__nav--cart">
-            <cart-header-button class="btn"/>
+            <circle-button tag="a">
+              <img src="@/assets/images/icons/icon-orders.svg" alt="">
+            </circle-button>
           </div>
           <nuxt-link class="header__nav--avatar"
                      to="/profile">
@@ -64,7 +73,13 @@
         </template>
         <template v-else>
           <div class="header__nav--cart">
-            <cart-header-button class="btn"/>
+            <circle-button
+              tag="a"
+              :value="cartCount"
+              @click.native="showCart"
+            >
+              <cart-icon/>
+            </circle-button>
           </div>
           <div class="header__nav--profile">
             <button v-if="enabledRegister"
@@ -89,13 +104,15 @@
 import CircleButton from "@/components/common/header/common/CircleButton";
 import CartHeaderButton from "@/components/common/header/common/CartHeaderButton";
 import BaseUserAvatar from "@/components/common/BaseUserAvatar";
+import HeartIcon from "@/components/common/icons/HeartIcon";
+import CartIcon from "@/components/common/icons/CartIcon";
 
 export default {
   name: 'desktop',
-  components: { CartHeaderButton, BaseUserAvatar, CircleButton },
+  components: { CartHeaderButton, BaseUserAvatar, CircleButton, HeartIcon, CartIcon },
   computed: {
     enabledRegister() {
-      return false
+      return true
     },
     isLoggedIn () {
       console.log(this.$store.state.userInstance)
@@ -109,37 +126,21 @@ export default {
         if (this.windowWidth <= 1250) return true
         else return this.windowScroll !== 0
       } else return true
+    },
+    cartCount() {
+      let count = 0
+      this.$store.state.cart.products.forEach(item => count += item.count)
+      return count
+    },
+    favoritesCount() {
+      return this.$store.state.userInstance.favorites.length
     }
   },
   methods: {
-    // clickLogo() {
-    //   if (this.$route.name !== 'index') {
-    //     this.$router.push('/')
-    //     return
-    //   }
-    //   if (this.isMenu) {
-    //     this.$scrollTo('#banner', 800, { offset: -70 })
-    //     return
-    //   }
-    //   this.$scrollTo('#menu', 500, { offset: -70 })
-    // },
-    // async clickMenu() {
-    //   if (this.$route.name !== 'index') {
-    //     if (this.$route.name === 'product') {
-    //       await this.$router.push('/')
-    //     } else {
-    //       await this.$router.push('/')
-    //       setTimeout(() => {
-    //         if (!this.$store.state.scrollToProduct) {
-    //           this.$scrollTo('#menu', 200, {offset: -70})
-    //         }
-    //       }, 300)
-    //     }
-    //   } else {
-    //     this.$scrollTo('#menu', 500, { offset: -70 })
-    //   }
-    // }
-  },
+    showCart() {
+      this.$cart.showCart()
+    }
+  }
 }
 </script>
 
@@ -354,6 +355,13 @@ export default {
       margin-right: 12px;
     }
 
+    &--favorites {
+      margin-left: 12px;
+      ::v-deep svg path {
+        fill: #212121;
+      }
+    }
+
     &--avatar {
       margin-left: 12px;
       border-radius: 50%;
@@ -363,7 +371,7 @@ export default {
     }
 
     &--profile {
-      margin-left: 12px;
+      //margin-left: 12px;
 
       position: relative;
       padding-top: 7.5px;
