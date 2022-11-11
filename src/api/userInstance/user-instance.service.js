@@ -22,11 +22,27 @@ export default ({ $axios, store, router, $toast }) => ({
       try {
         const { user } = await $axios.$post('/api/user/signin', requestData)
         store.commit('userInstance.setUserInfo', user)
+        this.saveLocalFavorites()
         router.push('/profile')
       } catch (error) {
         baseError(error, $toast)
         throw error
       }
+  },
+  async saveLocalFavorites() {
+    if (localStorage.getItem('favorites')) {
+      try {
+        const favorites = JSON.parse(localStorage.getItem('favorites'))
+        const promises = favorites.map(productId =>
+          $axios.$post(`/api/product/${productId}/favorite`)
+        )
+        await Promise.all(promises)
+        localStorage.removeItem('favorites')
+        return await this.getFavorites()
+      } catch (error) {
+        throw error
+      }
+    }
   },
   async logout() {
     try {
