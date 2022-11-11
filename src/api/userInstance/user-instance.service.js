@@ -54,11 +54,7 @@ export default ({ $axios, store, router, $toast }) => ({
     } else {
       if (localStorage.getItem('favorites')) {
         const productIds = JSON.parse(localStorage.getItem('favorites'))
-        store.commit('userInstance.setFavorites',
-          productIds.map(productId =>
-            store.state.menu.products.find(item => item._id === productId)
-          )
-        )
+        store.commit('userInstance.setFavorites', productIds)
       } else {
         localStorage.setItem('favorites', '[]')
       }
