@@ -11,10 +11,10 @@
                @click.native="handleClick">
       <span>Мои заказы</span>
     </nuxt-link>
-    <nuxt-link to="/profile/addresses"
+    <nuxt-link to="/profile/favorites"
                class="profile-navigation-tabs__item"
                @click.native="handleClick">
-      <span>Мои адреса</span>
+      <span>Избранное</span>
     </nuxt-link>
     <div ref="tabPanel" class="profile-navigation-tabs__tab-panel"/>
   </nav>
@@ -38,7 +38,9 @@ export default {
       this.$refs.tabPanel.style.transition = '0.3s'
     })
 
-    this.resizeObserver.observe(document.querySelector('.profile-navigation-tabs'))
+    this.$nextTick(() =>
+      this.resizeObserver.observe(document.querySelector('.profile-navigation-tabs'))
+    )
   },
   methods: {
     handleClick(event) {

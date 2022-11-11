@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-favorites">
+  <div class="profile-favorites" v-loading="loading">
     <favorites-list
       class="profile-favorites__list"
       :favorites="favorites"
@@ -15,6 +15,7 @@ export default {
   components: { FavoritesList },
   data() {
     return {
+      loading: true,
       favorites: []
     }
   },
@@ -22,12 +23,15 @@ export default {
     await this.$userInstance.initFavorites()
     this.favorites = this.$store.state.menu.products
       .filter(item => this.$store.state.userInstance.favorites.find(productId => productId === item._id))
+    this.$nextTick(() => this.loading = false)
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .profile-favorites {
+  width: 100%;
+  height: max-content;
   &__list {
     width: 100%;
   }
@@ -54,6 +58,20 @@ export default {
     @media screen and (max-width: 360px) {
       font-size: 21px;
     }
+  }
+  ::v-deep .favorites-empty {
+    margin: 0;
+    padding-left: 38px;
+    @media screen and (max-width: 980px) {
+      margin: 0 auto;
+      padding-left: 0;
+    }
+  }
+  ::v-deep .el-loading-mask {
+    background: #FFFFFF;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 10px rgba(212, 217, 230, 0.12), -5px -5px 10px rgba(212, 217, 230, 0.1);
   }
 }
 </style>

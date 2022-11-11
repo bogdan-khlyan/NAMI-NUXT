@@ -6,7 +6,6 @@
 
 <script>
 import FavoritesList from "@/components/pages/favoritesPage/components/FavoritesList";
-import {copyDeep} from "@/utils/copy-deep";
 
 export default {
   name: 'favorites-page',
@@ -17,9 +16,10 @@ export default {
       favorites: []
     }
   },
-  mounted() {
-    this.$userInstance.initFavorites()
-    this.favorites = copyDeep(this.$store.state.userInstance.favorites)
+  async mounted() {
+    await this.$userInstance.initFavorites()
+    this.favorites = this.$store.state.menu.products
+      .filter(item => this.$store.state.userInstance.favorites.find(productId => productId === item._id))
   }
 }
 </script>

@@ -12,6 +12,9 @@ export default async function ({ redirect, error, route, req, store, $axios, $co
       $cookies.remove('sessionId')
     }
   }
+  if (route.name === 'favorites' && store.state.userInstance.isLoggedIn) {
+    redirect('/profile/favorites')
+  }
   if (route.meta.find(item => item.requiresAuth) && !store.state.userInstance.isLoggedIn) {
     redirect('/login')
   }

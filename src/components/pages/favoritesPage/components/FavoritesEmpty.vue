@@ -42,6 +42,9 @@ export default {
       font-size: 28px;
       line-height: 32px;
       color: #062D4E;
+      @media screen and (max-width: 420px) {
+        font-size: 24px;
+      }
     }
   }
   &__content {
@@ -84,6 +87,11 @@ export default {
       color: #FFFFFF;
 
       transition: 300ms;
+
+      @media screen and (max-width: 420px) {
+        width: 240px;
+      }
+
       &:hover {
         background: #0e508a;
       }
