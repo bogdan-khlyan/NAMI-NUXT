@@ -39,7 +39,8 @@
     <div v-if="isLoggedIn" class="avatar">
       <avatar-popover/>
     </div>
-    <button class="login"
+    <button v-else
+            class="login"
             @click="$router.push('/login')">Войти</button>
   </header>
 </template>
@@ -109,6 +110,9 @@ export default {
 
   &--favorites {
     margin-right: 12px;
+    ::v-deep svg path {
+      fill: #212121;
+    }
     @media screen and (max-width: 700px) {
       margin-left: auto;
     }
