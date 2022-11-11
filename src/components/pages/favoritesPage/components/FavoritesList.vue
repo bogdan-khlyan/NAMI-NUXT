@@ -4,7 +4,7 @@
       <heart-icon/>
       <h1>Избранные продукты</h1>
     </div>
-    <div class="favorites-list__auth-message">
+    <div v-if="!isLoggedIn" class="favorites-list__auth-message">
       <p>
         <nuxt-link to="/login">Авторизуйтесь</nuxt-link>, чтобы сохранить список избранного для просмотра на этом и других устройствах
       </p>
@@ -29,6 +29,11 @@ export default {
   components: { HeartIcon, FavoritesEmpty, ProductCard },
   props: {
     favorites: { type: Array, default: [] }
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.userInstance.isLoggedIn
+    }
   }
 }
 </script>
@@ -39,6 +44,7 @@ export default {
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 60px;
+  box-sizing: border-box;
   margin: 0 auto;
 
   &__title {
@@ -63,7 +69,6 @@ export default {
 
   &__auth-message {
     margin-top: 20px;
-    margin-bottom: 20px;
     padding-left: 15px;
     padding-right: 15px;
     box-sizing: border-box;
@@ -93,12 +98,13 @@ export default {
   }
 
   &__list {
+    margin-top: 20px;
     display: grid;
     grid-gap: 30px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 
     @media screen and (max-width: 1150px) {
-      margin: 0 auto;
+      margin: 20px auto 0 auto;
       max-width: 900px;
       grid-template-columns: 1fr 1fr 1fr;
     }

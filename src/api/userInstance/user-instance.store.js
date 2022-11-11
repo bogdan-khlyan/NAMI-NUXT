@@ -16,19 +16,23 @@ const mutations = {
     state.info = userInfo
   },
   'userInstance.pushFavorite'(state, product) {
-    const favorites = JSON.parse(localStorage.getItem('favorites'))
-    favorites.push(product._id)
-    state.favorites.push(product)
-    localStorage.setItem('favorites', JSON.stringify(favorites))
-  },
-  'userInstance.removeFavorite'(state, product) {
-    const favorites = JSON.parse(localStorage.getItem('favorites'))
-    let index = favorites.findIndex(item => item === product._id)
-    if (index !== -1) {
-      favorites.splice(index, 1)
+    if (!state.isLoggedIn) {
+      const favorites = JSON.parse(localStorage.getItem('favorites'))
+      favorites.push(product._id)
       localStorage.setItem('favorites', JSON.stringify(favorites))
     }
-    index = state.favorites.findIndex(item => item._id === product._id)
+    state.favorites.push(product._id)
+  },
+  'userInstance.removeFavorite'(state, productId) {
+    if (!state.isLoggedIn) {
+      const favorites = JSON.parse(localStorage.getItem('favorites'))
+      const index = favorites.findIndex(item => item === productId)
+      if (index !== -1) {
+        favorites.splice(index, 1)
+        localStorage.setItem('favorites', JSON.stringify(favorites))
+      }
+    }
+    const index = state.favorites.findIndex(item => item === productId)
     if (index !== -1) {
       state.favorites.splice(index, 1)
     }

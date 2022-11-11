@@ -5,7 +5,6 @@
       <div class="profile-page-wrapper__nav--account-info">
         <account-info/>
       </div>
-      <!-- TODO v-if-else -->
       <div class="profile-page-wrapper__nav--links">
         <profile-navigation/>
       </div>

@@ -35,10 +35,10 @@ module.exports = {
         meta: { requiresAuth: true },
         component: resolve('~/components/pages/profilePage/orders/Orders')
       }, {
-        path: '/profile/addresses',
-        name: 'profile-addresses',
+        path: '/profile/favorites',
+        name: 'profile-favorites',
         meta: { requiresAuth: true },
-        component: resolve('~/components/pages/profilePage/addresses/Addresses')
+        component: resolve('~/components/pages/profilePage/favorites/Favorites')
       }]
     }, {
       path: '/successful-order',

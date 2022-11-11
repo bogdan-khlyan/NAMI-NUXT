@@ -59,7 +59,7 @@ export default {
         : ''
     },
     isFavorite() {
-      return !!this.$store.state.userInstance.favorites.find(item => item._id === this.productId)
+      return !!this.$store.state.userInstance.favorites.find(item => item === this.productId)
     },
 
     isDiscount() {

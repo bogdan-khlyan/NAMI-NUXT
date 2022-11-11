@@ -39,8 +39,7 @@
       </div>
       <br>
       <hr>
-      <a class="avatar-popover__logout"
-         @click="closePopover">
+      <a class="avatar-popover__logout">
         <logout-icon/>
         <span>Выход</span>
       </a>

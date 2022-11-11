@@ -6,11 +6,10 @@
         :src="require('@/assets/images/icons/icon-orders.svg')"/>
       <span>Мои заказы</span>
     </nuxt-link>
-    <nuxt-link to="/profile/addresses"
+    <nuxt-link to="/profile/favorites"
                class="profile-navigation__item">
-      <base-svg
-        :src="require('@/assets/images/icons/icon-home.svg')"/>
-      <span>Мои адреса</span>
+      <heart-icon/>
+      <span>Избранное</span>
     </nuxt-link>
     <nuxt-link to="/profile"
                class="profile-navigation__item">
@@ -23,13 +22,11 @@
 
 <script>
 import BaseSvg from "@/components/common/BaseSvg";
+import HeartIcon from "@/components/common/icons/HeartIcon";
 
 export default {
   name: 'profile-navigation',
-  components: { BaseSvg },
-  mounted() {
-    console.log('profile-navigation')
-  }
+  components: { BaseSvg, HeartIcon }
 }
 </script>
 
