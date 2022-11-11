@@ -81,16 +81,14 @@
             </circle-button>
           </div>
           <div class="header__nav--profile">
-            <button v-if="enabledRegister"
-                    class="login"
-                    @click="$router.push('/login')">Войти</button>
-            <el-tooltip v-else class="item" effect="dark" placement="top">
-              <div slot="content">
-                К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
-              </div>
-              <button class="login"
-                      style="cursor: no-drop">Войти</button>
-            </el-tooltip>
+            <nuxt-link class="login" to="/login">Войти</nuxt-link>
+<!--            <el-tooltip v-else class="item" effect="dark" placement="top">-->
+<!--              <div slot="content">-->
+<!--                К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(-->
+<!--              </div>-->
+<!--              <button class="login"-->
+<!--                      style="cursor: no-drop">Войти</button>-->
+<!--            </el-tooltip>-->
           </div>
         </template>
 
@@ -388,6 +386,10 @@ export default {
       box-sizing: border-box;
 
       > .login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         width: 102px;
         height: 45px;
 
@@ -397,15 +399,13 @@ export default {
         box-shadow: 9px 5px 37px rgba(0, 0, 0, 0.63);
         border-radius: 36px;
 
-
         font-family: Neucha, sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 16px;
         line-height: 18px;
-
+        text-decoration: none;
         letter-spacing: 0.07em;
-
         color: #000000;
 
         //cursor: no-drop;

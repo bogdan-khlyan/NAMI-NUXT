@@ -10,8 +10,8 @@
                to="/?menu">
       <logo-icon
         v-if="windowWidth > 420"
-        width="120px"
-        height="60px"/>
+        :width="windowWidth > 480 ? '120px' : '100px'"
+        :height="windowWidth > 480 ? '60px' : '50px'"/>
     </nuxt-link>
     <div v-if="windowWidth > 700"
          class="phone">
@@ -36,9 +36,11 @@
         <cart-icon/>
       </circle-button>
     </div>
-    <div class="avatar">
+    <div v-if="isLoggedIn" class="avatar">
       <avatar-popover/>
     </div>
+    <button class="login"
+            @click="$router.push('/login')">Войти</button>
   </header>
 </template>
 
@@ -61,6 +63,9 @@ export default {
     alwaysBg: { type: Boolean, default: false }
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.state.userInstance.isLoggedIn
+    },
     windowWidth() {
       return this.$store.state.windowWidth
     },
@@ -98,6 +103,9 @@ export default {
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
+  @media screen and (max-width: 600px) {
+    padding-right: 12px;
+  }
 
   &--favorites {
     margin-right: 12px;
@@ -184,6 +192,40 @@ export default {
         color: #FFFFFF;
       }
 
+    }
+
+  }
+
+  .login {
+    margin-left: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 102px;
+    height: 45px;
+
+    border: none;
+
+    background: #FFFFFF;
+    box-shadow: 9px 5px 37px rgba(0, 0, 0, 0.63);
+    border-radius: 36px;
+
+    font-family: Neucha, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 18px;
+    text-decoration: none;
+    letter-spacing: 0.07em;
+    color: #000000;
+
+    //cursor: no-drop;
+    cursor: pointer;
+
+    @media screen and (max-width: 480px) {
+      width: 90px;
     }
 
   }
