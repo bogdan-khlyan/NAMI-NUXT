@@ -68,12 +68,7 @@
               <cart-icon/>
             </circle-button>
           </div>
-          <nuxt-link class="header__nav--avatar"
-                     to="/profile">
-            <base-user-avatar
-              avatar="asfkj&q2323&3232%$@NJajFanasf&7ss"
-              :size="42"/>
-          </nuxt-link>
+          <avatar-popover/>
         </div>
         <template v-else>
           <div class="header__nav--cart">
@@ -110,10 +105,11 @@ import CartHeaderButton from "@/components/common/header/common/CartHeaderButton
 import BaseUserAvatar from "@/components/common/BaseUserAvatar";
 import HeartIcon from "@/components/common/icons/HeartIcon";
 import CartIcon from "@/components/common/icons/CartIcon";
+import AvatarPopover from "@/components/common/header/common/AvatarPopover";
 
 export default {
   name: 'desktop',
-  components: { CartHeaderButton, BaseUserAvatar, CircleButton, HeartIcon, CartIcon },
+  components: { CartHeaderButton, BaseUserAvatar, CircleButton, HeartIcon, CartIcon, AvatarPopover },
   computed: {
     enabledRegister() {
       return true
