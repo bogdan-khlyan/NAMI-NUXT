@@ -18,6 +18,7 @@ export default {
     }
   },
   mounted() {
+    this.$userInstance.initFavorites()
     this.favorites = copyDeep(this.$store.state.userInstance.favorites)
   }
 }
