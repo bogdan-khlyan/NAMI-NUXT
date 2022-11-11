@@ -53,15 +53,19 @@
             <heart-icon/>
           </circle-button>
         </div>
-        <template v-if="isLoggedIn">
-          <div class="header__nav--history">
-            <circle-button to="/profile/orders">
-              <img src="@/assets/images/icons/icon-orders.svg" alt="">
-            </circle-button>
-          </div>
+        <div v-if="isLoggedIn" class="is-auth">
+<!--          <div class="header__nav&#45;&#45;history">-->
+<!--            <circle-button to="/profile/orders">-->
+<!--              <img src="@/assets/images/icons/icon-orders.svg" alt="">-->
+<!--            </circle-button>-->
+<!--          </div>-->
           <div class="header__nav--cart">
-            <circle-button tag="a">
-              <img src="@/assets/images/icons/icon-orders.svg" alt="">
+            <circle-button
+              tag="a"
+              :value="cartCount"
+              @click.native="showCart"
+            >
+              <cart-icon/>
             </circle-button>
           </div>
           <nuxt-link class="header__nav--avatar"
@@ -70,7 +74,7 @@
               avatar="asfkj&q2323&3232%$@NJajFanasf&7ss"
               :size="42"/>
           </nuxt-link>
-        </template>
+        </div>
         <template v-else>
           <div class="header__nav--cart">
             <circle-button
@@ -193,6 +197,14 @@ export default {
     max-width: 100%;
     height: 120px;
     opacity: 0;
+  }
+
+  .is-auth {
+    display: flex;
+    .header__nav--cart {
+      margin-left: 10px;
+      margin-right: 20px;
+    }
   }
 
   &__nav {
@@ -351,19 +363,20 @@ export default {
 
     &--cart {
       position: relative;
-      margin-left: 12px;
+      //margin-left: 12px;
       margin-right: 12px;
     }
 
     &--favorites {
       margin-left: 12px;
+      margin-right: 12px;
       ::v-deep svg path {
         fill: #212121;
       }
     }
 
     &--avatar {
-      margin-left: 12px;
+      //margin-left: 12px;
       border-radius: 50%;
       box-shadow: 9px 5px 37px rgba(0, 0, 0, 0.63);
 
