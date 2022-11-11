@@ -37,10 +37,11 @@ export default ({ $axios, store, router, $toast }) => ({
           $axios.$post(`/api/product/${productId}/favorite`)
         )
         await Promise.all(promises)
-        localStorage.removeItem('favorites')
-        return await this.getFavorites()
       } catch (error) {
         throw error
+      } finally {
+        localStorage.removeItem('favorites')
+        await this.getFavorites()
       }
     }
   },
@@ -48,6 +49,7 @@ export default ({ $axios, store, router, $toast }) => ({
     try {
       await $axios.delete('/api/user/signout')
       store.commit('userInstance.logout')
+      this.initFavorites()
     } catch (error) {
       console.log(error)
       baseError(error, $toast)
