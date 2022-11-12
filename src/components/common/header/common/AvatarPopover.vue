@@ -26,11 +26,11 @@
       <hr>
       <div class="avatar-popover__menu">
         <nuxt-link to="/profile/orders">
-          <img src="@/assets/images/icons/icon-orders.svg" alt="">
+          <list-icon/>
           <span>Мои заказы</span>
         </nuxt-link>
         <nuxt-link to="/profile">
-          <img src="@/assets/images/icons/icon-user.svg" alt="">
+          <user-icon/>
           <span>Личные данные</span>
         </nuxt-link>
         <nuxt-link to="/profile/favorites">
@@ -52,11 +52,13 @@
 <script>
 import BaseUserAvatar from "@/components/common/BaseUserAvatar";
 import HeartIcon from "@/components/common/icons/HeartIcon";
+import ListIcon from "@/components/common/icons/ListIcon";
+import UserIcon from "@/components/common/icons/UserIcon";
 import LogoutIcon from "@/components/common/icons/LogoutIcon";
 
 export default {
   name: 'button-to-cart',
-  components: { BaseUserAvatar, HeartIcon, LogoutIcon },
+  components: { BaseUserAvatar, HeartIcon, LogoutIcon, ListIcon, UserIcon },
   computed: {
     userInfo() {
       return this.$store.state.userInstance.info
