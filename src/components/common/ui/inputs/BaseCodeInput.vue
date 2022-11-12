@@ -10,7 +10,10 @@
           @keydown="keyDown">
       <input v-for="(item, index) in code"
              v-model="code[index]"
-             type="number" maxlength="2" placeholder="_"
+             type="text"
+             maxlength="2"
+             placeholder="_"
+             inputmode="numeric"
              :disabled="disabled"
              @input="input(index)"
              :uid="index"
