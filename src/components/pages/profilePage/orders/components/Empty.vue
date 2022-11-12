@@ -8,6 +8,7 @@
     </div>
     <div class="empty__button">
       <nuxt-link to="/">
+        <sushi-icon/>
         Выбрать суши
       </nuxt-link>
     </div>
@@ -15,8 +16,11 @@
 </template>
 
 <script>
+import SushiIcon from "@/components/common/icons/SushiIcon";
+
 export default {
-  name: 'empty'
+  name: 'empty',
+  components: { SushiIcon }
 }
 </script>
 
@@ -28,6 +32,10 @@ export default {
   padding-top: 20px;
   padding-left: 38px;
   max-width: 360px;
+  @media screen and (max-width: 980px) {
+    margin: 0 auto;
+    padding-left: 0;
+  }
   &__title {
     margin-bottom: 12px;
     > span {
@@ -37,6 +45,12 @@ export default {
       font-size: 28px;
       line-height: 32px;
       color: #062D4E;
+      @media screen and (max-width: 980px) {
+        font-size: 24px;
+      }
+      @media screen and (max-width: 420px) {
+        font-size: 22px;
+      }
     }
   }
   &__text {
@@ -71,8 +85,16 @@ export default {
       color: #FFFFFF;
 
       transition: 300ms;
+
+      @media screen and (max-width: 980px) {
+        width: 240px;
+      }
+
       &:hover {
         background: #0e508a;
+      }
+      ::v-deep svg {
+        margin-right: 8px;
       }
     }
   }

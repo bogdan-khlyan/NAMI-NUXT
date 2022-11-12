@@ -6,9 +6,10 @@
 
     <div v-loading="loading" class="orders__content">
       <orders-table
+        v-if="orders.length > 0"
         :orders="orders"
       />
-      <empty v-if="orders.length === 0"/>
+      <empty v-else/>
     </div>
   </div>
 </template>
