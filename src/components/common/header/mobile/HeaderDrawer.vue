@@ -124,10 +124,12 @@ export default {
         setTimeout(() => {
           this.$refs.wrapper.style.opacity = '1'
           this.$refs.drawer.style.transform = 'translateX(0)'
+          document.body.style.overflowY = 'hidden'
         }, 100)
       } else {
         this.$refs.wrapper.style.opacity = '0'
         this.$refs.drawer.style.transform = 'translateX(-280px)'
+        document.body.style.overflowY = null
         setTimeout(() => {
           this.$store.commit('hideHeaderCollapse')
         }, 200)
