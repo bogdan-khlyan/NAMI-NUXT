@@ -6,10 +6,12 @@
         {{ number }}
       </div>
       <div class="order-card-info__buttons">
-        <div class="orders-row-info__item-btn-action">
+        <div class="orders-row-info__item-btn-action"
+             @click="repeatOrder">
           Повторить
         </div>
-        <div class="order-card-info__item-btn-action" @click="clickDetails">
+        <div class="order-card-info__item-btn-action"
+             @click="clickDetails">
           Детали
           <i v-if="loading" class="el-icon-loading"/>
           <img v-else class="order-card-info__show-details"
@@ -53,9 +55,11 @@
 
 <script>
 import OrderCardDetails from "@/components/pages/profilePage/orders/components/card/OrderCardDetails";
+import orderMixin from "@/components/pages/profilePage/orders/components/order.mixin";
 
 export default {
   name: "OrderCardInfo",
+  mixins: [orderMixin],
   components: {
     OrderCardDetails
   },
@@ -64,36 +68,9 @@ export default {
     number: {type: Number},
     showDetails: {type: Boolean}
   },
-  computed: {
-    conditionName() {
-      const conditionsMap = new Map()
-        .set('NEW', 'Новый')
-        .set('IN_PROGRESS', 'В обработке')
-        .set('IN_THE_WAY', 'Доставляется')
-        .set('DONE', 'Завершен')
-        .set('REJECT', 'Отменен')
-      return conditionsMap.get(this.order.condition)
-    }
-  },
   data() {
     return {
       loading: false
-    }
-  },
-  methods: {
-    clickDetails() {
-      if (this.order.full) {
-        this.$emit('click-details', this.order._id)
-      } else {
-        this.loading = true
-        this.$orders.getOrderById(this.order.number)
-          .then(order => {
-            this.order.full = order
-            console.log(this.order)
-            this.$emit('click-details', this.order._id)
-          })
-          .finally(() => this.loading = false)
-      }
     }
   }
 }

@@ -9,13 +9,15 @@ export default ({ $axios, store, router, $toast }) => ({
   hideCart() {
     store.commit('cart.setIsVisibleCart', false)
   },
-  addProduct(product) {
+  addProduct(product, notify = true) {
     yandex.sendEvent('add-product-to-cart')
     store.commit('cart.addProduct', {
       ...product,
       count: 1
     })
-    this.notifyOrderInfo()
+    if (notify) {
+      this.notifyOrderInfo()
+    }
   },
   // changeProductVariant(productId, variant) {
   //   store.commit('cart.changeProductVariant', { productId, variant })
