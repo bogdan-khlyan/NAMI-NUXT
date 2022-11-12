@@ -3,17 +3,20 @@
   <nav class="profile-navigation-tabs">
     <nuxt-link to="/profile"
                class="profile-navigation-tabs__item"
-               @click.native="handleClick">
+               @click.native="handleClick"
+               ref="profile-info">
       <span>Личные данные</span>
     </nuxt-link>
     <nuxt-link to="/profile/orders"
                class="profile-navigation-tabs__item"
-               @click.native="handleClick">
+               @click.native="handleClick"
+               ref="profile-orders">
       <span>Мои заказы</span>
     </nuxt-link>
     <nuxt-link to="/profile/favorites"
                class="profile-navigation-tabs__item"
-               @click.native="handleClick">
+               @click.native="handleClick"
+               ref="profile-favorites">
       <span>Избранное</span>
     </nuxt-link>
     <div ref="tabPanel" class="profile-navigation-tabs__tab-panel"/>
@@ -27,6 +30,13 @@ export default {
   data() {
     return {
       resizeObserver: null,
+    }
+  },
+  watch: {
+    '$route.name'(value) {
+      if (this.$refs[value]) {
+        this.updateTabPanel(this.$refs[value].$el)
+      }
     }
   },
   mounted() {
