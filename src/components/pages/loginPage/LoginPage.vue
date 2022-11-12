@@ -28,6 +28,7 @@
               v-model="code"
               :error="$v.code"
               @input="handleInputCode"
+              @send-new-code="submitPhone"
             />
           </div>
         </transition>

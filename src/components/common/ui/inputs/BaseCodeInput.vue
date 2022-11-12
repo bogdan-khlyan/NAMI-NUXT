@@ -62,14 +62,17 @@ export default {
     }
   },
   mounted() {
-    this.newCode()
+    this.newCode(null, true)
   },
   methods: {
-    newCode() {
+    newCode($event, init = false) {
       if (this.time > 0) {
         return
       }
-      this.time = 10
+      if (!init) {
+        this.$emit('send-new-code')
+      }
+      this.time = 180
       this.interval = setInterval(() => {
         --this.time
         if (this.time <= 0) {
