@@ -28,7 +28,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  width: 386px;
+  width: 100%;
   height: 56px;
 
   background: #062D4E;
