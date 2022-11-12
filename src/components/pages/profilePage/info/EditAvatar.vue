@@ -3,7 +3,7 @@
 
     <div class="edit-avatar__my-avatar">
       <base-user-avatar
-        avatar="asfajf&23LA932jk2(*&"
+        :avatar="userInfo.avatar"
         :size="52"/>
       <div class="edit-avatar__btn-edit">
         <base-tooltip content="Изменить аватар пока что нельзя :(">
@@ -42,6 +42,11 @@ export default {
     return {
       editMode: false,
       avatars: []
+    }
+  },
+  computed: {
+    userInfo() {
+      return this.$store.state.userInstance.info
     }
   },
   created() {
