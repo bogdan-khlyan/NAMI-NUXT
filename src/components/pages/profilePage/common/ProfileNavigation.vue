@@ -2,8 +2,7 @@
   <nav class="profile-navigation">
     <nuxt-link to="/profile/orders"
                class="profile-navigation__item">
-      <base-svg
-        :src="require('@/assets/images/icons/icon-orders.svg')"/>
+      <list-icon/>
       <span>Мои заказы</span>
     </nuxt-link>
     <nuxt-link to="/profile/favorites"
@@ -13,8 +12,7 @@
     </nuxt-link>
     <nuxt-link to="/profile"
                class="profile-navigation__item">
-      <base-svg
-        :src="require('@/assets/images/icons/icon-user.svg')"/>
+      <user-icon/>
       <span>Личные данные</span>
     </nuxt-link>
   </nav>
@@ -23,10 +21,12 @@
 <script>
 import BaseSvg from "@/components/common/BaseSvg";
 import HeartIcon from "@/components/common/icons/HeartIcon";
+import ListIcon from "@/components/common/icons/ListIcon";
+import UserIcon from "@/components/common/icons/UserIcon";
 
 export default {
   name: 'profile-navigation',
-  components: { BaseSvg, HeartIcon }
+  components: { BaseSvg, HeartIcon, ListIcon, UserIcon }
 }
 </script>
 
