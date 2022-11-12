@@ -76,6 +76,7 @@ export default ({ $axios, store, router, $toast }) => ({
         store.commit('userInstance.setFavorites', productIds)
       } else {
         localStorage.setItem('favorites', '[]')
+        store.commit('userInstance.setFavorites', [])
       }
     }
   },
