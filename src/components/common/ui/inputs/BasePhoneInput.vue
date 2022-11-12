@@ -8,6 +8,7 @@
         <input type="text"
                v-model="number"
                v-mask="'###-##-##'"
+               inputmode="numeric"
                placeholder="___-__-__"
                :disabled="isDone"
                @focus="isFocus = true"
