@@ -4,11 +4,18 @@
       title-icon="orders"
       title="Мои заказы"/>
 
-    <div v-loading="loading" class="orders__content">
-      <orders-table
-        v-if="orders.length > 0"
-        :orders="orders"
-      />
+    <div v-loading="loading && !orders.length" class="orders__content">
+      <template v-if="orders.length > 0">
+        <orders-table
+          :orders="orders"
+        />
+        <base-submit-button
+          v-if="orders.length !== total"
+          class="orders__btn-more"
+          :loading="loading"
+          @click.native="getOrders"
+        >Показать еще</base-submit-button>
+      </template>
       <empty v-else/>
     </div>
   </div>
@@ -18,15 +25,17 @@
 import PageTitle from "@/components/pages/profilePage/common/PageTitle";
 import OrdersTable from "@/components/pages/profilePage/orders/components/table/OrdersTable";
 import Empty from "@/components/pages/profilePage/orders/components/Empty";
+import BaseSubmitButton from "@/components/common/ui/buttons/BaseSubmitButton";
 
 export default {
   name: 'orders',
-  components: {PageTitle, OrdersTable, Empty},
+  components: { PageTitle, OrdersTable, Empty, BaseSubmitButton },
   data() {
     return {
       loading: true,
       orders: [],
-      total: 0
+      total: 0,
+      page: 1
     }
   },
   computed: {
@@ -40,7 +49,8 @@ export default {
   methods: {
     async getOrders() {
       this.loading = true
-      const { total, data } = await this.$orders.getOrders()
+      const { total, data } = await this.$orders.getOrders(10, this.page)
+      ++this.page
       this.orders.push(...data)
       this.total = total
       this.loading = false
@@ -54,6 +64,13 @@ export default {
   margin-left: auto;
   width: 100%;
   transition: 0.2s;
+  padding-bottom: 40px;
+
+  &__btn-more {
+    max-width: 350px;
+    margin: 20px auto 0 auto;
+  }
+
   ::v-deep .el-loading-mask {
     background: #FFFFFF;
     border-radius: 4px;

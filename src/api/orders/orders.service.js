@@ -11,9 +11,14 @@ export default ({ $axios, store, router, $toast }) => ({
       throw error
     }
   },
-  async getOrders() {
+  async getOrders(limit = 10, page = 1) {
     try {
-      const { data, total } = await $axios.$get('/api/user/orders')
+      const { data, total } = await $axios.$get('/api/user/orders', {
+        params: {
+          limit: limit,
+          page: page
+        }
+      })
       return {
         total,
         data: data.map(item => ({

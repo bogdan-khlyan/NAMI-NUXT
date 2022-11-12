@@ -79,7 +79,6 @@ export default {
 <style lang="scss">
 .orders-table {
   max-width: 796px;
-  margin-bottom: 40px;
   padding: 12px 0;
 
   background: #FFFFFF;
