@@ -18,11 +18,14 @@
                  class="header-drawer__profile"
                  @click.native="close">
         <div class="header-drawer__profile--avatar">
-          <base-user-avatar avatar="asfasf#%35afas" :size="42"/>
+          <base-user-avatar
+            :avatar="userInfo.avatar"
+            :size="42"
+          />
         </div>
         <div class="header-drawer__profile--info">
-          <span class="name">Ксения Уткина</span>
-          <span class="phone">+7 949 123 45 67</span>
+          <span v-if="userInfo.name" class="bold name">{{ userInfo.name }}</span>
+          <span :class="userInfo.name ? 'phone' : 'bold'">{{ userInfo.phone }}</span>
         </div>
       </nuxt-link>
 
@@ -70,14 +73,17 @@
       <hr>
 
       <div class="header-drawer__footer">
-        <button v-if="isLoggedIn"
-                class="header-drawer__footer--btn-logout">Выйти</button>
-        <el-tooltip v-else class="item" effect="dark" placement="top">
-          <div slot="content">
-            К сожалению в данный момент<br>регистрация аккаунтов невозможна.<br><br>Вы можете совершить покупку<br>без регистрации.<br><br>Извиняемся за неудобства :(
-          </div>
-          <button class="header-drawer__footer--btn-login">Войти</button>
-        </el-tooltip>
+        <button
+          v-if="isLoggedIn"
+          class="header-drawer__footer--btn-logout"
+          @click="logout"
+        >Выйти</button>
+        <nuxt-link
+          v-else
+          class="header-drawer__footer--btn-login"
+          to="/login"
+          @click.native="close"
+        >Войти</nuxt-link>
       </div>
     </div>
 
@@ -97,6 +103,12 @@ export default {
   name: 'header-collapse',
   components: { CloseIcon, MenuIcon, DeliveryIcon, StockIcon, ReviewsIcon, EmailIcon, BaseUserAvatar },
   computed: {
+    isLoggedIn() {
+      return this.$store.state.userInstance.isLoggedIn
+    },
+    userInfo() {
+      return this.$store.state.userInstance.info
+    },
     isShowHeaderCollapse() {
       return this.$store.state.isShowHeaderCollapse
     }
@@ -124,11 +136,14 @@ export default {
   },
   data() {
     return {
-      visible: false,
-      isLoggedIn: false
+      visible: false
     }
   },
   methods: {
+    logout() {
+      this.$userInstance.logout()
+        .then(() => this.close())
+    },
     clickWrapper($event) {
       if ($event.target.classList[0] === 'header-drawer__wrapper') {
         this.close()
@@ -176,7 +191,13 @@ export default {
       text-align: left;
       .name {
         display: block;
-        font-family: Ubuntu, sans-serif;
+        max-width: 160px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .bold {
+        font-family: 'Ubuntu', sans-serif;
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
@@ -243,6 +264,10 @@ export default {
     margin-top: 10px;
     text-align: left;
     &--btn-login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       width: 160px;
       height: 48px;
 
@@ -251,6 +276,7 @@ export default {
       font-weight: 300;
       font-size: 16px;
       line-height: 24px;
+      text-decoration: none;
       color: #303030;
 
       background: #FFFFFF;

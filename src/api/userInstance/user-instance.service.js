@@ -50,6 +50,7 @@ export default ({ $axios, store, router, $toast }) => ({
       await $axios.delete('/api/user/signout')
       store.commit('userInstance.logout')
       this.initFavorites()
+      router.push('/')
     } catch (error) {
       console.log(error)
       baseError(error, $toast)
