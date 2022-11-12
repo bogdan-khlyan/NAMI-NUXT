@@ -11,7 +11,8 @@
         </div>
         <div class="order-card-info__item-btn-action" @click="clickDetails">
           Детали
-          <img class="order-card-info__show-details"
+          <i v-if="loading" class="el-icon-loading"/>
+          <img v-else class="order-card-info__show-details"
                :class="{'order-card-info__show-details--active': showDetails}"
                src="@/assets/images/orders/icon-expand.svg" alt="">
         </div>
@@ -19,29 +20,29 @@
     </div>
 
     <el-collapse-transition>
-      <order-card-details v-show="showDetails" :order-info="orderInfo"/>
+      <order-card-details v-if="showDetails" :order-info="order"/>
     </el-collapse-transition>
 
     <div class="order-card-info__information">
       <div class="order-card-info__info-row">
         <div class="order-card-info__info-title">Номер заказа</div>
-        <div class="order-card-info__info">{{ orderInfo.id }}</div>
+        <div class="order-card-info__info">{{ order.number }}</div>
       </div>
       <div class="order-card-info__info-row">
         <div class="order-card-info__info-title">Дата заказа</div>
-        <div class="order-card-info__info">{{ new Date(orderInfo.dateOrder * 1000).toLocaleDateString() }}</div>
+        <div class="order-card-info__info">{{ new Date(order.createdAt).toLocaleDateString() }}</div>
       </div>
       <div class="order-card-info__info-row">
         <div class="order-card-info__info-title">Статус</div>
         <div class="order-card-info__info-status"
-             :class="`order-card-info__info-status--${orderInfo.status}`">
-          {{ getStatusName }}
+             :class="`order-card-info__info-status--${order.condition}`">
+          {{ conditionName }}
         </div>
       </div>
       <div class="order-card-info__info-row">
         <div class="order-card-info__info-title">Сумма</div>
         <div class="order-card-info__info order-card-info__info--amount">
-          {{ orderInfo.amountOrder + orderInfo.amountDelivery }} ₽
+          {{ order.cost }} ₽
         </div>
       </div>
 
@@ -59,20 +60,40 @@ export default {
     OrderCardDetails
   },
   props: {
-    orderInfo: {type: Object},
+    order: {type: Object},
     number: {type: Number},
     showDetails: {type: Boolean}
   },
   computed: {
-    getStatusName() {
-      const status = this.orderInfo.status
-      return status === 'new' ? 'Новый' : status === 'completed' ? 'Завершен' : status === 'processing' ?
-        'В обработке' : status === 'delivered' ? 'Доставляется' : 'Отменен'
+    conditionName() {
+      const conditionsMap = new Map()
+        .set('NEW', 'Новый')
+        .set('IN_PROGRESS', 'В обработке')
+        .set('IN_THE_WAY', 'Доставляется')
+        .set('DONE', 'Завершен')
+        .set('REJECT', 'Отменен')
+      return conditionsMap.get(this.order.condition)
+    }
+  },
+  data() {
+    return {
+      loading: false
     }
   },
   methods: {
     clickDetails() {
-      this.$emit('clickDetails', this.showDetails ? null : this.orderInfo.id)
+      if (this.order.full) {
+        this.$emit('click-details', this.order._id)
+      } else {
+        this.loading = true
+        this.$orders.getOrderById(this.order.number)
+          .then(order => {
+            this.order.full = order
+            console.log(this.order)
+            this.$emit('click-details', this.order._id)
+          })
+          .finally(() => this.loading = false)
+      }
     }
   }
 }
@@ -139,7 +160,7 @@ export default {
 
     transition: 0.2s;
 
-    img {
+    img, .el-icon-loading {
       margin-left: 10px;
     }
 

@@ -6,7 +6,6 @@
 
     <div v-loading="loading" class="orders__content">
       <orders-table
-        v-if="windowWidth > 600 && orders.length > 0"
         :orders="orders"
       />
       <empty v-if="orders.length === 0"/>

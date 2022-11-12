@@ -2,27 +2,30 @@
   <div class="order-card-details">
 
     <div class="order-card-details__product"
-         v-for="(detail,i) in orderInfo.details" :key="i">
+         v-for="(item,i) in orderInfo.full.products" :key="i">
       <div class="order-card-details__product-photo">
-        <img :src="detail.images[0]" alt="">
+        <img v-if="item.product.type === 'SINGLE'"
+             :src="`/api/product/image/${item.product.images[0]}`" alt="">
+        <img v-else
+             :src="`/api/product/variant/image/${item.variant.image}`" alt="">
       </div>
 
       <div class="order-card-details__product-info">
 
-        <div class="order-card-details__product-title">{{ detail.title }}</div>
+        <div class="order-card-details__product-title">{{ item.product.title }}</div>
         <div class="order-card-details__product-details">
-          {{ detail.ingredients.join(', ') }}
-          <span>({{ detail.weight }} г)</span>
+          {{ item.product.ingredients.join(', ') }}
+          <span>({{ item.product.weight }} г)</span>
         </div>
 
         <div class="order-card-details__info-row">
           <div class="order-card-details__info-title">Кол-во</div>
-          <div class="order-card-details__info">{{ detail.count }}</div>
+          <div class="order-card-details__info">{{ item.count }}</div>
         </div>
 
         <div class="order-card-details__info-row">
           <div class="order-card-details__info-title">Сумма</div>
-          <div class="order-card-details__info">{{ detail.amount }}</div>
+          <div class="order-card-details__info">{{ item.cost }}</div>
         </div>
       </div>
 
@@ -33,15 +36,16 @@
     <div class="order-card-details__result">
       <div class="order-card-details__result-item">
         <div>Стоимость товаров</div>
-        <div>{{ orderInfo.amountOrder }} ₽</div>
+        <div>{{ orderInfo.cost }} ₽</div>
       </div>
       <div class="order-card-details__result-item">
         <div>Доставка</div>
-        <div>{{ orderInfo.amountDelivery }} ₽</div>
+        <div v-if="orderInfo.full.deliveryCost">{{ orderInfo.full.deliveryCost }} ₽</div>
+        <div v-else>-</div>
       </div>
       <div class="order-card-details__result-item">
         <div>Итого к оплате</div>
-        <div>{{ orderInfo.amountOrder + orderInfo.amountDelivery }} ₽</div>
+        <div>{{ orderInfo.full.deliveryCost ? (orderInfo.full.productsSum + orderInfo.full.deliveryCost) : orderInfo.full.productsSum }} ₽</div>
       </div>
     </div>
 

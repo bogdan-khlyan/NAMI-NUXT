@@ -1,5 +1,5 @@
 <template>
-  <div class="orders-table">
+  <div v-if="windowWidth > 600" class="orders-table">
 
     <orders-row-header/>
 
@@ -23,6 +23,15 @@
     </div>
 
   </div>
+  <div v-else>
+    <order-card-info
+      v-for="(item,index) in orders" :key="item.id"
+      :order="item"
+      :number="index + 1"
+      :show-details="selectedOrder === item._id"
+      @click-details="showDetails"
+    />
+  </div>
 </template>
 
 <script>
@@ -41,6 +50,11 @@ export default {
   },
   props: {
     orders: { type: Array }
+  },
+  computed: {
+    windowWidth() {
+      return this.$store.state.windowWidth
+    }
   },
   data() {
     return {
