@@ -129,6 +129,8 @@ export default {
 .login {
   position: relative;
   padding-top: 130px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   display: flex;
   justify-content: center;
@@ -226,7 +228,7 @@ export default {
       transition: 200ms;
 
       @media screen and (max-width: 420px) {
-        width: calc(100vw - 20px);
+        width: 100%;
       }
 
       &:hover {

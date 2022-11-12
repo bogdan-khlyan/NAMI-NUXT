@@ -10,7 +10,7 @@
           @keydown="keyDown">
       <input v-for="(item, index) in code"
              v-model="code[index]"
-             type="text" maxlength="2" placeholder="_"
+             type="number" maxlength="2" placeholder="_"
              :disabled="disabled"
              @input="input(index)"
              :uid="index"
@@ -146,9 +146,11 @@ export default {
 
       transition: 200ms;
 
-      @media screen and (max-width: 420px) {
-        width: calc((100vw / 6) - 10px);
-        height: calc((100vw / 6) - 10px);
+      @media screen and (max-width: 380px) {
+        width: 70px;
+      }
+      @media screen and (max-width: 360px) {
+        width: 65px;
       }
 
       &:focus {
