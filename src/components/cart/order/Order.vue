@@ -55,6 +55,12 @@ export default {
     },
     cartProducts() {
       return this.$store.state.cart.products
+    },
+    isLoggedIn() {
+      return this.$store.state.userInstance.isLoggedIn
+    },
+    userInfo() {
+      return this.$store.state.userInstance.info
     }
   },
   data() {
@@ -69,6 +75,12 @@ export default {
         username: '',
         additionalInformation: ''
       }
+    }
+  },
+  mounted() {
+    if (this.isLoggedIn) {
+      this.order.phone = this.userInfo.phone
+      this.order.username = this.userInfo.name
     }
   },
   methods: {

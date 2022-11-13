@@ -5,6 +5,7 @@
     </div>
     <input required
            type="text"
+           :value="data"
            :maxlength="maxlength"
            :inputmode="inputmode"
            @input="updateData"
