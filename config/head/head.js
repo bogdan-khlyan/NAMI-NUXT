@@ -23,7 +23,7 @@ module.exports = {
       { hid: 'keywords', name: 'keywords', content: 'доставка еды, доставка еды донецк, доставка, суши донецк, доставка суши, доставка роллов, роллы донецк, сеты суши, донецк, макеевка, доставка, купить, заказать, самовывоз, акции, лучшие, вкусные, недорогие, бесплатная, кафе, быстрая, ресторан, акции' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
     ],
     script: [
       { src: 'https://vk.com/js/api/openapi.js?169', type: 'text/javascript' },
