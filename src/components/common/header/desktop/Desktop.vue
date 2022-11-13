@@ -5,7 +5,7 @@
         <nuxt-link class="header__nav--logo"
                    to="/?menu"
                    ref="logo">
-          <img src="@/assets/images/logo/logo.png" alt="" ref="logoImg">
+          <logo-vertical-icon/>
         </nuxt-link>
         <div class="header__nav--menu">
           <div class="header__nav--menu--item"
@@ -98,6 +98,7 @@
 </template>
 
 <script>
+import LogoVerticalIcon from "@/components/common/icons/LogoVerticalIcon";
 import CircleButton from "@/components/common/header/common/CircleButton";
 import CartHeaderButton from "@/components/common/header/common/CartHeaderButton";
 import BaseUserAvatar from "@/components/common/BaseUserAvatar";
@@ -107,7 +108,10 @@ import AvatarPopover from "@/components/common/header/common/AvatarPopover";
 
 export default {
   name: 'desktop',
-  components: { CartHeaderButton, BaseUserAvatar, CircleButton, HeartIcon, CartIcon, AvatarPopover },
+  components: {
+    CartHeaderButton, BaseUserAvatar, CircleButton,
+    HeartIcon, CartIcon, AvatarPopover, LogoVerticalIcon
+  },
   computed: {
     enabledRegister() {
       return true
@@ -156,8 +160,8 @@ export default {
       height: 160px!important;
       left: 0!important;
 
-      > img {
-        transform: scale(0.7) !important;
+      ::v-deep svg {
+        width: 90%;
       }
 
     }
@@ -227,8 +231,10 @@ export default {
 
       transition: 0.5s;
 
-      > img {
-        transition: 0.5s;
+      ::v-deep svg {
+        width: 100%;
+        height: auto;
+        transition: 500ms;
       }
 
     }
