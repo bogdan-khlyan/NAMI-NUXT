@@ -16,6 +16,7 @@
       <div class="product-card-desktop__info--description">
         <span v-if="isSingle">{{ cardDescription }}</span>
         <selected-variant
+          class="product-card-desktop__info--selected-variant"
           v-else
           :selected-variant="selectedVariant"
         />
@@ -148,7 +149,10 @@ export default {
       line-height: 15px;
       text-align: left;
       color: #717171;
+    }
 
+    &--selected-variant {
+      margin-top: 5px;
     }
 
   }

@@ -1,8 +1,9 @@
 <template>
   <div class="selected-variant">
-    <label>С начинкой:</label>
-    <div class="selected-variant__content">
+    <div class="selected-variant__icon">
       <img :src="`/api/product/variant/icon/${selectedVariant.icon}`" alt="">
+    </div>
+    <div class="selected-variant__title">
       <span>{{ selectedVariant.title }}</span>
     </div>
   </div>
@@ -19,23 +20,31 @@ export default {
 
 <style scoped lang="scss">
 .selected-variant {
-  margin-top: 5px;
-  > label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  &__content {
+  display: flex;
+  align-items: center;
+  &__icon {
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 32px;
+    height: 32px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    border: 1px solid rgba(49, 37, 37, 0.1);
     > img {
-      width: 24px;
-      height: 24px;
-      margin-right: 6px;
+      width: 20px;
+      height: 20px;
     }
+  }
+  &__title {
+    padding-left: 6px;
     > span {
-      font-family: Neucha, sans-serif;
-      font-size: 16px;
-      font-weight: 700;
+      font-family: 'Neucha', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 15px;
+      color: #000000;
     }
   }
 }
