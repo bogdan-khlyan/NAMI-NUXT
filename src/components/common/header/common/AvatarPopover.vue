@@ -14,7 +14,7 @@
                to="/profile">
       <base-user-avatar
         :avatar="userInfo.avatar"
-        :size="42"/>
+        :size="43"/>
     </component>
     <div class="avatar-popover__content">
       <div class="avatar-popover__profile">
