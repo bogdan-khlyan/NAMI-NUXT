@@ -80,7 +80,7 @@ export default {
   mounted() {
     if (this.isLoggedIn) {
       this.order.phone = this.userInfo.phone
-      this.order.username = this.userInfo.name
+      this.order.username = this.userInfo.name || this.userInfo.username
     }
   },
   methods: {
