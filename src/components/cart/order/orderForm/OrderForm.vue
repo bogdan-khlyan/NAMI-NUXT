@@ -14,6 +14,7 @@
                     v-mask="'+7(949)###-##-##'"
                     :isValid="fieldsValid.phone"
                     placeholder="Телефон"
+                    inputmode="numeric"
                     @focus="focusInputPhone"
                     @input="validatePhone(false)"
                     ref="inputPhone">

@@ -6,6 +6,7 @@
     <input required
            type="text"
            :maxlength="maxlength"
+           :inputmode="inputmode"
            @input="updateData"
            @focus="$emit('focus')"
            spellcheck="false"
@@ -23,7 +24,8 @@ export default {
     placeholder: { type: String },
     data: { type: String },
     isValid: { type: Boolean, default: true },
-    maxlength: { type: Number, default: 1024 }
+    maxlength: { type: Number, default: 1024 },
+    inputmode: { type: String, default: null }
   },
   mounted() {
     if (this.data) this.setData(this.data)
