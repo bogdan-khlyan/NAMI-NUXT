@@ -19,8 +19,10 @@
             {{ scope.row.product.title }}
           </div>
           <div class="order-table-details__product-info">
-<!--            TODO variant-->
-            {{ scope.row.product.ingredients.join(', ') }} <span>({{ scope.row.weight }} г)</span>
+            <selected-variant v-if="scope.row.variant" :selected-variant="scope.row.variant"/>
+            <template v-else>
+              {{ scope.row.product.ingredients.join(', ') }} <span>({{ scope.row.weight }} г)</span>
+            </template>
           </div>
         </template>
       </el-table-column>
@@ -62,8 +64,11 @@
 </template>
 
 <script>
+import SelectedVariant from "@/components/common/SelectedVariant";
+
 export default {
   name: "orders-row-details",
+  components: { SelectedVariant },
   props: {
     orderInfo: {
       type: Object

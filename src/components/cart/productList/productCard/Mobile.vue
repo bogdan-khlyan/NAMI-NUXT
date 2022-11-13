@@ -43,7 +43,7 @@
 
 <script>
 import PlusMinus from "@/components/common/ui/buttons/PlusMinus";
-import SelectedVariant from "@/components/cart/productList/productCard/SelectedVariant";
+import SelectedVariant from "@/components/common/SelectedVariant";
 import productMixin from "@/mixins/product.mixin";
 import {minusDiscount} from "@/utils/discount";
 
