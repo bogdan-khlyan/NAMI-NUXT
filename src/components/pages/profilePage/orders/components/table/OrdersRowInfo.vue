@@ -13,7 +13,8 @@
         {{ new Date(order.createdAt).toLocaleDateString() }}
       </div>
       <div class="orders-row-info__item-status"
-           :class="`orders-row-info__item-status--${order.condition}`">
+           :class="`orders-row-info__item-status--${order.condition}`"
+           style="visibility: hidden">
         {{ conditionName }}
       </div>
       <div class="orders-row-info__item-amount">
