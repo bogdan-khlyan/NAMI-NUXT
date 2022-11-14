@@ -2,9 +2,9 @@
   <div class="error-layout">
     <div class="error-layout__content">
       <div class="error-layout__image">
-        <img src="@/assets/images/page404/4.svg" alt="">
+        <img class="four" src="@/assets/images/page404/4.svg" alt="">
         <img class="roll" src="@/assets/images/page404/roll.svg" alt="">
-        <img src="@/assets/images/page404/4.svg" alt="">
+        <img class="four" src="@/assets/images/page404/4.svg" alt="">
       </div>
       <div class="error-layout__title">
         <span>УУПС...!!</span>
@@ -48,10 +48,19 @@ export default {
 
   &__image {
 
+    .four {
+      @media screen and (max-width: 600px) {
+        width: 70px;
+      }
+    }
+
     .roll {
       margin-left: 15px;
       margin-right: 15px;
       filter: drop-shadow(15px 12px 37px rgba(255, 255, 255, 0.7));
+      @media screen and (max-width: 600px) {
+        width: 110px;
+      }
     }
 
   }
@@ -79,6 +88,9 @@ export default {
       line-height: 21px;
 
       color: #FFFFFF;
+      @media screen and (max-width: 600px) {
+        font-size: 16px;
+      }
     }
   }
 
@@ -114,6 +126,10 @@ export default {
 
       &:hover {
         background: transparent;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 280px;
       }
 
     }
