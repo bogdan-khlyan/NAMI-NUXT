@@ -1,6 +1,10 @@
 const proxy = {}
 if (process.env.NODE_ENV === 'development' && process.env.NAMI_PROXY_HOST) {
-  proxy['/api'] = process.env.NAMI_PROXY_HOST
+  proxy['/api'] = {
+    target: process.env.NAMI_PROXY_HOST,
+    changeOrigin: true,
+    cookieDomainRewrite: 'localhost'
+  }
 }
 
 module.exports = {
