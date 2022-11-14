@@ -1,9 +1,12 @@
 <template>
   <div class="product-card-images">
-    <img v-if="product.type === 'SINGLE'" :src="product.images[0]" alt="">
+    <img v-if="product.type === 'SINGLE'"
+         :src="product.images[0]" alt=""
+         loading="lazy">
     <img v-else-if="selectedVariant"
          :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
-         :key="selectedVariant.image">
+         :key="selectedVariant.image"
+         loading="lazy">
   </div>
 </template>
 
