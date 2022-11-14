@@ -2,7 +2,7 @@
   <label class="code-input"
          :class="[{ error: error.$error }]">
     <span class="code-input__label">
-      Код из смс
+      Код
       <img v-if="loading" src="@/assets/images/spinner.gif" alt="">
       <check-icon v-if="verified"/>
     </span>

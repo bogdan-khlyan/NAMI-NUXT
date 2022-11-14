@@ -50,7 +50,7 @@ export default {
       return false
     },
     weaveBg() {
-      const routes = ['profile-info', 'profile-favorites', 'favorites', 'profile-orders', 'product']
+      const routes = ['profile-info', 'profile-favorites', 'favorites', 'profile-orders', 'product', 'login']
       return routes.indexOf(this.route) !== -1 && this.windowWidth > 980
     },
     windowWidth() {

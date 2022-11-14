@@ -9,7 +9,7 @@
 
         <transition name="el-fade-in-linear">
           <div v-if="!isCalled"
-               class="login__form--phone">
+               class="login__phone">
             <base-phone-input
               v-model="phone"
               :error="$v.phone"
@@ -18,8 +18,8 @@
               @input="$v.phone.$reset()"/>
           </div>
           <div v-else
-               class="login__form--code">
-            <div class="text">
+               class="login__code">
+            <div class="login__code--text">
               Для подтверждения <span>{{ phone }}</span>
               <br>
               Впишите <span class="blink">последние 4 цифры звонившего номера</span>
@@ -33,20 +33,12 @@
           </div>
         </transition>
 
-        <button class="login__form--btn-submit">
-          <transition name="el-fade-in-linear" mode="out-in">
-            <img v-if="loading"
-                 src="@/assets/images/spinner.svg" alt="">
-            <span v-else>Продолжить</span>
-          </transition>
-        </button>
+        <base-submit-button :loading="loading">Продолжить</base-submit-button>
 
       </form>
 
     </div>
 
-    <img class="bg"
-         src="@/assets/images/bg-waves.svg" alt="">
   </div>
 </template>
 
@@ -54,6 +46,7 @@
 import BasePhoneInput from "@/components/common/ui/inputs/BasePhoneInput";
 import BaseSvg from "@/components/common/BaseSvg";
 import BaseCodeInput from "@/components/common/ui/inputs/BaseCodeInput";
+import BaseSubmitButton from "@/components/common/ui/buttons/BaseSubmitButton";
 
 import { required, maxLength, minLength } from "vuelidate/lib/validators";
 import { validationMixin } from "vuelidate";
@@ -62,7 +55,7 @@ export default {
   name: 'login-page',
   layout: 'base',
   mixins: [validationMixin],
-  components: {BasePhoneInput, BaseSvg, BaseCodeInput},
+  components: { BasePhoneInput, BaseSvg, BaseCodeInput, BaseSubmitButton },
   computed: {
     loadingPhone() {
       return !this.isCalled && this.loading
@@ -144,18 +137,6 @@ export default {
     padding-top: 80px;
   }
 
-  > .bg {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-
-    width: 100%;
-    @media screen and (max-width: 768px) {
-      display: none;
-    }
-  }
-
   &__content {
     max-width: 500px;
     padding-bottom: 50px;
@@ -178,73 +159,37 @@ export default {
     }
   }
 
-  &__form {
+  &__form { }
 
-    &--phone {
-      margin-bottom: 44px;
-    }
+  &__phone {
+    margin-bottom: 44px;
+  }
 
-    &--code {
-      margin-top: 24px;
-      margin-bottom: 20px;
+  &__code {
+    margin-top: 24px;
+    margin-bottom: 20px;
 
-      .text {
-        margin-bottom: 25px;
-        font-family: 'Ubuntu', sans-serif;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 150%;
-        text-align: center;
-        color: #212121;
-        > span {
-          font-weight: 500;
-          color: #384673;
-        }
-        .blink {
-          animation: blink 1.5s linear infinite;
-          @keyframes blink {
-            0% { color: rgb(45, 58, 100); }
-            33% { color: rgba(56, 70, 115, 0.5); }
-            66% { color: rgba(56, 70, 115, 1); }
-          }
-        }
-      }
-
-    }
-
-    &--btn-submit {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 386px;
-      height: 56px;
-
-      background: #062D4E;
-      border-radius: 4px;
-      border: none;
-
-      cursor: pointer;
-      transition: 200ms;
-
-      @media screen and (max-width: 420px) {
-        width: 100%;
-      }
-
-      &:hover {
-        background: #0e508a;
-      }
-
+    &--text {
+      margin-bottom: 25px;
+      font-family: 'Ubuntu', sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 150%;
+      text-align: center;
+      color: #212121;
       > span {
-        font-family: Ubuntu, sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-        color: #FFFFFF;
+        font-weight: 500;
+        color: #384673;
       }
-
+      .blink {
+        animation: blink 1.5s linear infinite;
+        @keyframes blink {
+          0% { color: rgb(45, 58, 100); }
+          33% { color: rgba(56, 70, 115, 0.5); }
+          66% { color: rgba(56, 70, 115, 1); }
+        }
+      }
     }
 
   }
