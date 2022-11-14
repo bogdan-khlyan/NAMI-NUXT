@@ -36,22 +36,11 @@ export default {
   name: 'base-layout',
   components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderDrawer },
   computed: {
-    route() {
-      return this.$route.name
-    },
     baseBg () {
-      if (this.route === 'index') {
-        return true
-      }
-      if (this.windowWidth > 1200) {
-        const routes = ['delivery', 'stocks', 'contacts']
-        return routes.indexOf(this.route) !== -1
-      }
-      return false
+      return this.$route.name === 'index' || this.$route.meta.background === 'base'
     },
     weaveBg() {
-      const routes = ['profile-info', 'profile-favorites', 'favorites', 'profile-orders', 'product', 'login']
-      return routes.indexOf(this.route) !== -1 && this.windowWidth > 980
+      return this.$route.meta.background === 'waves' && this.windowWidth > 980
     },
     windowWidth() {
       return this.$store.state.windowWidth
