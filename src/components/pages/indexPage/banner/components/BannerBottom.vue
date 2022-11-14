@@ -58,6 +58,10 @@ export default {
     box-shadow: 9px 5px 37px #000000;
 
     z-index: 1;
+    > img {
+      width: auto;
+      height: auto;
+    }
   }
 
 }
