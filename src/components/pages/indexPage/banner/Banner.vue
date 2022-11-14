@@ -50,7 +50,7 @@ $dfh: calc(100vh - 240px);
   padding-right: 30px;
   box-sizing: border-box;
 
-  background: url(../../../../assets/images/main/banner/banner-bg.png);
+  background: url(../../../../assets/images/main/banner/banner-bg.webp);
   background-size: 100% 100%;
 
   &__btns {

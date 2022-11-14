@@ -1,7 +1,7 @@
 <template>
   <div class="banner-image">
     <h2>японская еда</h2>
-    <img src="@/assets/images/main/banner/banner-image.png" alt="">
+    <img src="@/assets/images/main/banner/banner-image.webp" alt="">
   </div>
 </template>
 
@@ -106,6 +106,7 @@ export default {
   }
 
   img {
+    width: 100%;
     @media screen and (min-width: 1250px) and (max-height: 820px) {
       width: 550px;
       object-fit: contain;
