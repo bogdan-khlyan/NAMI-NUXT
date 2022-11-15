@@ -114,7 +114,7 @@ export default {
     @media screen and (max-width: 1400px) { background-image: none; }
 
     &.base-bg {
-      background-image: url('@/assets/images/menu-bg.png');
+      background-image: url('@/assets/images/menu-bg.webp');
       background-size: 100% auto;
     }
 
