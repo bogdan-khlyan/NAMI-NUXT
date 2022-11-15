@@ -27,7 +27,7 @@ module.exports = {
     ],
     script: [
       { src: 'https://vk.com/js/api/openapi.js?169', type: 'text/javascript' },
-      { src: '/yandex-metrika.js', type: 'text/javascript' }
+      // { src: '/yandex-metrika.js', type: 'text/javascript', async: '' }
     ]
   },
   css: [

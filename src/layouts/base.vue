@@ -52,6 +52,14 @@ export default {
     }
   },
   mounted() {
+    setTimeout(() => {
+      const script = document.createElement('script')
+      script.src = '/yandex-metrika.js'
+      script.type = 'text/javascript'
+      script.async = true
+      document.head.appendChild(script)
+    }, 1000)
+
     this.$userInstance.initFavorites()
 
     window.addEventListener('resize', this.resize)
