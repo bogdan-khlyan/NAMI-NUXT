@@ -52,13 +52,6 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      const script = document.createElement('script')
-      script.src = '/yandex-metrika.js'
-      script.type = 'text/javascript'
-      script.async = true
-      document.head.appendChild(script)
-    }, 1000)
 
     this.$userInstance.initFavorites()
 
@@ -79,6 +72,13 @@ export default {
         this.$store.commit('cart.setProducts', products)
       }
       this.loading = false
+      setTimeout(() => {
+        const script = document.createElement('script')
+        script.src = '/yandex-metrika.js'
+        script.type = 'text/javascript'
+        script.async = true
+        document.head.appendChild(script)
+      }, 1000)
     },
     resize() {
     this.$store.commit('setWindowWidth', document.documentElement.clientWidth)
