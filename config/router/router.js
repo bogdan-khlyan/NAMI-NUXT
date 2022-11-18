@@ -63,6 +63,10 @@ module.exports = {
       name: 'product',
       meta: { background: 'waves' },
       component: resolve('~/components/pages/productPage/ProductPage')
+    }, {
+      path: '/privacy',
+      name: 'privacy',
+      component: resolve('~/components/pages/privacyPage/PrivacyPage')
     })
   }
 }
