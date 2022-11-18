@@ -1,6 +1,6 @@
 <template>
   <div class="banner-logo">
-    <h1>японский <br> ресторан</h1>
+    <span>японский <br> ресторан</span>
     <img v-if="windowWidth > 600" src="@/assets/images/main/banner/namisushi.png" alt="">
     <img v-else src="@/assets/images/logo/logo-banner-mobile.svg" alt="">
   </div>
@@ -21,7 +21,7 @@ export default {
 <style scoped lang="scss">
 .banner-logo {
 
-  h1 {
+  span {
     width: max-content;
     margin-top: 0;
     margin-left: 140px;
