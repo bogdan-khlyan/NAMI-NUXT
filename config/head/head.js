@@ -26,7 +26,7 @@ module.exports = {
       { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
     ],
     script: [
-      { src: 'https://vk.com/js/api/openapi.js?169', type: 'text/javascript' },
+      // { src: 'https://vk.com/js/api/openapi.js?169', type: 'text/javascript' },
       // { src: '/yandex-metrika.js', type: 'text/javascript', async: '' }
     ]
   },

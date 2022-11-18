@@ -24,17 +24,31 @@ export default {
   name: 'widgets',
   data() {
     return {
-      loading: true
+      loading: true,
+      isLoadVk: false
     }
   },
   computed: {
     windowWidth () { return this.$store.state.windowWidth }
   },
   watch: {
-    windowWidth () { this.$nextTick(() => this.renderVkWidget()) }
+    windowWidth () {
+      if (this.isLoadVk) {
+        this.$nextTick(() => this.renderVkWidget())
+      }
+    }
   },
   mounted() {
-    if (this.windowWidth !== null) this.renderVkWidget()
+    const script = document.createElement('script')
+    script.src = 'https://vk.com/js/api/openapi.js?169'
+    script.type = 'text/javascript'
+    script.onload = () => {
+      if (this.windowWidth !== null) {
+        this.isLoadVk = true
+        this.renderVkWidget()
+      }
+    }
+    document.head.appendChild(script)
   },
   methods: {
     handleLoadFrame() {
