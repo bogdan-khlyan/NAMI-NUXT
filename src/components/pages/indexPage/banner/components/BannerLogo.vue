@@ -22,6 +22,7 @@ export default {
 .banner-logo {
 
   span {
+    display: block;
     width: max-content;
     margin-top: 0;
     margin-left: 140px;
