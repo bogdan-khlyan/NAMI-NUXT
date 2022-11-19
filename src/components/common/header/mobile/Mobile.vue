@@ -41,7 +41,10 @@
     </div>
     <button v-else
             class="login"
-            @click="$router.push('/login')">Войти</button>
+            @click="$router.push('/login')">
+<!--      Войти-->
+      {{ windowWidth }}
+    </button>
   </header>
 </template>
 
