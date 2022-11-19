@@ -10,8 +10,8 @@
                to="/?menu">
       <logo-icon
         v-if="windowWidth > 420"
-        width="120px"
-        height="60px"/>
+        :width="windowWidth > 480 ? '120px' : '100px'"
+        :height="windowWidth > 480 ? '60px' : '50px'"/>
     </nuxt-link>
     <div v-if="windowWidth > 600"
          class="phone">
