@@ -60,22 +60,27 @@ export default {
 
 <style scoped lang="scss">
 .cart-wrapper .content {
-  height: 100vh;
+  min-height: 100%;
   background: #D0C0B4;
 }
 </style>
 
 <style lang="scss">
 .cart-wrapper .content .ps {
-  height: 100vh;
+  height: 100%;
 }
 
-.cart-wrapper .el-drawer {
-  width: 600px !important;
+.cart-wrapper {
+  .el-drawer {
+    width: 600px !important;
 
-  @media screen and (max-width: 640px) {
-    width: 100% !important;
+    @media screen and (max-width: 640px) {
+      width: 100% !important;
+    }
+
   }
-
+  .el-drawer__body {
+    //overflow: unset;
+  }
 }
 </style>

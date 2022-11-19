@@ -82,7 +82,7 @@ export default {
   padding: 40px;
 
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   box-sizing: border-box;
 
@@ -153,11 +153,13 @@ export default {
 
   &__products {
     padding-top: 40px;
+    height: 100%;
     min-height: calc(100vh - 350px);
 
     @media screen and (max-width: 640px) {
       padding-top: 10px;
-      min-height: calc(100vh - 280px);
+      height: 100%;
+      min-height: calc(100vh - 240px);
     }
 
     &--empty {
@@ -166,10 +168,11 @@ export default {
       align-items: center;
 
       width: 100%;
+      //height: 100%;
       height: calc(100vh - 350px);
 
       @media screen and (max-width: 640px) {
-        height: calc(100vh - 280px);
+        height: calc(100vh - 240px);
       }
       .content {
         display: flex;
@@ -246,7 +249,7 @@ export default {
   }
 
   &__footer {
-    padding-bottom: 40px;
+    //padding-bottom: 40px;
     text-align: left;
 
     > button {
