@@ -9,9 +9,10 @@
     <nuxt-link class="logo"
                to="/?menu">
       <logo-icon
-        v-if="windowWidth > 410"
-        :width="windowWidth > 480 ? '120px' : '100px'"
-        :height="windowWidth > 480 ? '60px' : '50px'"/>
+        v-if="windowWidth > 390"
+        :width="logoSize.width"
+        :height="logoSize.height"
+        :cap="logoSize.cap"/>
     </nuxt-link>
     <div v-if="windowWidth > 700"
          class="phone">
@@ -41,10 +42,7 @@
     </div>
     <button v-else
             class="login"
-            @click="$router.push('/login')">
-<!--      Войти-->
-      {{ windowWidth }}
-    </button>
+            @click="$router.push('/login')">Войти</button>
   </header>
 </template>
 
@@ -67,6 +65,39 @@ export default {
     alwaysBg: { type: Boolean, default: false }
   },
   computed: {
+    logoSize() {
+      if (this.windowWidth > 480) {
+        return {
+          width: '120px',
+          height: '60px',
+          cap: {
+            top: '-9px',
+            left: '-22px',
+            transform: null
+          }
+        }
+      } else if (this.windowWidth > 420) {
+        return {
+          width: '100px',
+          height: '50px',
+          cap: {
+            top: '-12px',
+            left: '-22px',
+            transform: 'scale(0.85)'
+          }
+        }
+      } else {
+        return {
+          width: '83px',
+          height: '42px',
+          cap: {
+            top: '-15px',
+            left: '-23px',
+            transform: 'scale(0.7)'
+          }
+        }
+      }
+    },
     isLoggedIn() {
       return this.$store.state.userInstance.isLoggedIn
     },
@@ -152,6 +183,9 @@ export default {
   > .logo {
     margin-top: 6px;
     margin-left: 20px;
+    @media screen and (max-width: 420px) {
+      margin-left: 15px;
+    }
     > img {
       height: 60px;
     }
