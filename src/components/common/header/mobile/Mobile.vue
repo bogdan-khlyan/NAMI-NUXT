@@ -9,7 +9,7 @@
     <nuxt-link class="logo"
                to="/?menu">
       <logo-icon
-        v-if="windowWidth > 420"
+        v-if="windowWidth > 410"
         :width="windowWidth > 480 ? '120px' : '100px'"
         :height="windowWidth > 480 ? '60px' : '50px'"/>
     </nuxt-link>
