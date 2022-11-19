@@ -1,6 +1,9 @@
 <template>
   <div class="logo-icon">
+    <img src="@/assets/images/cap-ny.webp" alt=""
+         class="logo-icon__cap">
     <img src="@/assets/images/logo/logo-circle-new.png" alt=""
+         class="logo-icon__logo-circle"
          :style="logoCircleWidth">
     <svg :width="width" :height="height" viewBox="0 0 133 69" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M132.672 44.191H56.6379V55.8202H132.672V44.191Z" fill="white"/>
@@ -31,7 +34,14 @@ export default {
 .logo-icon {
   position: relative;
 
-  > img {
+  &__cap {
+    position: absolute;
+    top: -9px;
+    left: -22px;
+    z-index: 1;
+  }
+
+  &__logo-circle {
     position: absolute;
     top: 4px;
     left: 5px;

@@ -1,5 +1,6 @@
 <template>
-  <div class="base-layout-wrapper">
+  <div class="base-layout-wrapper"
+       :class="theme">
     <transition name="el-fade-in-linear">
       <body-loading v-if="loading" @done="loadingDone"/>
     </transition>
@@ -31,9 +32,11 @@ import AppFooter from "@/components/common/footer/AppFooter";
 import Cart from "@/components/cart/Cart";
 import HeaderDrawer from "@/components/common/header/mobile/HeaderDrawer";
 import BodyLoading from "@/components/common/bodyLoading/BodyLoading";
+import configMixin from "@/api/config/config.mixin";
 
 export default {
   name: 'base-layout',
+  mixins: [configMixin],
   components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderDrawer },
   computed: {
     baseBg () {
@@ -132,5 +135,13 @@ export default {
 
   }
 
+}
+</style>
+
+<style lang="scss">
+.new-year {
+  .base-bg {
+    background-image: url('@/assets/images/bg-ny.webp') !important;
+  }
 }
 </style>

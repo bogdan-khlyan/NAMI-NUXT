@@ -161,7 +161,7 @@ export default {
       left: 0!important;
 
       ::v-deep svg {
-        width: 90%;
+        transform: scale(0.9) !important;
       }
 
     }
@@ -214,7 +214,7 @@ export default {
 
     &--logo {
       position: absolute;
-      top: -24px;
+      top: -20px;
       left: -40px;
 
       display: flex;
@@ -232,9 +232,7 @@ export default {
       transition: 0.5s;
 
       ::v-deep svg {
-        width: 100%;
-        height: auto;
-        transition: 500ms;
+        transition: 0.5s;
       }
 
     }
