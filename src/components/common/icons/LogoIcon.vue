@@ -1,7 +1,9 @@
 <template>
   <div class="logo-icon">
-    <img src="@/assets/images/cap-ny.webp" alt=""
-         class="logo-icon__cap">
+    <img v-if="theme === 'new-year' && cap"
+         src="@/assets/images/cap-ny.webp" alt=""
+         class="logo-icon__cap"
+         :style="cap">
     <img src="@/assets/images/logo/logo-circle-new.png" alt=""
          class="logo-icon__logo-circle"
          :style="logoCircleWidth">
@@ -15,11 +17,15 @@
 </template>
 
 <script>
+import configMixin from "@/api/config/config.mixin";
+
 export default {
   name: 'logo-icon',
+  mixins: [configMixin],
   props: {
     width: { type: String, default: '133px' },
-    height: { type: String, default: '69px' }
+    height: { type: String, default: '69px' },
+    cap: { type: Object, default: null }
   },
   computed: {
     logoCircleWidth() {
