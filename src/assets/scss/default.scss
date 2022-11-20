@@ -14,5 +14,8 @@ body {
   z-index: 10000000!important;
   .toasted {
     font-family: Neucha, sans-serif;
+    @media screen and (max-width: 600px) {
+      justify-content: center!important;
+    }
   }
 }
