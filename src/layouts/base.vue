@@ -33,6 +33,7 @@ import Cart from "@/components/cart/Cart";
 import HeaderDrawer from "@/components/common/header/mobile/HeaderDrawer";
 import BodyLoading from "@/components/common/bodyLoading/BodyLoading";
 import configMixin from "@/api/config/config.mixin";
+import {updateCartProducts} from "@/utils/update-cart-products";
 
 export default {
   name: 'base-layout',
@@ -72,7 +73,7 @@ export default {
     loadingDone() {
       if (localStorage.getItem('products')) {
         const products = JSON.parse(localStorage.getItem('products'))
-        this.$store.commit('cart.setProducts', products)
+        updateCartProducts(this.$store, products)
       }
       this.loading = false
       setTimeout(() => {

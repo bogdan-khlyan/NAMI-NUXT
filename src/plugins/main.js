@@ -1,9 +1,11 @@
+import {updateCartProducts} from "@/utils/update-cart-products";
+
 export default ({ app }) => {
 
   window.addEventListener('storage', ($event) => {
     if ($event.key === 'products') {
       const products = JSON.parse($event.newValue)
-      app.store.commit('cart.setProducts', products)
+      updateCartProducts(app.store, products)
     }
   })
 
