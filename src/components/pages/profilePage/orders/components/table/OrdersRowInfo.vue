@@ -145,20 +145,25 @@ export default {
       color: #1F86F8;
     }
 
-    &--DONE {
-      background: #E9FFED;
-      color: #31AA27;
-    }
-
     &--IN_PROGRESS {
       background: #FFF7EB;
       color: #FF8B20;
     }
 
-    //&--delivered {
-    //  background: #E9FFED;
-    //  color: #31AA27;
-    //}
+    &--IN_THE_WAY {
+      background: #FFF7EB;
+      color: #FF8B20;
+    }
+
+    &--IS_DELIVERED {
+      background: #E9FFED;
+      color: #31AA27;
+    }
+
+    &--DONE {
+      background: #E9FFED;
+      color: #31AA27;
+    }
 
     &--REJECT {
       background: #FFF0F0;

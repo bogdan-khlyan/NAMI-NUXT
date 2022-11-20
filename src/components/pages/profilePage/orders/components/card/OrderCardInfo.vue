@@ -8,7 +8,8 @@
       <div class="order-card-info__buttons">
         <div class="orders-row-info__item-btn-action"
              @click="repeatOrder">
-          Повторить
+          <i v-if="repeatLoading" class="el-icon-loading"/>
+          <span v-else>Повторить</span>
         </div>
         <div class="order-card-info__item-btn-action"
              @click="clickDetails">
@@ -70,7 +71,8 @@ export default {
   },
   data() {
     return {
-      loading: false
+      loading: false,
+      repeatLoading: false
     }
   }
 }
@@ -206,27 +208,33 @@ export default {
     background: #FFF7EB;
     border-radius: 50px;
 
-    &--new {
+
+    &--NEW {
       background: #E4F7FF;
       color: #1F86F8;
     }
 
-    &--completed {
-      background: #E9FFED;
-      color: #31AA27;
-    }
-
-    &--processing {
+    &--IN_PROGRESS {
       background: #FFF7EB;
       color: #FF8B20;
     }
 
-    &--delivered {
+    &--IN_THE_WAY {
+      background: #FFF7EB;
+      color: #FF8B20;
+    }
+
+    &--IS_DELIVERED {
       background: #E9FFED;
       color: #31AA27;
     }
 
-    &--cancelled {
+    &--DONE {
+      background: #E9FFED;
+      color: #31AA27;
+    }
+
+    &--REJECT {
       background: #FFF0F0;
       color: #F93232;
     }
