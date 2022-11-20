@@ -7,9 +7,13 @@
         v-model="selectedCategory"/>
     </div>
 
-    <div class="menu__products">
+    <div
+      class="menu__products"
+      v-for="category of categories" :key="category._id"
+      v-show="selectedCategory._id === category._id"
+    >
       <product-list
-        :category="selectedCategory"/>
+        :category="category"/>
     </div>
 
   </div>
