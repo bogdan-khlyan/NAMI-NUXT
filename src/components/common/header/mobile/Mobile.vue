@@ -154,6 +154,7 @@ export default {
 
   .avatar {
     margin-left: 12px;
+    z-index: 1;
   }
 
   .burger {
