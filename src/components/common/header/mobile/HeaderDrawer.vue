@@ -18,6 +18,9 @@
                  class="header-drawer__profile"
                  @click.native="close">
         <div class="header-drawer__profile--avatar">
+          <img v-if="theme === 'new-year'"
+               src="@/assets/images/cap-ny.webp" alt=""
+               class="new-year-cap">
           <base-user-avatar
             :avatar="userInfo.avatar"
             :size="42"
@@ -98,10 +101,16 @@ import StockIcon from "@/components/common/icons/StockIcon";
 import ReviewsIcon from "@/components/common/icons/ReviewsIcon";
 import EmailIcon from "@/components/common/icons/EmailIcon";
 import BaseUserAvatar from "@/components/common/BaseUserAvatar";
+import configMixin from "@/api/config/config.mixin";
 
 export default {
   name: 'header-collapse',
-  components: { CloseIcon, MenuIcon, DeliveryIcon, StockIcon, ReviewsIcon, EmailIcon, BaseUserAvatar },
+  mixins: [configMixin],
+  components: {
+    CloseIcon, MenuIcon, DeliveryIcon,
+    StockIcon, ReviewsIcon, EmailIcon,
+    BaseUserAvatar
+  },
   computed: {
     isLoggedIn() {
       return this.$store.state.userInstance.isLoggedIn
@@ -187,6 +196,16 @@ export default {
     display: flex;
     align-items: center;
     text-decoration: none;
+
+    &--avatar {
+      position: relative;
+      .new-year-cap {
+        position: absolute;
+        top: -9px;
+        left: -20px;
+        width: 55px;
+      }
+    }
 
     &--info {
       padding-left: 16px;
