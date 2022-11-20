@@ -11,21 +11,23 @@ export default ({ $axios, store, router, $toast }) => ({
       throw error
     }
   },
-  async getOrders(limit = 10, page = 1) {
+  async getOrders() {
     try {
       const { data, total } = await $axios.$get('/api/user/orders', {
         params: {
-          limit: limit,
-          page: page
+          limit: 10,
+          page: store.state.orders.page
         }
       })
-      return {
+      const result = {
         total,
         data: data.map(item => ({
           ...item,
           full: null
         }))
       }
+      store.commit('orders.pushOrders', result)
+      return result
     } catch (error) {
       console.log(error)
       throw error
@@ -33,6 +35,7 @@ export default ({ $axios, store, router, $toast }) => ({
   },
   async getOrderById(number) {
     const { order } = await $axios.$get(`/api/user/order/${number}`)
+    store.commit('orders.setFullOrder', order)
     return order
   }
 })

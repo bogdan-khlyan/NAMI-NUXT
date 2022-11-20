@@ -34,7 +34,7 @@
         <div class="order-card-info__info-title">Дата заказа</div>
         <div class="order-card-info__info">{{ new Date(order.createdAt).toLocaleDateString() }}</div>
       </div>
-      <div v-if="false" class="order-card-info__info-row">
+      <div class="order-card-info__info-row">
         <div class="order-card-info__info-title">Статус</div>
         <div class="order-card-info__info-status"
              :class="`order-card-info__info-status--${order.condition}`">

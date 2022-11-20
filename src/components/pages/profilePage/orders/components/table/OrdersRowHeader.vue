@@ -6,8 +6,7 @@
   <div class="orders-row-header__item orders-row-header__item--date">
     Дата заказа
   </div>
-  <div class="orders-row-header__item orders-row-header__item--status"
-       style="visibility: hidden">
+  <div class="orders-row-header__item orders-row-header__item--status">
     Статус
   </div>
   <div class="orders-row-header__item orders-row-header__item--amount">

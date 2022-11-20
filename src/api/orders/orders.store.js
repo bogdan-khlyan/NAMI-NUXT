@@ -1,7 +1,9 @@
 const state = () => ({
   loading: true,
   phoneNumber: null,
-  list: [],
+  orders: [],
+  total: 0,
+  page: 1
 })
 
 const mutations = {
@@ -9,19 +11,30 @@ const mutations = {
     localStorage.setItem('last-phone-number', phoneNumber)
     state.phoneNumber = phoneNumber
   },
-  // pushProductToCart(state, productId) { // id or object ?
-  //   state.list.push({_id: productId, count: 1})
-  // },
-  // removeProductFromCartByIndex(state, index) {
-  //   state.list.splice(index, 1)
-  // },
-  // setCountForProductCartById(state, data) {
-  //   let item = state.list.find(item => item._id === data._id)
-  //   item.count = data.count
-  // },
-  // clearCartProducts(state) {
-  //   state.list.splice(0)
-  // }
+  'orders.pushOrders'(state, { data, total }) {
+    state.orders.push(...data)
+    state.total = total
+    ++state.page
+  },
+  'orders.setFullOrder'(state, order) {
+    const item = state.orders.find(item => item._id === order._id)
+    if (item) {
+      item.full = order
+    }
+  },
+  'orders.changeOrderCondition'(state, data) {
+    const item = state.orders.find(item => item._id === data._id)
+    if (item) {
+      item.condition = data.condition
+    }
+  },
+  'orders.unshiftOrder'(state, order) {
+    state.orders.unshift(order)
+    if (state.orders.length !== state.total) {
+      state.orders.splice(state.orders.length - 1, 1)
+    }
+    ++state.total
+  }
 }
 
 const actions = {

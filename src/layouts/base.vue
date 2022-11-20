@@ -34,6 +34,7 @@ import HeaderDrawer from "@/components/common/header/mobile/HeaderDrawer";
 import BodyLoading from "@/components/common/bodyLoading/BodyLoading";
 import configMixin from "@/api/config/config.mixin";
 import {updateCartProducts} from "@/utils/update-cart-products";
+import {initWebsocket} from "@/api/websocket/websocket";
 
 export default {
   name: 'base-layout',
@@ -48,6 +49,9 @@ export default {
     },
     windowWidth() {
       return this.$store.state.windowWidth
+    },
+    isLoggedIn() {
+      return this.$store.state.userInstance.isLoggedIn
     }
   },
   data() {
@@ -57,6 +61,9 @@ export default {
   },
   mounted() {
 
+    if (this.isLoggedIn) {
+      initWebsocket(this)
+    }
     this.$userInstance.initFavorites()
 
     window.addEventListener('resize', this.resize)

@@ -26,16 +26,15 @@ import PageTitle from "@/components/pages/profilePage/common/PageTitle";
 import OrdersTable from "@/components/pages/profilePage/orders/components/table/OrdersTable";
 import Empty from "@/components/pages/profilePage/orders/components/Empty";
 import BaseSubmitButton from "@/components/common/ui/buttons/BaseSubmitButton";
+import ordersMixin from "@/api/orders/orders.mixin";
 
 export default {
   name: 'orders',
+  mixins: [ordersMixin],
   components: { PageTitle, OrdersTable, Empty, BaseSubmitButton },
   data() {
     return {
-      loading: true,
-      orders: [],
-      total: 0,
-      page: 1
+      loading: false
     }
   },
   computed: {
@@ -43,17 +42,11 @@ export default {
       return this.$store.state.windowWidth
     }
   },
-  created() {
-    this.getOrders()
-  },
   methods: {
-    async getOrders() {
+    getOrders() {
       this.loading = true
-      const { total, data } = await this.$orders.getOrders(10, this.page)
-      ++this.page
-      this.orders.push(...data)
-      this.total = total
-      this.loading = false
+      this.$orders.getOrders()
+        .finally(() => this.loading = false)
     }
   }
 }

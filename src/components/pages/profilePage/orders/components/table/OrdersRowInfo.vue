@@ -13,8 +13,7 @@
         {{ new Date(order.createdAt).toLocaleDateString() }}
       </div>
       <div class="orders-row-info__item-status"
-           :class="`orders-row-info__item-status--${order.condition}`"
-           style="visibility: hidden">
+           :class="`orders-row-info__item-status--${order.condition}`">
         {{ conditionName }}
       </div>
       <div class="orders-row-info__item-amount">
@@ -26,7 +25,8 @@
     <div class="orders-row-info__buttons">
       <div class="orders-row-info__item-btn-action"
            @click="repeatOrder">
-        Повторить
+        <i v-if="repeatLoading" class="el-icon-loading"/>
+        <span v-else>Повторить</span>
       </div>
       <div class="orders-row-info__item-btn-action"
            @click="clickDetails">
@@ -55,7 +55,8 @@ export default {
   },
   data() {
     return {
-      loading: false
+      loading: false,
+      repeatLoading: false
     }
   }
 }

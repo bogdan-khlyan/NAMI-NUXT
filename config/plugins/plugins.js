@@ -5,6 +5,12 @@ if (process.env.NODE_ENV === 'development' && process.env.NAMI_PROXY_HOST) {
     changeOrigin: true,
     cookieDomainRewrite: 'localhost'
   }
+  proxy['/ws'] = {
+    target: process.env.NAMI_PROXY_HOST,
+    changeOrigin: true,
+    cookieDomainRewrite: 'localhost',
+    ws: true
+  }
 }
 
 module.exports = {
