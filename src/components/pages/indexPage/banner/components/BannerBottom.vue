@@ -5,12 +5,12 @@
        href="https://vk.com/namisushidn"
        target="_blank"
        style="margin-left: auto;margin-right: 20px">
-      <img src="@/assets/images/icons/vk.svg" alt="">
+      <img src="@/assets/images/icons/vk.svg" alt="вк">
     </a>
     <a class="banner-bottom--social"
        href="https://instagram.com/namisushidn"
        target="_blank">
-      <img src="@/assets/images/icons/ig.svg" alt="">
+      <img src="@/assets/images/icons/ig.svg" alt="ig">
     </a>
   </div>
 </template>

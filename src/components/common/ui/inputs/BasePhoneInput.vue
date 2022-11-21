@@ -18,7 +18,7 @@
       <span v-if="loading"
             class="phone-input__content--icon">
         <img style="width: 22px;height: 22px"
-             src="@/assets/images/spinner.gif" alt="">
+             src="@/assets/images/spinner.gif" alt="...">
       </span>
       <span v-else
             class="phone-input__content--icon"

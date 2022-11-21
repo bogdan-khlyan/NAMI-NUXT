@@ -1,7 +1,7 @@
 <template>
   <div class="banner-image">
     <h2>японская еда</h2>
-    <img src="@/assets/images/main/banner/banner-image.webp" alt="">
+    <img src="@/assets/images/main/banner/banner-image.webp" alt="суши">
   </div>
 </template>
 

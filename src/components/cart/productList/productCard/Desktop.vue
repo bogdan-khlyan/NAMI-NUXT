@@ -4,9 +4,9 @@
     :class="{ 'product-card-desktop_variant-many': isVariant && product.variants.length > 4 }"
   >
     <div class="product-card-desktop__img">
-      <img v-if="isSingle" :src="product.images[0]" alt="">
+      <img v-if="isSingle" :src="product.images[0]" :alt="product.title">
       <img v-else-if="selectedVariant"
-           :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
+           :src="`/api/product/variant/image/${selectedVariant.image}`" :alt="product.title"
            :key="selectedVariant.image">
     </div>
     <div class="product-card-desktop__info">
@@ -47,7 +47,7 @@
     <div class="product-card-desktop__actions">
       <div class="product-card-desktop__actions--delete"
            @click="removeProduct">
-        <img src="@/assets/images/icons/trash.svg" alt="">
+        <img src="@/assets/images/icons/trash.svg" alt="Удалить">
       </div>
     </div>
   </div>

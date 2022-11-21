@@ -16,7 +16,7 @@
         <transition name="el-fade-in-linear" mode="out-in">
           <img v-if="weaveBg"
                class="bg-waves"
-               src="@/assets/images/bg-waves.svg" alt="">
+               src="@/assets/images/bg-waves.svg" alt="волны">
         </transition>
       </div>
     </div>

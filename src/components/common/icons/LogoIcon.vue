@@ -1,10 +1,10 @@
 <template>
   <div class="logo-icon">
     <img v-if="theme === 'new-year' && cap"
-         src="@/assets/images/cap-ny.webp" alt=""
+         src="@/assets/images/cap-ny.webp" alt="Шапка"
          class="logo-icon__cap"
          :style="cap">
-    <img src="@/assets/images/logo/logo-circle-new.png" alt=""
+    <img src="@/assets/images/logo/logo-circle-new.png" alt="NamiSushi"
          class="logo-icon__logo-circle"
          :style="logoCircleWidth">
     <svg :width="width" :height="height" viewBox="0 0 133 69" fill="none" xmlns="http://www.w3.org/2000/svg">

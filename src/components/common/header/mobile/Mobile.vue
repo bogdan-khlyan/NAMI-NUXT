@@ -18,7 +18,7 @@
          class="phone">
       <a :href="`tel:+79497009791`">
         <div class="circle">
-          <img src="@/assets/images/icons/phone-black.svg" alt="">
+          <img src="@/assets/images/icons/phone-black.svg" alt="Телефон">
         </div>
         <span>+7 949 700 97 91</span>
       </a>

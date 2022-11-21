@@ -3,7 +3,7 @@
          :class="[{ 'focus': isFocus }, { 'loading': loading }, { 'error': error && error.$error }]">
     <span class="password-input__label">
       {{ label }}
-      <img v-if="loading" src="@/assets/images/spinner.gif" alt="">
+      <img v-if="loading" src="@/assets/images/spinner.gif" alt="...">
     </span>
     <span class="password-input__input">
       <input type="text"

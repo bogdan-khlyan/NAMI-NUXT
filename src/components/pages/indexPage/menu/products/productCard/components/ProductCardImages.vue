@@ -1,10 +1,10 @@
 <template>
   <div class="product-card-images">
     <img v-if="product.type === 'SINGLE'"
-         :src="product.images[0]" alt=""
+         :src="product.images[0]" :alt="product.title"
          loading="lazy">
     <img v-else-if="selectedVariant"
-         :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
+         :src="`/api/product/variant/image/${selectedVariant.image}`" :alt="selectedVariant.title"
          :key="selectedVariant.image"
          loading="lazy">
   </div>

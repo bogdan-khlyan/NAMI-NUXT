@@ -1,7 +1,7 @@
 <template>
   <div class="btn-to-menu">
     <div class="circle">
-      <img src="@/assets/images/icons/arrow-down.svg" alt="">
+      <img src="@/assets/images/icons/arrow-down.svg" alt=">">
     </div>
     <div class="text">日本のメニュー</div>
   </div>

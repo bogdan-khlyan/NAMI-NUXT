@@ -9,7 +9,7 @@
       <div v-if="cartProducts.length === 0"
            class="product-list__products--empty">
         <div class="content">
-          <img src="@/assets/images/dino.gif" alt="">
+          <img src="@/assets/images/dino.gif" alt="дино">
           <span>Вы ещё не выбрали ни одного продукта</span>
         </div>
       </div>

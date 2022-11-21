@@ -16,7 +16,7 @@
           <div class="delivery__list--item">Доставка осуществляется с 11:00 до 19:00</div>
         </div>
         <div class="delivery__content--image">
-          <img src="@/assets/images/delivery/image.png" alt="">
+          <img src="@/assets/images/delivery/image.png" alt="суши">
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@
         <img v-else
              class="orders-row-info__show-details"
              :class="{'orders-row-info__show-details--active': showDetails}"
-             src="@/assets/images/orders/icon-expand.svg" alt="">
+             src="@/assets/images/orders/icon-expand.svg" alt="еще">
       </div>
     </div>
 

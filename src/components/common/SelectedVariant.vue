@@ -1,7 +1,7 @@
 <template>
   <div class="selected-variant">
     <div class="selected-variant__icon">
-      <img :src="`/api/product/variant/icon/${selectedVariant.icon}`" alt="">
+      <img :src="`/api/product/variant/icon/${selectedVariant.icon}`" :alt="selectedVariant.title">
     </div>
     <div class="selected-variant__title">
       <span>{{ selectedVariant.title }}</span>

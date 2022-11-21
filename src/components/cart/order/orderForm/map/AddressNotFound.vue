@@ -1,7 +1,7 @@
 <template>
   <div class="address-not-found">
     <div>
-      <img src="./images/address-not-found.png" alt="">
+      <img src="./images/address-not-found.png" alt="адрес не найден">
       <div class="text">Диспетчер обработает адрес доставки самостоятельно и сообщит вам стоимость доставки по телефону</div>
     </div>
   </div>

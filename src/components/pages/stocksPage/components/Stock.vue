@@ -4,7 +4,7 @@
       <div class="stock__circle">
         <div>{{ circle }} %</div>
       </div>
-      <img :src="image" alt="">
+      <img :src="image" alt="скидка">
     </div>
     <div class="stock__footer">
       <h3>{{ title }}</h3>

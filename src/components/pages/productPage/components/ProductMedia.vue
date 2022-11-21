@@ -4,12 +4,12 @@
     <div class="product-media__image">
       <img class="image"
            v-if="product.type === 'SINGLE'"
-           :src="product.images[0]" alt="">
+           :src="product.images[0]" :alt="product.title">
       <img class="image"
            v-else-if="selectedVariant"
-           :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
+           :src="`/api/product/variant/image/${selectedVariant.image}`" :alt="selectedVariant.title"
            :key="selectedVariant.image">
-      <img class="bg" src="@/assets/images/product/bg.png" alt="">
+      <img class="bg" src="@/assets/images/product/bg.png" alt="тарелка">
     </div>
   </div>
 </template>

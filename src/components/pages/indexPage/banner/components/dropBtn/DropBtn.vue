@@ -5,7 +5,7 @@
        :target="link.target"
        :style="`max-width: ${options.width}`">
       <div class="icon">
-        <img :src="options.icon" alt="">
+        <img :src="options.icon" alt="иконка">
       </div>
       <div class="text">
         <a v-for="(item, i) in options.content" :key="i">{{item}}</a>

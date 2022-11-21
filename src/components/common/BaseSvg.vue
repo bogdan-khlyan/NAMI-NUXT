@@ -1,5 +1,7 @@
 <template>
-  <img :src="src" alt="" ref="image" @load="imgToSvg">
+  <img :src="src" alt="иконка"
+       ref="image"
+       @load="imgToSvg">
 </template>
 
 <script>

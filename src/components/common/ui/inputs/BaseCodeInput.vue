@@ -3,7 +3,7 @@
          :class="[{ error: error.$error }]">
     <span class="code-input__label">
       Код
-      <img v-if="loading" src="@/assets/images/spinner.gif" alt="">
+      <img v-if="loading" src="@/assets/images/spinner.gif" alt="...">
       <check-icon v-if="verified"/>
     </span>
     <span class="code-input__content"

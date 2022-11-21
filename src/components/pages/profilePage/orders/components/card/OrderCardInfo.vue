@@ -17,7 +17,7 @@
           <i v-if="loading" class="el-icon-loading"/>
           <img v-else class="order-card-info__show-details"
                :class="{'order-card-info__show-details--active': showDetails}"
-               src="@/assets/images/orders/icon-expand.svg" alt="">
+               src="@/assets/images/orders/icon-expand.svg" alt="еще">
         </div>
       </div>
     </div>

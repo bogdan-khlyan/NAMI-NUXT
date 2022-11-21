@@ -2,10 +2,10 @@
   <div class="checkbox">
     <div @click="change" class="checkbox__content">
       <div class="circle-wrapper">
-        <div class="circle"><img v-if="data === show" src="@/assets/images/icons/check.svg" alt=""></div>
+        <div class="circle"><img v-if="data === show" src="@/assets/images/icons/check.svg" alt="Да"></div>
       </div>
       <div class="icon">
-        <img :src="icon" alt="">
+        <img :src="icon" alt="иконка">
       </div>
       <div class="text">
         <slot/>

@@ -5,9 +5,9 @@
          v-for="(item,i) in orderInfo.full.products" :key="i">
       <div class="order-card-details__product-photo">
         <img v-if="item.product.type === 'SINGLE'"
-             :src="`/api/product/image/${item.product.images[0]}`" alt="">
+             :src="`/api/product/image/${item.product.images[0]}`" :alt="item.product.title">
         <img v-else
-             :src="`/api/product/variant/image/${item.variant.image}`" alt="">
+             :src="`/api/product/variant/image/${item.variant.image}`" :alt="item.variant.title">
       </div>
 
       <div class="order-card-details__product-info">

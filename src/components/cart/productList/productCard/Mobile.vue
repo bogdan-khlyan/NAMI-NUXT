@@ -2,9 +2,9 @@
   <div class="product">
     <div class="product__content">
       <div class="product__images">
-        <img v-if="isSingle" :src="product.images[0]" alt="">
+        <img v-if="isSingle" :src="product.images[0]" :alt="product.title">
         <img v-else-if="selectedVariant"
-             :src="`/api/product/variant/image/${selectedVariant.image}`" alt=""
+             :src="`/api/product/variant/image/${selectedVariant.image}`" :alt="product.title"
              :key="selectedVariant.image">
       </div>
       <div class="product__info">

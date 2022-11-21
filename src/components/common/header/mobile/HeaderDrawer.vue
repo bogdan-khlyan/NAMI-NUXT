@@ -19,7 +19,7 @@
                  @click.native="close">
         <div class="header-drawer__profile--avatar">
           <img v-if="theme === 'new-year'"
-               src="@/assets/images/cap-ny.webp" alt=""
+               src="@/assets/images/cap-ny.webp" alt="Шапка"
                class="new-year-cap">
           <base-user-avatar
             :avatar="userInfo.avatar"

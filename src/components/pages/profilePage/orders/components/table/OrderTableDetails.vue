@@ -5,9 +5,9 @@
         <template slot-scope="scope">
           <div class="order-table-details__product-photo">
             <img v-if="scope.row.product.type === 'SINGLE'"
-                 :src="`/api/product/image/${scope.row.product.images[0]}`" alt="">
+                 :src="`/api/product/image/${scope.row.product.images[0]}`" :alt="scope.row.product.title">
             <img v-else
-                 :src="`/api/product/variant/image/${scope.row.variant.image}`" alt="">
+                 :src="`/api/product/variant/image/${scope.row.variant.image}`" :alt="scope.row.variant.title">
           </div>
         </template>
       </el-table-column>

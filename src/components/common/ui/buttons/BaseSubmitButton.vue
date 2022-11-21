@@ -3,7 +3,7 @@
     class="base-submit-button">
     <transition name="el-fade-in-linear" mode="out-in">
       <img v-if="loading"
-           src="@/assets/images/spinner.svg" alt="">
+           src="@/assets/images/spinner.svg" alt="...">
       <span v-else>
         <slot/>
       </span>

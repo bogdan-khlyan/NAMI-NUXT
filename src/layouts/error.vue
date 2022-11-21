@@ -2,9 +2,9 @@
   <div class="error-layout">
     <div class="error-layout__content">
       <div class="error-layout__image">
-        <img class="four" src="@/assets/images/page404/4.svg" alt="">
-        <img class="roll" src="@/assets/images/page404/roll.svg" alt="">
-        <img class="four" src="@/assets/images/page404/4.svg" alt="">
+        <img class="four" src="@/assets/images/page404/4.svg" alt="4">
+        <img class="roll" src="@/assets/images/page404/roll.svg" alt="0">
+        <img class="four" src="@/assets/images/page404/4.svg" alt="0">
       </div>
       <div class="error-layout__title">
         <span>УУПС...!!</span>
