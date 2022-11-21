@@ -2,28 +2,39 @@
   <div class="profile-favorites" v-loading="loading">
     <favorites-list
       class="profile-favorites__list"
-      :favorites="favorites"
+      :favorites="data"
     />
   </div>
 </template>
 
 <script>
 import FavoritesList from "@/components/pages/favoritesPage/components/FavoritesList";
+import userInstanceMixin from "@/api/userInstance/user-instance.mixin";
 
 export default {
   name: 'profile-favorites',
+  mixins: [userInstanceMixin],
   components: { FavoritesList },
   data() {
     return {
       loading: true,
-      favorites: []
+      data: []
     }
   },
-  async mounted() {
-    await this.$userInstance.initFavorites()
-    this.favorites = this.$store.state.menu.products
-      .filter(item => this.$store.state.userInstance.favorites.find(productId => productId === item._id))
-    this.$nextTick(() => this.loading = false)
+  watch: {
+    favorites() {
+      this.init()
+    }
+  },
+  created() {
+    this.init()
+  },
+  methods: {
+    init() {
+      this.data = this.$store.state.menu.products
+        .filter(item => this.$store.state.userInstance.favorites.find(productId => productId === item._id))
+      this.$nextTick(() => this.loading = false)
+    }
   }
 }
 </script>
