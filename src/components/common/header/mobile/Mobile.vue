@@ -146,7 +146,7 @@ export default {
 
   display: flex;
   align-items: center;
-  padding-left: 30px;
+  //padding-left: 20px;
   padding-right: 30px;
   @media screen and (max-width: 600px) {
     padding-right: 12px;
@@ -172,6 +172,11 @@ export default {
 
   .burger {
     cursor: pointer;
+    padding: 10px 10px 10px 30px;
+    @media screen and (max-width: 600px) {
+      padding-left: 20px;
+      padding-right: 5px;
+    }
   }
 
   &.show {
