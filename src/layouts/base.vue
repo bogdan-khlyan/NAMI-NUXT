@@ -23,6 +23,7 @@
 
     <cart/>
     <header-drawer/>
+    <base-mobile-nav-bar v-if="windowWidth <= 980"/>
   </div>
 </template>
 
@@ -32,6 +33,7 @@ import AppFooter from "@/components/common/footer/AppFooter";
 import Cart from "@/components/cart/Cart";
 import HeaderDrawer from "@/components/common/header/mobile/HeaderDrawer";
 import BodyLoading from "@/components/common/bodyLoading/BodyLoading";
+import BaseMobileNavBar from "@/components/common/BaseMobileNavBar";
 import configMixin from "@/api/config/config.mixin";
 import {updateCartProducts} from "@/utils/update-cart-products";
 import {initWebsocket} from "@/api/websocket/websocket";
@@ -39,7 +41,11 @@ import {initWebsocket} from "@/api/websocket/websocket";
 export default {
   name: 'base-layout',
   mixins: [configMixin],
-  components: { AppHeader, AppFooter, Cart, BodyLoading, HeaderDrawer },
+  components: {
+    AppHeader, AppFooter, Cart,
+    BodyLoading, HeaderDrawer,
+    BaseMobileNavBar
+  },
   computed: {
     baseBg () {
       return this.$route.name === 'index' || this.$route.meta.background === 'base'
@@ -102,6 +108,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.base-layout-wrapper {
+  @media screen and (max-width: 980px) {
+    padding-bottom: 60px;
+  }
+}
 .base-layout {
   position: relative;
   font-family: Avenir, Helvetica, Arial, sans-serif;

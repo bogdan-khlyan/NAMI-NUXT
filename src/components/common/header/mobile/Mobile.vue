@@ -9,12 +9,11 @@
     <nuxt-link class="logo"
                to="/?menu">
       <logo-icon
-        v-if="windowWidth > 390"
         :width="logoSize.width"
         :height="logoSize.height"
         :cap="logoSize.cap"/>
     </nuxt-link>
-    <div v-if="windowWidth > 700"
+    <div v-if="windowWidth > 600"
          class="phone">
       <a :href="`tel:+79497009791`">
         <div class="circle">
@@ -23,12 +22,14 @@
         <span>+7 949 700 97 91</span>
       </a>
     </div>
-    <div class="header__mobile--favorites">
+    <div v-if="windowWidth > 980"
+         class="header__mobile--favorites">
       <circle-button to="/favorites" :value="favoritesCount">
         <heart-icon/>
       </circle-button>
     </div>
-    <div class="cart">
+    <div v-if="windowWidth > 980"
+         class="cart">
       <circle-button
         tag="a"
         :value="cartCount"
@@ -69,37 +70,46 @@ export default {
       return this.$store.state.userInstance.isLoggedIn
     },
     logoSize() {
-      if (this.windowWidth > 480) {
-        return {
-          width: '120px',
-          height: '60px',
-          cap: {
-            top: '-9px',
-            left: '-22px',
-            transform: null
-          }
-        }
-      } else if (this.windowWidth > 420) {
-        return {
-          width: '100px',
-          height: '50px',
-          cap: {
-            top: '-12px',
-            left: '-22px',
-            transform: 'scale(0.85)'
-          }
-        }
-      } else {
-        return {
-          width: '83px',
-          height: '42px',
-          cap: {
-            top: '-15px',
-            left: '-23px',
-            transform: 'scale(0.7)'
-          }
+      return {
+        width: '100px',
+        height: '50px',
+        cap: {
+          top: '-12px',
+          left: '-22px',
+          transform: 'scale(0.85)'
         }
       }
+      // if (this.windowWidth > 480) {
+      //   return {
+      //     width: '120px',
+      //     height: '60px',
+      //     cap: {
+      //       top: '-9px',
+      //       left: '-22px',
+      //       transform: null
+      //     }
+      //   }
+      // } else if (this.windowWidth > 420) {
+      //   return {
+      //     width: '100px',
+      //     height: '50px',
+      //     cap: {
+      //       top: '-12px',
+      //       left: '-22px',
+      //       transform: 'scale(0.85)'
+      //     }
+      //   }
+      // } else {
+      //   return {
+      //     width: '83px',
+      //     height: '42px',
+      //     cap: {
+      //       top: '-15px',
+      //       left: '-23px',
+      //       transform: 'scale(0.7)'
+      //     }
+      //   }
+      // }
     },
     windowWidth() {
       return this.$store.state.windowWidth
@@ -155,6 +165,9 @@ export default {
   .avatar {
     margin-left: 12px;
     z-index: 1;
+    @media screen and (max-width: 600px) {
+      margin-left: auto;
+    }
   }
 
   .burger {
@@ -265,7 +278,9 @@ export default {
 
     //cursor: no-drop;
     cursor: pointer;
-
+    @media screen and (max-width: 600px) {
+      margin-left: auto;
+    }
     @media screen and (max-width: 480px) {
       width: 90px;
     }
