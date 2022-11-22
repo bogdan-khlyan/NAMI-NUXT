@@ -23,7 +23,9 @@ export default {
   },
   watch: {
     favorites() {
-      this.init()
+      if (this.data.length === 0) {
+        this.init()
+      }
     }
   },
   created() {
