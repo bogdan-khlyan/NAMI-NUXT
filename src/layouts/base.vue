@@ -65,6 +65,13 @@ export default {
       loading: true
     }
   },
+  watch: {
+    isLoggedIn(value) {
+      if (value) {
+        initWebsocket(this)
+      }
+    }
+  },
   mounted() {
 
     if (this.isLoggedIn) {
