@@ -1,5 +1,6 @@
 <template>
-  <div class="profile-input-wrapper">
+  <div class="profile-input-wrapper"
+       @keydown.enter="$emit('submit', $event)">
 
     <transition appear name="el-fade-in-linear" mode="out-in">
       <div v-if="!isEditMode || disabled"
