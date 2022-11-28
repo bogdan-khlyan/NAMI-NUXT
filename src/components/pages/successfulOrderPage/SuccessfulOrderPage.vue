@@ -8,15 +8,21 @@
       </div>
       <div class="text">для подтверждения заказа</div>
       <div class="button">
-        <nuxt-link to="/">Вернуться на сайт</nuxt-link>
+        <nuxt-link v-if="isLoggedIn"
+                   to="/profile/orders">К списку моих заказов</nuxt-link>
+        <nuxt-link v-else
+                   to="/">Вернуться на сайт</nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import userInstanceMixin from "@/api/userInstance/user-instance.mixin";
+
 export default {
   name: 'successful-order',
+  mixins: [userInstanceMixin],
   layout: 'base',
   data() {
     return {
