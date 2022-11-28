@@ -96,13 +96,6 @@ export default {
         updateCartProducts(this.$store, products)
       }
       this.loading = false
-      setTimeout(() => {
-        const script = document.createElement('script')
-        script.src = '/yandex-metrika.js'
-        script.type = 'text/javascript'
-        script.async = true
-        document.head.appendChild(script)
-      }, 1000)
     },
     resize() {
     this.$store.commit('setWindowWidth', document.documentElement.clientWidth)
