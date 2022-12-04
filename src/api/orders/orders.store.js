@@ -30,7 +30,7 @@ const mutations = {
   },
   'orders.unshiftOrder'(state, order) {
     state.orders.unshift(order)
-    if (state.orders.length !== state.total) {
+    if (state.orders.length !== state.total && state.total >= 10) {
       state.orders.splice(state.orders.length - 1, 1)
     }
     ++state.total
