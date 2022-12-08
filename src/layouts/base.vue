@@ -72,6 +72,9 @@ export default {
       }
     }
   },
+  async fetch() {
+    await this.$appConfig.getConfig()
+  },
   mounted() {
 
     if (this.isLoggedIn) {
