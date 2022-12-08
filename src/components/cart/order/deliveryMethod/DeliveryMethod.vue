@@ -28,9 +28,11 @@
 
 <script>
 import Checkbox from "@/components/cart/order/deliveryMethod/Checkbox";
+import configMixin from "@/api/config/config.mixin";
 
 export default {
   name: 'delivery-method',
+  mixins: [configMixin],
   components: { Checkbox },
   model: { prop: 'data', event: 'input' },
   props: {
@@ -43,9 +45,6 @@ export default {
     }
   },
   computed: {
-    isDiscount() {
-      return this.$store.state.isDiscount
-    },
     cartProducts() {
       return this.$store.state.orders.list
     },
