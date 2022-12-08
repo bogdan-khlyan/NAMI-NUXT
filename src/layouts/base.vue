@@ -23,6 +23,7 @@
 
     <cart/>
     <header-drawer/>
+    <base-global-message/>
     <base-mobile-nav-bar v-if="windowWidth <= 980"/>
   </div>
 </template>
@@ -34,6 +35,7 @@ import Cart from "@/components/cart/Cart";
 import HeaderDrawer from "@/components/common/header/mobile/HeaderDrawer";
 import BodyLoading from "@/components/common/bodyLoading/BodyLoading";
 import BaseMobileNavBar from "@/components/common/BaseMobileNavBar";
+import BaseGlobalMessage from "@/components/common/BaseGlobalMessage";
 import configMixin from "@/api/config/config.mixin";
 import {updateCartProducts} from "@/utils/update-cart-products";
 import {initWebsocket} from "@/api/websocket/websocket";
@@ -44,7 +46,7 @@ export default {
   components: {
     AppHeader, AppFooter, Cart,
     BodyLoading, HeaderDrawer,
-    BaseMobileNavBar
+    BaseMobileNavBar, BaseGlobalMessage
   },
   computed: {
     baseBg () {
