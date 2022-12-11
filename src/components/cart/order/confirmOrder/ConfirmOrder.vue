@@ -37,21 +37,18 @@
 
 <script>
 import {minusDiscount} from "@/utils/discount";
+import configMixin from "@/api/config/config.mixin";
 
 export default {
   name: 'confirm-order',
-  components: {
-  },
+  mixins: [configMixin],
   props: {
     delivery: { type: Boolean },
     deliveryCost: { type: Number }
   },
   computed: {
-    isDiscount() {
-      return this.$store.state.isDiscount
-    },
     discountCost() {
-      return minusDiscount(this.costAll)
+      return minusDiscount(this.costAll, this.config.globalDiscountPercent)
     },
     windowWidth () {
       return this.$store.state.windowWidth

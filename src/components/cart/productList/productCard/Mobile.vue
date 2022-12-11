@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     discountCost() {
-      return minusDiscount(this.costAll)
+      return minusDiscount(this.costAll, this.config.globalDiscountPercent)
     }
   }
 }

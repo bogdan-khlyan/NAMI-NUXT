@@ -42,16 +42,15 @@
 <script>
 import ProductCard from "@/components/cart/productList/productCard/ProductCard";
 import {minusDiscount} from "@/utils/discount";
+import configMixin from "@/api/config/config.mixin";
 
 export default {
   name: 'product-list',
+  mixins: [configMixin],
   components: { ProductCard },
   computed: {
-    isDiscount() {
-      return this.$store.state.isDiscount
-    },
     discountCost() {
-      return minusDiscount(this.cost)
+      return minusDiscount(this.cost, this.config.globalDiscountPercent)
     },
     windowWidth() {
       return this.$store.state.windowWidth

@@ -1,6 +1,8 @@
 import {minusDiscount} from "@/utils/discount";
+import configMixin from "@/api/config/config.mixin";
 
 export default {
+  mixins: [configMixin],
   computed: {
     productId() {
       return this.product._id
@@ -62,11 +64,8 @@ export default {
       return !!this.$store.state.userInstance.favorites.find(item => item === this.productId)
     },
 
-    isDiscount() {
-      return this.$store.state.isDiscount
-    },
     discountCost() {
-      return minusDiscount(this.cost)
+      return minusDiscount(this.cost, this.config.globalDiscountPercent)
     }
   },
   methods: {
