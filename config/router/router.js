@@ -67,6 +67,14 @@ module.exports = {
       path: '/privacy',
       name: 'privacy',
       component: resolve('~/components/pages/privacyPage/PrivacyPage')
+    }, {
+      path: '/reviews',
+      name: 'reviews',
+      component: resolve('~/components/pages/reviewsPage/ReviewsPage')
+    }, {
+      path: '/new-review',
+      name: 'new-review',
+      component: resolve('~/components/pages/newReviewPage/NewReviewPage')
     })
   }
 }
