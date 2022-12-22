@@ -48,6 +48,13 @@ export default {
     BodyLoading, HeaderDrawer,
     BaseMobileNavBar, BaseGlobalMessage
   },
+  head() {
+    return {
+      link: [
+        { href: `${process.env.NAMI_BACKEND_HOST}${this.$route.path}`, rel: 'canonical' }
+      ]
+    }
+  },
   computed: {
     baseBg () {
       return this.$route.name === 'index' || this.$route.meta.background === 'base'

@@ -39,11 +39,6 @@ import BaseSeoText from "@/components/common/BaseSeoText";
 export default {
   name: 'index-page',
   components: { Banner, AppMenu, BaseSeoText },
-  head: {
-    link: [
-      { href: 'https://namisushi.ru/', rel: 'canonical' }
-    ]
-  },
   beforeDestroy() {
     this.$store.commit('setIsMenu', false)
   }
