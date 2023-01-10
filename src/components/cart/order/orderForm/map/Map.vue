@@ -52,7 +52,7 @@ export default {
     },
     async settingsRoute(control) {
       const route = await control.routePanel.getRouteAsync()
-      route.model.setParams({ results: 1 }, true)
+      route.model.setParams({ results: 1, avoidTrafficJams: false }, true)
       route.model.events.add('requestsuccess', () => this.settingsActiveRoute(route))
       route.model.events.add('requestfail', this.mapError)
     },
