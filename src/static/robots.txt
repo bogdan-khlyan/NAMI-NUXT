@@ -1,5 +1,5 @@
-User-agent: Googlebot
-Disallow: /nogooglebot/
+User-agent: *
+Clean-param: ref /
 
 User-agent: *
 Allow: /
