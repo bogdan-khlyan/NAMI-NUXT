@@ -1,5 +1,5 @@
 User-agent: *
-Disallow: /*?etext
+Disallow: /*?etext=
 Clean-param: utm
 Allow: /
 
