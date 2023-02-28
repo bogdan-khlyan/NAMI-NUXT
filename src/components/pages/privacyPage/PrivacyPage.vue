@@ -310,7 +310,7 @@
                 <table class="purpose-table">
                   <tbody><tr>
                     <th>Цель обработки</th>
-                    <td class="purpose-field"><span class="mark link">информирование Пользователя посредством отправки электронных писем и СМС сообщений</span></td>
+                    <td class="purpose-field"><span class="mark link">Подтверждение заказа звонком по номеру телефона, доставка по указанному адресу, информирование Пользователя посредством отправки электронных писем и СМС сообщений</span></td>
                   </tr>
                   <tr>
                     <th>Персональные данные</th>
@@ -322,7 +322,16 @@
                   </tr>
                   <tr>
                     <th>Виды обработки персональных данных</th>
-                    <td class="types-field"><ul><li><span class="mark link">Сбор, запись, систематизация, накопление, хранение, уничтожение и&nbsp;обезличивание персональных данных</span></li><li><span class="mark link">Отправка информационных писем на&nbsp;адрес электронной почты</span></li><li><span class="mark link">Отправка информационных СМС сообщений на номер телефона</span></li></ul></td>
+                    <td class="types-field">
+                      <ul>
+                        <li><span class="mark link">Сбор, запись, систематизация, накопление, хранение, уничтожение и&nbsp;обезличивание персональных данных</span>
+                        </li>
+                        <li><span class="mark link">Звонки по номеру телефона для подтверждения заказа(-ов)</span>
+                        <li><span class="mark link">Отправка информационных писем на&nbsp;адрес электронной почты</span>
+                        </li>
+                        <li><span class="mark link">Отправка информационных СМС сообщений на номер телефона</span></li>
+                      </ul>
+                    </td>
                   </tr>
                   </tbody></table>
               </div><div id="purpose-table-template" style="display: none;">
