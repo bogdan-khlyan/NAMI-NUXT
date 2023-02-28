@@ -35,6 +35,10 @@
 
         <base-submit-button :loading="loading">Продолжить</base-submit-button>
 
+        <div class="login__privacy">
+          Регистрируясь, вы  соглашаетесь с <nuxt-link to="/privacy">политикой обработки персональных данных</nuxt-link>
+        </div>
+
       </form>
 
     </div>
@@ -192,6 +196,28 @@ export default {
       }
     }
 
+  }
+
+  &__privacy {
+    margin-top: 20px;
+    max-width: 380px;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: #212121;
+    > a {
+      font-family: 'Ubuntu', sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 16px;
+      text-align: center;
+      text-decoration: none;
+      color: #185598;
+    }
   }
 
 }

@@ -13,7 +13,8 @@
               @changeMode="changeMode"/>
             <order
               v-else-if="mode === 'ORDER'"
-              @changeMode="changeMode" />
+              @changeMode="changeMode"
+              @privacy="privacy"/>
           </transition>
         </scroll>
       </div>
@@ -40,17 +41,26 @@ export default {
   },
   data() {
     return {
-      mode: 'INDEX'
+      mode: 'INDEX',
+      enableChangeMode: true
     }
   },
   methods: {
-    changeMode: function (mode) {
+    privacy() {
+      this.enableChangeMode = false
+      this.$router.push('/privacy')
+      this.close()
+      setTimeout(() => this.enableChangeMode = true, 1000)
+    },
+    changeMode(mode) {
       this.mode = mode
       this.$refs.scroll.scrollTop()
     },
-    close: function () {
-      if (this.mode !== 'INDEX') {
-        this.changeMode('INDEX')
+    close() {
+      if (this.enableChangeMode) {
+        if (this.mode !== 'INDEX') {
+          this.changeMode('INDEX')
+        }
       }
       this.$cart.hideCart()
     },
