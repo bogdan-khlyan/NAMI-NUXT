@@ -33,6 +33,7 @@
                     placeholder="Адрес доставки">
         <home-icon/>
       </input-expand>
+      <el-checkbox v-if="userInfo.role === 'WATCHER'" v-model="data.isTestOrder">Тестовый заказ</el-checkbox>
       <ymap
         v-if="calcDeliveryCost && data.delivery"
         v-model="data.deliveryCost"
@@ -56,9 +57,11 @@ import HomeIcon from "@/components/common/icons/HomeIcon";
 import ChapterLabel from "@/components/cart/order/common/ChapterLabel";
 import InputExpand from "@/components/common/ui/inputs/InputExpand";
 import Ymap from "@/components/cart/order/orderForm/map/Map";
+import userInstanceMixin from "@/api/userInstance/user-instance.mixin";
 
 export default {
   name: 'order-chapter3',
+  mixins: [userInstanceMixin],
   components: {
     UserIcon, PhoneIcon, InfoIcon, HomeIcon,
     ChapterLabel, InputExpand, Ymap

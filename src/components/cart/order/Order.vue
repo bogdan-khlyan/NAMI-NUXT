@@ -74,7 +74,8 @@ export default {
         address: '',
         phone: '',
         username: '',
-        additionalInformation: ''
+        additionalInformation: '',
+        isTestOrder: false
       }
     }
   },
