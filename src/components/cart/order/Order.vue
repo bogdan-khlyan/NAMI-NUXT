@@ -30,7 +30,8 @@
       <confirm-order
         :delivery="order.delivery"
         :delivery-cost="order.deliveryCost"
-        @send="createOrder"/>
+        @send="createOrder"
+        @privacy="privacy"/>
     </div>
 
 
@@ -84,6 +85,9 @@ export default {
     }
   },
   methods: {
+    privacy() {
+      this.$emit('privacy')
+    },
     createOrder: function () {
       if (this.$refs.orderChapter3.validate(true)) {
         let tmp = {

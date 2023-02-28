@@ -31,6 +31,10 @@
         </div>
       </div>
       <button @click="buy" class="order-chapter4__btn--buy">{{ windowWidth > 420 ? 'Купить и оплатить' : 'Купить'}}</button>
+      <div class="order-chapter4__privacy"
+           @click="clickPrivacy">
+        Создавая заказ, вы соглашаетесь с <nuxt-link to="/privacy">политикой обработки персональных данных</nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -76,6 +80,9 @@ export default {
     }
   },
   methods: {
+    clickPrivacy() {
+      this.$emit('privacy')
+    },
     buy: function () {
       this.$emit('send')
     }
@@ -99,6 +106,28 @@ export default {
 
   .order-chapter4__content {
     padding-top: 10px;
+  }
+
+  &__privacy {
+    margin-top: 10px;
+    width: max-content;
+    max-width: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+    color: #212121;
+    > a {
+      font-family: 'Ubuntu', sans-serif;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 16px;
+      text-decoration: none;
+      color: #185598;
+    }
   }
 
   .order-chapter4__btn {
