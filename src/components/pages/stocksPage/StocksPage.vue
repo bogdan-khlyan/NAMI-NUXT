@@ -6,10 +6,9 @@
         <div class="stocks">
           <stock
             class="stocks__item"
-            :circle="20"
             :image="require('@/assets/images/stocks/image1.png')"
             title="акция выходного дня"
-            description="При заказе от 2500 ₽ в подарок бутылка белого вина или 1 л сока"/>
+            description="При заказе от 2000 ₽ в подарок бутылка белого вина или 1 л сока"/>
           <stock
             class="stocks__item"
             :circle="10"

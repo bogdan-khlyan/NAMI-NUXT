@@ -1,7 +1,8 @@
 <template>
   <div class="stock-wrapper" :class="circlePos">
     <div class="stock">
-      <div class="stock__circle">
+      <div v-if="circle"
+           class="stock__circle">
         <div>{{ circle }} %</div>
       </div>
       <img :src="image" alt="скидка">
