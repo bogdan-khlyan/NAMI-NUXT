@@ -17,13 +17,13 @@
             :image="require('@/assets/images/stocks/image2.png')"
             title="скидка на самовывоз"
             description="Скидка на любой заказ 10 %. Нужно только прийти и забрать"/>
-          <stock
-            class="stocks__item"
-            :circle="15"
-            circle-pos="top-right"
-            :image="require('@/assets/images/stocks/image3.png')"
-            title="акция буднего дня"
-            description="С понедельника по четверг с 11:00 до 16:00 скидка 15 % на любой заказ"/>
+<!--          <stock-->
+<!--            class="stocks__item"-->
+<!--            :circle="15"-->
+<!--            circle-pos="top-right"-->
+<!--            :image="require('@/assets/images/stocks/image3.png')"-->
+<!--            title="акция буднего дня"-->
+<!--            description="С понедельника по четверг с 11:00 до 16:00 скидка 15 % на любой заказ"/>-->
           <stock
             class="stocks__item"
             :circle="20"
@@ -69,15 +69,15 @@ export default {
 
   @media screen and (max-width: 1100px) { justify-content: center; }
 
-  .stocks__item {
-    &:nth-child(2), &:nth-child(3) {
-      margin-top: 150px;
-      @media screen and (max-width: 1100px) { margin-top: unset; }
-    }
-    @media screen and (max-width: 500px) {
-      align-items: center;
-    }
-  }
+  //.stocks__item {
+  //  &:nth-child(2), &:nth-child(3) {
+  //    margin-top: 150px;
+  //    @media screen and (max-width: 1100px) { margin-top: unset; }
+  //  }
+  //  @media screen and (max-width: 500px) {
+  //    align-items: center;
+  //  }
+  //}
 
 }
 
