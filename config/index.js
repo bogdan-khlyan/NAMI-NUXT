@@ -8,6 +8,6 @@ module.exports = {
   ...head,
   ...plugins,
   ...build,
-  router,
+  ...router,
   ...common
 }
