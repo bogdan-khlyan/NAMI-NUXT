@@ -63,14 +63,13 @@
           </span>
           <span>Контакты</span>
         </nuxt-link>
-        <el-tooltip class="item" effect="dark" placement="bottom-start" content="Временно недоступно :(">
-          <a>
-            <span class="icon">
-              <reviews-icon/>
-            </span>
-            <span>Отзывы</span>
-          </a>
-        </el-tooltip>
+        <nuxt-link to="/reviews"
+                   @click.native="close">
+          <span class="icon">
+            <reviews-icon/>
+          </span>
+          <span>Отзывы</span>
+        </nuxt-link>
       </nav>
 
       <hr>
