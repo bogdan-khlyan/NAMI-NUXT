@@ -41,9 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 .reviews-page {
-  padding-top: 100px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 100px 10px 20px;
   box-sizing: border-box;
   min-height: 100vh;
   @media screen and (max-width: 1250px) {
@@ -119,7 +117,7 @@ export default {
   }
   &__content {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1000px;
   }
 }
 </style>
