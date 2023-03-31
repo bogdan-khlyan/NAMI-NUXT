@@ -39,16 +39,12 @@ export default {
     }
   },
   mounted() {
-    const script = document.createElement('script')
-    script.src = 'https://vk.com/js/api/openapi.js?169'
-    script.type = 'text/javascript'
-    script.onload = () => {
+    this.$vk.initVk().then(() => {
       if (this.windowWidth !== null) {
         this.isLoadVk = true
         this.renderVkWidget()
       }
-    }
-    document.head.appendChild(script)
+    })
   },
   methods: {
     handleLoadFrame() {

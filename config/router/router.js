@@ -18,6 +18,11 @@ module.exports = {
         meta: { background: 'base' },
         component: resolve('~/components/pages/stocksPage/StocksPage')
       }, {
+        path: '/reviews',
+        name: 'reviews',
+        meta: { background: 'base' },
+        component: resolve('~/components/pages/reviewsPage/ReviewsPage')
+      }, {
         path: '/login',
         name: 'login',
         meta: { background: 'waves' },
