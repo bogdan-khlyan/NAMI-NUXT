@@ -1,6 +1,8 @@
 <template>
   <div class="reviews-page">
-    <div id="vk_comments"></div>
+    <div class="reviews-page__content">
+      <div id="vk-reviews"/>
+    </div>
   </div>
 </template>
 
@@ -28,7 +30,7 @@ export default {
   async mounted() {
     await this.$vk.initVk()
     this.$vk.initApp()
-      .Widgets.Comments('vk_comments', {
+      .Widgets.Comments('vk-reviews', {
         limit: 10,
         attach: '*'
       })
@@ -39,6 +41,12 @@ export default {
 <style lang="scss" scoped>
 .reviews-page {
   padding-top: 100px;
-  height: 100vh;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  &__content {
+    max-width: 1200px;
+  }
 }
 </style>
