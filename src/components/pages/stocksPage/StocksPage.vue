@@ -12,7 +12,7 @@
             sum="* не суммируется с другими скидками"
           >
             <template v-slot:description>
-              Оставьте отзыв во <a href="https://vk.com/topic-196997705_41675840" target="_blank">Вконтакте</a>, <a href="https://instagram.com/namisushidn">Instagram</a> или <a href="https://yandex.ru/maps/org/namisushi/156334799082/?ll.." target="_blank">Яндекс Картах</a> и получите скидку 5% на следующий заказ!
+              Оставьте отзыв на <nuxt-link to="/reviews">сайте</nuxt-link> во <a href="https://vk.com/topic-196997705_41675840" target="_blank">Вконтакте</a>, <a href="https://instagram.com/namisushidn">Instagram</a> или <a href="https://yandex.ru/maps/org/namisushi/156334799082/?ll.." target="_blank">Яндекс Картах</a> и получите скидку 5% на следующий заказ!
             </template>
             <template v-slot:footer>
               <el-tooltip
