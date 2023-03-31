@@ -32,13 +32,11 @@
               <span>Контакты</span>
             </nuxt-link>
           </div>
-          <div class="header__nav--menu--item">
-            <el-tooltip class="item" effect="dark" placement="top">
-              <div slot="content">Временно недоступно</div>
-              <a style="cursor: no-drop">
-                <span>Отзывы</span>
-              </a>
-            </el-tooltip>
+          <div class="header__nav--menu--item"
+               :class="{'active': $route.name === 'reviews'}">
+            <nuxt-link to="/reviews">
+              <span>Отзывы</span>
+            </nuxt-link>
           </div>
         </div>
         <div class="header__nav--phone">
