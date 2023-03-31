@@ -6,30 +6,53 @@
         <div class="stocks">
           <stock
             class="stocks__item"
+            :circle="5"
             :image="require('@/assets/images/stocks/image1.png')"
-            title="акция выходного дня"
-            description="При заказе от 2000 ₽ в подарок бутылка белого вина или 1 л сока"/>
+            title="скидка за отзыв"
+            sum="* не суммируется с другими скидками"
+          >
+            <template v-slot:description>
+              Оставьте отзыв во <a href="https://vk.com/topic-196997705_41675840" target="_blank">Вконтакте</a>, <a href="https://instagram.com/namisushidn">Instagram</a> или <a href="https://yandex.ru/maps/org/namisushi/156334799082/?ll.." target="_blank">Яндекс Картах</a> и получите скидку 5% на следующий заказ!
+            </template>
+            <template v-slot:footer>
+              <el-tooltip
+                class="item" effect="dark"
+                placement="bottom">
+                <span class="stocks__question">
+                  <i class="el-icon-question"></i>
+                  <span>Как это работает?</span>
+                </span>
+                <template v-slot:content>
+                  <div class="stock__tooltip-text">Необходимо выполнить всего несколько шагов:</div>
+                  <div class="stock__tooltip-text li">• оставить отзыв на любой из предложенных платформ</div>
+                  <div class="stock__tooltip-text li">• сделать скрин</div>
+                  <div class="stock__tooltip-text li">• отправить скрин и номер телефона нам в сообщения группы Вк, чтоб в следующий раз мы смогли применить скидку на ваш заказ!</div>
+                </template>
+              </el-tooltip>
+            </template>
+          </stock>
           <stock
             class="stocks__item"
             :circle="10"
             circle-pos="bottom-left"
             :image="require('@/assets/images/stocks/image2.png')"
             title="скидка на самовывоз"
-            description="Скидка на любой заказ 10 %. Нужно только прийти и забрать"/>
-<!--          <stock-->
-<!--            class="stocks__item"-->
-<!--            :circle="15"-->
-<!--            circle-pos="top-right"-->
-<!--            :image="require('@/assets/images/stocks/image3.png')"-->
-<!--            title="акция буднего дня"-->
-<!--            description="С понедельника по четверг с 11:00 до 16:00 скидка 15 % на любой заказ"/>-->
+            description="Скидка на любой заказ 10 %. Нужно только прийти и забрать"
+            sum="* не суммируется с другими скидками"
+          />
           <stock
             class="stocks__item"
-            :circle="20"
+            circle-pos="top-right"
+            :image="require('@/assets/images/stocks/image3.png')"
+            title="Акция ролл в подарок"
+            description="Получи ролл бесплатно! Ролл Калипсо в подарок при заказе от 2 тысяч"/>
+          <stock
+            class="stocks__item"
+            :circle="15"
             circle-pos="top-right"
             :image="require('@/assets/images/stocks/image4.png')"
             title="скидка именинника"
-            description="Скидка 20 % в ваш День Рождения"/>
+            description="Делайте заказ на любую сумму, а мы подарим скидку 15% в ваш День Рождения и 2 дня после него"/>
         </div>
       </div>
     </div>
@@ -68,15 +91,25 @@ export default {
 
   @media screen and (max-width: 1100px) { justify-content: center; }
 
-  //.stocks__item {
-  //  &:nth-child(2), &:nth-child(3) {
-  //    margin-top: 150px;
-  //    @media screen and (max-width: 1100px) { margin-top: unset; }
-  //  }
-  //  @media screen and (max-width: 500px) {
-  //    align-items: center;
-  //  }
-  //}
+  &__question {
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: #185598;
+  }
+
+  .stocks__item {
+    &:nth-child(2), &:nth-child(3) {
+      margin-top: 150px;
+      @media screen and (max-width: 1100px) { margin-top: unset; }
+    }
+    @media screen and (max-width: 500px) {
+      align-items: center;
+    }
+  }
 
 }
 

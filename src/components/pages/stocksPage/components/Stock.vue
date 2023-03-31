@@ -9,7 +9,12 @@
     </div>
     <div class="stock__footer">
       <h3>{{ title }}</h3>
-      <span>{{ description }}</span>
+      <span class="stock__footer--description">
+        <slot name="description">{{ description }}</slot>
+      </span>
+      <span v-if="sum"
+            class="stock__footer--sum">{{ sum }}</span>
+      <slot name="footer"/>
     </div>
   </div>
 </template>
@@ -23,7 +28,8 @@ export default {
     circlePos: { type: String },
     image: { type: String },
     title: { type: String },
-    description: { type: String }
+    description: { type: String },
+    sum: { type: String }
   },
   data() {
     return { }
@@ -253,11 +259,11 @@ export default {
 
   }
 
-  > span {
+  &--description {
     display: block;
     margin: 0 auto;
 
-    max-width: 210px;
+    max-width: 250px;
 
     font-family: PT Sans Narrow, sans-serif;
     font-style: normal;
@@ -275,8 +281,33 @@ export default {
     @media screen and (max-width: 420px) {
       font-size: 14px;
     }
-
+    > a {
+      color: #185598;
+      text-decoration: none;
+    }
   }
 
+  &--sum {
+    display: block;
+    margin-top: 5px;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: #787878;
+  }
+
+}
+</style>
+
+<style lang="scss">
+.stock__tooltip-text {
+  max-width: 300px;
+  text-align: left;
+  &.li {
+    padding-left: 10px;
+  }
 }
 </style>
