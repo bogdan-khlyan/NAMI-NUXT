@@ -71,6 +71,9 @@ export default {
     display: block;
     margin-left: 140px;
 
+    width: 342px;
+    height: 200px;
+
     @media screen and (max-width: 1060px) {
       margin-left: 90px;
       width: 280px;

@@ -31,6 +31,7 @@ export default {
 
   img {
     object-fit: contain;
+    width: 100%;
     height: 100px;
     @media screen and (max-width: 1800px) { height: 80px; }
     @media screen and (max-width: 1100px) { height: 50px; }
