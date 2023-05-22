@@ -44,14 +44,6 @@ module.exports = {
     closeOnSwipe: true
   },
 
-
-
-
-
-
-
-
-
   speedkit: {
 
     detection: {
@@ -61,8 +53,8 @@ module.exports = {
 
     performanceMetrics: {
       device: {
-        hardwareConcurrency: { min: 2, max: 48 },
-        deviceMemory: { min: 2 }
+        hardwareConcurrency: { min: 1, max: 48 },
+        deviceMemory: { min: 1 }
       },
       timing: {
         fcp: 800,
@@ -89,19 +81,6 @@ module.exports = {
       backgroundColor: 'grey'
     }
 
-  },
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
 
 }
