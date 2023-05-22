@@ -1,6 +1,6 @@
 module.exports = {
   build: {
-    transpile: [/^element-ui/],
+    transpile: [/^element-ui/]
   },
   buildModules: [
     ['@nuxtjs/google-fonts', {
