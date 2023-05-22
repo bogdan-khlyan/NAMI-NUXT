@@ -5,12 +5,18 @@
        href="https://vk.com/namisushidn"
        target="_blank"
        style="margin-left: auto;margin-right: 20px">
-      <img src="@/assets/images/icons/vk.svg" alt="вк">
+      <img
+        src="@/assets/images/icons/vk.svg" alt="вк"
+        style="width: 25px;height: 15px;"
+      >
     </a>
     <a class="banner-bottom--social"
        href="https://instagram.com/namisushidn"
        target="_blank">
-      <img src="@/assets/images/icons/ig.svg" alt="ig">
+      <img
+        src="@/assets/images/icons/ig.svg" alt="ig"
+        style="width: 25px;height: 25px;"
+      >
     </a>
   </div>
 </template>
@@ -58,18 +64,6 @@ export default {
     box-shadow: 9px 5px 37px #000000;
 
     z-index: 1;
-    &:first-child {
-      > img {
-        width: 25px;
-        height: 15px;
-      }
-    }
-    &:first-child {
-      > img {
-        width: 25px;
-        height: 25px;
-      }
-    }
   }
 
 }
