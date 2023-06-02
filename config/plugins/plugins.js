@@ -47,7 +47,7 @@ module.exports = {
   speedkit: {
 
     detection: {
-      performance: false,
+      performance: true,
       browserSupport: false
     },
 
@@ -57,8 +57,8 @@ module.exports = {
         deviceMemory: { min: 1 }
       },
       timing: {
-        fcp: 1200,
-        dcl: 1600
+        fcp: 800,
+        dcl: 1200
       }
     },
 
