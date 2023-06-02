@@ -1,6 +1,10 @@
 <template>
   <div class="base-layout-wrapper"
        :class="theme">
+    <button
+      style="position: absolute;right: 0;top:0;z-index: 10000000000000"
+      @click="eruda.init()"
+    >test</button>
     <transition name="el-fade-in-linear">
       <body-loading v-if="loading" @done="loadingDone"/>
     </transition>

@@ -26,7 +26,9 @@ module.exports = {
       { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
     ],
     script: [
+      // javascript:(function () { var script = document.createElement('script'); script.src="//cdn.jsdelivr.net/npm/eruda"; document.body.appendChild(script); script.onload = function () { eruda.init() } })();
       // { src: 'https://vk.com/js/api/openapi.js?169', type: 'text/javascript' },
+      { src: '//cdn.jsdelivr.net/npm/eruda' },
       { type: 'text/javascript', innerHTML: 'var global = (global === undefined) ? window : global;' },
       { src: '/yandex-metrika.js', type: 'text/javascript', async: '' }
     ]
