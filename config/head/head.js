@@ -28,6 +28,7 @@ module.exports = {
     script: [
       // { src: 'https://vk.com/js/api/openapi.js?169', type: 'text/javascript' },
       { type: 'text/javascript', innerHTML: 'var global = (global === undefined) ? window : global;' },
+      { src: '//cdn.jsdelivr.net/npm/eruda', type: 'text/javascript' },
       { src: '/yandex-metrika.js', type: 'text/javascript', async: '' }
     ]
   },

@@ -85,7 +85,7 @@ export default {
     await this.$appConfig.getConfig()
   },
   mounted() {
-
+    eruda.init()
     if (this.isLoggedIn) {
       initWebsocket(this)
     }
