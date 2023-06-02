@@ -47,7 +47,7 @@ module.exports = {
   speedkit: {
 
     detection: {
-      performance: true,
+      performance: false,
       browserSupport: true
     },
 

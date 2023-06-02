@@ -85,7 +85,14 @@ export default {
     await this.$appConfig.getConfig()
   },
   mounted() {
-
+    if (process.env.NAMI_IS_DEV) {
+      const script = document.createElement('script')
+      script.src="//cdn.jsdelivr.net/npm/eruda"
+      document.body.appendChild(script)
+      script.onload = () => {
+        eruda.init()
+      }
+    }
     if (this.isLoggedIn) {
       initWebsocket(this)
     }
