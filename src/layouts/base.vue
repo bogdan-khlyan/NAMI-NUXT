@@ -94,6 +94,7 @@ export default {
     document.body.appendChild(script)
     script.onload = () => {
       eruda.init()
+      this.loading = false
     }
     if (this.isLoggedIn) {
       initWebsocket(this)
