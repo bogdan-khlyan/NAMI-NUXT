@@ -1,3 +1,7 @@
 @import 'default';
 @import 'transitions';
 @import 'element-ui-override';
+
+#eruda {
+  z-index: 999999999999999999999;
+}
