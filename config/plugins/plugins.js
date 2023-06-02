@@ -57,8 +57,8 @@ module.exports = {
         deviceMemory: { min: 1 }
       },
       timing: {
-        fcp: 800,
-        dcl: 1200
+        fcp: 1200,
+        dcl: 1600
       }
     },
 
